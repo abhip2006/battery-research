@@ -1,109 +1,170 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
-import { Building2, MapPin, TrendingUp, DollarSign, Search } from 'lucide-react';
+import { Building2, MapPin, TrendingUp, DollarSign, Search, Loader2 } from 'lucide-react';
+import { getCompanies, getCompanyFilters, type Company } from '../services/companies.service';
 
-const COMPANIES_DATA = [
-  {
-    id: 1,
-    name: 'QuantumScape',
-    logo: '⚡',
-    sector: 'Solid-State',
-    region: 'West',
-    hq: 'San Jose, CA',
-    founded: '2010',
-    marketCap: '$2.4B',
-    doeSupport: '$175M',
-    employees: '450+',
-    status: 'Public',
-  },
-  {
-    id: 2,
-    name: 'Redwood Materials',
-    logo: '♻️',
-    sector: 'Recycling',
-    region: 'West',
-    hq: 'Carson City, NV',
-    founded: '2017',
-    marketCap: '$3.7B',
-    doeSupport: '$2.0B',
-    employees: '800+',
-    status: 'Private',
-  },
-  {
-    id: 3,
-    name: 'Form Energy',
-    logo: '🔋',
-    sector: 'Grid Storage',
-    region: 'Northeast',
-    hq: 'Somerville, MA',
-    founded: '2017',
-    marketCap: '$1.2B',
-    doeSupport: '$150M',
-    employees: '300+',
-    status: 'Private',
-  },
-  {
-    id: 4,
-    name: 'Solid Power',
-    logo: '⚛️',
-    sector: 'Solid-State',
-    region: 'West',
-    hq: 'Thornton, CO',
-    founded: '2012',
-    marketCap: '$740M',
-    doeSupport: '$75M',
-    employees: '200+',
-    status: 'Public',
-  },
-  {
-    id: 5,
-    name: 'ESS Tech',
-    logo: '🌊',
-    sector: 'Flow Batteries',
-    region: 'West',
-    hq: 'Wilsonville, OR',
-    founded: '2011',
-    marketCap: '$320M',
-    doeSupport: '$50M',
-    employees: '150+',
-    status: 'Public',
-  },
-  {
-    id: 6,
-    name: 'American Battery Technology',
-    logo: '🔬',
-    sector: 'Materials',
-    region: 'West',
-    hq: 'Reno, NV',
-    founded: '2018',
-    marketCap: '$280M',
-    doeSupport: '$115M',
-    employees: '120+',
-    status: 'Public',
-  },
-];
+const SECTORS_MAPPING: Record<string, string> = {
+  'Solid-state lithium-metal battery': 'Solid-State',
+  'Solid-state': 'Solid-State',
+  'Silicon anode lithium-ion batteries': 'Silicon Anode',
+  'Lithium iron phosphate': 'LFP',
+  'Znyth aqueous zinc battery': 'Zinc Battery',
+  'Recycling': 'Recycling',
+  'Grid Storage': 'Grid Storage',
+  'Flow Batteries': 'Flow Batteries',
+  'Materials': 'Materials',
+};
 
-const SECTORS = ['All', 'Solid-State', 'Recycling', 'Grid Storage', 'Flow Batteries', 'Materials'];
-const REGIONS = ['All', 'West', 'Northeast', 'Midwest', 'South'];
-const FUNDING_TYPES = ['All', 'Public', 'Private'];
+const REGIONS_MAP: Record<string, string> = {
+  CA: 'West',
+  NV: 'West',
+  CO: 'West',
+  OR: 'West',
+  WA: 'West',
+  MA: 'Northeast',
+  NY: 'Northeast',
+  NJ: 'Northeast',
+  GA: 'South',
+  NC: 'South',
+  TX: 'South',
+  MI: 'Midwest',
+  OH: 'Midwest',
+  IL: 'Midwest',
+};
 
 export function CompaniesPage() {
+  const [companies, setCompanies] = useState<Company[]>([]);
+  const [filteredCompanies, setFilteredCompanies] = useState<Company[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
   const [selectedSector, setSelectedSector] = useState('All');
   const [selectedRegion, setSelectedRegion] = useState('All');
   const [selectedFunding, setSelectedFunding] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
 
-  const filteredCompanies = COMPANIES_DATA.filter((company) => {
-    const matchesSector = selectedSector === 'All' || company.sector === selectedSector;
-    const matchesRegion = selectedRegion === 'All' || company.region === selectedRegion;
-    const matchesFunding = selectedFunding === 'All' || company.status === selectedFunding;
-    const matchesSearch =
-      searchQuery === '' ||
-      company.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      company.sector.toLowerCase().includes(searchQuery.toLowerCase());
+  const [availableSectors, setAvailableSectors] = useState<string[]>([]);
+  const [availableRegions, setAvailableRegions] = useState<string[]>([]);
 
-    return matchesSector && matchesRegion && matchesFunding && matchesSearch;
-  });
+  // Load companies and filters
+  useEffect(() => {
+    async function loadData() {
+      try {
+        setLoading(true);
+        const [companiesData, filters] = await Promise.all([
+          getCompanies(),
+          getCompanyFilters(),
+        ]);
+
+        setCompanies(companiesData);
+        setFilteredCompanies(companiesData);
+
+        // Map technologies to sectors
+        const sectors = new Set<string>();
+        filters.technologies.forEach((tech) => {
+          const sector = SECTORS_MAPPING[tech] || tech;
+          sectors.add(sector);
+        });
+
+        setAvailableSectors(Array.from(sectors).sort());
+
+        // Map states to regions
+        const regions = new Set<string>();
+        filters.states.forEach((state) => {
+          const region = REGIONS_MAP[state];
+          if (region) regions.add(region);
+        });
+
+        setAvailableRegions(Array.from(regions).sort());
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'Failed to load companies');
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    loadData();
+  }, []);
+
+  // Apply filters
+  useEffect(() => {
+    let result = companies;
+
+    // Filter by sector
+    if (selectedSector !== 'All') {
+      result = result.filter((company) => {
+        const sector = SECTORS_MAPPING[company.technology] || company.technology;
+        return sector === selectedSector;
+      });
+    }
+
+    // Filter by region
+    if (selectedRegion !== 'All') {
+      result = result.filter((company) => {
+        const stateMatch = company.headquarters.match(/,\s*([A-Z]{2})\s*$/);
+        if (stateMatch) {
+          const region = REGIONS_MAP[stateMatch[1]];
+          return region === selectedRegion;
+        }
+        return false;
+      });
+    }
+
+    // Filter by funding status
+    if (selectedFunding !== 'All') {
+      result = result.filter((company) => {
+        if (selectedFunding === 'Public') {
+          return company.ticker || company.is_publicly_traded;
+        } else {
+          return !company.ticker && !company.is_publicly_traded;
+        }
+      });
+    }
+
+    // Filter by search query
+    if (searchQuery) {
+      const lowerQuery = searchQuery.toLowerCase();
+      result = result.filter(
+        (company) =>
+          company.name.toLowerCase().includes(lowerQuery) ||
+          company.technology.toLowerCase().includes(lowerQuery) ||
+          company.headquarters.toLowerCase().includes(lowerQuery)
+      );
+    }
+
+    setFilteredCompanies(result);
+  }, [companies, selectedSector, selectedRegion, selectedFunding, searchQuery]);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen pt-24 bg-[#0A0A0A] flex items-center justify-center">
+        <div className="flex flex-col items-center gap-4">
+          <Loader2 className="size-12 text-[#B2FF59] animate-spin" />
+          <p className="text-[#FAFAFA]">Loading companies data...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen pt-24 bg-[#0A0A0A] flex items-center justify-center">
+        <div className="text-center">
+          <p className="text-red-400 mb-4">{error}</p>
+          <button
+            onClick={() => window.location.reload()}
+            className="px-6 py-3 bg-[#B2FF59] text-[#0A0A0A] rounded-lg hover:bg-[#A0E050] transition-colors"
+          >
+            Retry
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  const SECTORS = ['All', ...availableSectors];
+  const REGIONS = ['All', ...availableRegions];
+  const FUNDING_TYPES = ['All', 'Public', 'Private'];
 
   return (
     <div className="min-h-screen pt-24 bg-[#0A0A0A]">
@@ -120,9 +181,11 @@ export function CompaniesPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h1 className="text-[#B2FF59] mb-4 text-5xl font-extrabold font-tech uppercase tracking-wider">Company Directory</h1>
+            <h1 className="text-[#B2FF59] mb-4 text-5xl font-extrabold font-tech uppercase tracking-wider">
+              Company Directory
+            </h1>
             <p className="text-[#FAFAFA] max-w-2xl text-lg font-medium">
-              Comprehensive database of U.S. battery companies across all subsectors
+              Comprehensive database of {companies.length} U.S. battery companies across all subsectors
             </p>
           </motion.div>
         </div>
@@ -219,71 +282,108 @@ export function CompaniesPage() {
               Showing {filteredCompanies.length} companies
             </div>
 
-            {filteredCompanies.map((company, index) => (
-              <motion.div
-                key={company.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: index * 0.05 }}
-                className="bg-[#1A1A1A] p-6 rounded-xl border-2 border-[#2B2B2B] hover:border-[#B2FF59] hover:shadow-lg hover:shadow-[#B2FF59]/20 transition-all duration-300 group cursor-pointer"
-              >
-                <div className="flex items-start gap-6">
-                  {/* Logo */}
-                  <div className="w-16 h-16 bg-[#0F0F0F] rounded-xl flex items-center justify-center text-3xl border-2 border-[#2B2B2B] group-hover:border-[#B2FF59] transition-all duration-300">
-                    {company.logo}
-                  </div>
+            {filteredCompanies.map((company, index) => {
+              const sector = SECTORS_MAPPING[company.technology] || company.technology;
+              const isPublic = company.ticker || company.is_publicly_traded;
 
-                  {/* Info */}
-                  <div className="flex-1">
-                    <div className="flex items-start justify-between mb-3">
-                      <div>
-                        <h3 className="text-[#FAFAFA] mb-2 text-xl font-bold group-hover:text-[#B2FF59] transition-colors duration-300">
-                          {company.name}
-                        </h3>
-                        <div className="flex items-center gap-3 text-sm text-[#AAAAAA]">
-                          <span className="px-3 py-1.5 bg-[#B2FF59]/20 text-[#B2FF59] rounded-lg font-semibold border border-[#B2FF59]/50">
-                            {company.sector}
-                          </span>
-                          <span className="flex items-center gap-1.5 font-medium">
-                            <MapPin className="size-3.5" />
-                            {company.hq}
-                          </span>
+              return (
+                <motion.div
+                  key={company.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: index * 0.05 }}
+                  className="bg-[#1A1A1A] p-6 rounded-xl border-2 border-[#2B2B2B] hover:border-[#B2FF59] hover:shadow-lg hover:shadow-[#B2FF59]/20 transition-all duration-300 group cursor-pointer"
+                >
+                  <div className="flex items-start gap-6">
+                    {/* Logo */}
+                    <div className="w-16 h-16 bg-[#0F0F0F] rounded-xl flex items-center justify-center text-3xl border-2 border-[#2B2B2B] group-hover:border-[#B2FF59] transition-all duration-300">
+                      <Building2 className="size-8 text-[#B2FF59]" />
+                    </div>
+
+                    {/* Info */}
+                    <div className="flex-1">
+                      <div className="flex items-start justify-between mb-3">
+                        <div>
+                          <h3 className="text-[#FAFAFA] mb-2 text-xl font-bold group-hover:text-[#B2FF59] transition-colors duration-300">
+                            {company.name}
+                            {company.ticker && (
+                              <span className="ml-2 text-sm text-[#B2FF59]">
+                                ({company.ticker})
+                              </span>
+                            )}
+                          </h3>
+                          <div className="flex items-center gap-3 text-sm text-[#AAAAAA]">
+                            <span className="px-3 py-1.5 bg-[#B2FF59]/20 text-[#B2FF59] rounded-lg font-semibold border border-[#B2FF59]/50">
+                              {sector}
+                            </span>
+                            <span className="flex items-center gap-1.5 font-medium">
+                              <MapPin className="size-3.5" />
+                              {company.headquarters}
+                            </span>
+                          </div>
+                        </div>
+                        <span
+                          className={`px-4 py-2 rounded-lg font-semibold border-2 ${
+                            isPublic
+                              ? 'bg-[#B2FF59]/20 text-[#B2FF59] border-[#B2FF59]/50'
+                              : 'bg-[#1565C0]/20 text-[#1565C0] border-[#1565C0]/50'
+                          }`}
+                        >
+                          {isPublic ? 'Public' : 'Private'}
+                        </span>
+                      </div>
+
+                      {/* Stats Grid */}
+                      <div className="grid grid-cols-4 gap-4 mt-5 pt-5 border-t-2 border-[#2B2B2B]">
+                        <div>
+                          <div className="text-[#888888] text-xs mb-1.5 font-semibold uppercase tracking-wide">
+                            Founded
+                          </div>
+                          <div className="text-[#FAFAFA] font-mono font-semibold">{company.founded}</div>
+                        </div>
+                        <div>
+                          <div className="text-[#888888] text-xs mb-1.5 font-semibold uppercase tracking-wide">
+                            Capacity
+                          </div>
+                          <div className="text-[#B2FF59] font-mono font-bold">
+                            {company.capacity_gwh ? `${company.capacity_gwh} GWh` : 'N/A'}
+                          </div>
+                        </div>
+                        <div>
+                          <div className="text-[#888888] text-xs mb-1.5 font-semibold uppercase tracking-wide">
+                            Funding
+                          </div>
+                          <div className="text-[#1565C0] font-mono font-bold">
+                            {company.funding?.total_raised || 'N/A'}
+                          </div>
+                        </div>
+                        <div>
+                          <div className="text-[#888888] text-xs mb-1.5 font-semibold uppercase tracking-wide">
+                            Employees
+                          </div>
+                          <div className="text-[#FAFAFA] font-mono font-semibold">
+                            {company.employees}+
+                          </div>
                         </div>
                       </div>
-                      <span
-                        className={`px-4 py-2 rounded-lg font-semibold border-2 ${
-                          company.status === 'Public'
-                            ? 'bg-[#B2FF59]/20 text-[#B2FF59] border-[#B2FF59]/50'
-                            : 'bg-[#1565C0]/20 text-[#1565C0] border-[#1565C0]/50'
-                        }`}
-                      >
-                        {company.status}
-                      </span>
-                    </div>
 
-                    {/* Stats Grid */}
-                    <div className="grid grid-cols-4 gap-4 mt-5 pt-5 border-t-2 border-[#2B2B2B]">
-                      <div>
-                        <div className="text-[#888888] text-xs mb-1.5 font-semibold uppercase tracking-wide">Founded</div>
-                        <div className="text-[#FAFAFA] font-mono font-semibold">{company.founded}</div>
-                      </div>
-                      <div>
-                        <div className="text-[#888888] text-xs mb-1.5 font-semibold uppercase tracking-wide">Market Cap</div>
-                        <div className="text-[#B2FF59] font-mono font-bold">{company.marketCap}</div>
-                      </div>
-                      <div>
-                        <div className="text-[#888888] text-xs mb-1.5 font-semibold uppercase tracking-wide">DOE Support</div>
-                        <div className="text-[#1565C0] font-mono font-bold">{company.doeSupport}</div>
-                      </div>
-                      <div>
-                        <div className="text-[#888888] text-xs mb-1.5 font-semibold uppercase tracking-wide">Employees</div>
-                        <div className="text-[#FAFAFA] font-mono font-semibold">{company.employees}</div>
+                      {/* Technology Description */}
+                      <div className="mt-4 text-sm text-[#CCCCCC]">
+                        {company.technology}
                       </div>
                     </div>
                   </div>
-                </div>
-              </motion.div>
-            ))}
+                </motion.div>
+              );
+            })}
+
+            {filteredCompanies.length === 0 && (
+              <div className="text-center py-12">
+                <p className="text-[#AAAAAA] text-lg">
+                  No companies match your filters. Try adjusting your search criteria.
+                </p>
+              </div>
+            )}
           </div>
         </div>
       </div>

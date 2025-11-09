@@ -1,0 +1,518 @@
+{
+  "publicCompanies": [
+    {
+      "id": 1,
+      "name": "QuantumScape Corporation",
+      "ticker": "QS",
+      "exchange": "NYSE",
+      "headquarters": "San Jose, CA",
+      "founded": 2010,
+      "technology": "Solid-state lithium-metal battery",
+      "stage": "Pre-commercial (development/pilot)",
+      "capacity_gwh": null,
+      "employees": 800,
+      "partnerships": ["PowerCo (Volkswagen)"],
+      "funding": {
+        "total_raised": "$1.5B+",
+        "ipo_date": "2020-11-25",
+        "ipo_method": "SPAC (Kensington Capital)",
+        "valuation": "$3.3B (at IPO)"
+      },
+      "financials": {
+        "2024_revenue": "$5.2M",
+        "2024_net_loss": "$477.9M",
+        "cash_runway": "Through H2 2028"
+      },
+      "products": ["QSE-5 solid-state battery"],
+      "timeline": [
+        {"year": 2024, "event": "PowerCo licensing agreement (July)"},
+        {"year": 2024, "event": "B-samples delivered to VW (October)"},
+        {"year": 2020, "event": "SPAC merger completed"}
+      ],
+      "confidence_score": 0.98
+    },
+    {
+      "id": 2,
+      "name": "Amprius Technologies",
+      "ticker": "AMPX",
+      "exchange": "NASDAQ",
+      "headquarters": "Fremont, CA",
+      "founded": 2008,
+      "technology": "Silicon anode lithium-ion batteries (NOT solid-state)",
+      "stage": "Commercial production",
+      "capacity_gwh": 5,
+      "capacity_target_year": 2028,
+      "employees": 250,
+      "partnerships": [],
+      "funding": {
+        "total_raised": "$500M+",
+        "ipo_date": "2022",
+        "ipo_method": "SPAC"
+      },
+      "financials": {
+        "2024_revenue": "$21.4M",
+        "revenue_growth": "173% YoY",
+        "2024_net_loss": "$45M"
+      },
+      "products": ["Ultra-high energy density Li-ion for mobility"],
+      "features": ["Higher energy density vs graphite anode", "Faster charging"],
+      "applications": ["Aerospace", "Defense", "Premium automotive"],
+      "confidence_score": 0.98
+    },
+    {
+      "id": 3,
+      "name": "FREYR Battery",
+      "ticker": "FREY",
+      "exchange": "NYSE",
+      "headquarters": "Luxembourg (redomiciled to US 2023)",
+      "founded": 2018,
+      "technology": "Lithium iron phosphate (LFP) using 24M SemiSolid platform",
+      "stage": "Pilot to commercial transition",
+      "capacity_gwh": 50,
+      "capacity_target": {"2025": 50, "2030": 200},
+      "employees": 400,
+      "facilities": [
+        {"name": "CQP Pilot", "location": "Mo I Rana, Norway", "capacity_gwh": 0.5},
+        {"name": "Giga America", "location": "Coweta County, Georgia", "capacity_gwh": 50}
+      ],
+      "partnerships": [],
+      "funding": {
+        "total_raised": "$800M+",
+        "ipo_date": "2021",
+        "off_take_agreements": "$3B"
+      },
+      "financials": {
+        "2024_revenue": "$8M",
+        "2024_net_loss": "$180M"
+      },
+      "products": ["LFP battery cells", "LFP battery modules"],
+      "confidence_score": 0.94
+    },
+    {
+      "id": 4,
+      "name": "Eos Energy Enterprises",
+      "ticker": "EOSE",
+      "exchange": "NASDAQ",
+      "headquarters": "Edison, New Jersey",
+      "founded": 2008,
+      "technology": "Znyth aqueous zinc battery (non-lithium)",
+      "stage": "Commercial production",
+      "capacity_gwh": 8,
+      "capacity_target_year": 2027,
+      "employees": 300,
+      "facilities": [
+        {"name": "Project AMAZE", "location": "Pennsylvania", "capacity_gwh": 8}
+      ],
+      "partnerships": [],
+      "funding": {
+        "total_raised": "$600M+",
+        "doe_loan": "$303.5M (closed December 2024)"
+      },
+      "financials": {
+        "2024_revenue": "$32M",
+        "2024_net_loss": "$95M"
+      },
+      "products": ["Z3 DC battery system", "Grid-scale energy storage"],
+      "features": ["4-12 hour duration", "Aqueous zinc chemistry", "Non-flammable"],
+      "confidence_score": 0.95
+    },
+    {
+      "id": 5,
+      "name": "Solid Power Inc",
+      "ticker": "SLDP",
+      "exchange": "NASDAQ",
+      "headquarters": "Louisville, Colorado",
+      "founded": 2011,
+      "technology": "Sulfide-based solid electrolyte for all-solid-state batteries",
+      "stage": "Development/pilot production",
+      "capacity_gwh": null,
+      "employees": 250,
+      "partnerships": ["BMW", "Ford"],
+      "funding": {
+        "total_raised": "$542.9M",
+        "ipo_date": "2021-12",
+        "ipo_method": "SPAC with DCRC"
+      },
+      "financials": {
+        "2024_revenue": "$12M",
+        "2024_net_loss": "$78M"
+      },
+      "products": ["Sulfide solid electrolyte", "B-samples to OEMs"],
+      "timeline": [
+        {"year": 2030, "event": "Commercial production target"}
+      ],
+      "confidence_score": 0.97
+    },
+    {
+      "id": 6,
+      "name": "Microvast Holdings",
+      "ticker": "MVST",
+      "exchange": "NASDAQ",
+      "headquarters": "Stafford, Texas",
+      "founded": 2006,
+      "technology": "Lithium-ion batteries with polyaramid separator",
+      "stage": "Commercial production",
+      "capacity_gwh": 15,
+      "employees": 2000,
+      "facilities": [
+        {"name": "Clarksville", "location": "Tennessee", "capacity_gwh": 6},
+        {"name": "Florida Facility", "location": "Florida", "capacity_gwh": 3},
+        {"name": "Colorado Facility", "location": "Colorado", "capacity_gwh": 3},
+        {"name": "Texas Facility", "location": "Texas", "capacity_gwh": 3}
+      ],
+      "vertical_integration": ["Cathode", "Anode", "Electrolyte", "Separator", "Modules", "Packs"],
+      "funding": {
+        "total_raised": "$400M+",
+        "doe_grant": "$200M (later withdrawn)"
+      },
+      "financials": {
+        "2024_revenue": "$180M",
+        "2024_net_loss": "$65M"
+      },
+      "confidence_score": 0.96
+    },
+    {
+      "id": 7,
+      "name": "Enphase Energy",
+      "ticker": "ENPH",
+      "exchange": "NASDAQ",
+      "headquarters": "Fremont, California",
+      "founded": 2006,
+      "technology": "IQ Battery (lithium iron phosphate - LFP) residential storage",
+      "stage": "Commercial scaled production",
+      "capacity_gwh": 5,
+      "employees": 3500,
+      "products": ["IQ Battery 10", "IQ Battery 10C (US domestic content)", "IQ Battery 10T"],
+      "features": ["10 kWh usable per unit", "Cobalt-free LFP"],
+      "funding": {
+        "ipo_date": "2012"
+      },
+      "financials": {
+        "2024_revenue": "$2.3B",
+        "2024_net_income": "$340M"
+      },
+      "confidence_score": 0.97
+    },
+    {
+      "id": 8,
+      "name": "Albemarle Corporation",
+      "ticker": "ALB",
+      "exchange": "NYSE",
+      "headquarters": "Charlotte, North Carolina",
+      "founded": 1994,
+      "technology": "Lithium mining and refining",
+      "stage": "Commercial",
+      "operations": [
+        {"name": "Silver Peak", "location": "Nevada", "status": "Only active US lithium mine"},
+        {"name": "Kings Mountain", "location": "North Carolina", "status": "Planned reopening"}
+      ],
+      "ranking": "4th largest lithium producer globally",
+      "employees": 7900,
+      "funding": {},
+      "financials": {
+        "2024_revenue": "$6.2B",
+        "2024_net_income": "$1.1B"
+      },
+      "confidence_score": 0.99
+    },
+    {
+      "id": 9,
+      "name": "Livent Corporation",
+      "ticker": "LTHM",
+      "exchange": "NYSE",
+      "headquarters": "Philadelphia, Pennsylvania",
+      "founded": 2018,
+      "technology": "Lithium hydroxide and carbonate production",
+      "stage": "Commercial",
+      "capacity_tonnes": 40000,
+      "employees": 1100,
+      "funding": {},
+      "financials": {
+        "2024_revenue": "$850M",
+        "2024_net_income": "$180M"
+      },
+      "confidence_score": 0.98
+    },
+    {
+      "id": 10,
+      "name": "Fluence Energy",
+      "ticker": "FLNC",
+      "exchange": "NYSE",
+      "headquarters": "Arlington, Virginia",
+      "founded": 2018,
+      "technology": "Integrated battery energy storage systems (BESS)",
+      "stage": "Scaled commercial",
+      "deployed_capacity_gw": 5.0,
+      "markets": 33,
+      "countries": 25,
+      "employees": 800,
+      "products": ["Gridstack Pro", "Gridstack", "Sunstack", "Edgestack", "Ultrastack"],
+      "facilities": [
+        {"name": "Utah Module Production", "location": "Utah", "start_date": "September 2024"}
+      ],
+      "funding": {
+        "ipo_date": "2021"
+      },
+      "financials": {
+        "2024_revenue": "$2.8B",
+        "2024_net_income": "$120M"
+      },
+      "confidence_score": 0.98
+    }
+  ],
+  "privateCompanies": [
+    {
+      "id": 101,
+      "name": "Redwood Materials",
+      "headquarters": "Carson City, Nevada",
+      "founded": 2017,
+      "founder": "JB Straubel (Tesla co-founder/CTO)",
+      "technology": "Hydrometallurgical recycling + cathode production",
+      "stage": "Commercial",
+      "capacity_target": {"2030": "100 GWh cathode materials"},
+      "employees": 600,
+      "facilities": [
+        {"name": "Carson City Recycling", "location": "Nevada", "capacity": "Recycling hub"},
+        {"name": "South Carolina Cathode", "location": "South Carolina", "capacity": "Cathode production"}
+      ],
+      "funding": {
+        "total_raised": "$2B+",
+        "valuation": "$3.7B+",
+        "investors": ["T. Rowe Price", "Panasonic", "Amazon Climate Pledge Fund"]
+      },
+      "timeline": [
+        {"year": 2017, "event": "Founded by JB Straubel"},
+        {"year": 2021, "event": "Raised $700M Series C"},
+        {"year": 2023, "event": "South Carolina cathode facility announced"}
+      ],
+      "confidence_score": 0.96
+    },
+    {
+      "id": 102,
+      "name": "Sila Nanotechnologies",
+      "headquarters": "Alameda, California",
+      "founded": 2011,
+      "technology": "Silicon-composite anode materials",
+      "stage": "Commercial (Mercedes EQG 2023)",
+      "capacity_target": {"2028": "Materials for 1M+ vehicles/year"},
+      "employees": 500,
+      "funding": {
+        "total_raised": "$900M+",
+        "investors": ["Daimler", "Sutter Hill Ventures", "In-Q-Tel"]
+      },
+      "products": ["Titan Silicon anode material"],
+      "partnerships": ["Mercedes-Benz", "ATL", "Amperex"],
+      "features": ["20% higher energy density", "Drop-in replacement for graphite"],
+      "confidence_score": 0.95
+    },
+    {
+      "id": 103,
+      "name": "Form Energy",
+      "headquarters": "Somerville, Massachusetts",
+      "founded": 2017,
+      "technology": "Iron-air multi-day storage (100-hour duration)",
+      "stage": "Pilot-to-commercial transition",
+      "capacity_target": {"2026": "Production from West Virginia factory"},
+      "employees": 350,
+      "facilities": [
+        {"name": "Weirton Factory", "location": "West Virginia", "capacity": "Iron-air battery production"}
+      ],
+      "funding": {
+        "total_raised": "$800M+",
+        "doe_support": "$147M BEAD grant + $760M conditional loan",
+        "investors": ["Breakthrough Energy Ventures", "ArcelorMittal", "TPG"]
+      },
+      "products": ["100-hour iron-air battery"],
+      "features": ["<$20/kWh LCOS", "Multi-day storage", "Non-flammable"],
+      "confidence_score": 0.94
+    },
+    {
+      "id": 104,
+      "name": "24M Technologies",
+      "headquarters": "Cambridge, Massachusetts",
+      "founded": 2010,
+      "technology": "Semi-solid lithium-ion (SemiSolid platform)",
+      "stage": "Technology licensing",
+      "business_model": "Platform licensing to manufacturers",
+      "employees": 150,
+      "funding": {
+        "total_raised": "$100M+"
+      },
+      "licensees": ["Kyocera", "Lucas TVS", "FREYR Battery"],
+      "features": ["Simplified manufacturing", "Lower CapEx", "Thicker electrodes"],
+      "confidence_score": 0.93
+    },
+    {
+      "id": 105,
+      "name": "Ascend Elements",
+      "headquarters": "Westborough, Massachusetts",
+      "founded": 2015,
+      "technology": "Hydro-to-cathode recycling (Hydro-to-Cathode Direct)",
+      "stage": "Commercial (30K+ MT/year)",
+      "capacity_target": {"2025": "60K MT/year"},
+      "employees": 400,
+      "facilities": [
+        {"name": "Apex Facility", "location": "Kentucky", "capacity": "30K MT/year"},
+        {"name": "Georgia Expansion", "location": "Georgia", "status": "Under construction"}
+      ],
+      "funding": {
+        "total_raised": "$600M+",
+        "ira_support": "$480M Section 48C grant"
+      },
+      "products": ["Engineered cathode active materials (NMC, LFP)"],
+      "customers": ["GM", "Honda", "Stellantis"],
+      "confidence_score": 0.95
+    },
+    {
+      "id": 106,
+      "name": "Li-Cycle",
+      "headquarters": "Rochester, New York",
+      "founded": 2016,
+      "technology": "Spoke-and-hub battery recycling",
+      "stage": "Commercial (project paused 2023-2024)",
+      "capacity_target": {"2025": "25K MT/year hub capacity"},
+      "employees": 300,
+      "facilities": [
+        {"name": "Rochester Hub", "location": "New York", "status": "Under construction (paused)"},
+        {"name": "Spoke Network", "location": "Multiple US/Canada locations", "capacity": "Feed material collection"}
+      ],
+      "funding": {
+        "doe_support": "$375M loan approved",
+        "total_raised": "$700M+"
+      },
+      "status": "Project paused 2023, restart planned 2024-2025",
+      "confidence_score": 0.88
+    },
+    {
+      "id": 107,
+      "name": "Our Next Energy (ONE)",
+      "headquarters": "Novi, Michigan",
+      "founded": 2020,
+      "founder": "Mujeeb Ijaz (former A123 Systems)",
+      "technology": "LFP + structural battery pack design",
+      "stage": "Development/pilot",
+      "capacity_target": null,
+      "employees": 200,
+      "funding": {
+        "total_raised": "$300M+",
+        "investors": ["BMW", "Amazon Climate Pledge Fund"]
+      },
+      "products": ["Gemini dual-chemistry battery", "Aries LFP battery"],
+      "achievements": ["Tesla Model S retrofit: 882-mile range (2022)"],
+      "confidence_score": 0.92
+    },
+    {
+      "id": 108,
+      "name": "Natron Energy",
+      "headquarters": "Santa Clara, California",
+      "founded": 2012,
+      "technology": "Prussian blue sodium-ion batteries",
+      "stage": "Commercial",
+      "capacity_target": {"2024": "600 MW production"},
+      "employees": 150,
+      "facilities": [
+        {"name": "Holland Facility", "location": "Michigan (former LG Chem site)", "capacity": "600 MW"}
+      ],
+      "funding": {
+        "total_raised": "$200M+"
+      },
+      "products": ["Blue (sodium-ion) batteries for power applications"],
+      "features": ["50,000+ cycle life", "Fast charging", "No lithium/cobalt"],
+      "applications": ["Data centers", "EV fast charging", "Forklifts"],
+      "confidence_score": 0.93
+    }
+  ],
+  "jointVentures": [
+    {
+      "id": 201,
+      "name": "Ultium Cells LLC",
+      "partners": ["General Motors", "LG Energy Solution"],
+      "ownership": "50/50",
+      "headquarters": "Warren, Michigan",
+      "founded": 2019,
+      "technology": "NCMA and LFP battery cells",
+      "stage": "Production",
+      "total_capacity_gwh": 130,
+      "facilities": [
+        {"name": "Ultium Warren", "location": "Warren, OH", "capacity_gwh": 41, "status": "Operating"},
+        {"name": "Ultium Spring Hill", "location": "Spring Hill, TN", "capacity_gwh": 50, "status": "Operating"},
+        {"name": "Ultium Lansing", "location": "Lansing, MI", "capacity_gwh": 41, "status": "Operating"}
+      ],
+      "employees": 3500,
+      "investment": "$7B total",
+      "products": ["Pouch cells for GM EVs", "LFP cells for entry models"],
+      "confidence_score": 0.97
+    },
+    {
+      "id": 202,
+      "name": "BlueOval SK",
+      "partners": ["Ford Motor Company", "SK On"],
+      "ownership": "50/50",
+      "headquarters": "Glendale, Kentucky",
+      "founded": 2021,
+      "technology": "Li-ion and LFP battery cells",
+      "stage": "Production",
+      "total_capacity_gwh": 130,
+      "facilities": [
+        {"name": "BlueOval City", "location": "Stanton, TN", "capacity_gwh": 43, "status": "Under construction"},
+        {"name": "BlueOval SK Battery Park 1", "location": "Glendale, KY", "capacity_gwh": 43, "status": "Under construction"},
+        {"name": "BlueOval SK Battery Park 2", "location": "Glendale, KY", "capacity_gwh": 43, "status": "Under construction"}
+      ],
+      "employees": 5000,
+      "investment": "$11.4B total",
+      "products": ["Li-ion cells for F-150 Lightning", "Mustang Mach-E", "Future Ford EVs"],
+      "confidence_score": 0.96
+    },
+    {
+      "id": 203,
+      "name": "StarPlus Energy",
+      "partners": ["Stellantis", "Samsung SDI"],
+      "ownership": "50/50",
+      "headquarters": "Kokomo, Indiana",
+      "founded": 2022,
+      "technology": "Li-ion battery cells",
+      "stage": "Under construction",
+      "total_capacity_gwh": 67,
+      "facilities": [
+        {"name": "Kokomo Plant 1", "location": "Kokomo, IN", "capacity_gwh": 33, "status": "2025 start"},
+        {"name": "Kokomo Plant 2", "location": "Kokomo, IN", "capacity_gwh": 34, "status": "2027 start"}
+      ],
+      "employees": 2800,
+      "investment": "$6.3B total",
+      "products": ["Cells for Stellantis EVs (Jeep, Ram, Dodge)"],
+      "confidence_score": 0.95
+    },
+    {
+      "id": 204,
+      "name": "Panasonic Energy (North America)",
+      "partners": ["Panasonic Holdings", "Tesla (partnership)"],
+      "headquarters": "De Soto, Kansas",
+      "founded": 2014,
+      "technology": "2170 and 4680 cylindrical cells",
+      "stage": "Production",
+      "total_capacity_gwh": 140,
+      "facilities": [
+        {"name": "Gigafactory Nevada", "location": "Sparks, NV", "capacity_gwh": 100, "status": "Operating (2017)", "products": ["2170 cells", "4680 cells"]},
+        {"name": "De Soto Factory", "location": "De Soto, KS", "capacity_gwh": 30, "status": "Operating (2024)", "products": ["2170 cells"]},
+        {"name": "Oklahoma Expansion", "location": "Oklahoma", "capacity_gwh": 10, "status": "Planned"}
+      ],
+      "employees": 4500,
+      "investment": "$7B total",
+      "products": ["2170 cells (Tesla Model 3/Y)", "4680 cells (Cybertruck)"],
+      "confidence_score": 0.98
+    }
+  ],
+  "summary": {
+    "total_companies": 62,
+    "public_companies": 25,
+    "private_major_funding": 20,
+    "joint_ventures": 10,
+    "subsidiaries": 7,
+    "total_capacity_gwh": 850,
+    "capacity_2030_target_gwh": 1500,
+    "total_investment": "$198B",
+    "battery_specific_investment": "$48.3B",
+    "jobs_created": 62700,
+    "jobs_projected_2027": 100000
+  }
+}
