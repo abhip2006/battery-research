@@ -3,453 +3,1099 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Comprehensive US Battery Industry Research Dashboard - Analysis of cost trends, capacity growth, technology evolution, and regional manufacturing clusters">
-    <meta name="keywords" content="battery industry, lithium-ion, LFP, NMC, energy storage, electric vehicles, manufacturing, USA">
-    <meta name="author" content="Battery Industry Research Team">
-    <meta property="og:title" content="US Battery Industry Research Dashboard">
-    <meta property="og:description" content="Interactive dashboard analyzing the US battery manufacturing landscape, technology trends, and market evolution">
-    <meta property="og:type" content="website">
-
-    <title>US Battery Industry Research Dashboard | Comprehensive Analysis & Insights</title>
-
-    <!-- External Resources -->
-    <link rel="stylesheet" href="styles.css">
+    <title>Battery Intelligence Platform | US Industry Dashboard</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    <!-- Preload critical resources -->
-    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #1C1C1C;
+            color: #FFFFFF;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            background: #000000;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+
+        nav .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #00C805;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: #FFFFFF;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+        }
+
+        nav a:hover {
+            color: #00C805;
+            background: rgba(0, 200, 5, 0.1);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #000000 0%, #1C1C1C 50%, #2D2D2D 100%);
+            padding: 4rem 2rem;
+            text-align: center;
+            border-bottom: 3px solid #00C805;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            color: #00C805;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: #B3B3B3;
+            margin-bottom: 2rem;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 2rem auto;
+        }
+
+        .stat-card {
+            background: #2D2D2D;
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid #3D3D3D;
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #00C805;
+        }
+
+        .stat-label {
+            color: #B3B3B3;
+            margin-top: 0.5rem;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Section */
+        .section {
+            margin: 3rem 0;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: #00C805;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            color: #B3B3B3;
+            margin-bottom: 2rem;
+        }
+
+        /* Chart Container */
+        .chart-container {
+            background: #2D2D2D;
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid #3D3D3D;
+            margin: 1.5rem 0;
+        }
+
+        .chart-container canvas {
+            max-height: 400px;
+        }
+
+        /* Grid Layouts */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 2rem;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+
+        /* Cards */
+        .card {
+            background: #2D2D2D;
+            border: 1px solid #3D3D3D;
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: #00C805;
+        }
+
+        .card h3 {
+            color: #00C805;
+            margin-bottom: 1rem;
+        }
+
+        /* Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #2D2D2D;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        th {
+            background: #000000;
+            color: #00C805;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid #3D3D3D;
+            color: #B3B3B3;
+        }
+
+        tr:hover {
+            background: #3D3D3D;
+        }
+
+        /* RAG Chatbot */
+        .chatbot-container {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 1000;
+        }
+
+        .chatbot-toggle {
+            background: #00C805;
+            color: #000000;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(0, 200, 5, 0.4);
+            transition: transform 0.3s;
+        }
+
+        .chatbot-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .chatbot-window {
+            display: none;
+            position: absolute;
+            bottom: 80px;
+            right: 0;
+            width: 400px;
+            height: 600px;
+            background: #1C1C1C;
+            border: 2px solid #00C805;
+            border-radius: 12px;
+            flex-direction: column;
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .chatbot-window.active {
+            display: flex;
+        }
+
+        .chatbot-header {
+            background: #00C805;
+            color: #000000;
+            padding: 1rem;
+            font-weight: 700;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chatbot-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1rem;
+        }
+
+        .message {
+            margin: 1rem 0;
+            padding: 0.75rem;
+            border-radius: 8px;
+            max-width: 80%;
+        }
+
+        .message.user {
+            background: #00C805;
+            color: #000000;
+            margin-left: auto;
+        }
+
+        .message.bot {
+            background: #2D2D2D;
+            color: #FFFFFF;
+        }
+
+        .chatbot-input {
+            display: flex;
+            padding: 1rem;
+            border-top: 1px solid #3D3D3D;
+        }
+
+        .chatbot-input input {
+            flex: 1;
+            background: #2D2D2D;
+            border: 1px solid #3D3D3D;
+            color: #FFFFFF;
+            padding: 0.75rem;
+            border-radius: 8px;
+            margin-right: 0.5rem;
+        }
+
+        .chatbot-input button {
+            background: #00C805;
+            color: #000000;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        /* Insights Box */
+        .insights-box {
+            background: rgba(0, 200, 5, 0.1);
+            border-left: 4px solid #00C805;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+        }
+
+        .insights-box h3 {
+            color: #00C805;
+            margin-bottom: 1rem;
+        }
+
+        .insights-box ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .insights-box li {
+            padding: 0.5rem 0;
+            color: #B3B3B3;
+        }
+
+        .insights-box li::before {
+            content: "→ ";
+            color: #00C805;
+            font-weight: bold;
+        }
+
+        /* Footer */
+        footer {
+            background: #000000;
+            color: #B3B3B3;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .grid-2, .grid-3 {
+                grid-template-columns: 1fr;
+            }
+
+            .chatbot-window {
+                width: calc(100vw - 2rem);
+                right: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
-    <nav id="main-nav" class="navbar">
-        <div class="nav-container">
-            <div class="nav-brand">
-                <h1>US Battery Industry Dashboard</h1>
-            </div>
-            <button class="nav-toggle" aria-label="Toggle navigation">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <ul class="nav-menu">
-                <li><a href="#hero" class="nav-link">Home</a></li>
-                <li><a href="#metrics" class="nav-link">Key Metrics</a></li>
-                <li><a href="#cost-trends" class="nav-link">Cost Trends</a></li>
-                <li><a href="#capacity" class="nav-link">Capacity</a></li>
-                <li><a href="#companies" class="nav-link">Companies</a></li>
-                <li><a href="#states" class="nav-link">States</a></li>
-                <li><a href="#technology" class="nav-link">Technology</a></li>
-                <li><a href="#regional" class="nav-link">Regional</a></li>
-                <li><a href="#timeline" class="nav-link">Timeline</a></li>
+    <nav>
+        <div class="container">
+            <div class="logo">⚡ Battery Intel</div>
+            <ul>
+                <li><a href="index.html">Dashboard</a></li>
+                <li><a href="#reports">Research Reports</a></li>
+                <li><a href="companies.html">Companies</a></li>
+                <li><a href="technology.html">Technology</a></li>
+                <li><a href="policy.html">Policy</a></li>
+                <li><a href="forecast.html">Forecast</a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <header id="hero" class="hero">
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <h1 class="hero-title">US Battery Industry Research Dashboard</h1>
-            <p class="hero-subtitle">Comprehensive Analysis of Manufacturing Capacity, Technology Evolution, and Market Dynamics</p>
-            <div class="hero-stats">
-                <div class="hero-stat">
-                    <span class="stat-number" data-metric="capacity">850</span>
-                    <span class="stat-label">GWh Capacity (2024)</span>
-                </div>
-                <div class="hero-stat">
-                    <span class="stat-number" data-metric="cost">$115</span>
-                    <span class="stat-label">$/kWh (2024)</span>
-                </div>
-                <div class="hero-stat">
-                    <span class="stat-number" data-metric="employment">100K+</span>
-                    <span class="stat-label">Direct Jobs (2027)</span>
-                </div>
-                <div class="hero-stat">
-                    <span class="stat-number" data-metric="facilities">60+</span>
-                    <span class="stat-label">Manufacturing Facilities</span>
-                </div>
+    <!-- Hero -->
+    <div class="hero">
+        <h1>US Battery Industry Intelligence Platform</h1>
+        <p>Comprehensive analysis of manufacturing capacity, technology evolution, and market dynamics</p>
+        <div class="hero-stats">
+            <div class="stat-card">
+                <div class="stat-value">850</div>
+                <div class="stat-label">GWh Capacity (2024)</div>
             </div>
-            <a href="#metrics" class="hero-cta">Explore Dashboard</a>
+            <div class="stat-card">
+                <div class="stat-value">$115</div>
+                <div class="stat-label">Cost per kWh (2024)</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">100K+</div>
+                <div class="stat-label">Direct Jobs by 2027</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">62</div>
+                <div class="stat-label">Companies Mapped</div>
+            </div>
         </div>
-    </header>
+    </div>
 
     <!-- Main Content -->
-    <main class="main-content">
-
-        <!-- Key Metrics Section -->
-        <section id="metrics" class="section metrics-section">
-            <div class="container">
-                <header class="section-header">
-                    <h2 class="section-title">Key Industry Metrics</h2>
-                    <p class="section-description">Critical indicators of US battery industry growth and transformation</p>
-                </header>
-
-                <div class="metrics-grid">
-                    <article class="metric-card">
-                        <div class="metric-icon">📉</div>
-                        <h3 class="metric-title">Cost Reduction</h3>
-                        <div class="metric-content">
-                            <p class="metric-highlight" data-metric="cost-reduction">81% decline</p>
-                            <p class="metric-detail">From $600 to $115 per kWh (2015-2024)</p>
-                        </div>
-                    </article>
-
-                    <article class="metric-card">
-                        <div class="metric-icon">🏭</div>
-                        <h3 class="metric-title">Market Size</h3>
-                        <div class="metric-content">
-                            <p class="metric-highlight" data-metric="market-2024">850 GWh</p>
-                            <p class="metric-detail">US announced capacity in 2024</p>
-                            <p class="metric-projection">→ 1,500 GWh projected by 2030</p>
-                        </div>
-                    </article>
-
-                    <article class="metric-card">
-                        <div class="metric-icon">👷</div>
-                        <h3 class="metric-title">Employment Impact</h3>
-                        <div class="metric-content">
-                            <p class="metric-highlight" data-metric="jobs-direct">100,000+</p>
-                            <p class="metric-detail">Direct manufacturing jobs by 2027</p>
-                            <p class="metric-projection">300,000+ with multiplier effects</p>
-                        </div>
-                    </article>
-
-                    <article class="metric-card">
-                        <div class="metric-icon">⚡</div>
-                        <h3 class="metric-title">Energy Density</h3>
-                        <div class="metric-content">
-                            <p class="metric-highlight">75% / 50%</p>
-                            <p class="metric-detail">LFP / NMC improvement (2015-2024)</p>
-                        </div>
-                    </article>
-
-                    <article class="metric-card supply-chain">
-                        <div class="metric-icon">⚠️</div>
-                        <h3 class="metric-title">Supply Chain Gaps</h3>
-                        <div class="metric-content">
-                            <ul class="gap-list">
-                                <li><strong>Cathode:</strong> 150K tonnes/year vs 800+ GWh demand</li>
-                                <li><strong>Separator:</strong> ENTEK Terre Haute covers 3.5M EVs/year</li>
-                                <li><strong>Electrolyte:</strong> Critical gap - minimal domestic production</li>
-                            </ul>
-                        </div>
-                    </article>
-                </div>
+    <div class="container">
+        <!-- Cost Trends -->
+        <div class="section">
+            <h2 class="section-title">Battery Cost Evolution (2015-2030)</h2>
+            <p class="section-subtitle">81% cost reduction achieved from 2015 to 2024</p>
+            <div class="chart-container">
+                <canvas id="costChart"></canvas>
             </div>
-        </section>
-
-        <!-- Cost Trends Section -->
-        <section id="cost-trends" class="section">
-            <div class="container">
-                <header class="section-header">
-                    <h2 class="section-title">Battery Cost Trends (2015-2030)</h2>
-                    <p class="section-description">Historical and projected cost per kilowatt-hour evolution</p>
-                </header>
-
-                <div class="chart-container">
-                    <canvas id="costTrendsChart" role="img" aria-label="Battery cost trends from 2015 to 2030"></canvas>
-                </div>
-
-                <div class="insights-box">
-                    <h3>Key Insights</h3>
-                    <ul>
-                        <li>Dramatic 81% cost reduction from 2015 ($600/kWh) to 2024 ($115/kWh)</li>
-                        <li>Crossed critical $100/kWh threshold in 2024 for BEV pack parity</li>
-                        <li>Projected to reach $69/kWh by 2030, enabling mass market adoption</li>
-                        <li>Cost reduction driven by scale, technology improvements, and supply chain optimization</li>
-                    </ul>
-                </div>
+            <div class="insights-box">
+                <h3>Key Insights</h3>
+                <ul>
+                    <li>Dramatic 81% cost reduction from $600/kWh (2015) to $115/kWh (2024)</li>
+                    <li>Crossed critical $100/kWh threshold enabling BEV price parity</li>
+                    <li>Projected to reach $69/kWh by 2030</li>
+                    <li>Cost floor approaching $50-60/kWh due to material limits</li>
+                </ul>
             </div>
-        </section>
+        </div>
 
-        <!-- Capacity Growth Section -->
-        <section id="capacity" class="section alt-section">
-            <div class="container">
-                <header class="section-header">
-                    <h2 class="section-title">Manufacturing Capacity Growth</h2>
-                    <p class="section-description">US battery production capacity expansion (GWh)</p>
-                </header>
-
-                <div class="chart-container">
-                    <canvas id="capacityChart" role="img" aria-label="US manufacturing capacity growth from 2015 to 2030"></canvas>
-                </div>
-
-                <div class="insights-box">
-                    <h3>Growth Trajectory</h3>
-                    <ul>
-                        <li>Exponential growth from 10 GWh (2015) to 850 GWh (2024) - 85x increase</li>
-                        <li>Projected 1,500 GWh by 2030 - sufficient for ~10M EVs annually</li>
-                        <li>Major acceleration post-2020 driven by IRA incentives and OEM commitments</li>
-                        <li>60+ announced manufacturing facilities across 15+ states</li>
-                    </ul>
-                </div>
+        <!-- Capacity Growth -->
+        <div class="section">
+            <h2 class="section-title">Manufacturing Capacity Growth</h2>
+            <p class="section-subtitle">Exponential expansion of US battery production capacity</p>
+            <div class="chart-container">
+                <canvas id="capacityChart"></canvas>
             </div>
-        </section>
+            <div class="insights-box">
+                <h3>Growth Trajectory</h3>
+                <ul>
+                    <li>85x increase from 10 GWh (2015) to 850 GWh (2024)</li>
+                    <li>Projected 1,500 GWh by 2030 - sufficient for ~10M EVs annually</li>
+                    <li>Major acceleration post-2020 driven by IRA incentives</li>
+                    <li>60+ announced manufacturing facilities across 15+ states</li>
+                </ul>
+            </div>
+        </div>
 
-        <!-- Top Companies Section -->
-        <section id="companies" class="section">
-            <div class="container">
-                <header class="section-header">
-                    <h2 class="section-title">Top Battery Manufacturers</h2>
-                    <p class="section-description">Leading companies by announced capacity and technology focus</p>
-                </header>
-
+        <!-- Top Companies -->
+        <div class="section">
+            <h2 class="section-title">Leading Battery Manufacturers</h2>
+            <p class="section-subtitle">Top 10 companies by announced US capacity</p>
+            <div class="grid-2">
                 <div class="chart-container">
-                    <canvas id="companiesChart" role="img" aria-label="Top battery manufacturers by capacity"></canvas>
+                    <canvas id="companiesChart"></canvas>
                 </div>
-
-                <div class="companies-table-container">
-                    <table class="data-table" id="companiesTable">
+                <div class="card">
+                    <h3>Market Leaders</h3>
+                    <table>
                         <thead>
                             <tr>
                                 <th>Rank</th>
                                 <th>Company</th>
-                                <th>Capacity (GWh)</th>
-                                <th>Technology Focus</th>
+                                <th>Capacity</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <!-- Populated by JavaScript -->
-                        </tbody>
+                        <tbody id="companiesTable"></tbody>
                     </table>
                 </div>
-            </div>
-        </section>
-
-        <!-- State Rankings Section -->
-        <section id="states" class="section alt-section">
-            <div class="container">
-                <header class="section-header">
-                    <h2 class="section-title">State-by-State Rankings</h2>
-                    <p class="section-description">Manufacturing capacity distribution across US states</p>
-                </header>
-
-                <div class="chart-container">
-                    <canvas id="statesChart" role="img" aria-label="Battery manufacturing capacity by state"></canvas>
-                </div>
-
-                <div class="states-grid" id="statesGrid">
-                    <!-- Populated by JavaScript -->
-                </div>
-            </div>
-        </section>
-
-        <!-- Technology Mix Section -->
-        <section id="technology" class="section">
-            <div class="container">
-                <header class="section-header">
-                    <h2 class="section-title">Battery Technology Evolution</h2>
-                    <p class="section-description">Chemistry mix trends and future projections</p>
-                </header>
-
-                <div class="technology-charts">
-                    <div class="chart-container">
-                        <h3 class="chart-title">Technology Mix by Year</h3>
-                        <canvas id="technologyMixChart" role="img" aria-label="Battery technology mix evolution"></canvas>
-                    </div>
-
-                    <div class="chart-container">
-                        <h3 class="chart-title">Energy Density Trends (Wh/kg)</h3>
-                        <canvas id="energyDensityChart" role="img" aria-label="Energy density improvements by technology"></canvas>
-                    </div>
-                </div>
-
-                <div class="insights-box">
-                    <h3>Technology Trends</h3>
-                    <ul>
-                        <li><strong>LFP Resurgence:</strong> Growing from 8% (2015) to 40% (2024) market share</li>
-                        <li><strong>NMC Evolution:</strong> Transitioning from NMC-333 to NMC-811 and high-nickel variants</li>
-                        <li><strong>Solid-State Emergence:</strong> Expected 10% market share by 2030</li>
-                        <li><strong>Sodium-Ion Entry:</strong> Projected 10% share by 2030 for cost-sensitive applications</li>
-                        <li><strong>Energy Density Gains:</strong> 75% improvement for LFP, 50% for NMC (2015-2024)</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- Market Share Evolution Section -->
-        <section id="market-share" class="section alt-section">
-            <div class="container">
-                <header class="section-header">
-                    <h2 class="section-title">Market Share Evolution</h2>
-                    <p class="section-description">Chemistry distribution across key milestone years</p>
-                </header>
-
-                <div class="market-share-grid">
-                    <div class="chart-container">
-                        <h3 class="chart-title">2015 Market Share</h3>
-                        <canvas id="marketShare2015" role="img" aria-label="2015 battery chemistry market share"></canvas>
-                    </div>
-                    <div class="chart-container">
-                        <h3 class="chart-title">2020 Market Share</h3>
-                        <canvas id="marketShare2020" role="img" aria-label="2020 battery chemistry market share"></canvas>
-                    </div>
-                    <div class="chart-container">
-                        <h3 class="chart-title">2024 Market Share</h3>
-                        <canvas id="marketShare2024" role="img" aria-label="2024 battery chemistry market share"></canvas>
-                    </div>
-                    <div class="chart-container">
-                        <h3 class="chart-title">2030 Projected Share</h3>
-                        <canvas id="marketShare2030" role="img" aria-label="2030 projected battery chemistry market share"></canvas>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Cycle Life Comparison Section -->
-        <section id="cycle-life" class="section">
-            <div class="container">
-                <header class="section-header">
-                    <h2 class="section-title">Battery Cycle Life Comparison</h2>
-                    <p class="section-description">Durability and degradation analysis by chemistry</p>
-                </header>
-
-                <div class="chart-container">
-                    <canvas id="cycleLifeChart" role="img" aria-label="Battery cycle life comparison by chemistry"></canvas>
-                </div>
-
-                <div class="cycle-life-table-container">
-                    <table class="data-table">
-                        <thead>
-                            <tr>
-                                <th>Chemistry</th>
-                                <th>Laboratory Max</th>
-                                <th>Real-World Cycles</th>
-                                <th>Degradation Rate (%/year)</th>
-                                <th>Capacity After 1000 Cycles (%)</th>
-                            </tr>
-                        </thead>
-                        <tbody id="cycleLifeTable">
-                            <!-- Populated by JavaScript -->
-                        </tbody>
-                    </table>
-                </div>
-
-                <div class="insights-box">
-                    <h3>Durability Insights</h3>
-                    <ul>
-                        <li><strong>LFP Superior Longevity:</strong> 6,000 lab cycles vs 2,500 for NMC/NCA</li>
-                        <li><strong>Real-World Performance:</strong> LFP achieves 3,000 cycles vs 1,300 for NMC</li>
-                        <li><strong>Degradation Advantage:</strong> LFP degrades at 2.5%/year vs 4.5%+ for nickel-rich</li>
-                        <li><strong>Lifecycle Economics:</strong> LFP's longevity offsets higher upfront cost for fleet/storage</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- Regional Clusters Section -->
-        <section id="regional" class="section alt-section">
-            <div class="container">
-                <header class="section-header">
-                    <h2 class="section-title">Regional Manufacturing Clusters</h2>
-                    <p class="section-description">Geographic concentration and strategic advantages</p>
-                </header>
-
-                <div class="clusters-grid" id="clustersGrid">
-                    <!-- Populated by JavaScript -->
-                </div>
-
-                <div class="chart-container">
-                    <canvas id="regionalCapacityChart" role="img" aria-label="Regional cluster capacity distribution"></canvas>
-                </div>
-            </div>
-        </section>
-
-        <!-- Timeline Section -->
-        <section id="timeline" class="section">
-            <div class="container">
-                <header class="section-header">
-                    <h2 class="section-title">Industry Evolution Timeline</h2>
-                    <p class="section-description">Key milestones in US battery industry development</p>
-                </header>
-
-                <div class="timeline" id="industryTimeline">
-                    <!-- Populated by JavaScript -->
-                </div>
-            </div>
-        </section>
-
-        <!-- Data Sources & Methodology Section -->
-        <section id="methodology" class="section alt-section">
-            <div class="container">
-                <header class="section-header">
-                    <h2 class="section-title">Data Sources & Methodology</h2>
-                    <p class="section-description">Research foundation and verification process</p>
-                </header>
-
-                <div class="methodology-content">
-                    <article class="methodology-card">
-                        <h3>Primary Data Sources</h3>
-                        <ul id="dataSources">
-                            <!-- Populated by JavaScript -->
-                        </ul>
-                    </article>
-
-                    <article class="methodology-card">
-                        <h3>Verification Standards</h3>
-                        <ul>
-                            <li>Cross-referenced against SEC filings and investor presentations</li>
-                            <li>Validated with DOE announcements and federal grants database</li>
-                            <li>Confirmed through company press releases and earnings calls</li>
-                            <li>Geographic data verified against facility permits and construction reports</li>
-                        </ul>
-                    </article>
-
-                    <article class="methodology-card">
-                        <h3>Update Frequency</h3>
-                        <p><strong>Recommended:</strong> Quarterly updates</p>
-                        <p><strong>Confidence Level:</strong> <span class="confidence-badge">High</span></p>
-                        <p class="last-updated">Last Updated: <span id="reportDate"><!-- Populated by JavaScript --></span></p>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>About This Dashboard</h3>
-                    <p>Comprehensive research platform analyzing the US battery manufacturing landscape, technology evolution, and market dynamics. Data compiled from industry reports, government sources, and verified company announcements.</p>
-                </div>
-
-                <div class="footer-section">
-                    <h3>Key Data Sources</h3>
-                    <ul>
-                        <li>US Battery Industry Historical Evolution Report (2000-2024)</li>
-                        <li>US Battery Industry Mapping Report</li>
-                        <li>Geospatial Manufacturing Facilities Analysis</li>
-                        <li>Technology Innovation Assessment</li>
-                    </ul>
-                </div>
-
-                <div class="footer-section">
-                    <h3>Research Standards</h3>
-                    <ul>
-                        <li>Verified against SEC filings</li>
-                        <li>Cross-referenced with DOE data</li>
-                        <li>Updated quarterly</li>
-                        <li>High confidence methodology</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="footer-bottom">
-                <p>&copy; 2025 US Battery Industry Research. All data verified as of <span id="footerReportDate"><!-- Populated by JavaScript --></span></p>
-                <p class="disclaimer">This dashboard is for research and informational purposes only. Capacity figures represent announced plans and may be subject to change.</p>
             </div>
         </div>
+
+        <!-- State Rankings -->
+        <div class="section">
+            <h2 class="section-title">Manufacturing Capacity by State</h2>
+            <p class="section-subtitle">Geographic distribution of battery production</p>
+            <div class="chart-container">
+                <canvas id="statesChart"></canvas>
+            </div>
+            <div class="insights-box">
+                <h3>Regional Clusters</h3>
+                <ul>
+                    <li>Southeast Automotive Corridor: 500+ GWh (GA, TN, KY, NC, SC)</li>
+                    <li>Midwest Battery Belt: 200+ GWh (MI, OH, IN)</li>
+                    <li>Nevada Lithium Complex: 120+ GWh (vertical integration)</li>
+                    <li>Nevada leads with 120 GWh, followed by Tennessee (95 GWh)</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Technology Mix -->
+        <div class="section">
+            <h2 class="section-title">Battery Chemistry Evolution</h2>
+            <p class="section-subtitle">Technology mix trends and future projections</p>
+            <div class="grid-2">
+                <div class="chart-container">
+                    <canvas id="technologyMixChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <canvas id="energyDensityChart"></canvas>
+                </div>
+            </div>
+            <div class="insights-box">
+                <h3>Technology Trends</h3>
+                <ul>
+                    <li>LFP Resurgence: Growing from 8% (2015) to 40% (2024) market share</li>
+                    <li>NMC Evolution: Transitioning to high-nickel NMC-811 variants</li>
+                    <li>Solid-State: Expected 10% market share by 2030 (delayed from 2025)</li>
+                    <li>Sodium-Ion: Emerging alternative for cost-sensitive applications</li>
+                    <li>Energy Density: 75% improvement for LFP, 50% for NMC (2015-2024)</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Market Share Evolution -->
+        <div class="section">
+            <h2 class="section-title">Chemistry Market Share Evolution</h2>
+            <p class="section-subtitle">Distribution across key milestone years</p>
+            <div class="grid-2">
+                <div class="chart-container">
+                    <h3 style="color: #00C805; text-align: center; margin-bottom: 1rem;">2024 Market Share</h3>
+                    <canvas id="marketShare2024"></canvas>
+                </div>
+                <div class="chart-container">
+                    <h3 style="color: #00C805; text-align: center; margin-bottom: 1rem;">2030 Projected Share</h3>
+                    <canvas id="marketShare2030"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Research Reports Section -->
+    <div class="container">
+        <div class="section" id="reports">
+            <h2 class="section-title">📚 Comprehensive Research Reports</h2>
+            <p class="section-subtitle">Access detailed analysis, data, and insights from our multi-agent research platform</p>
+
+            <div class="grid-3">
+                <!-- Research Intelligence Reports -->
+                <div class="card">
+                    <h3>🏭 Industry Mapping Report</h3>
+                    <p style="color: #B3B3B3; margin-bottom: 1rem;">62 companies cataloged across the U.S. battery ecosystem with complete profiles, technology classifications, and capacity data.</p>
+                    <p style="color: #888; font-size: 0.875rem; margin-bottom: 1rem;">1,146 lines | Agent R01</p>
+                    <a href="US_Battery_Industry_Mapping_Report.md" style="color: #00C805; text-decoration: none; font-weight: 600;">View Report →</a>
+                </div>
+
+                <div class="card">
+                    <h3>💰 Financial Intelligence Report</h3>
+                    <p style="color: #B3B3B3; margin-bottom: 1rem;">SEC filing analysis, ownership structures, capital flows, and financial health metrics for public companies.</p>
+                    <p style="color: #888; font-size: 0.875rem; margin-bottom: 1rem;">Agent R02</p>
+                    <a href="agent-outputs/AGENT-R02-Financial-Intelligence-SEC-Analysis-Report.md" style="color: #00C805; text-decoration: none; font-weight: 600;">View Report →</a>
+                </div>
+
+                <div class="card">
+                    <h3>⚖️ Policy & Regulatory Report</h3>
+                    <p style="color: #B3B3B3; margin-bottom: 1rem;">IRA incentives, DOE programs, state policies, and political risk analysis with scenario modeling.</p>
+                    <p style="color: #888; font-size: 0.875rem; margin-bottom: 1rem;">Agent R03</p>
+                    <a href="agent-outputs/AGENT-R03_Policy_Regulatory_Intelligence_Report.md" style="color: #00C805; text-decoration: none; font-weight: 600;">View Report →</a>
+                </div>
+
+                <div class="card">
+                    <h3>🔬 Technology Innovation Report</h3>
+                    <p style="color: #B3B3B3; margin-bottom: 1rem;">Battery chemistry evolution, cost curves, energy density trends, and commercialization timelines.</p>
+                    <p style="color: #888; font-size: 0.875rem; margin-bottom: 1rem;">710 lines | Agent R04</p>
+                    <a href="technology-innovation-report.md" style="color: #00C805; text-decoration: none; font-weight: 600;">View Report →</a>
+                </div>
+
+                <div class="card">
+                    <h3>📜 Historical Evolution Report</h3>
+                    <p style="color: #B3B3B3; margin-bottom: 1rem;">60+ milestones from 2000-2024 tracking policy interventions, company lifecycles, and industry evolution.</p>
+                    <p style="color: #888; font-size: 0.875rem; margin-bottom: 1rem;">608 lines | Agent R05</p>
+                    <a href="US_Battery_Industry_Historical_Evolution_2000-2024.md" style="color: #00C805; text-decoration: none; font-weight: 600;">View Report →</a>
+                </div>
+
+                <div class="card">
+                    <h3>🗺️ Geospatial & Facilities Report</h3>
+                    <p style="color: #B3B3B3; margin-bottom: 1rem;">30+ gigafactories mapped across 15 states with regional cluster analysis and capacity data.</p>
+                    <p style="color: #888; font-size: 0.875rem; margin-bottom: 1rem;">864 lines | Agent R06</p>
+                    <a href="geospatial-manufacturing-facilities-report.md" style="color: #00C805; text-decoration: none; font-weight: 600;">View Report →</a>
+                </div>
+
+                <div class="card">
+                    <h3>📈 Market Forecast Report</h3>
+                    <p style="color: #B3B3B3; margin-bottom: 1rem;">2024-2030+ demand/supply forecasts with policy scenarios and inflection point analysis.</p>
+                    <p style="color: #888; font-size: 0.875rem; margin-bottom: 1rem;">Agent R07 | Includes CSV data</p>
+                    <a href="agent-outputs/AGENT-R07-Market-Forecast-Report.md" style="color: #00C805; text-decoration: none; font-weight: 600;">View Report →</a>
+                </div>
+
+                <div class="card">
+                    <h3>⛓️ Supply Chain Report</h3>
+                    <p style="color: #B3B3B3; margin-bottom: 1rem;">Critical materials analysis (lithium, graphite, cobalt) with import dependencies and risk assessment.</p>
+                    <p style="color: #888; font-size: 0.875rem; margin-bottom: 1rem;">Agent R08 | Includes CSV data</p>
+                    <a href="agent-outputs/AGENT-R08-Supply-Chain-Critical-Materials-Report.md" style="color: #00C805; text-decoration: none; font-weight: 600;">View Report →</a>
+                </div>
+
+                <div class="card">
+                    <h3>🎯 Comprehensive Synthesis Report</h3>
+                    <p style="color: #B3B3B3; margin-bottom: 1rem;">Executive summary integrating all research with strategic insights for investors, policymakers, and industry.</p>
+                    <p style="color: #888; font-size: 0.875rem; margin-bottom: 1rem;">1,300+ lines | Agent C02</p>
+                    <a href="AGENT-C02-COMPREHENSIVE-SYNTHESIS-REPORT.md" style="color: #00C805; text-decoration: none; font-weight: 600;">View Report →</a>
+                </div>
+
+                <div class="card">
+                    <h3>✅ Source Verification Report</h3>
+                    <p style="color: #B3B3B3; margin-bottom: 1rem;">Quality audit of 539 source citations with confidence scoring and data integrity analysis.</p>
+                    <p style="color: #888; font-size: 0.875rem; margin-bottom: 1rem;">Agent D01 | 0.91 avg confidence</p>
+                    <a href="SOURCE_VERIFICATION_REPORT.md" style="color: #00C805; text-decoration: none; font-weight: 600;">View Report →</a>
+                </div>
+
+                <div class="card">
+                    <h3>🎉 Mission Complete Summary</h3>
+                    <p style="color: #B3B3B3; margin-bottom: 1rem;">Project overview documenting all deliverables, platform components, and deployment status.</p>
+                    <p style="color: #888; font-size: 0.875rem; margin-bottom: 1rem;">Platform Documentation</p>
+                    <a href="MISSION_COMPLETE.md" style="color: #00C805; text-decoration: none; font-weight: 600;">View Report →</a>
+                </div>
+
+                <div class="card">
+                    <h3>🔍 Quick Start Guide</h3>
+                    <p style="color: #B3B3B3; margin-bottom: 1rem;">Platform setup instructions, API documentation, and deployment guides for local and production use.</p>
+                    <p style="color: #888; font-size: 0.875rem; margin-bottom: 1rem;">Documentation</p>
+                    <a href="QUICKSTART.md" style="color: #00C805; text-decoration: none; font-weight: 600;">View Guide →</a>
+                </div>
+            </div>
+
+            <div style="margin-top: 3rem; padding: 2rem; background: #2D2D2D; border-radius: 12px; border: 2px solid #00C805;">
+                <h3 style="color: #00C805; margin-bottom: 1rem;">📊 Additional Resources</h3>
+                <div class="grid-2">
+                    <div>
+                        <h4 style="color: #FFFFFF; margin-bottom: 0.5rem;">Platform Components</h4>
+                        <ul style="color: #B3B3B3; line-height: 2;">
+                            <li><a href="RAG_CHATBOT_README.md" style="color: #00C805;">RAG Chatbot Documentation</a></li>
+                            <li><a href="SEARCH_README.md" style="color: #00C805;">Search Engine Guide</a></li>
+                            <li><a href="VISUALIZATION-README.md" style="color: #00C805;">Visualization Library</a></li>
+                            <li><a href="backend/API_DOCUMENTATION.md" style="color: #00C805;">API Documentation</a></li>
+                            <li><a href="frontend/README.md" style="color: #00C805;">Frontend Guide</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 style="color: #FFFFFF; margin-bottom: 0.5rem;">Alternative Views</h4>
+                        <ul style="color: #B3B3B3; line-height: 2;">
+                            <li><a href="index-enhanced.html" style="color: #00C805;">Enhanced Dashboard (Advanced Charts)</a></li>
+                            <li><a href="search-interface.html" style="color: #00C805;">Search Interface</a></li>
+                            <li><a href="chat-widget.html" style="color: #00C805;">Standalone RAG Chatbot</a></li>
+                            <li><a href="companies.html" style="color: #00C805;">Companies Deep Dive</a></li>
+                            <li><a href="technology.html" style="color: #00C805;">Technology Analysis</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 2rem; text-align: center;">
+                <p style="color: #B3B3B3; font-size: 1.125rem;">
+                    <strong style="color: #00C805;">Total Research Output:</strong>
+                    11,359 lines of analysis | 539 verified sources | 0.91 average confidence score | 62 companies cataloged
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- RAG Chatbot -->
+    <div class="chatbot-container">
+        <button class="chatbot-toggle" id="chatToggle">💬</button>
+        <div class="chatbot-window" id="chatWindow">
+            <div class="chatbot-header">
+                <span>Battery Research Assistant</span>
+                <button style="background: none; border: none; color: #000; cursor: pointer; font-size: 1.25rem;" onclick="document.getElementById('chatWindow').classList.remove('active')">×</button>
+            </div>
+            <div class="chatbot-messages" id="chatMessages">
+                <div class="message bot">
+                    Hello! I'm your Battery Industry Research Assistant. I can help you analyze the US battery manufacturing landscape, technology trends, policy impacts, and market forecasts. Ask me anything about:
+                    <ul style="margin-top: 0.5rem;">
+                        <li>Company capacity and rankings</li>
+                        <li>Cost trends and projections</li>
+                        <li>Technology evolution (LFP, NMC, solid-state)</li>
+                        <li>IRA incentives and policy</li>
+                        <li>Regional manufacturing clusters</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="chatbot-input">
+                <input type="text" id="chatInput" placeholder="Ask about battery industry data..." />
+                <button id="chatSend">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Battery Intelligence Platform | Data verified against SEC filings, DOE announcements, and company reports</p>
+        <p style="margin-top: 0.5rem; font-size: 0.875rem;">Last Updated: November 2024 | Quarterly updates recommended</p>
     </footer>
 
-    <!-- Back to Top Button -->
-    <button id="backToTop" class="back-to-top" aria-label="Back to top">
-        ↑
-    </button>
-
     <!-- JavaScript -->
-    <script src="app.js"></script>
+    <script>
+        // Chart.js default config
+        Chart.defaults.color = '#B3B3B3';
+        Chart.defaults.borderColor = '#3D3D3D';
+
+        // Data
+        const costData = [
+            {year: 2015, cost: 600}, {year: 2016, cost: 540}, {year: 2017, cost: 480},
+            {year: 2018, cost: 420}, {year: 2019, cost: 156}, {year: 2020, cost: 137},
+            {year: 2021, cost: 155}, {year: 2022, cost: 161}, {year: 2023, cost: 150},
+            {year: 2024, cost: 115}, {year: 2025, cost: 112}, {year: 2026, cost: 98},
+            {year: 2028, cost: 80}, {year: 2030, cost: 69}
+        ];
+
+        const capacityData = [
+            {year: 2015, capacity: 10}, {year: 2016, capacity: 20}, {year: 2017, capacity: 40},
+            {year: 2018, capacity: 90}, {year: 2019, capacity: 180}, {year: 2020, capacity: 350},
+            {year: 2021, capacity: 450}, {year: 2022, capacity: 650}, {year: 2023, capacity: 750},
+            {year: 2024, capacity: 850}, {year: 2025, capacity: 950}, {year: 2026, capacity: 1050},
+            {year: 2027, capacity: 1200}, {year: 2030, capacity: 1500}
+        ];
+
+        const topCompanies = [
+            {name: "SK Battery America", capacity: 180},
+            {name: "LG Energy Solution", capacity: 170},
+            {name: "Panasonic Energy", capacity: 140},
+            {name: "Ultium Cells (GM-LG)", capacity: 130},
+            {name: "BlueOval SK (Ford-SK)", capacity: 130},
+            {name: "Tesla", capacity: 110},
+            {name: "StarPlus Energy", capacity: 70},
+            {name: "FREYR Battery", capacity: 50},
+            {name: "Gotion High-Tech", capacity: 50},
+            {name: "Rivian", capacity: 50}
+        ];
+
+        const stateData = [
+            {state: "Nevada", capacity: 120},
+            {state: "Tennessee", capacity: 95},
+            {state: "Kentucky", capacity: 86},
+            {state: "Ohio", capacity: 75},
+            {state: "Indiana", capacity: 70},
+            {state: "Michigan", capacity: 55},
+            {state: "Illinois", capacity: 50},
+            {state: "Arizona", capacity: 43},
+            {state: "Georgia", capacity: 40}
+        ];
+
+        // Cost Chart
+        new Chart(document.getElementById('costChart'), {
+            type: 'line',
+            data: {
+                labels: costData.map(d => d.year),
+                datasets: [{
+                    label: 'Battery Pack Cost ($/kWh)',
+                    data: costData.map(d => d.cost),
+                    borderColor: '#00C805',
+                    backgroundColor: 'rgba(0, 200, 5, 0.1)',
+                    tension: 0.4,
+                    fill: true,
+                    pointRadius: 5,
+                    pointBackgroundColor: '#00C805'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: { labels: { color: '#FFFFFF', font: { size: 14 } } }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: { display: true, text: '$/kWh', color: '#FFFFFF' },
+                        ticks: { color: '#B3B3B3' },
+                        grid: { color: '#3D3D3D' }
+                    },
+                    x: {
+                        ticks: { color: '#B3B3B3' },
+                        grid: { color: '#3D3D3D' }
+                    }
+                }
+            }
+        });
+
+        // Capacity Chart
+        new Chart(document.getElementById('capacityChart'), {
+            type: 'bar',
+            data: {
+                labels: capacityData.map(d => d.year),
+                datasets: [{
+                    label: 'US Manufacturing Capacity (GWh)',
+                    data: capacityData.map(d => d.capacity),
+                    backgroundColor: '#00C805',
+                    borderColor: '#00C805',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: { labels: { color: '#FFFFFF', font: { size: 14 } } }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: { display: true, text: 'GWh', color: '#FFFFFF' },
+                        ticks: { color: '#B3B3B3' },
+                        grid: { color: '#3D3D3D' }
+                    },
+                    x: {
+                        ticks: { color: '#B3B3B3' },
+                        grid: { color: '#3D3D3D' }
+                    }
+                }
+            }
+        });
+
+        // Companies Chart
+        new Chart(document.getElementById('companiesChart'), {
+            type: 'horizontalBar',
+            data: {
+                labels: topCompanies.map(c => c.name),
+                datasets: [{
+                    label: 'Announced Capacity (GWh)',
+                    data: topCompanies.map(c => c.capacity),
+                    backgroundColor: '#00C805'
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: { labels: { color: '#FFFFFF', font: { size: 14 } } }
+                },
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        ticks: { color: '#B3B3B3' },
+                        grid: { color: '#3D3D3D' }
+                    },
+                    y: {
+                        ticks: { color: '#B3B3B3' },
+                        grid: { color: '#3D3D3D' }
+                    }
+                }
+            }
+        });
+
+        // Populate Companies Table
+        const tbody = document.getElementById('companiesTable');
+        topCompanies.forEach((company, idx) => {
+            tbody.innerHTML += `<tr>
+                <td>${idx + 1}</td>
+                <td>${company.name}</td>
+                <td>${company.capacity} GWh</td>
+            </tr>`;
+        });
+
+        // States Chart
+        new Chart(document.getElementById('statesChart'), {
+            type: 'bar',
+            data: {
+                labels: stateData.map(s => s.state),
+                datasets: [{
+                    label: 'Manufacturing Capacity (GWh)',
+                    data: stateData.map(s => s.capacity),
+                    backgroundColor: '#00C805'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: { labels: { color: '#FFFFFF', font: { size: 14 } } }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: { display: true, text: 'GWh', color: '#FFFFFF' },
+                        ticks: { color: '#B3B3B3' },
+                        grid: { color: '#3D3D3D' }
+                    },
+                    x: {
+                        ticks: { color: '#B3B3B3' },
+                        grid: { color: '#3D3D3D' }
+                    }
+                }
+            }
+        });
+
+        // Technology Mix Chart
+        new Chart(document.getElementById('technologyMixChart'), {
+            type: 'line',
+            data: {
+                labels: ['2015', '2020', '2024', '2027', '2030'],
+                datasets: [
+                    {
+                        label: 'LFP',
+                        data: [8, 15, 40, 45, 40],
+                        borderColor: '#0A84FF',
+                        backgroundColor: 'rgba(10, 132, 255, 0.1)',
+                        tension: 0.4
+                    },
+                    {
+                        label: 'NMC',
+                        data: [85, 75, 50, 42, 35],
+                        borderColor: '#FF9F0A',
+                        backgroundColor: 'rgba(255, 159, 10, 0.1)',
+                        tension: 0.4
+                    },
+                    {
+                        label: 'Solid-State',
+                        data: [0, 0, 0, 2, 10],
+                        borderColor: '#AF52DE',
+                        backgroundColor: 'rgba(175, 82, 222, 0.1)',
+                        tension: 0.4
+                    },
+                    {
+                        label: 'Sodium-Ion',
+                        data: [0, 0, 0, 1, 10],
+                        borderColor: '#00C805',
+                        backgroundColor: 'rgba(0, 200, 5, 0.1)',
+                        tension: 0.4
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: { labels: { color: '#FFFFFF', font: { size: 12 } } }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: { display: true, text: 'Market Share (%)', color: '#FFFFFF' },
+                        ticks: { color: '#B3B3B3' },
+                        grid: { color: '#3D3D3D' }
+                    },
+                    x: {
+                        ticks: { color: '#B3B3B3' },
+                        grid: { color: '#3D3D3D' }
+                    }
+                }
+            }
+        });
+
+        // Energy Density Chart
+        new Chart(document.getElementById('energyDensityChart'), {
+            type: 'line',
+            data: {
+                labels: ['2015', '2020', '2024', '2030'],
+                datasets: [
+                    {
+                        label: 'LFP (Wh/kg)',
+                        data: [95, 120, 160, 220],
+                        borderColor: '#0A84FF',
+                        backgroundColor: 'rgba(10, 132, 255, 0.1)',
+                        tension: 0.4
+                    },
+                    {
+                        label: 'NMC (Wh/kg)',
+                        data: [180, 240, 260, 310],
+                        borderColor: '#FF9F0A',
+                        backgroundColor: 'rgba(255, 159, 10, 0.1)',
+                        tension: 0.4
+                    },
+                    {
+                        label: 'Solid-State (Wh/kg)',
+                        data: [null, null, 350, 450],
+                        borderColor: '#AF52DE',
+                        backgroundColor: 'rgba(175, 82, 222, 0.1)',
+                        tension: 0.4,
+                        borderDash: [5, 5]
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: { labels: { color: '#FFFFFF', font: { size: 12 } } }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: { display: true, text: 'Wh/kg', color: '#FFFFFF' },
+                        ticks: { color: '#B3B3B3' },
+                        grid: { color: '#3D3D3D' }
+                    },
+                    x: {
+                        ticks: { color: '#B3B3B3' },
+                        grid: { color: '#3D3D3D' }
+                    }
+                }
+            }
+        });
+
+        // Market Share Pie Charts
+        new Chart(document.getElementById('marketShare2024'), {
+            type: 'doughnut',
+            data: {
+                labels: ['NMC', 'LFP', 'NCA', 'Other'],
+                datasets: [{
+                    data: [50, 40, 5, 5],
+                    backgroundColor: ['#FF9F0A', '#0A84FF', '#AF52DE', '#B3B3B3'],
+                    borderColor: '#1C1C1C',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: { color: '#FFFFFF', font: { size: 12 } }
+                    }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('marketShare2030'), {
+            type: 'doughnut',
+            data: {
+                labels: ['LFP/LMFP', 'NMC', 'Solid-State', 'Sodium-Ion', 'Other'],
+                datasets: [{
+                    data: [40, 35, 10, 10, 5],
+                    backgroundColor: ['#0A84FF', '#FF9F0A', '#AF52DE', '#00C805', '#B3B3B3'],
+                    borderColor: '#1C1C1C',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: { color: '#FFFFFF', font: { size: 12 } }
+                    }
+                }
+            }
+        });
+
+        // Chatbot Functionality
+        document.getElementById('chatToggle').addEventListener('click', function() {
+            document.getElementById('chatWindow').classList.toggle('active');
+        });
+
+        document.getElementById('chatSend').addEventListener('click', sendMessage);
+        document.getElementById('chatInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') sendMessage();
+        });
+
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const message = input.value.trim();
+            if (!message) return;
+
+            const messagesDiv = document.getElementById('chatMessages');
+
+            // Add user message
+            messagesDiv.innerHTML += `<div class="message user">${message}</div>`;
+            input.value = '';
+
+            // Process query and generate response
+            setTimeout(() => {
+                const response = generateResponse(message.toLowerCase());
+                messagesDiv.innerHTML += `<div class="message bot">${response}</div>`;
+                messagesDiv.scrollTop = messagesDiv.scrollHeight;
+            }, 500);
+        }
+
+        function generateResponse(query) {
+            // RAG-like response generation based on research data
+            if (query.includes('cost') || query.includes('price')) {
+                return "Battery costs have dropped dramatically from $600/kWh in 2015 to $115/kWh in 2024 - an 81% reduction. We crossed the critical $100/kWh threshold this year, enabling price parity with ICE vehicles. Projections suggest $69/kWh by 2030, approaching the material cost floor of $50-60/kWh.";
+            } else if (query.includes('lfp') || query.includes('lithium iron phosphate')) {
+                return "LFP (Lithium Iron Phosphate) has seen remarkable growth, rising from 8% market share in 2015 to 40% in 2024. Key advantages: 20-30% cost advantage over NMC, 3,000+ cycle life (vs 1,300 for NMC), and superior safety. Major players include CATL, BYD, Gotion, and FREYR Battery. Tesla's Model 3/Y Standard Range now uses LFP.";
+            } else if (query.includes('solid state') || query.includes('solidstate')) {
+                return "Solid-state batteries remain in development with commercial timelines delayed. QuantumScape delivered B-samples to VW in October 2024, targeting 2027-2028 commercialization (delayed from 2024). Projected advantages: 400+ Wh/kg energy density (vs 260 for NMC), 5,000+ cycle life. However, cost parity not expected until 2032-2035. Market share projection: 10% by 2030.";
+            } else if (query.includes('company') || query.includes('companies') || query.includes('manufacturer')) {
+                return "Top US battery manufacturers by capacity: 1) SK Battery America (180 GWh) - JVs with Ford/Hyundai, 2) LG Energy Solution (170 GWh) - Ultium Cells with GM, 3) Panasonic Energy (140 GWh) - Tesla partnership, 4) Tesla (110 GWh) - vertical integration. Total: 62 companies mapped across the value chain.";
+            } else if (query.includes('state') || query.includes('region') || query.includes('location')) {
+                return "Three major manufacturing clusters: 1) Southeast Automotive Corridor (500+ GWh) - GA, TN, KY, NC, SC - driven by OEM integration, 2) Midwest Battery Belt (200+ GWh) - MI, OH, IN - historic auto expertise, 3) Nevada Lithium Complex (120+ GWh) - vertical integration with Tesla/Panasonic/Redwood. Nevada leads individual states with 120 GWh capacity.";
+            } else if (query.includes('ira') || query.includes('incentive') || query.includes('policy')) {
+                return "The Inflation Reduction Act provides significant incentives: Section 45X offers $35/kWh for cells and $10/kWh for modules. DOE has $50B+ in lending authority. State incentives include Georgia ($3.3B), Tennessee ($900M), and Michigan ($1.7B). Political risk score: 8/10 due to potential policy changes.";
+            } else if (query.includes('capacity') || query.includes('gwh')) {
+                return "US battery capacity has grown exponentially from 10 GWh in 2015 to 850 GWh in 2024 (85x increase). Projected to reach 1,500 GWh by 2030, sufficient for ~10 million EVs annually. Major acceleration post-2020 driven by IRA incentives and OEM commitments. 60+ manufacturing facilities across 15+ states.";
+            } else if (query.includes('nmc') || query.includes('nickel manganese cobalt')) {
+                return "NMC (Nickel Manganese Cobalt) currently holds 50% market share (down from 85% in 2015). Evolution from NMC-333 to NMC-811 reduces cobalt dependence. Key advantage: 260 Wh/kg energy density enables 300+ mile range. Market leaders: LG Energy Solution, SK On, Panasonic. Projected share: 35% by 2030 as LFP gains ground.";
+            } else if (query.includes('sodium') || query.includes('na-ion')) {
+                return "Sodium-ion batteries are emerging as a lithium-free alternative. Current market share: ~1% (2024). Projected: 5-10% by 2030. Key advantage: 15-25% cost advantage, no lithium/cobalt dependence. Energy density: 160 Wh/kg (comparable to LFP). Best suited for budget EVs, city cars, and short-duration grid storage. Leaders: CATL (Gen 1 production), Natron Energy (US).";
+            } else if (query.includes('jobs') || query.includes('employment')) {
+                return "The US battery industry is projected to create 100,000+ direct manufacturing jobs by 2027, with 300,000+ total jobs when including multiplier effects. Major employment hubs: Southeast Automotive Corridor (20,000 jobs), Midwest Battery Belt (12,000 jobs), Nevada Complex (10,000 jobs).";
+            } else {
+                return "I can help you with information about: battery costs, manufacturing capacity, technology trends (LFP, NMC, solid-state, sodium-ion), top companies, regional clusters, IRA policy, employment, and market forecasts. What would you like to know?";
+            }
+        }
+    </script>
 </body>
 </html>
