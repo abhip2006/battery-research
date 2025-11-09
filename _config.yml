@@ -1,0 +1,43 @@
+# Jekyll configuration for GitHub Pages
+
+title: Battery Industry Research
+description: Comprehensive analysis of the U.S. battery industry ecosystem
+url: "https://abhip2006.github.io"
+baseurl: "/battery-research"
+
+# Build settings
+theme: jekyll-theme-minimal
+markdown: kramdown
+permalink: /:title/
+
+# Exclude these files from processing
+exclude:
+  - .gitignore
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+
+# Collections
+collections_dir: .
+
+# Include markdown files
+include:
+  - readMe.md
+  - battery-research.md
+  - agents.md
+  - technology-innovation-report.md
+  - US_Battery_Industry_Historical_Evolution_2000-2024.md
+  - US_Battery_Industry_Mapping_Report.md
+  - geospatial-manufacturing-facilities-report.md
+  - AGENT-C02-COMPREHENSIVE-SYNTHESIS-REPORT.md
+  - SOURCE_VERIFICATION_REPORT.md
+
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag

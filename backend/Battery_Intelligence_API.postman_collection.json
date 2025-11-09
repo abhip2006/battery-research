@@ -1,0 +1,642 @@
+{
+  "info": {
+    "name": "Battery Intelligence Platform API",
+    "description": "Complete API collection for the US Battery Industry Intelligence Platform",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "version": "1.0.0"
+  },
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "value",
+        "value": "{{api_key}}",
+        "type": "string"
+      },
+      {
+        "key": "key",
+        "value": "X-API-Key",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8000/api/v1",
+      "type": "string"
+    },
+    {
+      "key": "api_key",
+      "value": "demo_free_tier_key_12345",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Health",
+      "item": [
+        {
+          "name": "Health Check",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/health",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8000",
+              "path": ["health"]
+            },
+            "description": "Check API health status (no authentication required)"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Companies",
+      "item": [
+        {
+          "name": "List All Companies",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/companies?page=1&page_size=20&sort_by=capacity&sort_order=desc",
+              "host": ["{{base_url}}"],
+              "path": ["companies"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "page_size",
+                  "value": "20"
+                },
+                {
+                  "key": "sort_by",
+                  "value": "capacity"
+                },
+                {
+                  "key": "sort_order",
+                  "value": "desc"
+                },
+                {
+                  "key": "technology",
+                  "value": "LFP",
+                  "disabled": true
+                },
+                {
+                  "key": "state",
+                  "value": "CA",
+                  "disabled": true
+                },
+                {
+                  "key": "min_capacity",
+                  "value": "50",
+                  "disabled": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Company by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/companies/tesla",
+              "host": ["{{base_url}}"],
+              "path": ["companies", "tesla"]
+            }
+          }
+        },
+        {
+          "name": "Search Companies",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/companies/search?q=solid state battery&limit=10",
+              "host": ["{{base_url}}"],
+              "path": ["companies", "search"],
+              "query": [
+                {
+                  "key": "q",
+                  "value": "solid state battery"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                },
+                {
+                  "key": "fields",
+                  "value": "name,technology",
+                  "disabled": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Filter by Technology",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/companies?technology=LFP&min_capacity=50",
+              "host": ["{{base_url}}"],
+              "path": ["companies"],
+              "query": [
+                {
+                  "key": "technology",
+                  "value": "LFP"
+                },
+                {
+                  "key": "min_capacity",
+                  "value": "50"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Filter by State",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/companies?state=TN",
+              "host": ["{{base_url}}"],
+              "path": ["companies"],
+              "query": [
+                {
+                  "key": "state",
+                  "value": "TN"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Facilities",
+      "item": [
+        {
+          "name": "List All Facilities",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/facilities?page=1&page_size=20",
+              "host": ["{{base_url}}"],
+              "path": ["facilities"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "page_size",
+                  "value": "20"
+                },
+                {
+                  "key": "state",
+                  "value": "TN",
+                  "disabled": true
+                },
+                {
+                  "key": "status",
+                  "value": "operational",
+                  "disabled": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Facility by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/facilities/tesla-gigafactory-nevada",
+              "host": ["{{base_url}}"],
+              "path": ["facilities", "tesla-gigafactory-nevada"]
+            }
+          }
+        },
+        {
+          "name": "Find Nearby Facilities",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/facilities/nearby?lat=36.1627&lng=-86.7816&radius=100&limit=10",
+              "host": ["{{base_url}}"],
+              "path": ["facilities", "nearby"],
+              "query": [
+                {
+                  "key": "lat",
+                  "value": "36.1627",
+                  "description": "Nashville, TN latitude"
+                },
+                {
+                  "key": "lng",
+                  "value": "-86.7816",
+                  "description": "Nashville, TN longitude"
+                },
+                {
+                  "key": "radius",
+                  "value": "100",
+                  "description": "Search radius in km"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Filter by Company",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/facilities?company=tesla&status=operational",
+              "host": ["{{base_url}}"],
+              "path": ["facilities"],
+              "query": [
+                {
+                  "key": "company",
+                  "value": "tesla"
+                },
+                {
+                  "key": "status",
+                  "value": "operational"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Forecast",
+      "item": [
+        {
+          "name": "Capacity Forecast",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/forecast/capacity?start_year=2020&end_year=2030&granularity=yearly",
+              "host": ["{{base_url}}"],
+              "path": ["forecast", "capacity"],
+              "query": [
+                {
+                  "key": "start_year",
+                  "value": "2020"
+                },
+                {
+                  "key": "end_year",
+                  "value": "2030"
+                },
+                {
+                  "key": "granularity",
+                  "value": "yearly"
+                },
+                {
+                  "key": "technology",
+                  "value": "LFP",
+                  "disabled": true
+                },
+                {
+                  "key": "region",
+                  "value": "CA",
+                  "disabled": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Cost Forecast",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/forecast/cost?start_year=2015&end_year=2030&include_breakdown=true",
+              "host": ["{{base_url}}"],
+              "path": ["forecast", "cost"],
+              "query": [
+                {
+                  "key": "start_year",
+                  "value": "2015"
+                },
+                {
+                  "key": "end_year",
+                  "value": "2030"
+                },
+                {
+                  "key": "include_breakdown",
+                  "value": "true"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Analytics",
+      "item": [
+        {
+          "name": "Market Share Evolution",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/analytics/market-share?start_year=2015&end_year=2030",
+              "host": ["{{base_url}}"],
+              "path": ["analytics", "market-share"],
+              "query": [
+                {
+                  "key": "start_year",
+                  "value": "2015"
+                },
+                {
+                  "key": "end_year",
+                  "value": "2030"
+                },
+                {
+                  "key": "chemistry",
+                  "value": "LFP",
+                  "disabled": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Regional Clusters",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/analytics/regional-clusters",
+              "host": ["{{base_url}}"],
+              "path": ["analytics", "regional-clusters"]
+            }
+          }
+        },
+        {
+          "name": "Technology Trends - Energy Density",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/analytics/technology-trends?metric=energy_density",
+              "host": ["{{base_url}}"],
+              "path": ["analytics", "technology-trends"],
+              "query": [
+                {
+                  "key": "metric",
+                  "value": "energy_density"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Technology Trends - Cycle Life",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/analytics/technology-trends?metric=cycle_life",
+              "host": ["{{base_url}}"],
+              "path": ["analytics", "technology-trends"],
+              "query": [
+                {
+                  "key": "metric",
+                  "value": "cycle_life"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Supply Chain Analysis",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/analytics/supply-chain",
+              "host": ["{{base_url}}"],
+              "path": ["analytics", "supply-chain"],
+              "query": [
+                {
+                  "key": "material",
+                  "value": "lithium",
+                  "disabled": true
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Policies",
+      "item": [
+        {
+          "name": "List All Policies",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/policies?page=1&page_size=20",
+              "host": ["{{base_url}}"],
+              "path": ["policies"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "page_size",
+                  "value": "20"
+                },
+                {
+                  "key": "type",
+                  "value": "tax_credit",
+                  "disabled": true
+                },
+                {
+                  "key": "jurisdiction",
+                  "value": "federal",
+                  "disabled": true
+                },
+                {
+                  "key": "status",
+                  "value": "active",
+                  "disabled": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Policy by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/policies/ira-45x",
+              "host": ["{{base_url}}"],
+              "path": ["policies", "ira-45x"]
+            }
+          }
+        },
+        {
+          "name": "Get Policy Impact",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/policies/ira-45x/impact",
+              "host": ["{{base_url}}"],
+              "path": ["policies", "ira-45x", "impact"]
+            }
+          }
+        },
+        {
+          "name": "Filter Federal Tax Credits",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/policies?type=tax_credit&jurisdiction=federal&status=active",
+              "host": ["{{base_url}}"],
+              "path": ["policies"],
+              "query": [
+                {
+                  "key": "type",
+                  "value": "tax_credit"
+                },
+                {
+                  "key": "jurisdiction",
+                  "value": "federal"
+                },
+                {
+                  "key": "status",
+                  "value": "active"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Chatbot",
+      "item": [
+        {
+          "name": "Submit Query",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"query\": \"What are the top battery companies in Tennessee?\",\n  \"include_sources\": true,\n  \"max_sources\": 5\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/chat/query",
+              "host": ["{{base_url}}"],
+              "path": ["chat", "query"]
+            }
+          }
+        },
+        {
+          "name": "Get Chat History",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/chat/history?limit=50",
+              "host": ["{{base_url}}"],
+              "path": ["chat", "history"],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "50"
+                },
+                {
+                  "key": "session_id",
+                  "value": "abc-123",
+                  "disabled": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Query - Nevada Facilities",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"query\": \"What are the largest battery facilities in Nevada?\",\n  \"include_sources\": true\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/chat/query",
+              "host": ["{{base_url}}"],
+              "path": ["chat", "query"]
+            }
+          }
+        },
+        {
+          "name": "Query - LFP Technology",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"query\": \"Which companies are investing in LFP battery technology?\",\n  \"include_sources\": true,\n  \"max_sources\": 10\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/chat/query",
+              "host": ["{{base_url}}"],
+              "path": ["chat", "query"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

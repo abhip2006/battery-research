@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Battery Research Search | Advanced Search & Filter</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="search-styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="main-nav" class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <h1>Battery Research Search</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Dashboard</a></li>
+                <li><a href="search-interface.html" class="nav-link active">Search</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Search Hero -->
+    <section class="search-hero">
+        <div class="container">
+            <h1>Search US Battery Industry</h1>
+            <p>Find companies, facilities, technologies, and locations across the battery manufacturing landscape</p>
+        </div>
+    </section>
+
+    <!-- Main Search Interface -->
+    <main class="search-main">
+        <div class="container">
+            <div class="search-layout">
+
+                <!-- Search Bar Section -->
+                <section class="search-bar-section">
+                    <div class="search-input-wrapper">
+                        <input
+                            type="text"
+                            id="searchInput"
+                            class="search-input"
+                            placeholder="Search companies, technologies, locations..."
+                            autocomplete="off"
+                            aria-label="Search query"
+                        />
+                        <button id="searchButton" class="search-button" aria-label="Search">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M9 17A8 8 0 1 0 9 1a8 8 0 0 0 0 16zM19 19l-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </button>
+                        <button id="clearSearch" class="clear-button" aria-label="Clear search" style="display: none;">
+                            ×
+                        </button>
+                    </div>
+
+                    <!-- Autocomplete Dropdown -->
+                    <div id="autocompleteDropdown" class="autocomplete-dropdown" style="display: none;"></div>
+
+                    <!-- Quick Actions -->
+                    <div class="quick-actions">
+                        <button id="toggleFilters" class="quick-action-btn">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                <path d="M2 4h12M4 8h8M6 12h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            Filters
+                        </button>
+                        <button id="saveSearchBtn" class="quick-action-btn">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                <path d="M12 14H4a2 2 0 01-2-2V4a2 2 0 012-2h8a2 2 0 012 2v8a2 2 0 01-2 2z" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                            Save Search
+                        </button>
+                        <button id="exportResultsBtn" class="quick-action-btn">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                <path d="M14 10v2a2 2 0 01-2 2H4a2 2 0 01-2-2v-2M8 10V2M5 5l3-3 3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Export
+                        </button>
+                    </div>
+
+                    <!-- Recent & Popular Searches -->
+                    <div class="search-suggestions">
+                        <div class="recent-searches" id="recentSearches"></div>
+                        <div class="saved-searches" id="savedSearchesDisplay"></div>
+                    </div>
+                </section>
+
+                <!-- Filters Panel -->
+                <aside id="filtersPanel" class="filters-panel" style="display: none;">
+                    <div class="filters-header">
+                        <h2>Filters</h2>
+                        <button id="clearFilters" class="text-button">Clear All</button>
+                    </div>
+
+                    <!-- Technology Filter -->
+                    <div class="filter-group">
+                        <h3 class="filter-title">Technology Type</h3>
+                        <div id="technologyFilters" class="filter-options"></div>
+                    </div>
+
+                    <!-- Chemistry Filter -->
+                    <div class="filter-group">
+                        <h3 class="filter-title">Battery Chemistry</h3>
+                        <div id="chemistryFilters" class="filter-options"></div>
+                    </div>
+
+                    <!-- State Filter -->
+                    <div class="filter-group">
+                        <h3 class="filter-title">State / Region</h3>
+                        <div id="stateFilters" class="filter-options"></div>
+                    </div>
+
+                    <!-- Stage Filter -->
+                    <div class="filter-group">
+                        <h3 class="filter-title">Commercialization Stage</h3>
+                        <div id="stageFilters" class="filter-options"></div>
+                    </div>
+
+                    <!-- Capacity Range -->
+                    <div class="filter-group">
+                        <h3 class="filter-title">Capacity Range (GWh)</h3>
+                        <div class="capacity-slider">
+                            <input type="range" id="capacityMin" min="0" max="200" value="0" class="slider">
+                            <input type="range" id="capacityMax" min="0" max="200" value="200" class="slider">
+                            <div class="capacity-values">
+                                <span id="capacityMinValue">0</span> - <span id="capacityMaxValue">200</span> GWh
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Policy Filter -->
+                    <div class="filter-group">
+                        <h3 class="filter-title">Policy Exposure</h3>
+                        <div id="policyFilters" class="filter-options"></div>
+                    </div>
+
+                    <!-- Status Filter -->
+                    <div class="filter-group">
+                        <h3 class="filter-title">Facility Status</h3>
+                        <div id="statusFilters" class="filter-options"></div>
+                    </div>
+
+                    <!-- Filter Logic -->
+                    <div class="filter-group">
+                        <h3 class="filter-title">Filter Logic</h3>
+                        <div class="filter-logic">
+                            <label class="radio-label">
+                                <input type="radio" name="filterOperator" value="AND" checked>
+                                Match ALL filters (AND)
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="filterOperator" value="OR">
+                                Match ANY filter (OR)
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Geospatial Search -->
+                    <div class="filter-group">
+                        <h3 class="filter-title">Location Search</h3>
+                        <div class="location-search">
+                            <input type="number" id="locationLat" placeholder="Latitude" step="0.0001" class="location-input">
+                            <input type="number" id="locationLng" placeholder="Longitude" step="0.0001" class="location-input">
+                            <input type="number" id="locationRadius" placeholder="Radius (miles)" value="100" class="location-input">
+                            <button id="searchByLocation" class="filter-button">Search by Location</button>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- Results Section -->
+                <section class="results-section">
+                    <div class="results-header">
+                        <div class="results-count">
+                            <span id="resultsCount">0</span> results
+                        </div>
+                        <div class="results-sort">
+                            <label for="sortBy">Sort by:</label>
+                            <select id="sortBy" class="sort-select">
+                                <option value="relevance">Relevance</option>
+                                <option value="capacity-desc">Capacity (High to Low)</option>
+                                <option value="capacity-asc">Capacity (Low to High)</option>
+                                <option value="name-asc">Name (A-Z)</option>
+                                <option value="name-desc">Name (Z-A)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Active Filters Display -->
+                    <div id="activeFilters" class="active-filters"></div>
+
+                    <!-- Results Grid -->
+                    <div id="resultsGrid" class="results-grid"></div>
+
+                    <!-- No Results Message -->
+                    <div id="noResults" class="no-results" style="display: none;">
+                        <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+                            <circle cx="32" cy="32" r="30" stroke="#E5E7EB" stroke-width="4"/>
+                            <path d="M32 20v16M32 44h.01" stroke="#9CA3AF" stroke-width="4" stroke-linecap="round"/>
+                        </svg>
+                        <h3>No results found</h3>
+                        <p>Try adjusting your search or filters</p>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- Save Search Modal -->
+    <div id="saveSearchModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Save Search</h2>
+                <button class="modal-close" onclick="closeSaveSearchModal()">×</button>
+            </div>
+            <div class="modal-body">
+                <label for="searchName">Search Name:</label>
+                <input type="text" id="searchName" class="modal-input" placeholder="e.g., Solid-State Companies in Southeast">
+                <button id="confirmSaveSearch" class="modal-button">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Export Modal -->
+    <div id="exportModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Export Results</h2>
+                <button class="modal-close" onclick="closeExportModal()">×</button>
+            </div>
+            <div class="modal-body">
+                <label>Select Format:</label>
+                <div class="export-options">
+                    <button class="export-option" onclick="exportResults('json')">
+                        JSON
+                    </button>
+                    <button class="export-option" onclick="exportResults('csv')">
+                        CSV
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="search-engine.js"></script>
+    <script src="search-ui.js"></script>
+</body>
+</html>

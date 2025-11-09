@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Comprehensive US Battery Industry Research Dashboard - Analysis of cost trends, capacity growth, technology evolution, and regional manufacturing clusters">
+    <meta name="keywords" content="battery industry, lithium-ion, LFP, NMC, energy storage, electric vehicles, manufacturing, USA">
+    <meta name="author" content="Battery Industry Research Team">
+    <meta property="og:title" content="US Battery Industry Research Dashboard">
+    <meta property="og:description" content="Interactive dashboard analyzing the US battery manufacturing landscape, technology trends, and market evolution">
+    <meta property="og:type" content="website">
+
+    <title>US Battery Industry Research Dashboard | Comprehensive Analysis & Insights</title>
+
+    <!-- External Resources -->
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+    <!-- Preload critical resources -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="main-nav" class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <h1>US Battery Industry Dashboard</h1>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu">
+                <li><a href="#hero" class="nav-link">Home</a></li>
+                <li><a href="#metrics" class="nav-link">Key Metrics</a></li>
+                <li><a href="#cost-trends" class="nav-link">Cost Trends</a></li>
+                <li><a href="#capacity" class="nav-link">Capacity</a></li>
+                <li><a href="#companies" class="nav-link">Companies</a></li>
+                <li><a href="#states" class="nav-link">States</a></li>
+                <li><a href="#technology" class="nav-link">Technology</a></li>
+                <li><a href="#regional" class="nav-link">Regional</a></li>
+                <li><a href="#timeline" class="nav-link">Timeline</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="hero" class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">US Battery Industry Research Dashboard</h1>
+            <p class="hero-subtitle">Comprehensive Analysis of Manufacturing Capacity, Technology Evolution, and Market Dynamics</p>
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <span class="stat-number" data-metric="capacity">850</span>
+                    <span class="stat-label">GWh Capacity (2024)</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="stat-number" data-metric="cost">$115</span>
+                    <span class="stat-label">$/kWh (2024)</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="stat-number" data-metric="employment">100K+</span>
+                    <span class="stat-label">Direct Jobs (2027)</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="stat-number" data-metric="facilities">60+</span>
+                    <span class="stat-label">Manufacturing Facilities</span>
+                </div>
+            </div>
+            <a href="#metrics" class="hero-cta">Explore Dashboard</a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <!-- Key Metrics Section -->
+        <section id="metrics" class="section metrics-section">
+            <div class="container">
+                <header class="section-header">
+                    <h2 class="section-title">Key Industry Metrics</h2>
+                    <p class="section-description">Critical indicators of US battery industry growth and transformation</p>
+                </header>
+
+                <div class="metrics-grid">
+                    <article class="metric-card">
+                        <div class="metric-icon">📉</div>
+                        <h3 class="metric-title">Cost Reduction</h3>
+                        <div class="metric-content">
+                            <p class="metric-highlight" data-metric="cost-reduction">81% decline</p>
+                            <p class="metric-detail">From $600 to $115 per kWh (2015-2024)</p>
+                        </div>
+                    </article>
+
+                    <article class="metric-card">
+                        <div class="metric-icon">🏭</div>
+                        <h3 class="metric-title">Market Size</h3>
+                        <div class="metric-content">
+                            <p class="metric-highlight" data-metric="market-2024">850 GWh</p>
+                            <p class="metric-detail">US announced capacity in 2024</p>
+                            <p class="metric-projection">→ 1,500 GWh projected by 2030</p>
+                        </div>
+                    </article>
+
+                    <article class="metric-card">
+                        <div class="metric-icon">👷</div>
+                        <h3 class="metric-title">Employment Impact</h3>
+                        <div class="metric-content">
+                            <p class="metric-highlight" data-metric="jobs-direct">100,000+</p>
+                            <p class="metric-detail">Direct manufacturing jobs by 2027</p>
+                            <p class="metric-projection">300,000+ with multiplier effects</p>
+                        </div>
+                    </article>
+
+                    <article class="metric-card">
+                        <div class="metric-icon">⚡</div>
+                        <h3 class="metric-title">Energy Density</h3>
+                        <div class="metric-content">
+                            <p class="metric-highlight">75% / 50%</p>
+                            <p class="metric-detail">LFP / NMC improvement (2015-2024)</p>
+                        </div>
+                    </article>
+
+                    <article class="metric-card supply-chain">
+                        <div class="metric-icon">⚠️</div>
+                        <h3 class="metric-title">Supply Chain Gaps</h3>
+                        <div class="metric-content">
+                            <ul class="gap-list">
+                                <li><strong>Cathode:</strong> 150K tonnes/year vs 800+ GWh demand</li>
+                                <li><strong>Separator:</strong> ENTEK Terre Haute covers 3.5M EVs/year</li>
+                                <li><strong>Electrolyte:</strong> Critical gap - minimal domestic production</li>
+                            </ul>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cost Trends Section -->
+        <section id="cost-trends" class="section">
+            <div class="container">
+                <header class="section-header">
+                    <h2 class="section-title">Battery Cost Trends (2015-2030)</h2>
+                    <p class="section-description">Historical and projected cost per kilowatt-hour evolution</p>
+                </header>
+
+                <div class="chart-container">
+                    <canvas id="costTrendsChart" role="img" aria-label="Battery cost trends from 2015 to 2030"></canvas>
+                </div>
+
+                <div class="insights-box">
+                    <h3>Key Insights</h3>
+                    <ul>
+                        <li>Dramatic 81% cost reduction from 2015 ($600/kWh) to 2024 ($115/kWh)</li>
+                        <li>Crossed critical $100/kWh threshold in 2024 for BEV pack parity</li>
+                        <li>Projected to reach $69/kWh by 2030, enabling mass market adoption</li>
+                        <li>Cost reduction driven by scale, technology improvements, and supply chain optimization</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Capacity Growth Section -->
+        <section id="capacity" class="section alt-section">
+            <div class="container">
+                <header class="section-header">
+                    <h2 class="section-title">Manufacturing Capacity Growth</h2>
+                    <p class="section-description">US battery production capacity expansion (GWh)</p>
+                </header>
+
+                <div class="chart-container">
+                    <canvas id="capacityChart" role="img" aria-label="US manufacturing capacity growth from 2015 to 2030"></canvas>
+                </div>
+
+                <div class="insights-box">
+                    <h3>Growth Trajectory</h3>
+                    <ul>
+                        <li>Exponential growth from 10 GWh (2015) to 850 GWh (2024) - 85x increase</li>
+                        <li>Projected 1,500 GWh by 2030 - sufficient for ~10M EVs annually</li>
+                        <li>Major acceleration post-2020 driven by IRA incentives and OEM commitments</li>
+                        <li>60+ announced manufacturing facilities across 15+ states</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Top Companies Section -->
+        <section id="companies" class="section">
+            <div class="container">
+                <header class="section-header">
+                    <h2 class="section-title">Top Battery Manufacturers</h2>
+                    <p class="section-description">Leading companies by announced capacity and technology focus</p>
+                </header>
+
+                <div class="chart-container">
+                    <canvas id="companiesChart" role="img" aria-label="Top battery manufacturers by capacity"></canvas>
+                </div>
+
+                <div class="companies-table-container">
+                    <table class="data-table" id="companiesTable">
+                        <thead>
+                            <tr>
+                                <th>Rank</th>
+                                <th>Company</th>
+                                <th>Capacity (GWh)</th>
+                                <th>Technology Focus</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- State Rankings Section -->
+        <section id="states" class="section alt-section">
+            <div class="container">
+                <header class="section-header">
+                    <h2 class="section-title">State-by-State Rankings</h2>
+                    <p class="section-description">Manufacturing capacity distribution across US states</p>
+                </header>
+
+                <div class="chart-container">
+                    <canvas id="statesChart" role="img" aria-label="Battery manufacturing capacity by state"></canvas>
+                </div>
+
+                <div class="states-grid" id="statesGrid">
+                    <!-- Populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Technology Mix Section -->
+        <section id="technology" class="section">
+            <div class="container">
+                <header class="section-header">
+                    <h2 class="section-title">Battery Technology Evolution</h2>
+                    <p class="section-description">Chemistry mix trends and future projections</p>
+                </header>
+
+                <div class="technology-charts">
+                    <div class="chart-container">
+                        <h3 class="chart-title">Technology Mix by Year</h3>
+                        <canvas id="technologyMixChart" role="img" aria-label="Battery technology mix evolution"></canvas>
+                    </div>
+
+                    <div class="chart-container">
+                        <h3 class="chart-title">Energy Density Trends (Wh/kg)</h3>
+                        <canvas id="energyDensityChart" role="img" aria-label="Energy density improvements by technology"></canvas>
+                    </div>
+                </div>
+
+                <div class="insights-box">
+                    <h3>Technology Trends</h3>
+                    <ul>
+                        <li><strong>LFP Resurgence:</strong> Growing from 8% (2015) to 40% (2024) market share</li>
+                        <li><strong>NMC Evolution:</strong> Transitioning from NMC-333 to NMC-811 and high-nickel variants</li>
+                        <li><strong>Solid-State Emergence:</strong> Expected 10% market share by 2030</li>
+                        <li><strong>Sodium-Ion Entry:</strong> Projected 10% share by 2030 for cost-sensitive applications</li>
+                        <li><strong>Energy Density Gains:</strong> 75% improvement for LFP, 50% for NMC (2015-2024)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Market Share Evolution Section -->
+        <section id="market-share" class="section alt-section">
+            <div class="container">
+                <header class="section-header">
+                    <h2 class="section-title">Market Share Evolution</h2>
+                    <p class="section-description">Chemistry distribution across key milestone years</p>
+                </header>
+
+                <div class="market-share-grid">
+                    <div class="chart-container">
+                        <h3 class="chart-title">2015 Market Share</h3>
+                        <canvas id="marketShare2015" role="img" aria-label="2015 battery chemistry market share"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <h3 class="chart-title">2020 Market Share</h3>
+                        <canvas id="marketShare2020" role="img" aria-label="2020 battery chemistry market share"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <h3 class="chart-title">2024 Market Share</h3>
+                        <canvas id="marketShare2024" role="img" aria-label="2024 battery chemistry market share"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <h3 class="chart-title">2030 Projected Share</h3>
+                        <canvas id="marketShare2030" role="img" aria-label="2030 projected battery chemistry market share"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cycle Life Comparison Section -->
+        <section id="cycle-life" class="section">
+            <div class="container">
+                <header class="section-header">
+                    <h2 class="section-title">Battery Cycle Life Comparison</h2>
+                    <p class="section-description">Durability and degradation analysis by chemistry</p>
+                </header>
+
+                <div class="chart-container">
+                    <canvas id="cycleLifeChart" role="img" aria-label="Battery cycle life comparison by chemistry"></canvas>
+                </div>
+
+                <div class="cycle-life-table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Chemistry</th>
+                                <th>Laboratory Max</th>
+                                <th>Real-World Cycles</th>
+                                <th>Degradation Rate (%/year)</th>
+                                <th>Capacity After 1000 Cycles (%)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="cycleLifeTable">
+                            <!-- Populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="insights-box">
+                    <h3>Durability Insights</h3>
+                    <ul>
+                        <li><strong>LFP Superior Longevity:</strong> 6,000 lab cycles vs 2,500 for NMC/NCA</li>
+                        <li><strong>Real-World Performance:</strong> LFP achieves 3,000 cycles vs 1,300 for NMC</li>
+                        <li><strong>Degradation Advantage:</strong> LFP degrades at 2.5%/year vs 4.5%+ for nickel-rich</li>
+                        <li><strong>Lifecycle Economics:</strong> LFP's longevity offsets higher upfront cost for fleet/storage</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Regional Clusters Section -->
+        <section id="regional" class="section alt-section">
+            <div class="container">
+                <header class="section-header">
+                    <h2 class="section-title">Regional Manufacturing Clusters</h2>
+                    <p class="section-description">Geographic concentration and strategic advantages</p>
+                </header>
+
+                <div class="clusters-grid" id="clustersGrid">
+                    <!-- Populated by JavaScript -->
+                </div>
+
+                <div class="chart-container">
+                    <canvas id="regionalCapacityChart" role="img" aria-label="Regional cluster capacity distribution"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- Timeline Section -->
+        <section id="timeline" class="section">
+            <div class="container">
+                <header class="section-header">
+                    <h2 class="section-title">Industry Evolution Timeline</h2>
+                    <p class="section-description">Key milestones in US battery industry development</p>
+                </header>
+
+                <div class="timeline" id="industryTimeline">
+                    <!-- Populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Data Sources & Methodology Section -->
+        <section id="methodology" class="section alt-section">
+            <div class="container">
+                <header class="section-header">
+                    <h2 class="section-title">Data Sources & Methodology</h2>
+                    <p class="section-description">Research foundation and verification process</p>
+                </header>
+
+                <div class="methodology-content">
+                    <article class="methodology-card">
+                        <h3>Primary Data Sources</h3>
+                        <ul id="dataSources">
+                            <!-- Populated by JavaScript -->
+                        </ul>
+                    </article>
+
+                    <article class="methodology-card">
+                        <h3>Verification Standards</h3>
+                        <ul>
+                            <li>Cross-referenced against SEC filings and investor presentations</li>
+                            <li>Validated with DOE announcements and federal grants database</li>
+                            <li>Confirmed through company press releases and earnings calls</li>
+                            <li>Geographic data verified against facility permits and construction reports</li>
+                        </ul>
+                    </article>
+
+                    <article class="methodology-card">
+                        <h3>Update Frequency</h3>
+                        <p><strong>Recommended:</strong> Quarterly updates</p>
+                        <p><strong>Confidence Level:</strong> <span class="confidence-badge">High</span></p>
+                        <p class="last-updated">Last Updated: <span id="reportDate"><!-- Populated by JavaScript --></span></p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About This Dashboard</h3>
+                    <p>Comprehensive research platform analyzing the US battery manufacturing landscape, technology evolution, and market dynamics. Data compiled from industry reports, government sources, and verified company announcements.</p>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Key Data Sources</h3>
+                    <ul>
+                        <li>US Battery Industry Historical Evolution Report (2000-2024)</li>
+                        <li>US Battery Industry Mapping Report</li>
+                        <li>Geospatial Manufacturing Facilities Analysis</li>
+                        <li>Technology Innovation Assessment</li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Research Standards</h3>
+                    <ul>
+                        <li>Verified against SEC filings</li>
+                        <li>Cross-referenced with DOE data</li>
+                        <li>Updated quarterly</li>
+                        <li>High confidence methodology</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 US Battery Industry Research. All data verified as of <span id="footerReportDate"><!-- Populated by JavaScript --></span></p>
+                <p class="disclaimer">This dashboard is for research and informational purposes only. Capacity figures represent announced plans and may be subject to change.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top" aria-label="Back to top">
+        ↑
+    </button>
+
+    <!-- JavaScript -->
+    <script src="app.js"></script>
+</body>
+</html>

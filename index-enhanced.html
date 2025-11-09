@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Advanced US Battery Industry Research Dashboard - Interactive visualizations, scenario modeling, and analytics">
+    <meta name="keywords" content="battery industry, lithium-ion, LFP, NMC, energy storage, electric vehicles, manufacturing, USA, analytics, visualization">
+    <meta name="author" content="Battery Industry Research Team">
+
+    <title>US Battery Industry Research Dashboard | Advanced Analytics & Visualizations</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Leaflet CSS for Maps -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+          crossorigin=""/>
+
+    <!-- External JavaScript Libraries -->
+    <!-- Chart.js for charts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+    <!-- Chart.js Zoom Plugin -->
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.0.1/dist/chartjs-plugin-zoom.min.js"></script>
+
+    <!-- Leaflet.js for maps -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+            crossorigin=""></script>
+
+    <!-- D3.js for network graphs -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+
+    <!-- jsPDF for PDF export (optional) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <style>
+        /* Additional styles for enhanced components */
+        .export-bar {
+            display: flex;
+            gap: 8px;
+            justify-content: flex-end;
+            margin-bottom: 12px;
+            padding: 8px;
+            background: #f9fafb;
+            border-radius: 8px;
+        }
+
+        .export-btn {
+            padding: 6px 12px;
+            background: #3b82f6;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        .export-btn:hover {
+            background: #2563eb;
+        }
+
+        #mapContainer {
+            width: 100%;
+            height: 600px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+        }
+
+        #networkContainer {
+            width: 100%;
+            height: 700px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+        }
+
+        #scenarioContainer {
+            margin: 40px 0;
+        }
+
+        .state-card, .cluster-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .state-card:hover, .cluster-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15) !important;
+        }
+
+        #filterPanel {
+            position: fixed;
+            right: 20px;
+            top: 100px;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 300px;
+            z-index: 100;
+            display: none;
+        }
+
+        #filterToggle {
+            position: fixed;
+            right: 20px;
+            top: 100px;
+            padding: 12px 20px;
+            background: #3b82f6;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 99;
+        }
+
+        #backToTop {
+            display: none;
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: #3b82f6;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 24px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            z-index: 98;
+            transition: all 0.3s ease;
+        }
+
+        #backToTop:hover {
+            background: #2563eb;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .section-divider {
+            margin: 60px 0;
+            border-top: 2px solid #e5e7eb;
+        }
+
+        @media (max-width: 768px) {
+            #filterToggle, #filterPanel {
+                display: none;
+            }
+
+            #mapContainer, #networkContainer {
+                height: 400px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="main-nav" class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <h1>🔋 US Battery Industry Dashboard</h1>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu">
+                <li><a href="#hero" class="nav-link">Home</a></li>
+                <li><a href="#cost-trends" class="nav-link">Cost Trends</a></li>
+                <li><a href="#capacity" class="nav-link">Capacity</a></li>
+                <li><a href="#companies" class="nav-link">Companies</a></li>
+                <li><a href="#states" class="nav-link">States</a></li>
+                <li><a href="#map-section" class="nav-link">Map</a></li>
+                <li><a href="#technology" class="nav-link">Technology</a></li>
+                <li><a href="#network-section" class="nav-link">Network</a></li>
+                <li><a href="#scenario-section" class="nav-link">Scenarios</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="hero" class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">US Battery Industry Research Dashboard</h1>
+            <p class="hero-subtitle">
+                Advanced Interactive Analytics • Scenario Modeling • Geographic Visualization • Network Analysis
+            </p>
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <span class="stat-number">850</span>
+                    <span class="stat-label">GWh Capacity (2024)</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="stat-number">$115</span>
+                    <span class="stat-label">$/kWh (2024)</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="stat-number">100K+</span>
+                    <span class="stat-label">Direct Jobs (2027)</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="stat-number">60+</span>
+                    <span class="stat-label">Facilities</span>
+                </div>
+            </div>
+            <a href="#cost-trends" class="hero-cta">Explore Dashboard</a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <!-- Cost Trends Section -->
+        <section id="cost-trends" class="section">
+            <div class="container">
+                <header class="section-header">
+                    <h2 class="section-title">📉 Battery Cost Trends with Forecasting</h2>
+                    <p class="section-description">Historical data with 95% confidence bands and trend analysis</p>
+                </header>
+
+                <div class="chart-container">
+                    <canvas id="costTrendsChart" role="img" aria-label="Battery cost trends from 2015 to 2030"></canvas>
+                </div>
+
+                <div class="insights-box">
+                    <h3>🔍 Key Insights</h3>
+                    <ul>
+                        <li>Dramatic 81% cost reduction from 2015 ($600/kWh) to 2024 ($115/kWh)</li>
+                        <li>Crossed critical $100/kWh threshold in 2024 for BEV pack parity</li>
+                        <li>Projected to reach $69/kWh by 2030 with 95% confidence bands</li>
+                        <li>Trend line shows consistent downward trajectory despite temporary inflation spike in 2021-2022</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- Capacity Growth Section -->
+        <section id="capacity" class="section alt-section">
+            <div class="container">
+                <header class="section-header">
+                    <h2 class="section-title">📈 Manufacturing Capacity Growth</h2>
+                    <p class="section-description">US battery production capacity with year-over-year growth rates</p>
+                </header>
+
+                <div class="chart-container">
+                    <canvas id="capacityChart" role="img" aria-label="US manufacturing capacity growth"></canvas>
+                </div>
+
+                <div class="insights-box">
+                    <h3>🚀 Growth Trajectory</h3>
+                    <ul>
+                        <li>Exponential growth: 10 GWh (2015) → 850 GWh (2024) = 85x increase</li>
+                        <li>Projected 1,500 GWh by 2030 - sufficient for ~10M EVs annually</li>
+                        <li>Major acceleration post-2020 driven by IRA incentives</li>
+                        <li>Dual-axis visualization shows capacity vs. growth rate trends</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- Top Companies Section -->
+        <section id="companies" class="section">
+            <div class="container">
+                <header class="section-header">
+                    <h2 class="section-title">🏢 Top Battery Manufacturers</h2>
+                    <p class="section-description">Leading companies by announced capacity and technology</p>
+                </header>
+
+                <div class="chart-container">
+                    <canvas id="companiesChart" role="img" aria-label="Top battery manufacturers"></canvas>
+                </div>
+
+                <div class="companies-table-container">
+                    <table class="data-table" id="companiesTable">
+                        <thead>
+                            <tr>
+                                <th>Rank</th>
+                                <th>Company</th>
+                                <th>Capacity (GWh)</th>
+                                <th>Technology Focus</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- States Section -->
+        <section id="states" class="section alt-section">
+            <div class="container">
+                <header class="section-header">
+                    <h2 class="section-title">🗺️ State-by-State Rankings</h2>
+                    <p class="section-description">Manufacturing capacity distribution across US states</p>
+                </header>
+
+                <div class="chart-container">
+                    <canvas id="statesChart" role="img" aria-label="Battery manufacturing by state"></canvas>
+                </div>
+
+                <div class="states-grid" id="statesGrid">
+                    <!-- Populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- Interactive Map Section -->
+        <section id="map-section" class="section">
+            <div class="container">
+                <header class="section-header">
+                    <h2 class="section-title">🌍 Interactive Geographic Map</h2>
+                    <p class="section-description">
+                        Explore US battery manufacturing facilities by location. Click markers for details.
+                    </p>
+                </header>
+
+                <div id="mapContainer"></div>
+
+                <div class="insights-box">
+                    <h3>🗺️ Map Features</h3>
+                    <ul>
+                        <li>Circle markers sized by manufacturing capacity</li>
+                        <li>Color-coded capacity ranges (red = low, green = high)</li>
+                        <li>Click markers for detailed facility information</li>
+                        <li>Zoom and pan to explore specific regions</li>
+                        <li>Regional cluster overlays show geographic concentration</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- Technology Section -->
+        <section id="technology" class="section alt-section">
+            <div class="container">
+                <header class="section-header">
+                    <h2 class="section-title">⚡ Battery Technology Evolution</h2>
+                    <p class="section-description">Chemistry trends, energy density, and market share</p>
+                </header>
+
+                <div class="technology-charts">
+                    <div class="chart-container">
+                        <h3 class="chart-title">Technology Mix by Year</h3>
+                        <canvas id="technologyMixChart"></canvas>
+                    </div>
+
+                    <div class="chart-container">
+                        <h3 class="chart-title">Energy Density Trends (Wh/kg)</h3>
+                        <canvas id="energyDensityChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="insights-box">
+                    <h3>🔬 Technology Trends</h3>
+                    <ul>
+                        <li><strong>LFP Resurgence:</strong> 8% (2015) → 40% (2024) market share</li>
+                        <li><strong>NMC Evolution:</strong> NMC-333 → NMC-811 → High-nickel variants</li>
+                        <li><strong>Solid-State:</strong> Expected 10% market share by 2030</li>
+                        <li><strong>Sodium-Ion:</strong> Emerging alternative for cost-sensitive applications</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- Market Share Section -->
+        <section id="market-share" class="section">
+            <div class="container">
+                <header class="section-header">
+                    <h2 class="section-title">📊 Market Share Evolution</h2>
+                    <p class="section-description">Chemistry distribution across key milestone years</p>
+                </header>
+
+                <div class="market-share-grid">
+                    <div class="chart-container">
+                        <h3 class="chart-title">2015</h3>
+                        <canvas id="marketShare2015"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <h3 class="chart-title">2020</h3>
+                        <canvas id="marketShare2020"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <h3 class="chart-title">2024</h3>
+                        <canvas id="marketShare2024"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <h3 class="chart-title">2030 (Projected)</h3>
+                        <canvas id="marketShare2030"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- Cycle Life Section -->
+        <section id="cycle-life" class="section alt-section">
+            <div class="container">
+                <header class="section-header">
+                    <h2 class="section-title">🔋 Battery Cycle Life Comparison</h2>
+                    <p class="section-description">Durability and degradation analysis by chemistry</p>
+                </header>
+
+                <div class="chart-container">
+                    <canvas id="cycleLifeChart"></canvas>
+                </div>
+
+                <div class="cycle-life-table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Chemistry</th>
+                                <th>Laboratory Max</th>
+                                <th>Real-World Cycles</th>
+                                <th>Degradation Rate</th>
+                                <th>Capacity @ 1000 Cycles</th>
+                            </tr>
+                        </thead>
+                        <tbody id="cycleLifeTable">
+                            <!-- Populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- Regional Clusters Section -->
+        <section id="regional" class="section">
+            <div class="container">
+                <header class="section-header">
+                    <h2 class="section-title">🌆 Regional Manufacturing Clusters</h2>
+                    <p class="section-description">Geographic concentration and strategic advantages</p>
+                </header>
+
+                <div class="clusters-grid" id="clustersGrid">
+                    <!-- Populated by JavaScript -->
+                </div>
+
+                <div class="chart-container">
+                    <canvas id="regionalCapacityChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- Network Graph Section -->
+        <section id="network-section" class="section alt-section">
+            <div class="container">
+                <header class="section-header">
+                    <h2 class="section-title">🕸️ Supply Chain Network Graph</h2>
+                    <p class="section-description">
+                        Interactive visualization of relationships between companies, technologies, components, and regions
+                    </p>
+                </header>
+
+                <div id="networkContainer"></div>
+
+                <div class="insights-box">
+                    <h3>🔗 Network Features</h3>
+                    <ul>
+                        <li><strong>Interactive Nodes:</strong> Drag to rearrange, hover for details</li>
+                        <li><strong>Color Coding:</strong> Blue (companies), Green (technologies), Orange (components), Purple (clusters)</li>
+                        <li><strong>Force Layout:</strong> Automatically arranges related nodes closer together</li>
+                        <li><strong>Zoom & Pan:</strong> Scroll to zoom, drag background to pan</li>
+                        <li><strong>Export:</strong> Download network as SVG for presentations</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- Scenario Modeling Section -->
+        <section id="scenario-section" class="section">
+            <div class="container">
+                <header class="section-header">
+                    <h2 class="section-title">🎯 Scenario Modeling & Analytics</h2>
+                    <p class="section-description">
+                        Model different scenarios and see their impact on capacity, costs, and market dynamics
+                    </p>
+                </header>
+
+                <div id="scenarioContainer">
+                    <!-- Populated by JavaScript -->
+                </div>
+
+                <div class="insights-box">
+                    <h3>💡 Scenario Analysis Features</h3>
+                    <ul>
+                        <li><strong>Pre-defined Scenarios:</strong> IRA impact, supply constraints, tech breakthroughs</li>
+                        <li><strong>Custom Modeling:</strong> Adjust capacity, costs, and technology mix</li>
+                        <li><strong>Visual Comparison:</strong> Baseline vs. scenario side-by-side</li>
+                        <li><strong>Export Results:</strong> Download scenario data as JSON or CSV</li>
+                        <li><strong>Real-time Updates:</strong> See impacts instantly as you adjust parameters</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- Timeline Section -->
+        <section id="timeline" class="section alt-section">
+            <div class="container">
+                <header class="section-header">
+                    <h2 class="section-title">📅 Industry Evolution Timeline</h2>
+                    <p class="section-description">Key milestones in US battery industry development</p>
+                </header>
+
+                <div id="industryTimeline">
+                    <!-- Populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About This Dashboard</h3>
+                    <p>
+                        Advanced analytics platform for the US battery manufacturing industry. Features interactive
+                        visualizations, scenario modeling, geographic analysis, and network graph exploration.
+                    </p>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Features</h3>
+                    <ul>
+                        <li>✅ 20+ Interactive Visualizations</li>
+                        <li>✅ Scenario Modeling & Forecasting</li>
+                        <li>✅ Interactive Maps & Network Graphs</li>
+                        <li>✅ Export to PNG, SVG, PDF, CSV, JSON</li>
+                        <li>✅ Cross-filtering & Advanced Analytics</li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Documentation</h3>
+                    <ul>
+                        <li><a href="VISUALIZATION-README.md">Component Library Docs</a></li>
+                        <li><a href="SOURCE_VERIFICATION_REPORT.md">Data Sources</a></li>
+                        <li><a href="AGENT-C02-COMPREHENSIVE-SYNTHESIS-REPORT.md">Research Report</a></li>
+                        <li><a href="https://github.com/battery-research">GitHub Repository</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 US Battery Industry Research. Data verified as of <span id="footerReportDate">2025-11-08</span></p>
+                <p class="disclaimer">
+                    This dashboard is for research and informational purposes. All data cross-referenced with SEC filings,
+                    DOE announcements, and verified company sources.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" aria-label="Back to top">↑</button>
+
+    <!-- Component Scripts -->
+    <script src="app-enhanced.js"></script>
+    <script src="map-component.js"></script>
+    <script src="network-graph.js"></script>
+    <script src="scenario-modeling.js"></script>
+
+    <!-- Initialization Script -->
+    <script>
+        // Wait for all scripts to load before initializing advanced components
+        window.addEventListener('load', function() {
+            // Get data from global state after dashboard initializes
+            setTimeout(() => {
+                const data = window.batteryDashboard?.state?.getData();
+
+                if (data) {
+                    // Initialize map
+                    try {
+                        MapComponent.initMap('mapContainer', data);
+                        console.log('✅ Map initialized');
+                    } catch (error) {
+                        console.error('Map initialization error:', error);
+                    }
+
+                    // Initialize network graph
+                    try {
+                        NetworkGraph.initGraph('networkContainer', data);
+                        console.log('✅ Network graph initialized');
+                    } catch (error) {
+                        console.error('Network graph initialization error:', error);
+                    }
+
+                    // Initialize scenario modeling
+                    try {
+                        ScenarioModeling.init('scenarioContainer', data);
+                        console.log('✅ Scenario modeling initialized');
+                    } catch (error) {
+                        console.error('Scenario modeling initialization error:', error);
+                    }
+
+                    console.log('🎉 All enhanced components initialized successfully!');
+                } else {
+                    console.warn('⚠️ Data not yet loaded. Advanced components will initialize after data loads.');
+                }
+            }, 1000); // Wait 1 second for base dashboard to initialize
+        });
+    </script>
+</body>
+</html>

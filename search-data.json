@@ -1,0 +1,395 @@
+{
+  "companies": [
+    {
+      "id": "tesla",
+      "name": "Tesla",
+      "description": "Leading electric vehicle manufacturer with integrated battery production",
+      "capacity": 110,
+      "technologies": ["Li-ion", "4680", "2170"],
+      "chemistries": ["NMC", "LFP"],
+      "stage": "Gigafactory",
+      "facilities": [
+        {
+          "name": "Gigafactory Nevada",
+          "location": "Sparks, Nevada",
+          "state": "NV",
+          "coordinates": {"lat": 39.5378, "lng": -119.4374},
+          "capacity": 100,
+          "status": "Operational",
+          "yearEstablished": 2016
+        }
+      ],
+      "policies": ["IRA", "DOE Loans"],
+      "website": "https://tesla.com"
+    },
+    {
+      "id": "sk-battery",
+      "name": "SK Battery America",
+      "description": "Korean battery manufacturer with major US manufacturing presence",
+      "capacity": 180,
+      "technologies": ["Li-ion", "NCM"],
+      "chemistries": ["NMC"],
+      "stage": "Gigafactory",
+      "facilities": [
+        {
+          "name": "SK Battery Commerce Plant",
+          "location": "Commerce, Georgia",
+          "state": "GA",
+          "coordinates": {"lat": 34.2024, "lng": -83.4635},
+          "capacity": 120,
+          "status": "Operational",
+          "yearEstablished": 2019
+        }
+      ],
+      "policies": ["IRA"],
+      "website": "https://skbatteryamerica.com"
+    },
+    {
+      "id": "ultium-cells",
+      "name": "Ultium Cells (GM-LG)",
+      "description": "Joint venture between General Motors and LG Energy Solution",
+      "capacity": 130,
+      "technologies": ["Li-ion", "NCMA", "LFP"],
+      "chemistries": ["NCMA", "LFP"],
+      "stage": "Gigafactory",
+      "facilities": [
+        {
+          "name": "Ultium Cells Warren",
+          "location": "Warren, Ohio",
+          "state": "OH",
+          "coordinates": {"lat": 41.2376, "lng": -80.8184},
+          "capacity": 41,
+          "status": "Operational",
+          "yearEstablished": 2022
+        },
+        {
+          "name": "Ultium Cells Spring Hill",
+          "location": "Spring Hill, Tennessee",
+          "state": "TN",
+          "coordinates": {"lat": 35.7518, "lng": -86.93},
+          "capacity": 50,
+          "status": "Operational",
+          "yearEstablished": 2023
+        },
+        {
+          "name": "Ultium Cells Lansing",
+          "location": "Lansing, Michigan",
+          "state": "MI",
+          "coordinates": {"lat": 42.7325, "lng": -84.5555},
+          "capacity": 41,
+          "status": "Under Construction",
+          "yearEstablished": 2024
+        }
+      ],
+      "policies": ["IRA", "DOE Grant"],
+      "website": "https://ultiumcells.com"
+    },
+    {
+      "id": "blueoval-sk",
+      "name": "BlueOval SK (Ford-SK)",
+      "description": "Ford and SK Innovation joint venture for electric vehicle batteries",
+      "capacity": 130,
+      "technologies": ["Li-ion", "LFP"],
+      "chemistries": ["NMC", "LFP"],
+      "stage": "Gigafactory",
+      "facilities": [
+        {
+          "name": "BlueOval SK Battery Park",
+          "location": "Glendale, Kentucky",
+          "state": "KY",
+          "coordinates": {"lat": 37.6011, "lng": -85.8911},
+          "capacity": 86,
+          "status": "Under Construction",
+          "yearEstablished": 2025
+        },
+        {
+          "name": "BlueOval SK Tennessee",
+          "location": "Stanton, Tennessee",
+          "state": "TN",
+          "coordinates": {"lat": 35.4601, "lng": -89.3695},
+          "capacity": 43,
+          "status": "Under Construction",
+          "yearEstablished": 2025
+        }
+      ],
+      "policies": ["IRA"],
+      "website": "https://blueovalsk.com"
+    },
+    {
+      "id": "panasonic",
+      "name": "Panasonic Energy",
+      "description": "Japanese battery manufacturer with long-standing partnership with Tesla",
+      "capacity": 140,
+      "technologies": ["Li-ion", "2170", "4680"],
+      "chemistries": ["NCA", "NMC"],
+      "stage": "Gigafactory",
+      "facilities": [
+        {
+          "name": "Panasonic De Soto",
+          "location": "De Soto, Kansas",
+          "state": "KS",
+          "coordinates": {"lat": 38.9847, "lng": -94.9669},
+          "capacity": 30,
+          "status": "Operational",
+          "yearEstablished": 2023
+        },
+        {
+          "name": "Panasonic Nevada (within Tesla)",
+          "location": "Sparks, Nevada",
+          "state": "NV",
+          "coordinates": {"lat": 39.5378, "lng": -119.4374},
+          "capacity": 110,
+          "status": "Operational",
+          "yearEstablished": 2017
+        }
+      ],
+      "policies": ["IRA", "DOE Loans"],
+      "website": "https://panasonic.com/energy"
+    },
+    {
+      "id": "lg-energy",
+      "name": "LG Energy Solution",
+      "description": "Global battery leader with multiple US manufacturing sites",
+      "capacity": 170,
+      "technologies": ["Li-ion", "LFP", "NCM"],
+      "chemistries": ["NMC", "LFP", "NCMA"],
+      "stage": "Gigafactory",
+      "facilities": [
+        {
+          "name": "LGES Queen Creek",
+          "location": "Queen Creek, Arizona",
+          "state": "AZ",
+          "coordinates": {"lat": 33.2487, "lng": -111.6343},
+          "capacity": 43,
+          "status": "Under Construction",
+          "yearEstablished": 2024
+        },
+        {
+          "name": "LG Energy-Honda Ohio",
+          "location": "Jeffersonville, Ohio",
+          "state": "OH",
+          "coordinates": {"lat": 39.6556, "lng": -83.5624},
+          "capacity": 40,
+          "status": "Under Construction",
+          "yearEstablished": 2024
+        }
+      ],
+      "policies": ["IRA", "DOE Grant"],
+      "website": "https://lgensol.com"
+    },
+    {
+      "id": "starplus",
+      "name": "StarPlus Energy (Stellantis-Samsung)",
+      "description": "Stellantis and Samsung SDI joint venture for North American battery production",
+      "capacity": 70,
+      "technologies": ["Li-ion", "NCM"],
+      "chemistries": ["NMC"],
+      "stage": "Gigafactory",
+      "facilities": [
+        {
+          "name": "StarPlus Energy Kokomo Plant 1",
+          "location": "Kokomo, Indiana",
+          "state": "IN",
+          "coordinates": {"lat": 40.4864, "lng": -86.1336},
+          "capacity": 33,
+          "status": "Under Construction",
+          "yearEstablished": 2025
+        },
+        {
+          "name": "StarPlus Energy Kokomo Plant 2",
+          "location": "Kokomo, Indiana",
+          "state": "IN",
+          "coordinates": {"lat": 40.4864, "lng": -86.1336},
+          "capacity": 37,
+          "status": "Planned",
+          "yearEstablished": 2027
+        }
+      ],
+      "policies": ["IRA"],
+      "website": "https://starplusenergy.com"
+    },
+    {
+      "id": "freyr",
+      "name": "FREYR Battery",
+      "description": "Norwegian battery manufacturer focusing on clean energy and LFP technology",
+      "capacity": 50,
+      "technologies": ["LFP", "SemiSolid"],
+      "chemistries": ["LFP"],
+      "stage": "Pilot",
+      "facilities": [
+        {
+          "name": "FREYR Giga America",
+          "location": "Coweta County, Georgia",
+          "state": "GA",
+          "coordinates": {"lat": 33.3762, "lng": -84.7599},
+          "capacity": 50,
+          "status": "Planned",
+          "yearEstablished": 2026
+        }
+      ],
+      "policies": ["IRA", "DOE Grant"],
+      "website": "https://freyrbattery.com"
+    },
+    {
+      "id": "gotion",
+      "name": "Gotion High-Tech",
+      "description": "Chinese battery manufacturer expanding to US with LFP focus",
+      "capacity": 50,
+      "technologies": ["Li-ion", "LFP"],
+      "chemistries": ["LFP"],
+      "stage": "Gigafactory",
+      "facilities": [
+        {
+          "name": "Gotion Manteno",
+          "location": "Manteno, Illinois",
+          "state": "IL",
+          "coordinates": {"lat": 41.2503, "lng": -87.8306},
+          "capacity": 50,
+          "status": "Under Construction",
+          "yearEstablished": 2024
+        }
+      ],
+      "policies": ["IRA"],
+      "website": "https://gotion.com"
+    },
+    {
+      "id": "ford-catl",
+      "name": "Ford-CATL",
+      "description": "Ford partnership with CATL for LFP battery production",
+      "capacity": 20,
+      "technologies": ["LFP"],
+      "chemistries": ["LFP"],
+      "stage": "Pilot",
+      "facilities": [
+        {
+          "name": "Ford Marshall Plant",
+          "location": "Marshall, Michigan",
+          "state": "MI",
+          "coordinates": {"lat": 42.2723, "lng": -84.9633},
+          "capacity": 20,
+          "status": "Planned",
+          "yearEstablished": 2026
+        }
+      ],
+      "policies": ["IRA"],
+      "website": "https://ford.com"
+    },
+    {
+      "id": "quantumscape",
+      "name": "QuantumScape",
+      "description": "Solid-state battery developer with breakthrough lithium-metal technology",
+      "capacity": 5,
+      "technologies": ["Solid-State"],
+      "chemistries": ["Lithium-Metal"],
+      "stage": "R&D",
+      "facilities": [
+        {
+          "name": "QuantumScape QS-0",
+          "location": "San Jose, California",
+          "state": "CA",
+          "coordinates": {"lat": 37.3382, "lng": -121.8863},
+          "capacity": 1,
+          "status": "Pilot",
+          "yearEstablished": 2023
+        }
+      ],
+      "policies": ["DOE Grant"],
+      "website": "https://quantumscape.com"
+    },
+    {
+      "id": "solid-power",
+      "name": "Solid Power",
+      "description": "Solid-state battery developer with sulfide-based electrolyte technology",
+      "capacity": 3,
+      "technologies": ["Solid-State", "Sulfide"],
+      "chemistries": ["Solid-State"],
+      "stage": "R&D",
+      "facilities": [
+        {
+          "name": "Solid Power Thornton",
+          "location": "Thornton, Colorado",
+          "state": "CO",
+          "coordinates": {"lat": 39.8681, "lng": -104.9719},
+          "capacity": 3,
+          "status": "Pilot",
+          "yearEstablished": 2022
+        }
+      ],
+      "policies": ["DOE Grant"],
+      "website": "https://solidpowerbattery.com"
+    },
+    {
+      "id": "natron-energy",
+      "name": "Natron Energy",
+      "description": "Sodium-ion battery manufacturer for industrial and data center applications",
+      "capacity": 10,
+      "technologies": ["Sodium-ion", "Prussian Blue"],
+      "chemistries": ["Sodium-ion"],
+      "stage": "Commercial",
+      "facilities": [
+        {
+          "name": "Natron Holland",
+          "location": "Holland, Michigan",
+          "state": "MI",
+          "coordinates": {"lat": 42.7875, "lng": -86.1089},
+          "capacity": 10,
+          "status": "Operational",
+          "yearEstablished": 2023
+        }
+      ],
+      "policies": ["DOE Grant"],
+      "website": "https://natron.energy"
+    },
+    {
+      "id": "form-energy",
+      "name": "Form Energy",
+      "description": "Iron-air battery developer for long-duration grid storage",
+      "capacity": 1,
+      "technologies": ["Iron-Air"],
+      "chemistries": ["Iron-Air"],
+      "stage": "Pilot",
+      "facilities": [
+        {
+          "name": "Form Energy Weirton",
+          "location": "Weirton, West Virginia",
+          "state": "WV",
+          "coordinates": {"lat": 40.4187, "lng": -80.5895},
+          "capacity": 1,
+          "status": "Under Construction",
+          "yearEstablished": 2024
+        }
+      ],
+      "policies": ["DOE Grant"],
+      "website": "https://formenergy.com"
+    },
+    {
+      "id": "toyota",
+      "name": "Toyota",
+      "description": "Leading automotive manufacturer investing heavily in battery production",
+      "capacity": 30,
+      "technologies": ["Li-ion", "Solid-State"],
+      "chemistries": ["NMC", "LFP"],
+      "stage": "Gigafactory",
+      "facilities": [
+        {
+          "name": "Toyota Liberty",
+          "location": "Liberty, North Carolina",
+          "state": "NC",
+          "coordinates": {"lat": 35.8532, "lng": -79.5723},
+          "capacity": 30,
+          "status": "Under Construction",
+          "yearEstablished": 2025
+        }
+      ],
+      "policies": ["IRA"],
+      "website": "https://toyota.com"
+    }
+  ],
+  "metadata": {
+    "lastUpdated": "2025-11-09",
+    "totalCompanies": 15,
+    "totalFacilities": 25,
+    "totalCapacity": 1071,
+    "dataSource": "US Battery Industry Research Platform"
+  }
+}
