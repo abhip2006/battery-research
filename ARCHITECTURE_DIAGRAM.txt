@@ -1,0 +1,264 @@
+╔════════════════════════════════════════════════════════════════════════════╗
+║                  US BATTERY INDUSTRY RAG CHATBOT ARCHITECTURE              ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                              USER INTERACTION                                │
+└────────────────────────────────┬────────────────────────────────────────────┘
+                                 │
+                                 ▼
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                         FRONTEND LAYER                                       │
+│  ┌────────────────────────────────────────────────────────────────┐         │
+│  │  chat-widget.html                                              │         │
+│  │  • Beautiful responsive UI with typing indicators              │         │
+│  │  • Real-time message rendering                                 │         │
+│  │  • Citation display with similarity scores                     │         │
+│  │  • Session persistence (localStorage)                          │         │
+│  │  • Suggested questions for new users                           │         │
+│  └────────────────────────────────────────────────────────────────┘         │
+└────────────────────────────────┬────────────────────────────────────────────┘
+                                 │ HTTP POST
+                                 │ /api/v1/chat/query
+                                 ▼
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                            API LAYER (FastAPI)                               │
+│  ┌────────────────────────────────────────────────────────────────┐         │
+│  │  app/api/chat.py                                               │         │
+│  │  ┌─────────────────────────────────────────────────────┐       │         │
+│  │  │  POST /query       → Main chat endpoint             │       │         │
+│  │  │  GET /history      → Conversation history           │       │         │
+│  │  │  POST /feedback    → User feedback collection       │       │         │
+│  │  │  DELETE /conversation → Delete session              │       │         │
+│  │  │  GET /health       → Service health check           │       │         │
+│  │  └─────────────────────────────────────────────────────┘       │         │
+│  └────────────────────────────────────────────────────────────────┘         │
+└────────────────────────────────┬────────────────────────────────────────────┘
+                                 │
+                                 ▼
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                         RAG SERVICE LAYER                                    │
+│  ┌────────────────────────────────────────────────────────────────┐         │
+│  │  app/services/rag_service.py                                   │         │
+│  │                                                                 │         │
+│  │  ┌──────────────────────────────────────────────────────────┐  │         │
+│  │  │  STEP 1: Query Embedding Generation                      │  │         │
+│  │  │  • Convert user query to vector embedding                │  │         │
+│  │  │  • OpenAI text-embedding-3-small (1536 dimensions)       │  │         │
+│  │  └──────────────────────────────────────────────────────────┘  │         │
+│  │                           ▼                                     │         │
+│  │  ┌──────────────────────────────────────────────────────────┐  │         │
+│  │  │  STEP 2: Vector Similarity Search                        │  │         │
+│  │  │  • PostgreSQL + pgvector cosine similarity              │  │         │
+│  │  │  • Retrieve top-K most similar chunks (K=5)             │  │         │
+│  │  │  • Filter by similarity threshold (>0.7)                │  │         │
+│  │  └──────────────────────────────────────────────────────────┘  │         │
+│  │                           ▼                                     │         │
+│  │  ┌──────────────────────────────────────────────────────────┐  │         │
+│  │  │  STEP 3: Context Formatting                              │  │         │
+│  │  │  • Format retrieved chunks with source citations        │  │         │
+│  │  │  • Include section titles and metadata                  │  │         │
+│  │  │  • Rank by relevance score                              │  │         │
+│  │  └──────────────────────────────────────────────────────────┘  │         │
+│  │                           ▼                                     │         │
+│  │  ┌──────────────────────────────────────────────────────────┐  │         │
+│  │  │  STEP 4: LLM Response Generation                         │  │         │
+│  │  │  • Anthropic Claude 3.5 Sonnet                          │  │         │
+│  │  │  • System prompt: Battery industry expert               │  │         │
+│  │  │  • Include conversation history (last 10 messages)      │  │         │
+│  │  │  • Temperature: 0.3 (factual responses)                 │  │         │
+│  │  └──────────────────────────────────────────────────────────┘  │         │
+│  │                           ▼                                     │         │
+│  │  ┌──────────────────────────────────────────────────────────┐  │         │
+│  │  │  STEP 5: Citation Extraction & Confidence Scoring        │  │         │
+│  │  │  • Extract source references from response              │  │         │
+│  │  │  • Calculate confidence based on similarity scores      │  │         │
+│  │  │  • Format citations with source metadata                │  │         │
+│  │  └──────────────────────────────────────────────────────────┘  │         │
+│  └────────────────────────────────────────────────────────────────┘         │
+└────────────────────────────────┬────────────────────────────────────────────┘
+                                 │
+         ┌───────────────────────┼───────────────────────┐
+         │                       │                       │
+         ▼                       ▼                       ▼
+┌─────────────────────┐ ┌─────────────────────┐ ┌──────────────────────┐
+│  EMBEDDING SERVICE  │ │  DOCUMENT PROCESSOR │ │  CONVERSATION MGMT   │
+│  ────────────────── │ │  ─────────────────  │ │  ──────────────────  │
+│  embedding_service  │ │  document_processor │ │  ConversationManager │
+│  .py                │ │  .py                │ │  (in rag_service.py) │
+│                     │ │                     │ │                      │
+│  • OpenAI Provider  │ │  • Markdown parsing │ │  • Session tracking  │
+│  • Cohere Provider  │ │  • Section chunking │ │  • Message storage   │
+│  • Local Provider   │ │  • Overlap handling │ │  • History retrieval │
+│  • Batch processing │ │  • Hash generation  │ │  • Feedback mgmt     │
+│  • Cache support    │ │  • Citation extract │ │                      │
+└─────────────────────┘ └─────────────────────┘ └──────────────────────┘
+         │                       │                       │
+         └───────────────────────┼───────────────────────┘
+                                 ▼
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                    DATABASE LAYER (PostgreSQL + pgvector)                    │
+│  ┌────────────────────────────────────────────────────────────────┐         │
+│  │  TABLE: document_chunks                                        │         │
+│  │  ─────────────────────                                         │         │
+│  │  • id (PK)                                                     │         │
+│  │  • content (TEXT) - Document chunk text                       │         │
+│  │  • source_document (VARCHAR) - Filename                        │         │
+│  │  • section_title (VARCHAR) - Markdown header                   │         │
+│  │  • embedding (VECTOR(1536)) - Vector embedding ◄──────────     │         │
+│  │  • content_hash (VARCHAR) - Deduplication                      │         │
+│  │  • metadata (JSONB) - Additional context                       │         │
+│  │  • chunk_index (INT) - Position in document                    │         │
+│  │  • token_count (INT) - Approximate tokens                      │         │
+│  │                                                                 │         │
+│  │  INDEX: HNSW on embedding (for fast similarity search)         │         │
+│  └────────────────────────────────────────────────────────────────┘         │
+│                                                                               │
+│  ┌────────────────────────────────────────────────────────────────┐         │
+│  │  TABLE: conversations                                          │         │
+│  │  ────────────────────                                          │         │
+│  │  • id (PK)                                                     │         │
+│  │  • session_id (VARCHAR) - Unique session identifier            │         │
+│  │  • user_id (VARCHAR) - Optional user tracking                  │         │
+│  │  • title (VARCHAR) - Conversation title                        │         │
+│  │  • is_active (BOOLEAN) - Active session flag                   │         │
+│  │  • created_at, updated_at (TIMESTAMP)                          │         │
+│  └────────────────────────────────────────────────────────────────┘         │
+│                                                                               │
+│  ┌────────────────────────────────────────────────────────────────┐         │
+│  │  TABLE: messages                                               │         │
+│  │  ───────────────                                               │         │
+│  │  • id (PK)                                                     │         │
+│  │  • conversation_id (FK) - Links to conversation                │         │
+│  │  • role (VARCHAR) - 'user' or 'assistant'                      │         │
+│  │  • content (TEXT) - Message text                               │         │
+│  │  • citations (JSONB) - Source references                       │         │
+│  │  • source_chunks (JSONB) - Retrieved context                   │         │
+│  │  • confidence_score (FLOAT) - Quality metric                   │         │
+│  │  • model_used (VARCHAR) - LLM model identifier                 │         │
+│  │  • response_time_ms (INT) - Performance tracking               │         │
+│  │  • created_at (TIMESTAMP)                                      │         │
+│  └────────────────────────────────────────────────────────────────┘         │
+│                                                                               │
+│  ┌────────────────────────────────────────────────────────────────┐         │
+│  │  TABLE: document_metadata                                      │         │
+│  │  ────────────────────────                                      │         │
+│  │  • id (PK)                                                     │         │
+│  │  • file_path (VARCHAR) - Source file location                  │         │
+│  │  • file_name (VARCHAR) - Filename                              │         │
+│  │  • processing_status (VARCHAR) - pending/completed/failed      │         │
+│  │  • total_chunks (INT) - Number of chunks generated             │         │
+│  │  • file_hash (VARCHAR) - Change detection                      │         │
+│  │  • error_message (TEXT) - Processing errors                    │         │
+│  └────────────────────────────────────────────────────────────────┘         │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                        EXTERNAL SERVICES                                     │
+│                                                                               │
+│  ┌──────────────────────┐  ┌──────────────────────┐  ┌──────────────────┐  │
+│  │    OpenAI API        │  │   Anthropic API      │  │   Cohere API     │  │
+│  │  ────────────────    │  │  ──────────────      │  │  ──────────      │  │
+│  │  • Embeddings        │  │  • Claude 3.5 Sonnet │  │  • Embeddings    │  │
+│  │  • text-embedding-3  │  │  • Response gen      │  │  • embed-english │  │
+│  │  • $0.02/1M tokens   │  │  • $3/1M in tokens   │  │  • Alternative   │  │
+│  └──────────────────────┘  └──────────────────────┘  └──────────────────┘  │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                      DOCUMENT PROCESSING PIPELINE                            │
+│                      (scripts/process_documents.py)                          │
+│                                                                               │
+│  Source Documents (*.md files)                                               │
+│         │                                                                     │
+│         ▼                                                                     │
+│  ┌──────────────────────────────────────┐                                    │
+│  │  Document Loading                    │                                    │
+│  │  • Read markdown files               │                                    │
+│  │  • Parse headers and sections        │                                    │
+│  └──────────────────────────────────────┘                                    │
+│         │                                                                     │
+│         ▼                                                                     │
+│  ┌──────────────────────────────────────┐                                    │
+│  │  Section-Aware Chunking              │                                    │
+│  │  • Split into 1000-char chunks       │                                    │
+│  │  • 200-char overlap for continuity   │                                    │
+│  │  • Preserve section context          │                                    │
+│  └──────────────────────────────────────┘                                    │
+│         │                                                                     │
+│         ▼                                                                     │
+│  ┌──────────────────────────────────────┐                                    │
+│  │  Embedding Generation                │                                    │
+│  │  • Batch processing (50 chunks)      │                                    │
+│  │  • OpenAI API calls                  │                                    │
+│  │  • Generate 1536-dim vectors         │                                    │
+│  └──────────────────────────────────────┘                                    │
+│         │                                                                     │
+│         ▼                                                                     │
+│  ┌──────────────────────────────────────┐                                    │
+│  │  Database Storage                    │                                    │
+│  │  • Store chunks with embeddings      │                                    │
+│  │  • Update metadata                   │                                    │
+│  │  • Create vector indices             │                                    │
+│  └──────────────────────────────────────┘                                    │
+│                                                                               │
+│  Stats: ~15 documents → ~450 chunks → ~180K tokens → ~5-10 minutes          │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                           DATA FLOW EXAMPLE                                  │
+│                                                                               │
+│  1. User Query: "What are the top battery manufacturers in the US?"          │
+│                                                                               │
+│  2. Embedding: [0.234, -0.156, 0.892, ...] (1536 dimensions)                │
+│                                                                               │
+│  3. Vector Search: Top 5 chunks retrieved                                    │
+│     • Chunk 1: "Tesla Gigafactory..." (similarity: 0.89)                     │
+│     • Chunk 2: "LG Energy Solution..." (similarity: 0.87)                    │
+│     • Chunk 3: "Panasonic facilities..." (similarity: 0.85)                  │
+│     • Chunk 4: "SK Innovation..." (similarity: 0.82)                         │
+│     • Chunk 5: "Samsung SDI..." (similarity: 0.78)                           │
+│                                                                               │
+│  4. Context Assembly: Format chunks with citations                           │
+│     [Source 1: US_Battery_Industry_Mapping_Report.md]                        │
+│     Tesla operates the largest battery manufacturing...                      │
+│                                                                               │
+│  5. LLM Prompt:                                                              │
+│     System: You are a battery industry expert...                             │
+│     Context: [formatted chunks with citations]                               │
+│     Question: What are the top battery manufacturers...                      │
+│                                                                               │
+│  6. Response Generation:                                                     │
+│     "Based on the research documents [Source 1], the top battery            │
+│     manufacturers in the US include: 1. Tesla (Gigafactory Nevada)          │
+│     with 50 GWh capacity [Source 1]..."                                     │
+│                                                                               │
+│  7. Citation Extraction:                                                     │
+│     [{citation_id: 1, source: "...", similarity: 0.89}, ...]                │
+│                                                                               │
+│  8. Confidence Score: 0.87 (based on avg similarity + quality bonus)        │
+│                                                                               │
+│  9. Response to User: Text + Citations + Confidence Badge                    │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+═══════════════════════════════════════════════════════════════════════════════
+                            KEY PERFORMANCE METRICS
+═══════════════════════════════════════════════════════════════════════════════
+
+  Query Latency (p95):          < 2 seconds
+  Embedding Retrieval:          < 50 milliseconds  
+  Vector Search:                < 100 milliseconds
+  LLM Generation:               < 1.5 seconds
+  Conversation Load:            < 200 milliseconds
+  
+  Concurrent Users:             100+ (with scaling)
+  Documents Indexed:            15 markdown files
+  Total Chunks:                 ~450
+  Total Embeddings:             ~180,000 tokens
+  Database Size:                ~50 MB
+  
+  Confidence Scores:            Typically 0.7-0.9
+  Citation Count/Response:      3-5 sources
+  Cost per Query:               ~$0.002
+
+═══════════════════════════════════════════════════════════════════════════════
