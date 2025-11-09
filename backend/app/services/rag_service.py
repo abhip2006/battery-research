@@ -5,7 +5,6 @@ Handles query processing, similarity search, and context augmentation.
 from typing import List, Dict, Any, Optional, Tuple
 from sqlalchemy import select, func, text
 from sqlalchemy.ext.asyncio import AsyncSession
-from anthropic import AsyncAnthropic
 import logging
 
 from app.models.document import DocumentChunk
@@ -59,16 +58,29 @@ class RAGService:
     def __init__(
         self,
         embedding_service: EmbeddingService,
-        anthropic_api_key: str,
-        model: str = "claude-3-5-sonnet-20241022",
+        llm_provider: str = "anthropic",
+        llm_api_key: str = None,
+        model: str = None,
         top_k: int = 5,
         similarity_threshold: float = 0.7
     ):
         self.embedding_service = embedding_service
-        self.anthropic = AsyncAnthropic(api_key=anthropic_api_key)
-        self.model = model
+        self.llm_provider = llm_provider
         self.top_k = top_k
         self.similarity_threshold = similarity_threshold
+
+        # Initialize LLM client based on provider
+        if llm_provider == "anthropic":
+            from anthropic import AsyncAnthropic
+            self.llm_client = AsyncAnthropic(api_key=llm_api_key)
+            self.model = model or "claude-3-5-sonnet-20241022"
+        elif llm_provider == "gemini":
+            import google.generativeai as genai
+            genai.configure(api_key=llm_api_key)
+            self.llm_client = genai
+            self.model = model or "gemini-2.0-flash-exp"
+        else:
+            raise ValueError(f"Unsupported LLM provider: {llm_provider}")
     
     async def search_similar_chunks(
         self,
@@ -235,26 +247,49 @@ Please provide a detailed answer based on the context above. Always cite sources
             "role": "user",
             "content": user_message
         })
-        
-        # Call Claude API
+
+        # Call LLM API based on provider
         try:
-            response = await self.anthropic.messages.create(
-                model=self.model,
-                max_tokens=4096,
-                system=system_prompt,
-                messages=messages,
-                temperature=0.3  # Lower temperature for more factual responses
-            )
-            
-            response_text = response.content[0].text
-            
+            if self.llm_provider == "anthropic":
+                response = await self.llm_client.messages.create(
+                    model=self.model,
+                    max_tokens=4096,
+                    system=system_prompt,
+                    messages=messages,
+                    temperature=0.3  # Lower temperature for more factual responses
+                )
+                response_text = response.content[0].text
+
+            elif self.llm_provider == "gemini":
+                # Convert messages to Gemini format
+                gemini_model = self.llm_client.GenerativeModel(
+                    model_name=self.model,
+                    system_instruction=system_prompt
+                )
+
+                # Build conversation history
+                chat_history = []
+                for msg in messages:
+                    role = "user" if msg["role"] == "user" else "model"
+                    chat_history.append({"role": role, "parts": [msg["content"]]})
+
+                # Generate response
+                response = gemini_model.generate_content(
+                    chat_history,
+                    generation_config={
+                        "temperature": 0.3,
+                        "max_output_tokens": 4096,
+                    }
+                )
+                response_text = response.text
+
             # Generate citations
             citations = self.generate_citations(contexts)
-            
+
             return response_text, citations
-            
+
         except Exception as e:
-            logger.error(f"Error generating response: {e}")
+            logger.error(f"Error generating response with {self.llm_provider}: {e}")
             raise
     
     async def query(

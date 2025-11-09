@@ -142,6 +142,58 @@ class CohereEmbeddingProvider(EmbeddingProvider):
         return self._dimensions
 
 
+class GeminiEmbeddingProvider(EmbeddingProvider):
+    """
+    Google Gemini embedding provider.
+    Uses models/text-embedding-004 (768 dimensions) or models/embedding-001 (768 dimensions).
+    """
+
+    def __init__(self, api_key: str, model: str = "models/text-embedding-004"):
+        try:
+            import google.generativeai as genai
+            genai.configure(api_key=api_key)
+            self.model = model
+            self._dimensions = 768  # Gemini text-embedding-004 dimensions
+        except ImportError:
+            raise ImportError("Google GenerativeAI package not installed. Install with: pip install google-generativeai")
+
+    async def generate_embedding(self, text: str) -> List[float]:
+        """Generate embedding for single text."""
+        try:
+            import google.generativeai as genai
+            result = genai.embed_content(
+                model=self.model,
+                content=text,
+                task_type="retrieval_document"
+            )
+            return result['embedding']
+        except Exception as e:
+            logger.error(f"Error generating Gemini embedding: {e}")
+            raise
+
+    async def generate_embeddings_batch(self, texts: List[str]) -> List[List[float]]:
+        """Generate embeddings for multiple texts."""
+        try:
+            import google.generativeai as genai
+            # Gemini supports batch embedding
+            embeddings = []
+            for text in texts:
+                result = genai.embed_content(
+                    model=self.model,
+                    content=text,
+                    task_type="retrieval_document"
+                )
+                embeddings.append(result['embedding'])
+            return embeddings
+        except Exception as e:
+            logger.error(f"Error generating Gemini batch embeddings: {e}")
+            raise
+
+    @property
+    def dimensions(self) -> int:
+        return self._dimensions
+
+
 class LocalEmbeddingProvider(EmbeddingProvider):
     """
     Local embedding provider using sentence-transformers.
@@ -264,13 +316,13 @@ def create_embedding_service(
 ) -> EmbeddingService:
     """
     Factory function to create embedding service.
-    
+
     Args:
-        provider_type: "openai", "cohere", or "local"
+        provider_type: "openai", "cohere", "gemini", or "local"
         api_key: API key for cloud providers
         model: Model name
         **kwargs: Additional provider-specific arguments
-    
+
     Returns:
         Configured EmbeddingService instance
     """
@@ -289,13 +341,20 @@ def create_embedding_service(
             api_key=api_key,
             model=model or "embed-english-v3.0"
         )
+    elif provider_type == "gemini":
+        if not api_key:
+            raise ValueError("Gemini API key required")
+        provider = GeminiEmbeddingProvider(
+            api_key=api_key,
+            model=model or "models/text-embedding-004"
+        )
     elif provider_type == "local":
         provider = LocalEmbeddingProvider(
             model_name=model or "all-MiniLM-L6-v2"
         )
     else:
         raise ValueError(f"Unknown provider type: {provider_type}")
-    
+
     # Extract cache_enabled from kwargs if present, filter out provider-specific args
     cache_enabled = kwargs.get('cache_enabled', False)
     return EmbeddingService(provider=provider, cache_enabled=cache_enabled)

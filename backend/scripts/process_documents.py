@@ -193,13 +193,21 @@ async def main():
         engine, class_=AsyncSession, expire_on_commit=False
     )
     
-    # Initialize embedding service
-    embedding_service = create_embedding_service(
-        provider_type="openai",
-        api_key=settings.OPENAI_API_KEY,
-        model=settings.EMBEDDING_MODEL,
-        dimensions=settings.EMBEDDING_DIMENSIONS
-    )
+    # Initialize embedding service based on provider
+    if settings.EMBEDDING_PROVIDER == "gemini":
+        embedding_service = create_embedding_service(
+            provider_type="gemini",
+            api_key=settings.GEMINI_API_KEY,
+            model=settings.GEMINI_EMBEDDING_MODEL
+        )
+    else:
+        # Default to OpenAI
+        embedding_service = create_embedding_service(
+            provider_type="openai",
+            api_key=settings.OPENAI_API_KEY,
+            model=settings.EMBEDDING_MODEL,
+            dimensions=settings.EMBEDDING_DIMENSIONS
+        )
     
     logger.info(f"Using embedding model: {settings.EMBEDDING_MODEL}")
     logger.info(f"Embedding dimensions: {settings.EMBEDDING_DIMENSIONS}")

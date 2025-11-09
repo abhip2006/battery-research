@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>U.S. Battery Intelligence Platform</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #1C1C1C;
+            color: #FFFFFF;
+            line-height: 1.6;
+        }
+
+        nav {
+            background: #000000;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        nav .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #00C805;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: #FFFFFF;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #00C805;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #000000 0%, #1C1C1C 100%);
+            padding: 4rem 2rem;
+            text-align: center;
+            border-bottom: 3px solid #00C805;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #00C805;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: #B3B3B3;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 3rem 0;
+        }
+
+        .stat-card {
+            background: #2D2D2D;
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid #3D3D3D;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: #00C805;
+        }
+
+        .stat-card h3 {
+            font-size: 2.5rem;
+            color: #00C805;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-card p {
+            color: #B3B3B3;
+            font-size: 1rem;
+        }
+
+        .chart-container {
+            background: #2D2D2D;
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid #3D3D3D;
+            margin: 2rem 0;
+        }
+
+        .chart-container h2 {
+            margin-bottom: 1.5rem;
+            color: #00C805;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin: 3rem 0 1.5rem;
+            color: #FFFFFF;
+            border-left: 4px solid #00C805;
+            padding-left: 1rem;
+        }
+
+        .insights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .insight-card {
+            background: #2D2D2D;
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid #3D3D3D;
+        }
+
+        .insight-card h3 {
+            color: #00C805;
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+        }
+
+        .insight-card ul {
+            list-style: none;
+            color: #B3B3B3;
+        }
+
+        .insight-card li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #3D3D3D;
+        }
+
+        .insight-card li:last-child {
+            border-bottom: none;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #00C805;
+            color: #FFFFFF;
+            padding: 1rem 2rem;
+            border-radius: 24px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin: 1rem 0.5rem;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 200, 5, 0.3);
+        }
+
+        footer {
+            background: #000000;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 4rem;
+            border-top: 1px solid #3D3D3D;
+        }
+
+        footer p {
+            color: #B3B3B3;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin: 0.25rem;
+        }
+
+        .badge-success {
+            background: rgba(0, 200, 5, 0.2);
+            color: #00C805;
+        }
+
+        .badge-warning {
+            background: rgba(255, 159, 10, 0.2);
+            color: #FF9F0A;
+        }
+
+        .badge-info {
+            background: rgba(10, 132, 255, 0.2);
+            color: #0A84FF;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <div class="logo">⚡ Battery Intel</div>
+            <ul>
+                <li><a href="index.html">Dashboard</a></li>
+                <li><a href="companies.html">Companies</a></li>
+                <li><a href="technology.html">Technology</a></li>
+                <li><a href="policy.html">Policy</a></li>
+                <li><a href="forecast.html">Forecast</a></li>
+                <li><a href="facilities.html">Facilities</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="hero">
+        <h1>U.S. Battery Industry Intelligence</h1>
+        <p>Comprehensive research and analytics on the American battery manufacturing ecosystem, policy landscape, and market dynamics</p>
+    </div>
+
+    <div class="container">
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3>62</h3>
+                <p>Companies Mapped</p>
+                <span class="badge badge-success">Verified</span>
+            </div>
+            <div class="stat-card">
+                <h3>850 GWh</h3>
+                <p>U.S. Announced Capacity (2024)</p>
+                <span class="badge badge-info">Growing</span>
+            </div>
+            <div class="stat-card">
+                <h3>$198B</h3>
+                <p>Total Industry Investment</p>
+                <span class="badge badge-success">IRA-Driven</span>
+            </div>
+            <div class="stat-card">
+                <h3>2029-2030</h3>
+                <p>U.S. Self-Sufficiency Target</p>
+                <span class="badge badge-warning">On Track</span>
+            </div>
+            <div class="stat-card">
+                <h3>$95/kWh</h3>
+                <p>Current Battery Cost (2024)</p>
+                <span class="badge badge-success">81% Decline Since 2015</span>
+            </div>
+            <div class="stat-card">
+                <h3>100K+</h3>
+                <p>Direct Manufacturing Jobs</p>
+                <span class="badge badge-info">By 2027</span>
+            </div>
+        </div>
+
+        <h2 class="section-title">Battery Cost Evolution</h2>
+        <div class="chart-container">
+            <canvas id="costChart"></canvas>
+        </div>
+
+        <h2 class="section-title">U.S. Capacity Growth Trajectory</h2>
+        <div class="chart-container">
+            <canvas id="capacityChart"></canvas>
+        </div>
+
+        <h2 class="section-title">Key Insights & Strategic Findings</h2>
+        <div class="insights-grid">
+            <div class="insight-card">
+                <h3>🎯 Market Position</h3>
+                <ul>
+                    <li>U.S. achieves battery self-sufficiency by 2029-2030</li>
+                    <li>730 GWh effective supply vs 710 GWh demand in 2030</li>
+                    <li>Import dependence drops from 69% (2024) to 0% (2030)</li>
+                </ul>
+            </div>
+            <div class="insight-card">
+                <h3>⚠️ Policy Dependency</h3>
+                <ul>
+                    <li>70% of projects cite IRA 45X credits as critical</li>
+                    <li>$154B in potential tax credits through 2032</li>
+                    <li>Political risk score: 8/10 (High uncertainty)</li>
+                </ul>
+            </div>
+            <div class="insight-card">
+                <h3>🔋 Technology Trends</h3>
+                <ul>
+                    <li>LFP market share: 40% (2024) → 53% (2030)</li>
+                    <li>Solid-state delayed to 2027-2028 commercialization</li>
+                    <li>Cost floor target: $58-69/kWh by 2030</li>
+                </ul>
+            </div>
+            <div class="insight-card">
+                <h3>📍 Geographic Clusters</h3>
+                <ul>
+                    <li>Southeast: 450+ GWh (50% of U.S. capacity)</li>
+                    <li>Nevada Lithium Complex: Full lifecycle integration</li>
+                    <li>Midwest Battery Belt: OEM-proximate manufacturing</li>
+                </ul>
+            </div>
+            <div class="insight-card">
+                <h3>🔗 Supply Chain Gaps</h3>
+                <ul>
+                    <li>80%+ lithium import dependence (China refining)</li>
+                    <li>95%+ graphite from overseas (critical bottleneck)</li>
+                    <li>Cathode/anode capacity insufficient for 800 GWh cells</li>
+                </ul>
+            </div>
+            <div class="insight-card">
+                <h3>💡 Investment Outlook</h3>
+                <ul>
+                    <li>Top tier: Tesla, LG Energy, Panasonic, Redwood Materials</li>
+                    <li>M&A wave expected 2025-2027 (overcapacity consolidation)</li>
+                    <li>Materials suppliers outperforming commodity cell makers</li>
+                </ul>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin: 4rem 0;">
+            <h2 class="section-title" style="border: none; text-align: center; padding: 0;">Explore Detailed Analysis</h2>
+            <p style="color: #B3B3B3; margin: 1rem 0 2rem;">Deep dive into specific aspects of the U.S. battery industry</p>
+            <a href="companies.html" class="cta-button">Company Directory</a>
+            <a href="technology.html" class="cta-button">Technology Roadmap</a>
+            <a href="policy.html" class="cta-button">Policy Analysis</a>
+            <a href="forecast.html" class="cta-button">Market Forecast</a>
+            <a href="facilities.html" class="cta-button">Facility Map</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>U.S. Battery Industry Intelligence Platform | Research compiled from 6 specialized agents analyzing 540+ sources</p>
+        <p style="margin-top: 0.5rem; font-size: 0.875rem;">Data Quality Score: 78/100 | 73% Tier 1/2 Sources | Last Updated: November 2024</p>
+    </footer>
+
+    <script>
+        // Load visualization data
+        fetch('visualization-data.json')
+            .then(response => response.json())
+            .then(data => {
+                // Cost Curve Chart
+                const costCtx = document.getElementById('costChart').getContext('2d');
+                new Chart(costCtx, {
+                    type: 'line',
+                    data: {
+                        labels: data.costCurve.map(d => d.year),
+                        datasets: [{
+                            label: 'Battery Pack Cost ($/kWh)',
+                            data: data.costCurve.map(d => d.cost),
+                            borderColor: '#00C805',
+                            backgroundColor: 'rgba(0, 200, 5, 0.1)',
+                            tension: 0.4,
+                            fill: true,
+                            pointRadius: 5,
+                            pointHoverRadius: 7
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                labels: { color: '#FFFFFF' }
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                ticks: { color: '#B3B3B3' },
+                                grid: { color: '#3D3D3D' }
+                            },
+                            x: {
+                                ticks: { color: '#B3B3B3' },
+                                grid: { color: '#3D3D3D' }
+                            }
+                        }
+                    }
+                });
+
+                // Capacity Growth Chart
+                const capacityCtx = document.getElementById('capacityChart').getContext('2d');
+                new Chart(capacityCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: data.capacityGrowth.map(d => d.year),
+                        datasets: [{
+                            label: 'U.S. Battery Capacity (GWh)',
+                            data: data.capacityGrowth.map(d => d.capacity),
+                            backgroundColor: 'rgba(0, 200, 5, 0.8)',
+                            borderColor: '#00C805',
+                            borderWidth: 2
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                labels: { color: '#FFFFFF' }
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                ticks: { color: '#B3B3B3' },
+                                grid: { color: '#3D3D3D' }
+                            },
+                            x: {
+                                ticks: { color: '#B3B3B3' },
+                                grid: { color: '#3D3D3D' }
+                            }
+                        }
+                    }
+                });
+            })
+            .catch(error => console.error('Error loading visualization data:', error));
+    </script>
+</body>
+</html>
