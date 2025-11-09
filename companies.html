@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Directory - Battery Intel</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #1C1C1C;
+            color: #FFFFFF;
+            line-height: 1.6;
+        }
+
+        nav {
+            background: #000000;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        nav .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #00C805;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: #FFFFFF;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #00C805;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, #000000 0%, #1C1C1C 100%);
+            padding: 3rem 2rem;
+            margin-bottom: 2rem;
+            border-bottom: 3px solid #00C805;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            color: #00C805;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-header p {
+            color: #B3B3B3;
+            font-size: 1.1rem;
+        }
+
+        .filter-bar {
+            background: #2D2D2D;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-button {
+            padding: 0.75rem 1.5rem;
+            background: #3D3D3D;
+            border: 1px solid #4D4D4D;
+            border-radius: 24px;
+            color: #FFFFFF;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .filter-button:hover {
+            background: #00C805;
+            border-color: #00C805;
+        }
+
+        .filter-button.active {
+            background: #00C805;
+            border-color: #00C805;
+        }
+
+        .company-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .company-card {
+            background: #2D2D2D;
+            border: 1px solid #3D3D3D;
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .company-card:hover {
+            transform: translateY(-5px);
+            border-color: #00C805;
+        }
+
+        .company-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1rem;
+        }
+
+        .company-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #FFFFFF;
+        }
+
+        .company-ticker {
+            background: rgba(0, 200, 5, 0.2);
+            color: #00C805;
+            padding: 0.25rem 0.75rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+
+        .company-info {
+            color: #B3B3B3;
+            margin: 0.5rem 0;
+        }
+
+        .company-info strong {
+            color: #FFFFFF;
+        }
+
+        .capacity-bar {
+            background: #3D3D3D;
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+
+        .capacity-fill {
+            background: #00C805;
+            height: 100%;
+            transition: width 0.5s;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tag {
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .tag-liion { background: rgba(10, 132, 255, 0.2); color: #0A84FF; }
+        .tag-solid-state { background: rgba(175, 82, 222, 0.2); color: #AF52DE; }
+        .tag-flow { background: rgba(255, 159, 10, 0.2); color: #FF9F0A; }
+        .tag-recycling { background: rgba(0, 200, 5, 0.2); color: #00C805; }
+        .tag-components { background: rgba(255, 69, 58, 0.2); color: #FF453A; }
+
+        .top-companies {
+            background: #2D2D2D;
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid #3D3D3D;
+            margin-bottom: 2rem;
+        }
+
+        .top-companies h2 {
+            color: #00C805;
+            margin-bottom: 1.5rem;
+        }
+
+        .company-list-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background: #3D3D3D;
+            margin: 0.5rem 0;
+            border-radius: 8px;
+        }
+
+        .rank {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #00C805;
+            width: 50px;
+        }
+
+        .company-details {
+            flex: 1;
+            padding: 0 1rem;
+        }
+
+        .capacity-value {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #FFFFFF;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <div class="logo">⚡ Battery Intel</div>
+            <ul>
+                <li><a href="index.html">Dashboard</a></li>
+                <li><a href="companies.html">Companies</a></li>
+                <li><a href="technology.html">Technology</a></li>
+                <li><a href="policy.html">Policy</a></li>
+                <li><a href="forecast.html">Forecast</a></li>
+                <li><a href="facilities.html">Facilities</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="page-header">
+        <div class="container">
+            <h1>Company Directory</h1>
+            <p>62 companies mapped across the U.S. battery value chain</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="top-companies">
+            <h2>Top 10 Companies by Production Capacity</h2>
+            <div class="company-list-item">
+                <div class="rank">1</div>
+                <div class="company-details">
+                    <div class="company-name">SK Battery America (SK On)</div>
+                    <div class="company-info">Joint ventures with Ford, Hyundai | Georgia, Tennessee, Kentucky</div>
+                </div>
+                <div class="capacity-value">180 GWh</div>
+            </div>
+            <div class="company-list-item">
+                <div class="rank">2</div>
+                <div class="company-details">
+                    <div class="company-name">LG Energy Solution</div>
+                    <div class="company-info">Ultium Cells JV with GM | Michigan, Ohio, Tennessee</div>
+                </div>
+                <div class="capacity-value">170 GWh</div>
+            </div>
+            <div class="company-list-item">
+                <div class="rank">3</div>
+                <div class="company-details">
+                    <div class="company-name">Panasonic Energy</div>
+                    <div class="company-info">Tesla partnership | Nevada, Kansas</div>
+                </div>
+                <div class="capacity-value">140 GWh</div>
+            </div>
+            <div class="company-list-item">
+                <div class="rank">4</div>
+                <div class="company-details">
+                    <div class="company-name">Tesla</div>
+                    <div class="company-info">Vertical integration | Nevada, Texas, California</div>
+                </div>
+                <div class="capacity-value">110 GWh</div>
+            </div>
+            <div class="company-list-item">
+                <div class="rank">5</div>
+                <div class="company-details">
+                    <div class="company-name">Samsung SDI</div>
+                    <div class="company-info">StarPlus Energy JV with Stellantis | Indiana</div>
+                </div>
+                <div class="capacity-value">67 GWh</div>
+            </div>
+            <div class="company-list-item">
+                <div class="rank">6</div>
+                <div class="company-details">
+                    <div class="company-name">Gotion High-Tech</div>
+                    <div class="company-info">LFP specialist | Illinois, Michigan</div>
+                </div>
+                <div class="capacity-value">50 GWh</div>
+            </div>
+            <div class="company-list-item">
+                <div class="rank">7</div>
+                <div class="company-details">
+                    <div class="company-name">FREYR Battery</div>
+                    <div class="company-info">LFP manufacturing | Georgia</div>
+                </div>
+                <div class="capacity-value">50 GWh</div>
+            </div>
+            <div class="company-list-item">
+                <div class="rank">8</div>
+                <div class="company-details">
+                    <div class="company-name">Rivian</div>
+                    <div class="company-info">Vertical integration for EVs | Georgia</div>
+                </div>
+                <div class="capacity-value">50 GWh</div>
+            </div>
+            <div class="company-list-item">
+                <div class="rank">9</div>
+                <div class="company-details">
+                    <div class="company-name">Redwood Materials</div>
+                    <div class="company-info">Recycling & cathode production | Nevada, South Carolina</div>
+                </div>
+                <div class="capacity-value">40 GWh</div>
+            </div>
+            <div class="company-list-item">
+                <div class="rank">10</div>
+                <div class="company-details">
+                    <div class="company-name">Ford (LFP Plant)</div>
+                    <div class="company-info">CATL technology license | Michigan</div>
+                </div>
+                <div class="capacity-value">35 GWh</div>
+            </div>
+        </div>
+
+        <div class="filter-bar">
+            <button class="filter-button active" data-filter="all">All Companies</button>
+            <button class="filter-button" data-filter="liion">Li-ion</button>
+            <button class="filter-button" data-filter="solid-state">Solid-State</button>
+            <button class="filter-button" data-filter="flow">Flow Batteries</button>
+            <button class="filter-button" data-filter="recycling">Recycling</button>
+            <button class="filter-button" data-filter="components">Components</button>
+        </div>
+
+        <div class="company-grid">
+            <!-- Li-ion Companies -->
+            <div class="company-card" data-category="liion">
+                <div class="company-header">
+                    <div class="company-name">QuantumScape</div>
+                    <div class="company-ticker">QS</div>
+                </div>
+                <div class="company-info"><strong>Technology:</strong> Solid-state oxide ceramic separator</div>
+                <div class="company-info"><strong>Location:</strong> San Jose, CA</div>
+                <div class="company-info"><strong>Stage:</strong> Pilot Production (B-samples to VW)</div>
+                <div class="company-info"><strong>Capacity:</strong> TBD (commercial 2027-2028)</div>
+                <div class="capacity-bar">
+                    <div class="capacity-fill" style="width: 15%"></div>
+                </div>
+                <div class="tags">
+                    <span class="tag tag-solid-state">Solid-State</span>
+                    <span class="tag tag-liion">Li-ion Adjacent</span>
+                </div>
+            </div>
+
+            <div class="company-card" data-category="flow">
+                <div class="company-header">
+                    <div class="company-name">Eos Energy</div>
+                    <div class="company-ticker">EOSE</div>
+                </div>
+                <div class="company-info"><strong>Technology:</strong> Zinc flow batteries (aqueous)</div>
+                <div class="company-info"><strong>Location:</strong> Pittsburgh, PA</div>
+                <div class="company-info"><strong>Stage:</strong> Commercial Production</div>
+                <div class="company-info"><strong>Capacity:</strong> ~2-3 GWh</div>
+                <div class="capacity-bar">
+                    <div class="capacity-fill" style="width: 25%"></div>
+                </div>
+                <div class="tags">
+                    <span class="tag tag-flow">Flow Battery</span>
+                    <span class="tag tag-recycling">Grid Storage</span>
+                </div>
+            </div>
+
+            <div class="company-card" data-category="liion">
+                <div class="company-header">
+                    <div class="company-name">Amprius Technologies</div>
+                    <div class="company-ticker">AMPX</div>
+                </div>
+                <div class="company-info"><strong>Technology:</strong> Silicon nanowire anode Li-ion</div>
+                <div class="company-info"><strong>Location:</strong> Fremont, CA</div>
+                <div class="company-info"><strong>Stage:</strong> Commercial (aerospace/defense focus)</div>
+                <div class="company-info"><strong>Capacity:</strong> 5 GWh planned (2028)</div>
+                <div class="capacity-bar">
+                    <div class="capacity-fill" style="width: 20%"></div>
+                </div>
+                <div class="tags">
+                    <span class="tag tag-liion">Li-ion Advanced</span>
+                    <span class="tag tag-components">Silicon Anode</span>
+                </div>
+            </div>
+
+            <div class="company-card" data-category="recycling">
+                <div class="company-header">
+                    <div class="company-name">Redwood Materials</div>
+                    <div class="company-ticker">Private</div>
+                </div>
+                <div class="company-info"><strong>Technology:</strong> Hydrometallurgical recycling + cathode production</div>
+                <div class="company-info"><strong>Location:</strong> Nevada, South Carolina</div>
+                <div class="company-info"><strong>Stage:</strong> Commercial (100 GWh cathode by 2030)</div>
+                <div class="company-info"><strong>Funding:</strong> $2B+ raised (T. Rowe Price, Panasonic)</div>
+                <div class="capacity-bar">
+                    <div class="capacity-fill" style="width: 60%"></div>
+                </div>
+                <div class="tags">
+                    <span class="tag tag-recycling">Recycling</span>
+                    <span class="tag tag-components">Cathode Materials</span>
+                </div>
+            </div>
+
+            <div class="company-card" data-category="recycling">
+                <div class="company-header">
+                    <div class="company-name">Li-Cycle</div>
+                    <div class="company-ticker">LICY</div>
+                </div>
+                <div class="company-info"><strong>Technology:</strong> Spoke-and-hub battery recycling</div>
+                <div class="company-info"><strong>Location:</strong> Rochester, NY (hub)</div>
+                <div class="company-info"><strong>Stage:</strong> Commercial (project paused 2023-2024)</div>
+                <div class="company-info"><strong>DOE Support:</strong> $375M loan approved</div>
+                <div class="capacity-bar">
+                    <div class="capacity-fill" style="width: 30%"></div>
+                </div>
+                <div class="tags">
+                    <span class="tag tag-recycling">Recycling</span>
+                    <span class="tag tag-components">Black Mass Processing</span>
+                </div>
+            </div>
+
+            <div class="company-card" data-category="components">
+                <div class="company-header">
+                    <div class="company-name">Ascend Elements</div>
+                    <div class="company-ticker">Private</div>
+                </div>
+                <div class="company-info"><strong>Technology:</strong> Hydro-to-cathode recycling</div>
+                <div class="company-info"><strong>Location:</strong> Kentucky, Georgia</div>
+                <div class="company-info"><strong>Stage:</strong> Commercial (30K+ MT/year)</div>
+                <div class="company-info"><strong>IRA Support:</strong> $480M Section 48C grant</div>
+                <div class="capacity-bar">
+                    <div class="capacity-fill" style="width: 50%"></div>
+                </div>
+                <div class="tags">
+                    <span class="tag tag-recycling">Recycling</span>
+                    <span class="tag tag-components">Engineered Cathode</span>
+                </div>
+            </div>
+
+            <div class="company-card" data-category="components">
+                <div class="company-header">
+                    <div class="company-name">Sila Nanotechnologies</div>
+                    <div class="company-ticker">Private</div>
+                </div>
+                <div class="company-info"><strong>Technology:</strong> Silicon-composite anode materials</div>
+                <div class="company-info"><strong>Location:</strong> Alameda, CA</div>
+                <div class="company-info"><strong>Stage:</strong> Commercial (Mercedes EQG 2023)</div>
+                <div class="company-info"><strong>Funding:</strong> $900M+ raised (Daimler, Sutter Hill)</div>
+                <div class="capacity-bar">
+                    <div class="capacity-fill" style="width: 45%"></div>
+                </div>
+                <div class="tags">
+                    <span class="tag tag-components">Silicon Anode</span>
+                    <span class="tag tag-liion">Materials</span>
+                </div>
+            </div>
+
+            <div class="company-card" data-category="flow">
+                <div class="company-header">
+                    <div class="company-name">Form Energy</div>
+                    <div class="company-ticker">Private</div>
+                </div>
+                <div class="company-info"><strong>Technology:</strong> Iron-air multi-day storage</div>
+                <div class="company-info"><strong>Location:</strong> Somerville, MA (HQ), West Virginia (factory)</div>
+                <div class="company-info"><strong>Stage:</strong> Pilot-to-commercial transition</div>
+                <div class="company-info"><strong>DOE Support:</strong> $147M BEAD grant + $760M conditional loan</div>
+                <div class="capacity-bar">
+                    <div class="capacity-fill" style="width: 35%"></div>
+                </div>
+                <div class="tags">
+                    <span class="tag tag-flow">Iron-Air</span>
+                    <span class="tag tag-recycling">Long-Duration Storage</span>
+                </div>
+            </div>
+
+            <div class="company-card" data-category="solid-state">
+                <div class="company-header">
+                    <div class="company-name">Solid Power</div>
+                    <div class="company-ticker">SLDP</div>
+                </div>
+                <div class="company-info"><strong>Technology:</strong> Sulfide solid-state electrolyte</div>
+                <div class="company-info"><strong>Location:</strong> Louisville, CO</div>
+                <div class="company-info"><strong>Stage:</strong> Pilot (B-samples to BMW, Ford)</div>
+                <div class="company-info"><strong>Timeline:</strong> Commercial production ~2030</div>
+                <div class="capacity-bar">
+                    <div class="capacity-fill" style="width: 18%"></div>
+                </div>
+                <div class="tags">
+                    <span class="tag tag-solid-state">Solid-State</span>
+                    <span class="tag tag-components">Sulfide Electrolyte</span>
+                </div>
+            </div>
+
+            <div class="company-card" data-category="liion">
+                <div class="company-header">
+                    <div class="company-name">24M Technologies</div>
+                    <div class="company-ticker">Private</div>
+                </div>
+                <div class="company-info"><strong>Technology:</strong> Semi-solid lithium-ion (SemiSolid platform)</div>
+                <div class="company-info"><strong>Location:</strong> Cambridge, MA</div>
+                <div class="company-info"><strong>Stage:</strong> Technology licensing model</div>
+                <div class="company-info"><strong>Partners:</strong> Kyocera, Lucas TVS, others</div>
+                <div class="capacity-bar">
+                    <div class="capacity-fill" style="width: 25%"></div>
+                </div>
+                <div class="tags">
+                    <span class="tag tag-liion">Semi-Solid Li-ion</span>
+                    <span class="tag tag-components">Platform Technology</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // Filter functionality
+        const filterButtons = document.querySelectorAll('.filter-button');
+        const companyCards = document.querySelectorAll('.company-card');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const filter = button.getAttribute('data-filter');
+
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                companyCards.forEach(card => {
+                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

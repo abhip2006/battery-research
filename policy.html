@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Policy & Incentives - Battery Intel</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #1C1C1C;
+            color: #FFFFFF;
+            line-height: 1.6;
+        }
+
+        nav {
+            background: #000000;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+
+        nav .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #00C805;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: #FFFFFF;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+        }
+
+        nav a:hover {
+            color: #00C805;
+            background: rgba(0, 200, 5, 0.1);
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, #000000 0%, #1C1C1C 100%);
+            padding: 3rem 2rem;
+            margin-bottom: 2rem;
+            border-bottom: 3px solid #00C805;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            color: #00C805;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-header p {
+            color: #B3B3B3;
+            font-size: 1.1rem;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .section {
+            margin: 3rem 0;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: #00C805;
+            margin-bottom: 1rem;
+        }
+
+        .card {
+            background: #2D2D2D;
+            border: 1px solid #3D3D3D;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 1.5rem 0;
+        }
+
+        .card h3 {
+            color: #00C805;
+            margin-bottom: 1rem;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 2rem;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        th {
+            background: #000000;
+            color: #00C805;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid #3D3D3D;
+            color: #B3B3B3;
+        }
+
+        tr:hover {
+            background: #3D3D3D;
+        }
+
+        .metric-box {
+            background: #2D2D2D;
+            border: 1px solid #3D3D3D;
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #00C805;
+        }
+
+        .metric-label {
+            color: #B3B3B3;
+            margin-top: 0.5rem;
+        }
+
+        .alert {
+            background: rgba(255, 69, 58, 0.1);
+            border-left: 4px solid #FF453A;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+        }
+
+        .alert h3 {
+            color: #FF453A;
+            margin-bottom: 0.5rem;
+        }
+
+        .success {
+            background: rgba(0, 200, 5, 0.1);
+            border-left: 4px solid #00C805;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+        }
+
+        .success h3 {
+            color: #00C805;
+            margin-bottom: 0.5rem;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            margin: 0.25rem;
+        }
+
+        .badge-high { background: rgba(0, 200, 5, 0.2); color: #00C805; }
+        .badge-medium { background: rgba(255, 159, 10, 0.2); color: #FF9F0A; }
+        .badge-low { background: rgba(255, 69, 58, 0.2); color: #FF453A; }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        li {
+            padding: 0.5rem 0;
+            color: #B3B3B3;
+        }
+
+        li::before {
+            content: "→ ";
+            color: #00C805;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .grid-2, .grid-3 {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <div class="logo">⚡ Battery Intel</div>
+            <ul>
+                <li><a href="index.html">Dashboard</a></li>
+                <li><a href="companies.html">Companies</a></li>
+                <li><a href="technology.html">Technology</a></li>
+                <li><a href="policy.html">Policy</a></li>
+                <li><a href="forecast.html">Forecast</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="page-header">
+        <div class="container">
+            <h1>Policy & Regulatory Landscape</h1>
+            <p>IRA incentives, federal programs, and state competition for battery manufacturing</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Alert Box -->
+        <div class="alert">
+            <h3>⚠️ Political Risk Assessment: 8/10 (HIGH)</h3>
+            <p><strong>One Big Beautiful Bill Act (OBBBA)</strong> threatens to phase out 30D and 45X tax credits. Potential loss of 130,000 direct jobs and 310,000 indirect jobs by 2030 if IRA repealed.</p>
+            <p style="margin-top: 0.5rem;"><strong>Recommendation:</strong> Monitor legislative developments closely. Accelerate project timelines to maximize credit capture before potential phase-outs.</p>
+        </div>
+
+        <!-- Key Metrics -->
+        <div class="section">
+            <h2 class="section-title">Federal Support Overview</h2>
+            <div class="grid-3">
+                <div class="metric-box">
+                    <div class="metric-value">$198B</div>
+                    <div class="metric-label">Total Announced Investment</div>
+                </div>
+                <div class="metric-box">
+                    <div class="metric-value">$10B</div>
+                    <div class="metric-label">48C Grants Allocated</div>
+                </div>
+                <div class="metric-box">
+                    <div class="metric-value">$50B+</div>
+                    <div class="metric-label">DOE Lending Authority</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- IRA Section 45X -->
+        <div class="section">
+            <h2 class="section-title">IRA Section 45X: Production Tax Credits</h2>
+            <p style="color: #B3B3B3; margin-bottom: 1.5rem;">Advanced Manufacturing Production Credit for battery components (enacted August 2022)</p>
+
+            <div class="card">
+                <h3>Credit Amounts by Component</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Component Type</th>
+                            <th>Credit Amount</th>
+                            <th>Phase-Out Schedule</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Battery Cells</strong></td>
+                            <td>$35 per kWh</td>
+                            <td>2030: 75% → 2033: $0</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Battery Modules (with cells)</strong></td>
+                            <td>$10 per kWh</td>
+                            <td>2030: 75% → 2033: $0</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Battery Modules (cell-free)</strong></td>
+                            <td>$45 per kWh</td>
+                            <td>2030: 75% → 2033: $0</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Electrode Active Materials</strong></td>
+                            <td>$10 per kg</td>
+                            <td>2030: 75% → 2033: $0</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Battery Grade Minerals</strong></td>
+                            <td>Varies by material</td>
+                            <td>Extended through 2032</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="success">
+                <h3>✓ Sector-Wide Impact</h3>
+                <ul>
+                    <li>$48.3 billion invested in battery manufacturing (as of June 2025)</li>
+                    <li>62,700 direct jobs created</li>
+                    <li>Credits are transferable under IRS § 6418 rules</li>
+                    <li>No foreign content restrictions (unlike 30D Clean Vehicle Credit)</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>Technical Eligibility Requirements</h3>
+                <div class="grid-2">
+                    <div>
+                        <h4 style="color: #00C805;">Battery Cell Definition</h4>
+                        <ul>
+                            <li>Electrochemical cell with ≥1 positive and negative electrode</li>
+                            <li>Energy density ≥100 Wh/L</li>
+                            <li>Storage capacity ≥12 Wh</li>
+                            <li>Capacity-to-power ratio ≤100:1</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 style="color: #00C805;">Battery Module Definition</h4>
+                        <ul>
+                            <li>Two or more battery cells in series/parallel</li>
+                            <li>Aggregate capacity ≥7 kWh</li>
+                            <li>≥1 kWh for hydrogen fuel cell vehicles</li>
+                            <li>Capacity-to-power ratio ≤100:1</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- IRA Section 48C -->
+        <div class="section">
+            <h2 class="section-title">IRA Section 48C: Advanced Energy Project Credit</h2>
+
+            <div class="card">
+                <h3>Program Overview</h3>
+                <p style="color: #B3B3B3; margin-bottom: 1rem;">Investment tax credit for qualifying advanced energy manufacturing projects</p>
+
+                <div class="grid-2">
+                    <div>
+                        <h4 style="color: #00C805;">Total Allocations</h4>
+                        <ul>
+                            <li>$10 billion total program authority</li>
+                            <li>$4 billion for energy communities</li>
+                            <li>$6 billion general allocation</li>
+                            <li>Battery manufacturing: $4.8B allocated (48%)</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 style="color: #00C805;">Credit Structure</h4>
+                        <ul>
+                            <li>Base credit: 6% of qualified investment</li>
+                            <li>Bonus credit: 30% (with prevailing wage/apprenticeship)</li>
+                            <li>Energy community bonus: +10%</li>
+                            <li>Maximum total: 40% of qualified costs</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Notable Awards (Battery Sector)</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Company</th>
+                            <th>Project</th>
+                            <th>Award Amount</th>
+                            <th>Location</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Ascend Elements</td>
+                            <td>Cathode manufacturing</td>
+                            <td>$480M</td>
+                            <td>Kentucky</td>
+                        </tr>
+                        <tr>
+                            <td>Sila Nanotechnologies</td>
+                            <td>Silicon anode materials</td>
+                            <td>$100M</td>
+                            <td>Washington</td>
+                        </tr>
+                        <tr>
+                            <td>Redwood Materials</td>
+                            <td>Battery recycling + cathode</td>
+                            <td>$2B investment</td>
+                            <td>Nevada, SC</td>
+                        </tr>
+                        <tr>
+                            <td>Li-Cycle</td>
+                            <td>Battery recycling hub</td>
+                            <td>$375M DOE loan</td>
+                            <td>Rochester, NY</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- DOE Loan Programs -->
+        <div class="section">
+            <h2 class="section-title">DOE Loan Programs Office</h2>
+
+            <div class="card">
+                <h3>Active Programs for Battery Manufacturing</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Program</th>
+                            <th>Authority</th>
+                            <th>Focus Areas</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>ATVM</strong> (Advanced Technology Vehicles Manufacturing)</td>
+                            <td>$25B</td>
+                            <td>EV manufacturing, battery facilities</td>
+                            <td class="badge badge-high">Active</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Title XVII</strong> (Innovative Clean Energy)</td>
+                            <td>$28B</td>
+                            <td>Battery storage, recycling, materials</td>
+                            <td class="badge badge-high">Active</td>
+                        </tr>
+                        <tr>
+                            <td><strong>BEAD</strong> (Battery Energy Accelerator Development)</td>
+                            <td>$3.1B grants</td>
+                            <td>Domestic battery supply chain</td>
+                            <td class="badge badge-high">Active</td>
+                        </tr>
+                        <tr>
+                            <td><strong>IBEC</strong> (Industrial Battery Emissions Control)</td>
+                            <td>$3B grants</td>
+                            <td>Battery manufacturing efficiency</td>
+                            <td class="badge badge-medium">Pending</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="success">
+                <h3>✓ Major Conditional Commitments</h3>
+                <ul>
+                    <li>Form Energy: $760M conditional loan for iron-air battery factory (West Virginia)</li>
+                    <li>Li-Cycle: $375M loan guarantee for Rochester recycling hub</li>
+                    <li>Redwood Materials: DOE coordination for $2B Nevada expansion</li>
+                    <li>Total battery sector commitments: $50B+ in lending authority available</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- State Incentives -->
+        <div class="section">
+            <h2 class="section-title">State-Level Competition & Incentives</h2>
+
+            <div class="card">
+                <h3>Top States by Incentive Packages</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>State</th>
+                            <th>Total Incentives</th>
+                            <th>Capacity (GWh)</th>
+                            <th>Major Projects</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Georgia</strong></td>
+                            <td>$3.3B</td>
+                            <td>40 GWh</td>
+                            <td>Hyundai-LG (Savannah), SK Innovation, Rivian</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Michigan</strong></td>
+                            <td>$1.8B (orig.) / $384-409M (revised)</td>
+                            <td>55 GWh</td>
+                            <td>Ford-CATL ($3.5B), Ultium Cells, LG Energy</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Tennessee</strong></td>
+                            <td>$900M</td>
+                            <td>95 GWh</td>
+                            <td>Ford-SK (Blue Oval City), Ultium Cells</td>
+                        </tr>
+                        <tr>
+                            <td><strong>North Carolina</strong></td>
+                            <td>$1.2B</td>
+                            <td>30 GWh</td>
+                            <td>Toyota Liberty ($1.3B + $5.9B investment)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Kentucky</strong></td>
+                            <td>$690M</td>
+                            <td>86 GWh</td>
+                            <td>BlueOval SK Battery Park</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Kansas</strong></td>
+                            <td>$829M</td>
+                            <td>30 GWh</td>
+                            <td>Panasonic Energy De Soto</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="card">
+                <h3>Incentive Mechanisms by State</h3>
+                <div class="grid-2">
+                    <div>
+                        <h4 style="color: #00C805;">Direct Financial Support</h4>
+                        <ul>
+                            <li>Property tax abatements (10-30 years)</li>
+                            <li>Sales tax exemptions on equipment</li>
+                            <li>Cash grants for job creation</li>
+                            <li>Infrastructure improvements (roads, utilities)</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 style="color: #00C805;">Workforce & Training</h4>
+                        <ul>
+                            <li>Customized workforce training programs</li>
+                            <li>Community college partnerships</li>
+                            <li>Job tax credits ($2,500-$5,000/job)</li>
+                            <li>Relocation assistance for workers</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Political Risk Analysis -->
+        <div class="section">
+            <h2 class="section-title">Political Risk & Scenario Analysis</h2>
+
+            <div class="alert">
+                <h3>High-Risk Scenarios</h3>
+                <div class="grid-2">
+                    <div>
+                        <h4 style="color: #FF453A;">IRA Modification (50% Credit Reduction)</h4>
+                        <ul>
+                            <li>2030 capacity reduced by 200 GWh</li>
+                            <li>30,000-40,000 jobs at risk</li>
+                            <li>Project delays: 12-24 months average</li>
+                            <li>Probability: Medium (35-40%)</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 style="color: #FF453A;">Full IRA Repeal</h4>
+                        <ul>
+                            <li>2030 capacity cut by 500+ GWh</li>
+                            <li>130,000 direct jobs lost</li>
+                            <li>310,000 indirect jobs lost</li>
+                            <li>Probability: Low-Medium (15-20%)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="success">
+                <h3>✓ Mitigation Strategies</h3>
+                <ul>
+                    <li>Accelerate project timelines to capture credits before potential phase-outs</li>
+                    <li>Diversify across multiple federal programs (45X, 48C, DOE loans)</li>
+                    <li>Secure state-level incentives as insurance against federal changes</li>
+                    <li>Consider grandfathering provisions in new legislation</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <footer style="background: #000; color: #B3B3B3; padding: 2rem; text-align: center; margin-top: 4rem;">
+        <p>&copy; 2025 Battery Intelligence Platform | Policy data verified against federal registers and state announcements</p>
+    </footer>
+</body>
+</html>

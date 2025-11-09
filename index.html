@@ -12,21 +12,57 @@
             box-sizing: border-box;
         }
 
+        :root {
+            /* Clinical blue/teal theme color palette */
+            --primary: #0066FF;
+            --primary-dark: #0052CC;
+            --primary-light: #3385FF;
+            --secondary: #00D4FF;
+            --accent: #6366F1;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --error: #EF4444;
+
+            /* Neutrals - clean clinical whites/grays */
+            --bg-primary: #FFFFFF;
+            --bg-secondary: #F8FAFC;
+            --bg-tertiary: #F1F5F9;
+            --surface: #FFFFFF;
+            --surface-elevated: #FFFFFF;
+
+            /* Text colors */
+            --text-primary: #0F172A;
+            --text-secondary: #475569;
+            --text-tertiary: #94A3B8;
+
+            /* Borders */
+            --border: #E2E8F0;
+            --border-light: #F1F5F9;
+
+            /* Shadows */
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: #1C1C1C;
-            color: #FFFFFF;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
             line-height: 1.6;
+            letter-spacing: -0.01em;
         }
 
         /* Navigation */
         nav {
-            background: #000000;
-            padding: 1rem 2rem;
+            background: var(--surface);
+            padding: 0;
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            box-shadow: var(--shadow-sm);
+            border-bottom: 1px solid var(--border);
         }
 
         nav .container {
@@ -35,81 +71,108 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 1rem 2rem;
         }
 
         nav .logo {
-            font-size: 1.75rem;
+            font-size: 1.5rem;
             font-weight: 700;
-            color: #00C805;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            letter-spacing: -0.02em;
         }
 
         nav ul {
             list-style: none;
             display: flex;
-            gap: 2rem;
+            gap: 0.5rem;
         }
 
         nav a {
-            color: #FFFFFF;
+            color: var(--text-secondary);
             text-decoration: none;
             font-weight: 500;
-            transition: color 0.3s;
+            font-size: 0.875rem;
+            transition: all 0.2s;
             padding: 0.5rem 1rem;
-            border-radius: 6px;
+            border-radius: 8px;
         }
 
         nav a:hover {
-            color: #00C805;
-            background: rgba(0, 200, 5, 0.1);
+            color: var(--primary);
+            background: var(--bg-tertiary);
         }
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, #000000 0%, #1C1C1C 50%, #2D2D2D 100%);
-            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #FFFFFF 0%, var(--bg-tertiary) 100%);
+            padding: 4rem 2rem 3rem 2rem;
             text-align: center;
-            border-bottom: 3px solid #00C805;
+            border-bottom: 1px solid var(--border);
         }
 
         .hero h1 {
             font-size: 3rem;
-            color: #00C805;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin-bottom: 1rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
         }
 
         .hero p {
             font-size: 1.25rem;
-            color: #B3B3B3;
+            color: var(--text-secondary);
             margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .hero-stats {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
+            gap: 1.5rem;
             max-width: 1200px;
-            margin: 2rem auto;
+            margin: 2rem auto 0 auto;
         }
 
         .stat-card {
-            background: #2D2D2D;
+            background: var(--surface);
             padding: 1.5rem;
-            border-radius: 12px;
-            border: 1px solid #3D3D3D;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s;
+        }
+
+        .stat-card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
         }
 
         .stat-value {
             font-size: 2.5rem;
-            font-weight: 700;
-            color: #00C805;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.02em;
         }
 
         .stat-label {
-            color: #B3B3B3;
+            color: var(--text-secondary);
             margin-top: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 500;
         }
 
         /* Container */
@@ -126,22 +189,29 @@
 
         .section-title {
             font-size: 2rem;
-            color: #00C805;
-            margin-bottom: 1rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
         }
 
         .section-subtitle {
-            color: #B3B3B3;
+            color: var(--text-secondary);
             margin-bottom: 2rem;
+            font-size: 1rem;
         }
 
         /* Chart Container */
         .chart-container {
-            background: #2D2D2D;
+            background: var(--surface);
             padding: 2rem;
-            border-radius: 12px;
-            border: 1px solid #3D3D3D;
+            border-radius: 16px;
+            border: 1px solid var(--border);
             margin: 1.5rem 0;
+            box-shadow: var(--shadow-sm);
         }
 
         .chart-container canvas {
@@ -152,59 +222,72 @@
         .grid-2 {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-            gap: 2rem;
+            gap: 1.5rem;
         }
 
         .grid-3 {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 1.5rem;
         }
 
         /* Cards */
         .card {
-            background: #2D2D2D;
-            border: 1px solid #3D3D3D;
-            border-radius: 12px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
             padding: 1.5rem;
-            transition: transform 0.3s, border-color 0.3s;
+            transition: all 0.3s;
+            box-shadow: var(--shadow-sm);
         }
 
         .card:hover {
-            transform: translateY(-5px);
-            border-color: #00C805;
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+            border-color: var(--primary-light);
         }
 
         .card h3 {
-            color: #00C805;
+            color: var(--text-primary);
             margin-bottom: 1rem;
+            font-weight: 700;
+            font-size: 1.125rem;
         }
 
         /* Table */
         table {
             width: 100%;
             border-collapse: collapse;
-            background: #2D2D2D;
+            background: var(--surface);
             border-radius: 12px;
             overflow: hidden;
+            border: 1px solid var(--border);
         }
 
         th {
-            background: #000000;
-            color: #00C805;
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
             padding: 1rem;
             text-align: left;
             font-weight: 600;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
         td {
             padding: 1rem;
-            border-bottom: 1px solid #3D3D3D;
-            color: #B3B3B3;
+            border-bottom: 1px solid var(--border-light);
+            color: var(--text-secondary);
+            font-size: 0.875rem;
         }
 
         tr:hover {
-            background: #3D3D3D;
+            background: var(--bg-tertiary);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
         }
 
         /* RAG Chatbot */
@@ -216,20 +299,21 @@
         }
 
         .chatbot-toggle {
-            background: #00C805;
-            color: #000000;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: #FFFFFF;
             border: none;
             border-radius: 50%;
             width: 60px;
             height: 60px;
             font-size: 1.5rem;
             cursor: pointer;
-            box-shadow: 0 4px 20px rgba(0, 200, 5, 0.4);
+            box-shadow: var(--shadow-lg);
             transition: transform 0.3s;
         }
 
         .chatbot-toggle:hover {
             transform: scale(1.1);
+            box-shadow: var(--shadow-xl);
         }
 
         .chatbot-window {
@@ -239,11 +323,11 @@
             right: 0;
             width: 400px;
             height: 600px;
-            background: #1C1C1C;
-            border: 2px solid #00C805;
-            border-radius: 12px;
+            background: var(--surface);
+            border: 2px solid var(--primary);
+            border-radius: 16px;
             flex-direction: column;
-            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
+            box-shadow: var(--shadow-xl);
         }
 
         .chatbot-window.active {
@@ -251,77 +335,98 @@
         }
 
         .chatbot-header {
-            background: #00C805;
-            color: #000000;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: #FFFFFF;
             padding: 1rem;
             font-weight: 700;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            border-radius: 14px 14px 0 0;
         }
 
         .chatbot-messages {
             flex: 1;
             overflow-y: auto;
             padding: 1rem;
+            background: var(--bg-tertiary);
         }
 
         .message {
             margin: 1rem 0;
-            padding: 0.75rem;
-            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            border-radius: 12px;
             max-width: 80%;
         }
 
         .message.user {
-            background: #00C805;
-            color: #000000;
+            background: var(--primary);
+            color: #FFFFFF;
             margin-left: auto;
+            box-shadow: var(--shadow-sm);
         }
 
         .message.bot {
-            background: #2D2D2D;
-            color: #FFFFFF;
+            background: var(--surface);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
         }
 
         .chatbot-input {
             display: flex;
             padding: 1rem;
-            border-top: 1px solid #3D3D3D;
+            border-top: 1px solid var(--border);
+            background: var(--surface);
+            border-radius: 0 0 14px 14px;
         }
 
         .chatbot-input input {
             flex: 1;
-            background: #2D2D2D;
-            border: 1px solid #3D3D3D;
-            color: #FFFFFF;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
             padding: 0.75rem;
             border-radius: 8px;
             margin-right: 0.5rem;
+            transition: border-color 0.2s;
+        }
+
+        .chatbot-input input:focus {
+            outline: none;
+            border-color: var(--primary);
         }
 
         .chatbot-input button {
-            background: #00C805;
-            color: #000000;
+            background: var(--primary);
+            color: #FFFFFF;
             border: none;
             padding: 0.75rem 1.5rem;
             border-radius: 8px;
             font-weight: 600;
             cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .chatbot-input button:hover {
+            background: var(--primary-dark);
         }
 
         /* Insights Box */
         .insights-box {
-            background: rgba(0, 200, 5, 0.1);
-            border-left: 4px solid #00C805;
+            background: linear-gradient(135deg, rgba(0, 102, 255, 0.05) 0%, rgba(99, 102, 241, 0.05) 100%);
+            border-left: 4px solid var(--primary);
             padding: 1.5rem;
             margin: 1.5rem 0;
-            border-radius: 8px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
         }
 
         .insights-box h3 {
-            color: #00C805;
+            color: var(--primary);
             margin-bottom: 1rem;
+            font-weight: 700;
+            font-size: 1.125rem;
         }
 
         .insights-box ul {
@@ -331,22 +436,92 @@
 
         .insights-box li {
             padding: 0.5rem 0;
-            color: #B3B3B3;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
         }
 
         .insights-box li::before {
-            content: "→ ";
-            color: #00C805;
+            content: "✓";
+            color: var(--primary);
             font-weight: bold;
+            flex-shrink: 0;
+            margin-top: 0.125rem;
         }
 
         /* Footer */
         footer {
-            background: #000000;
-            color: #B3B3B3;
-            padding: 2rem;
+            background: var(--surface);
+            color: var(--text-secondary);
+            padding: 3rem 2rem;
             text-align: center;
             margin-top: 4rem;
+            border-top: 1px solid var(--border);
+        }
+
+        footer p {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 0.875rem;
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Timeline styles */
+        .timeline-event {
+            position: relative;
+            margin-bottom: 2rem;
+            padding-left: 2rem;
+        }
+
+        .timeline-marker {
+            position: absolute;
+            left: 0.9rem;
+            top: 0;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: 2px solid var(--primary);
+            background: var(--surface);
+        }
+
+        /* Filter buttons */
+        .filter-btn {
+            background: var(--surface);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .filter-btn:hover {
+            background: var(--primary);
+            color: #FFFFFF;
+            border-color: var(--primary);
+        }
+
+        .filter-btn.active {
+            background: var(--primary);
+            color: #FFFFFF;
+            border-color: var(--primary);
+        }
+
+        /* Loading animation */
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .loading {
+            animation: pulse 1.5s ease-in-out infinite;
         }
 
         /* Responsive */
@@ -375,22 +550,21 @@
     <!-- Navigation -->
     <nav>
         <div class="container">
-            <div class="logo">⚡ Battery Intel</div>
+            <div class="logo">⚡ Battery Intelligence Platform</div>
             <ul>
                 <li><a href="index.html">Dashboard</a></li>
-                <li><a href="#reports">Research Reports</a></li>
-                <li><a href="companies.html">Companies</a></li>
-                <li><a href="technology.html">Technology</a></li>
-                <li><a href="policy.html">Policy</a></li>
-                <li><a href="forecast.html">Forecast</a></li>
+                <li><a href="#companies-directory">Companies (62)</a></li>
+                <li><a href="#timeline">Timeline</a></li>
+                <li><a href="#technology-comparison">Technology</a></li>
+                <li><a href="#reports">Reports</a></li>
             </ul>
         </div>
     </nav>
 
     <!-- Hero -->
     <div class="hero">
-        <h1>US Battery Industry Intelligence Platform</h1>
-        <p>Comprehensive analysis of manufacturing capacity, technology evolution, and market dynamics</p>
+        <h1>US Battery Industry Intelligence</h1>
+        <p>AI-powered analysis of manufacturing capacity, technology evolution, and market dynamics</p>
         <div class="hero-stats">
             <div class="stat-card">
                 <div class="stat-value">850</div>
@@ -413,6 +587,53 @@
 
     <!-- Main Content -->
     <div class="container">
+        <!-- RAG Chatbot - Front and Center -->
+        <div class="section" style="margin-top: 2rem;">
+            <h2 class="section-title">🤖 AI Research Assistant - Ask Anything About Battery Industry Data</h2>
+            <p class="section-subtitle">Powered by 11,359 lines of research | 62 companies | 62 timeline events | 9 battery chemistries | 539 verified sources</p>
+
+            <div style="background: linear-gradient(135deg, rgba(0, 102, 255, 0.03) 0%, rgba(99, 102, 241, 0.03) 100%); border: 2px solid var(--primary); border-radius: 16px; padding: 2rem; margin-bottom: 3rem; box-shadow: var(--shadow-lg);">
+                <!-- Chat Messages -->
+                <div id="mainChatMessages" style="height: 400px; overflow-y: auto; margin-bottom: 1.5rem; padding: 1rem; background: var(--bg-tertiary); border-radius: 12px; border: 1px solid var(--border);">
+                    <div class="message bot" style="background: var(--surface); padding: 1.25rem; border-radius: 12px; margin-bottom: 1rem; box-shadow: var(--shadow-sm); border: 1px solid var(--border);">
+                        <strong style="color: var(--primary); display: block; margin-bottom: 0.75rem; font-size: 1.125rem;">🤖 Battery Research Assistant</strong>
+                        <p style="color: var(--text-primary); margin-bottom: 1rem;">Hello! I have complete access to all research data and can provide detailed answers about:</p>
+                        <ul style="color: var(--text-secondary); margin-left: 1.5rem; line-height: 1.8;">
+                            <li><strong style="color: var(--text-primary);">62 Companies:</strong> Ask about any company's capacity, technology, financials, partnerships, or employees</li>
+                            <li><strong style="color: var(--text-primary);">62 Historical Events:</strong> Query policy changes, company births/failures, technology milestones (1991-2024)</li>
+                            <li><strong style="color: var(--text-primary);">9 Battery Chemistries:</strong> Get specs, advantages, disadvantages, market share, and cost trends</li>
+                            <li><strong style="color: var(--text-primary);">Cost Trends:</strong> Battery pack costs from 2010-2030</li>
+                            <li><strong style="color: var(--text-primary);">Manufacturing:</strong> Capacity by state, regional clusters, facility details</li>
+                        </ul>
+                        <p style="color: var(--primary); margin-top: 1rem; font-weight: 600; font-size: 0.9375rem;">💡 Try asking: "Which companies have the highest capacity?" or "Tell me about the IRA" or "Compare LFP and NMC"</p>
+                    </div>
+                </div>
+
+                <!-- Chat Input -->
+                <div style="display: flex; gap: 1rem;">
+                    <input type="text" id="mainChatInput" placeholder="Ask anything about battery industry data..."
+                           style="flex: 1; background: var(--surface); border: 2px solid var(--border); color: var(--text-primary); padding: 1rem; border-radius: 12px; font-size: 1rem; transition: all 0.2s;"
+                           onkeypress="if(event.key === 'Enter') sendMainChatMessage()"
+                           onfocus="this.style.borderColor='var(--primary)'"
+                           onblur="this.style.borderColor='var(--border)'">
+                    <button onclick="sendMainChatMessage()"
+                            style="background: var(--primary); color: #FFF; border: none; padding: 1rem 2rem; border-radius: 12px; font-weight: 600; font-size: 1rem; cursor: pointer; transition: all 0.3s; box-shadow: var(--shadow-sm);">
+                        Send
+                    </button>
+                </div>
+
+                <!-- Quick Action Buttons -->
+                <div style="margin-top: 1rem; display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                    <button onclick="askQuickQuestion('Which companies have the most capacity?')" style="background: var(--surface); color: var(--text-primary); border: 1px solid var(--border); padding: 0.5rem 1rem; border-radius: 8px; font-size: 0.875rem; cursor: pointer; transition: all 0.2s; font-weight: 500;" onmouseover="this.style.borderColor='var(--primary)'; this.style.color='var(--primary)'" onmouseout="this.style.borderColor='var(--border)'; this.style.color='var(--text-primary)'">Top Companies</button>
+                    <button onclick="askQuickQuestion('What happened with the IRA in 2022?')" style="background: var(--surface); color: var(--text-primary); border: 1px solid var(--border); padding: 0.5rem 1rem; border-radius: 8px; font-size: 0.875rem; cursor: pointer; transition: all 0.2s; font-weight: 500;" onmouseover="this.style.borderColor='var(--primary)'; this.style.color='var(--primary)'" onmouseout="this.style.borderColor='var(--border)'; this.style.color='var(--text-primary)'">IRA Impact</button>
+                    <button onclick="askQuickQuestion('Compare LFP and NMC batteries')" style="background: var(--surface); color: var(--text-primary); border: 1px solid var(--border); padding: 0.5rem 1rem; border-radius: 8px; font-size: 0.875rem; cursor: pointer; transition: all 0.2s; font-weight: 500;" onmouseover="this.style.borderColor='var(--primary)'; this.style.color='var(--primary)'" onmouseout="this.style.borderColor='var(--border)'; this.style.color='var(--text-primary)'">LFP vs NMC</button>
+                    <button onclick="askQuickQuestion('Tell me about solid-state batteries')" style="background: var(--surface); color: var(--text-primary); border: 1px solid var(--border); padding: 0.5rem 1rem; border-radius: 8px; font-size: 0.875rem; cursor: pointer; transition: all 0.2s; font-weight: 500;" onmouseover="this.style.borderColor='var(--primary)'; this.style.color='var(--primary)'" onmouseout="this.style.borderColor='var(--border)'; this.style.color='var(--text-primary)'">Solid-State</button>
+                    <button onclick="askQuickQuestion('Which states have the most manufacturing?')" style="background: var(--surface); color: var(--text-primary); border: 1px solid var(--border); padding: 0.5rem 1rem; border-radius: 8px; font-size: 0.875rem; cursor: pointer; transition: all 0.2s; font-weight: 500;" onmouseover="this.style.borderColor='var(--primary)'; this.style.color='var(--primary)'" onmouseout="this.style.borderColor='var(--border)'; this.style.color='var(--text-primary)'">State Rankings</button>
+                    <button onclick="askQuickQuestion('What are battery cost trends?')" style="background: var(--surface); color: var(--text-primary); border: 1px solid var(--border); padding: 0.5rem 1rem; border-radius: 8px; font-size: 0.875rem; cursor: pointer; transition: all 0.2s; font-weight: 500;" onmouseover="this.style.borderColor='var(--primary)'; this.style.color='var(--primary)'" onmouseout="this.style.borderColor='var(--border)'; this.style.color='var(--text-primary)'">Cost Trends</button>
+                </div>
+            </div>
+        </div>
+
         <!-- Cost Trends -->
         <div class="section">
             <h2 class="section-title">Battery Cost Evolution (2015-2030)</h2>
@@ -521,14 +742,128 @@
             <p class="section-subtitle">Distribution across key milestone years</p>
             <div class="grid-2">
                 <div class="chart-container">
-                    <h3 style="color: #00C805; text-align: center; margin-bottom: 1rem;">2024 Market Share</h3>
+                    <h3 style="background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-align: center; margin-bottom: 1rem; font-weight: 700;">2024 Market Share</h3>
                     <canvas id="marketShare2024"></canvas>
                 </div>
                 <div class="chart-container">
-                    <h3 style="color: #00C805; text-align: center; margin-bottom: 1rem;">2030 Projected Share</h3>
+                    <h3 style="background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-align: center; margin-bottom: 1rem; font-weight: 700;">2030 Projected Share</h3>
                     <canvas id="marketShare2030"></canvas>
                 </div>
             </div>
+        </div>
+        <!-- Complete Company Directory -->
+        <div class="section" id="companies-directory">
+            <h2 class="section-title">Complete Company Directory (62 Companies)</h2>
+            <p class="section-subtitle">Full database of all US battery companies with detailed profiles, financials, and capacity data</p>
+
+            <!-- Search and Filter Controls -->
+            <div style="background: var(--surface); padding: 1.5rem; border-radius: 12px; margin-bottom: 2rem; border: 1px solid var(--border); box-shadow: var(--shadow-sm);">
+                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                    <input type="text" id="companySearch" placeholder="Search companies..."
+                           style="background: var(--bg-tertiary); border: 1px solid var(--border); color: var(--text-primary); padding: 0.75rem; border-radius: 8px; transition: border-color 0.2s;">
+                    <select id="technologyFilter"
+                            style="background: var(--bg-tertiary); border: 1px solid var(--border); color: var(--text-primary); padding: 0.75rem; border-radius: 8px;">
+                        <option value="">All Technologies</option>
+                        <option value="LFP">LFP</option>
+                        <option value="NMC">NMC</option>
+                        <option value="Solid-state">Solid-State</option>
+                        <option value="Sodium-ion">Sodium-Ion</option>
+                        <option value="Flow">Flow Batteries</option>
+                    </select>
+                    <select id="stageFilter"
+                            style="background: var(--bg-tertiary); border: 1px solid var(--border); color: var(--text-primary); padding: 0.75rem; border-radius: 8px;">
+                        <option value="">All Stages</option>
+                        <option value="Commercial">Commercial</option>
+                        <option value="Production">Production</option>
+                        <option value="Pilot">Pilot</option>
+                        <option value="Development">Development</option>
+                    </select>
+                </div>
+                <div style="display: flex; gap: 1rem;">
+                    <button onclick="sortCompanies('capacity')"
+                            style="background: var(--primary); color: #FFF; border: none; padding: 0.75rem 1.5rem; border-radius: 8px; font-weight: 600; cursor: pointer; transition: all 0.2s;">
+                        Sort by Capacity
+                    </button>
+                    <button onclick="sortCompanies('employees')"
+                            style="background: var(--primary); color: #FFF; border: none; padding: 0.75rem 1.5rem; border-radius: 8px; font-weight: 600; cursor: pointer; transition: all 0.2s;">
+                        Sort by Employees
+                    </button>
+                    <button onclick="resetFilters()"
+                            style="background: var(--surface); color: var(--text-primary); border: 1px solid var(--border); padding: 0.75rem 1.5rem; border-radius: 8px; font-weight: 600; cursor: pointer; transition: all 0.2s;">
+                        Reset
+                    </button>
+                </div>
+            </div>
+
+            <!-- Company Cards Grid -->
+            <div id="companyGrid" class="grid-3"></div>
+
+            <div style="text-align: center; margin-top: 2rem; color: var(--text-secondary);">
+                <p id="companyCount">Loading companies...</p>
+            </div>
+        </div>
+
+        <!-- Complete Historical Timeline -->
+        <div class="section" id="timeline">
+            <h2 class="section-title">Complete Historical Timeline (1991-2024)</h2>
+            <p class="section-subtitle">62 milestone events across 4 distinct eras of battery industry evolution</p>
+
+            <!-- Era Filter -->
+            <div style="background: var(--surface); padding: 1.5rem; border-radius: 12px; margin-bottom: 2rem; border: 1px solid var(--border); box-shadow: var(--shadow-sm);">
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <button onclick="filterTimeline('all')" class="filter-btn active">
+                        All Events
+                    </button>
+                    <button onclick="filterTimeline('Policy')" class="filter-btn">
+                        Policy Events
+                    </button>
+                    <button onclick="filterTimeline('Company Birth')" class="filter-btn">
+                        Company Births
+                    </button>
+                    <button onclick="filterTimeline('Company Failure')" class="filter-btn">
+                        Company Failures
+                    </button>
+                    <button onclick="filterTimeline('Technology')" class="filter-btn">
+                        Technology
+                    </button>
+                    <button onclick="filterTimeline('Manufacturing')" class="filter-btn">
+                        Manufacturing
+                    </button>
+                </div>
+            </div>
+
+            <!-- Timeline Display -->
+            <div id="timelineDisplay" style="position: relative; padding-left: 3rem;">
+                <div style="position: absolute; left: 1.5rem; top: 0; bottom: 0; width: 2px; background: var(--border);"></div>
+                <!-- Timeline events will be loaded here -->
+            </div>
+        </div>
+
+        <!-- Detailed Technology Comparison -->
+        <div class="section" id="technology-comparison">
+            <h2 class="section-title">Detailed Technology Comparison (9 Chemistries)</h2>
+            <p class="section-subtitle">Complete specifications, advantages, disadvantages, and market projections</p>
+
+            <!-- Technology Specs Table -->
+            <div style="background: var(--surface); padding: 2rem; border-radius: 12px; border: 1px solid var(--border); overflow-x: auto; margin-bottom: 2rem; box-shadow: var(--shadow-sm);">
+                <table id="technologyTable" style="width: 100%; min-width: 1200px;">
+                    <thead>
+                        <tr>
+                            <th style="min-width: 180px;">Chemistry</th>
+                            <th>Energy Density (Wh/kg) 2024</th>
+                            <th>Cycle Life (Real-World)</th>
+                            <th>Cost ($/kWh) 2024</th>
+                            <th>Market Share 2024</th>
+                            <th>Market Share 2030</th>
+                            <th>Safety Rating</th>
+                        </tr>
+                    </thead>
+                    <tbody id="technologyTableBody"></tbody>
+                </table>
+            </div>
+
+            <!-- Technology Detail Cards -->
+            <div id="technologyCards" class="grid-2"></div>
         </div>
     </div>
 
@@ -542,150 +877,124 @@
                 <!-- Research Intelligence Reports -->
                 <div class="card">
                     <h3>🏭 Industry Mapping Report</h3>
-                    <p style="color: #B3B3B3; margin-bottom: 1rem;">62 companies cataloged across the U.S. battery ecosystem with complete profiles, technology classifications, and capacity data.</p>
-                    <p style="color: #888; font-size: 0.875rem; margin-bottom: 1rem;">1,146 lines | Agent R01</p>
-                    <a href="US_Battery_Industry_Mapping_Report.md" style="color: #00C805; text-decoration: none; font-weight: 600;">View Report →</a>
+                    <p style="color: var(--text-secondary); margin-bottom: 1rem;">62 companies cataloged across the U.S. battery ecosystem with complete profiles, technology classifications, and capacity data.</p>
+                    <p style="color: var(--text-tertiary); font-size: 0.875rem; margin-bottom: 1rem;">1,146 lines | Agent R01</p>
+                    <a href="US_Battery_Industry_Mapping_Report.md" style="color: var(--primary); text-decoration: none; font-weight: 600;">View Report →</a>
                 </div>
 
                 <div class="card">
                     <h3>💰 Financial Intelligence Report</h3>
-                    <p style="color: #B3B3B3; margin-bottom: 1rem;">SEC filing analysis, ownership structures, capital flows, and financial health metrics for public companies.</p>
-                    <p style="color: #888; font-size: 0.875rem; margin-bottom: 1rem;">Agent R02</p>
-                    <a href="agent-outputs/AGENT-R02-Financial-Intelligence-SEC-Analysis-Report.md" style="color: #00C805; text-decoration: none; font-weight: 600;">View Report →</a>
+                    <p style="color: var(--text-secondary); margin-bottom: 1rem;">SEC filing analysis, ownership structures, capital flows, and financial health metrics for public companies.</p>
+                    <p style="color: var(--text-tertiary); font-size: 0.875rem; margin-bottom: 1rem;">Agent R02</p>
+                    <a href="agent-outputs/AGENT-R02-Financial-Intelligence-SEC-Analysis-Report.md" style="color: var(--primary); text-decoration: none; font-weight: 600;">View Report →</a>
                 </div>
 
                 <div class="card">
                     <h3>⚖️ Policy & Regulatory Report</h3>
-                    <p style="color: #B3B3B3; margin-bottom: 1rem;">IRA incentives, DOE programs, state policies, and political risk analysis with scenario modeling.</p>
-                    <p style="color: #888; font-size: 0.875rem; margin-bottom: 1rem;">Agent R03</p>
-                    <a href="agent-outputs/AGENT-R03_Policy_Regulatory_Intelligence_Report.md" style="color: #00C805; text-decoration: none; font-weight: 600;">View Report →</a>
+                    <p style="color: var(--text-secondary); margin-bottom: 1rem;">IRA incentives, DOE programs, state policies, and political risk analysis with scenario modeling.</p>
+                    <p style="color: var(--text-tertiary); font-size: 0.875rem; margin-bottom: 1rem;">Agent R03</p>
+                    <a href="agent-outputs/AGENT-R03_Policy_Regulatory_Intelligence_Report.md" style="color: var(--primary); text-decoration: none; font-weight: 600;">View Report →</a>
                 </div>
 
                 <div class="card">
                     <h3>🔬 Technology Innovation Report</h3>
-                    <p style="color: #B3B3B3; margin-bottom: 1rem;">Battery chemistry evolution, cost curves, energy density trends, and commercialization timelines.</p>
-                    <p style="color: #888; font-size: 0.875rem; margin-bottom: 1rem;">710 lines | Agent R04</p>
-                    <a href="technology-innovation-report.md" style="color: #00C805; text-decoration: none; font-weight: 600;">View Report →</a>
+                    <p style="color: var(--text-secondary); margin-bottom: 1rem;">Battery chemistry evolution, cost curves, energy density trends, and commercialization timelines.</p>
+                    <p style="color: var(--text-tertiary); font-size: 0.875rem; margin-bottom: 1rem;">710 lines | Agent R04</p>
+                    <a href="technology-innovation-report.md" style="color: var(--primary); text-decoration: none; font-weight: 600;">View Report →</a>
                 </div>
 
                 <div class="card">
                     <h3>📜 Historical Evolution Report</h3>
-                    <p style="color: #B3B3B3; margin-bottom: 1rem;">60+ milestones from 2000-2024 tracking policy interventions, company lifecycles, and industry evolution.</p>
-                    <p style="color: #888; font-size: 0.875rem; margin-bottom: 1rem;">608 lines | Agent R05</p>
-                    <a href="US_Battery_Industry_Historical_Evolution_2000-2024.md" style="color: #00C805; text-decoration: none; font-weight: 600;">View Report →</a>
+                    <p style="color: var(--text-secondary); margin-bottom: 1rem;">60+ milestones from 2000-2024 tracking policy interventions, company lifecycles, and industry evolution.</p>
+                    <p style="color: var(--text-tertiary); font-size: 0.875rem; margin-bottom: 1rem;">608 lines | Agent R05</p>
+                    <a href="US_Battery_Industry_Historical_Evolution_2000-2024.md" style="color: var(--primary); text-decoration: none; font-weight: 600;">View Report →</a>
                 </div>
 
                 <div class="card">
                     <h3>🗺️ Geospatial & Facilities Report</h3>
-                    <p style="color: #B3B3B3; margin-bottom: 1rem;">30+ gigafactories mapped across 15 states with regional cluster analysis and capacity data.</p>
-                    <p style="color: #888; font-size: 0.875rem; margin-bottom: 1rem;">864 lines | Agent R06</p>
-                    <a href="geospatial-manufacturing-facilities-report.md" style="color: #00C805; text-decoration: none; font-weight: 600;">View Report →</a>
+                    <p style="color: var(--text-secondary); margin-bottom: 1rem;">30+ gigafactories mapped across 15 states with regional cluster analysis and capacity data.</p>
+                    <p style="color: var(--text-tertiary); font-size: 0.875rem; margin-bottom: 1rem;">864 lines | Agent R06</p>
+                    <a href="geospatial-manufacturing-facilities-report.md" style="color: var(--primary); text-decoration: none; font-weight: 600;">View Report →</a>
                 </div>
 
                 <div class="card">
                     <h3>📈 Market Forecast Report</h3>
-                    <p style="color: #B3B3B3; margin-bottom: 1rem;">2024-2030+ demand/supply forecasts with policy scenarios and inflection point analysis.</p>
-                    <p style="color: #888; font-size: 0.875rem; margin-bottom: 1rem;">Agent R07 | Includes CSV data</p>
-                    <a href="agent-outputs/AGENT-R07-Market-Forecast-Report.md" style="color: #00C805; text-decoration: none; font-weight: 600;">View Report →</a>
+                    <p style="color: var(--text-secondary); margin-bottom: 1rem;">2024-2030+ demand/supply forecasts with policy scenarios and inflection point analysis.</p>
+                    <p style="color: var(--text-tertiary); font-size: 0.875rem; margin-bottom: 1rem;">Agent R07 | Includes CSV data</p>
+                    <a href="agent-outputs/AGENT-R07-Market-Forecast-Report.md" style="color: var(--primary); text-decoration: none; font-weight: 600;">View Report →</a>
                 </div>
 
                 <div class="card">
                     <h3>⛓️ Supply Chain Report</h3>
-                    <p style="color: #B3B3B3; margin-bottom: 1rem;">Critical materials analysis (lithium, graphite, cobalt) with import dependencies and risk assessment.</p>
-                    <p style="color: #888; font-size: 0.875rem; margin-bottom: 1rem;">Agent R08 | Includes CSV data</p>
-                    <a href="agent-outputs/AGENT-R08-Supply-Chain-Critical-Materials-Report.md" style="color: #00C805; text-decoration: none; font-weight: 600;">View Report →</a>
+                    <p style="color: var(--text-secondary); margin-bottom: 1rem;">Critical materials analysis (lithium, graphite, cobalt) with import dependencies and risk assessment.</p>
+                    <p style="color: var(--text-tertiary); font-size: 0.875rem; margin-bottom: 1rem;">Agent R08 | Includes CSV data</p>
+                    <a href="agent-outputs/AGENT-R08-Supply-Chain-Critical-Materials-Report.md" style="color: var(--primary); text-decoration: none; font-weight: 600;">View Report →</a>
                 </div>
 
                 <div class="card">
                     <h3>🎯 Comprehensive Synthesis Report</h3>
-                    <p style="color: #B3B3B3; margin-bottom: 1rem;">Executive summary integrating all research with strategic insights for investors, policymakers, and industry.</p>
-                    <p style="color: #888; font-size: 0.875rem; margin-bottom: 1rem;">1,300+ lines | Agent C02</p>
-                    <a href="AGENT-C02-COMPREHENSIVE-SYNTHESIS-REPORT.md" style="color: #00C805; text-decoration: none; font-weight: 600;">View Report →</a>
+                    <p style="color: var(--text-secondary); margin-bottom: 1rem;">Executive summary integrating all research with strategic insights for investors, policymakers, and industry.</p>
+                    <p style="color: var(--text-tertiary); font-size: 0.875rem; margin-bottom: 1rem;">1,300+ lines | Agent C02</p>
+                    <a href="AGENT-C02-COMPREHENSIVE-SYNTHESIS-REPORT.md" style="color: var(--primary); text-decoration: none; font-weight: 600;">View Report →</a>
                 </div>
 
                 <div class="card">
                     <h3>✅ Source Verification Report</h3>
-                    <p style="color: #B3B3B3; margin-bottom: 1rem;">Quality audit of 539 source citations with confidence scoring and data integrity analysis.</p>
-                    <p style="color: #888; font-size: 0.875rem; margin-bottom: 1rem;">Agent D01 | 0.91 avg confidence</p>
-                    <a href="SOURCE_VERIFICATION_REPORT.md" style="color: #00C805; text-decoration: none; font-weight: 600;">View Report →</a>
+                    <p style="color: var(--text-secondary); margin-bottom: 1rem;">Quality audit of 539 source citations with confidence scoring and data integrity analysis.</p>
+                    <p style="color: var(--text-tertiary); font-size: 0.875rem; margin-bottom: 1rem;">Agent D01 | 0.91 avg confidence</p>
+                    <a href="SOURCE_VERIFICATION_REPORT.md" style="color: var(--primary); text-decoration: none; font-weight: 600;">View Report →</a>
                 </div>
 
                 <div class="card">
                     <h3>🎉 Mission Complete Summary</h3>
-                    <p style="color: #B3B3B3; margin-bottom: 1rem;">Project overview documenting all deliverables, platform components, and deployment status.</p>
-                    <p style="color: #888; font-size: 0.875rem; margin-bottom: 1rem;">Platform Documentation</p>
-                    <a href="MISSION_COMPLETE.md" style="color: #00C805; text-decoration: none; font-weight: 600;">View Report →</a>
+                    <p style="color: var(--text-secondary); margin-bottom: 1rem;">Project overview documenting all deliverables, platform components, and deployment status.</p>
+                    <p style="color: var(--text-tertiary); font-size: 0.875rem; margin-bottom: 1rem;">Platform Documentation</p>
+                    <a href="MISSION_COMPLETE.md" style="color: var(--primary); text-decoration: none; font-weight: 600;">View Report →</a>
                 </div>
 
                 <div class="card">
                     <h3>🔍 Quick Start Guide</h3>
-                    <p style="color: #B3B3B3; margin-bottom: 1rem;">Platform setup instructions, API documentation, and deployment guides for local and production use.</p>
-                    <p style="color: #888; font-size: 0.875rem; margin-bottom: 1rem;">Documentation</p>
-                    <a href="QUICKSTART.md" style="color: #00C805; text-decoration: none; font-weight: 600;">View Guide →</a>
+                    <p style="color: var(--text-secondary); margin-bottom: 1rem;">Platform setup instructions, API documentation, and deployment guides for local and production use.</p>
+                    <p style="color: var(--text-tertiary); font-size: 0.875rem; margin-bottom: 1rem;">Documentation</p>
+                    <a href="QUICKSTART.md" style="color: var(--primary); text-decoration: none; font-weight: 600;">View Guide →</a>
                 </div>
             </div>
 
-            <div style="margin-top: 3rem; padding: 2rem; background: #2D2D2D; border-radius: 12px; border: 2px solid #00C805;">
-                <h3 style="color: #00C805; margin-bottom: 1rem;">📊 Additional Resources</h3>
+            <div style="margin-top: 3rem; padding: 2rem; background: linear-gradient(135deg, rgba(0, 102, 255, 0.05) 0%, rgba(99, 102, 241, 0.05) 100%); border-radius: 12px; border: 2px solid var(--primary); box-shadow: var(--shadow-sm);">
+                <h3 style="background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 1rem; font-weight: 700;">📊 Additional Resources</h3>
                 <div class="grid-2">
                     <div>
-                        <h4 style="color: #FFFFFF; margin-bottom: 0.5rem;">Platform Components</h4>
-                        <ul style="color: #B3B3B3; line-height: 2;">
-                            <li><a href="RAG_CHATBOT_README.md" style="color: #00C805;">RAG Chatbot Documentation</a></li>
-                            <li><a href="SEARCH_README.md" style="color: #00C805;">Search Engine Guide</a></li>
-                            <li><a href="VISUALIZATION-README.md" style="color: #00C805;">Visualization Library</a></li>
-                            <li><a href="backend/API_DOCUMENTATION.md" style="color: #00C805;">API Documentation</a></li>
-                            <li><a href="frontend/README.md" style="color: #00C805;">Frontend Guide</a></li>
+                        <h4 style="color: var(--text-primary); margin-bottom: 0.5rem; font-weight: 600;">Platform Components</h4>
+                        <ul style="color: var(--text-secondary); line-height: 2;">
+                            <li><a href="RAG_CHATBOT_README.md" style="color: var(--primary); text-decoration: none; font-weight: 500;">RAG Chatbot Documentation</a></li>
+                            <li><a href="SEARCH_README.md" style="color: var(--primary); text-decoration: none; font-weight: 500;">Search Engine Guide</a></li>
+                            <li><a href="VISUALIZATION-README.md" style="color: var(--primary); text-decoration: none; font-weight: 500;">Visualization Library</a></li>
+                            <li><a href="backend/API_DOCUMENTATION.md" style="color: var(--primary); text-decoration: none; font-weight: 500;">API Documentation</a></li>
+                            <li><a href="frontend/README.md" style="color: var(--primary); text-decoration: none; font-weight: 500;">Frontend Guide</a></li>
                         </ul>
                     </div>
                     <div>
-                        <h4 style="color: #FFFFFF; margin-bottom: 0.5rem;">Alternative Views</h4>
-                        <ul style="color: #B3B3B3; line-height: 2;">
-                            <li><a href="index-enhanced.html" style="color: #00C805;">Enhanced Dashboard (Advanced Charts)</a></li>
-                            <li><a href="search-interface.html" style="color: #00C805;">Search Interface</a></li>
-                            <li><a href="chat-widget.html" style="color: #00C805;">Standalone RAG Chatbot</a></li>
-                            <li><a href="companies.html" style="color: #00C805;">Companies Deep Dive</a></li>
-                            <li><a href="technology.html" style="color: #00C805;">Technology Analysis</a></li>
+                        <h4 style="color: var(--text-primary); margin-bottom: 0.5rem; font-weight: 600;">Alternative Views</h4>
+                        <ul style="color: var(--text-secondary); line-height: 2;">
+                            <li><a href="index-enhanced.html" style="color: var(--primary); text-decoration: none; font-weight: 500;">Enhanced Dashboard (Advanced Charts)</a></li>
+                            <li><a href="search-interface.html" style="color: var(--primary); text-decoration: none; font-weight: 500;">Search Interface</a></li>
+                            <li><a href="chat-widget.html" style="color: var(--primary); text-decoration: none; font-weight: 500;">Standalone RAG Chatbot</a></li>
+                            <li><a href="companies.html" style="color: var(--primary); text-decoration: none; font-weight: 500;">Companies Deep Dive</a></li>
+                            <li><a href="technology.html" style="color: var(--primary); text-decoration: none; font-weight: 500;">Technology Analysis</a></li>
                         </ul>
                     </div>
                 </div>
             </div>
 
             <div style="margin-top: 2rem; text-align: center;">
-                <p style="color: #B3B3B3; font-size: 1.125rem;">
-                    <strong style="color: #00C805;">Total Research Output:</strong>
+                <p style="color: var(--text-secondary); font-size: 1.125rem;">
+                    <strong style="color: var(--primary);">Total Research Output:</strong>
                     11,359 lines of analysis | 539 verified sources | 0.91 average confidence score | 62 companies cataloged
                 </p>
             </div>
         </div>
     </div>
 
-    <!-- RAG Chatbot -->
-    <div class="chatbot-container">
-        <button class="chatbot-toggle" id="chatToggle">💬</button>
-        <div class="chatbot-window" id="chatWindow">
-            <div class="chatbot-header">
-                <span>Battery Research Assistant</span>
-                <button style="background: none; border: none; color: #000; cursor: pointer; font-size: 1.25rem;" onclick="document.getElementById('chatWindow').classList.remove('active')">×</button>
-            </div>
-            <div class="chatbot-messages" id="chatMessages">
-                <div class="message bot">
-                    Hello! I'm your Battery Industry Research Assistant. I can help you analyze the US battery manufacturing landscape, technology trends, policy impacts, and market forecasts. Ask me anything about:
-                    <ul style="margin-top: 0.5rem;">
-                        <li>Company capacity and rankings</li>
-                        <li>Cost trends and projections</li>
-                        <li>Technology evolution (LFP, NMC, solid-state)</li>
-                        <li>IRA incentives and policy</li>
-                        <li>Regional manufacturing clusters</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="chatbot-input">
-                <input type="text" id="chatInput" placeholder="Ask about battery industry data..." />
-                <button id="chatSend">Send</button>
-            </div>
-        </div>
-    </div>
 
     <!-- Footer -->
     <footer>
@@ -695,9 +1004,9 @@
 
     <!-- JavaScript -->
     <script>
-        // Chart.js default config
-        Chart.defaults.color = '#B3B3B3';
-        Chart.defaults.borderColor = '#3D3D3D';
+        // Chart.js default config - clinical blue/teal theme
+        Chart.defaults.color = '#475569'; // var(--text-secondary)
+        Chart.defaults.borderColor = '#E2E8F0'; // var(--border)
 
         // Data
         const costData = [
@@ -741,6 +1050,8 @@
             {state: "Georgia", capacity: 40}
         ];
 
+        // Initialize all charts after DOM is loaded
+        function initializeCharts() {
         // Cost Chart
         new Chart(document.getElementById('costChart'), {
             type: 'line',
@@ -749,30 +1060,30 @@
                 datasets: [{
                     label: 'Battery Pack Cost ($/kWh)',
                     data: costData.map(d => d.cost),
-                    borderColor: '#00C805',
-                    backgroundColor: 'rgba(0, 200, 5, 0.1)',
+                    borderColor: '#0066FF',
+                    backgroundColor: 'rgba(0, 102, 255, 0.1)',
                     tension: 0.4,
                     fill: true,
                     pointRadius: 5,
-                    pointBackgroundColor: '#00C805'
+                    pointBackgroundColor: '#0066FF'
                 }]
             },
             options: {
                 responsive: true,
                 maintainAspectRatio: true,
                 plugins: {
-                    legend: { labels: { color: '#FFFFFF', font: { size: 14 } } }
+                    legend: { labels: { color: '#0F172A', font: { size: 14 } } }
                 },
                 scales: {
                     y: {
                         beginAtZero: true,
-                        title: { display: true, text: '$/kWh', color: '#FFFFFF' },
-                        ticks: { color: '#B3B3B3' },
-                        grid: { color: '#3D3D3D' }
+                        title: { display: true, text: '$/kWh', color: '#0F172A' },
+                        ticks: { color: '#475569' },
+                        grid: { color: '#E2E8F0' }
                     },
                     x: {
-                        ticks: { color: '#B3B3B3' },
-                        grid: { color: '#3D3D3D' }
+                        ticks: { color: '#475569' },
+                        grid: { color: '#E2E8F0' }
                     }
                 }
             }
@@ -786,8 +1097,8 @@
                 datasets: [{
                     label: 'US Manufacturing Capacity (GWh)',
                     data: capacityData.map(d => d.capacity),
-                    backgroundColor: '#00C805',
-                    borderColor: '#00C805',
+                    backgroundColor: '#6366F1',
+                    borderColor: '#6366F1',
                     borderWidth: 1
                 }]
             },
@@ -795,18 +1106,18 @@
                 responsive: true,
                 maintainAspectRatio: true,
                 plugins: {
-                    legend: { labels: { color: '#FFFFFF', font: { size: 14 } } }
+                    legend: { labels: { color: '#0F172A', font: { size: 14 } } }
                 },
                 scales: {
                     y: {
                         beginAtZero: true,
-                        title: { display: true, text: 'GWh', color: '#FFFFFF' },
-                        ticks: { color: '#B3B3B3' },
-                        grid: { color: '#3D3D3D' }
+                        title: { display: true, text: 'GWh', color: '#0F172A' },
+                        ticks: { color: '#475569' },
+                        grid: { color: '#E2E8F0' }
                     },
                     x: {
-                        ticks: { color: '#B3B3B3' },
-                        grid: { color: '#3D3D3D' }
+                        ticks: { color: '#475569' },
+                        grid: { color: '#E2E8F0' }
                     }
                 }
             }
@@ -814,13 +1125,13 @@
 
         // Companies Chart
         new Chart(document.getElementById('companiesChart'), {
-            type: 'horizontalBar',
+            type: 'bar',
             data: {
                 labels: topCompanies.map(c => c.name),
                 datasets: [{
                     label: 'Announced Capacity (GWh)',
                     data: topCompanies.map(c => c.capacity),
-                    backgroundColor: '#00C805'
+                    backgroundColor: '#0066FF'
                 }]
             },
             options: {
@@ -828,17 +1139,17 @@
                 responsive: true,
                 maintainAspectRatio: true,
                 plugins: {
-                    legend: { labels: { color: '#FFFFFF', font: { size: 14 } } }
+                    legend: { labels: { color: '#0F172A', font: { size: 14 } } }
                 },
                 scales: {
                     x: {
                         beginAtZero: true,
-                        ticks: { color: '#B3B3B3' },
-                        grid: { color: '#3D3D3D' }
+                        ticks: { color: '#475569' },
+                        grid: { color: '#E2E8F0' }
                     },
                     y: {
-                        ticks: { color: '#B3B3B3' },
-                        grid: { color: '#3D3D3D' }
+                        ticks: { color: '#475569' },
+                        grid: { color: '#E2E8F0' }
                     }
                 }
             }
@@ -846,13 +1157,16 @@
 
         // Populate Companies Table
         const tbody = document.getElementById('companiesTable');
-        topCompanies.forEach((company, idx) => {
-            tbody.innerHTML += `<tr>
-                <td>${idx + 1}</td>
-                <td>${company.name}</td>
-                <td>${company.capacity} GWh</td>
-            </tr>`;
-        });
+        if (tbody) {
+            tbody.innerHTML = ''; // Clear any existing content
+            topCompanies.forEach((company, idx) => {
+                tbody.innerHTML += `<tr>
+                    <td>${idx + 1}</td>
+                    <td>${company.name}</td>
+                    <td>${company.capacity} GWh</td>
+                </tr>`;
+            });
+        }
 
         // States Chart
         new Chart(document.getElementById('statesChart'), {
@@ -862,25 +1176,25 @@
                 datasets: [{
                     label: 'Manufacturing Capacity (GWh)',
                     data: stateData.map(s => s.capacity),
-                    backgroundColor: '#00C805'
+                    backgroundColor: '#00D4FF'
                 }]
             },
             options: {
                 responsive: true,
                 maintainAspectRatio: true,
                 plugins: {
-                    legend: { labels: { color: '#FFFFFF', font: { size: 14 } } }
+                    legend: { labels: { color: '#0F172A', font: { size: 14 } } }
                 },
                 scales: {
                     y: {
                         beginAtZero: true,
-                        title: { display: true, text: 'GWh', color: '#FFFFFF' },
-                        ticks: { color: '#B3B3B3' },
-                        grid: { color: '#3D3D3D' }
+                        title: { display: true, text: 'GWh', color: '#0F172A' },
+                        ticks: { color: '#475569' },
+                        grid: { color: '#E2E8F0' }
                     },
                     x: {
-                        ticks: { color: '#B3B3B3' },
-                        grid: { color: '#3D3D3D' }
+                        ticks: { color: '#475569' },
+                        grid: { color: '#E2E8F0' }
                     }
                 }
             }
@@ -895,29 +1209,29 @@
                     {
                         label: 'LFP',
                         data: [8, 15, 40, 45, 40],
-                        borderColor: '#0A84FF',
-                        backgroundColor: 'rgba(10, 132, 255, 0.1)',
+                        borderColor: '#0066FF',
+                        backgroundColor: 'rgba(0, 102, 255, 0.1)',
                         tension: 0.4
                     },
                     {
                         label: 'NMC',
                         data: [85, 75, 50, 42, 35],
-                        borderColor: '#FF9F0A',
-                        backgroundColor: 'rgba(255, 159, 10, 0.1)',
+                        borderColor: '#F59E0B',
+                        backgroundColor: 'rgba(245, 158, 11, 0.1)',
                         tension: 0.4
                     },
                     {
                         label: 'Solid-State',
                         data: [0, 0, 0, 2, 10],
-                        borderColor: '#AF52DE',
-                        backgroundColor: 'rgba(175, 82, 222, 0.1)',
+                        borderColor: '#6366F1',
+                        backgroundColor: 'rgba(99, 102, 241, 0.1)',
                         tension: 0.4
                     },
                     {
                         label: 'Sodium-Ion',
                         data: [0, 0, 0, 1, 10],
-                        borderColor: '#00C805',
-                        backgroundColor: 'rgba(0, 200, 5, 0.1)',
+                        borderColor: '#10B981',
+                        backgroundColor: 'rgba(16, 185, 129, 0.1)',
                         tension: 0.4
                     }
                 ]
@@ -926,18 +1240,18 @@
                 responsive: true,
                 maintainAspectRatio: true,
                 plugins: {
-                    legend: { labels: { color: '#FFFFFF', font: { size: 12 } } }
+                    legend: { labels: { color: '#0F172A', font: { size: 12 } } }
                 },
                 scales: {
                     y: {
                         beginAtZero: true,
-                        title: { display: true, text: 'Market Share (%)', color: '#FFFFFF' },
-                        ticks: { color: '#B3B3B3' },
-                        grid: { color: '#3D3D3D' }
+                        title: { display: true, text: 'Market Share (%)', color: '#0F172A' },
+                        ticks: { color: '#475569' },
+                        grid: { color: '#E2E8F0' }
                     },
                     x: {
-                        ticks: { color: '#B3B3B3' },
-                        grid: { color: '#3D3D3D' }
+                        ticks: { color: '#475569' },
+                        grid: { color: '#E2E8F0' }
                     }
                 }
             }
@@ -952,22 +1266,22 @@
                     {
                         label: 'LFP (Wh/kg)',
                         data: [95, 120, 160, 220],
-                        borderColor: '#0A84FF',
-                        backgroundColor: 'rgba(10, 132, 255, 0.1)',
+                        borderColor: '#0066FF',
+                        backgroundColor: 'rgba(0, 102, 255, 0.1)',
                         tension: 0.4
                     },
                     {
                         label: 'NMC (Wh/kg)',
                         data: [180, 240, 260, 310],
-                        borderColor: '#FF9F0A',
-                        backgroundColor: 'rgba(255, 159, 10, 0.1)',
+                        borderColor: '#F59E0B',
+                        backgroundColor: 'rgba(245, 158, 11, 0.1)',
                         tension: 0.4
                     },
                     {
                         label: 'Solid-State (Wh/kg)',
                         data: [null, null, 350, 450],
-                        borderColor: '#AF52DE',
-                        backgroundColor: 'rgba(175, 82, 222, 0.1)',
+                        borderColor: '#6366F1',
+                        backgroundColor: 'rgba(99, 102, 241, 0.1)',
                         tension: 0.4,
                         borderDash: [5, 5]
                     }
@@ -977,18 +1291,18 @@
                 responsive: true,
                 maintainAspectRatio: true,
                 plugins: {
-                    legend: { labels: { color: '#FFFFFF', font: { size: 12 } } }
+                    legend: { labels: { color: '#0F172A', font: { size: 12 } } }
                 },
                 scales: {
                     y: {
                         beginAtZero: true,
-                        title: { display: true, text: 'Wh/kg', color: '#FFFFFF' },
-                        ticks: { color: '#B3B3B3' },
-                        grid: { color: '#3D3D3D' }
+                        title: { display: true, text: 'Wh/kg', color: '#0F172A' },
+                        ticks: { color: '#475569' },
+                        grid: { color: '#E2E8F0' }
                     },
                     x: {
-                        ticks: { color: '#B3B3B3' },
-                        grid: { color: '#3D3D3D' }
+                        ticks: { color: '#475569' },
+                        grid: { color: '#E2E8F0' }
                     }
                 }
             }
@@ -1001,8 +1315,8 @@
                 labels: ['NMC', 'LFP', 'NCA', 'Other'],
                 datasets: [{
                     data: [50, 40, 5, 5],
-                    backgroundColor: ['#FF9F0A', '#0A84FF', '#AF52DE', '#B3B3B3'],
-                    borderColor: '#1C1C1C',
+                    backgroundColor: ['#F59E0B', '#0066FF', '#6366F1', '#94A3B8'],
+                    borderColor: '#FFFFFF',
                     borderWidth: 2
                 }]
             },
@@ -1012,7 +1326,7 @@
                 plugins: {
                     legend: {
                         position: 'bottom',
-                        labels: { color: '#FFFFFF', font: { size: 12 } }
+                        labels: { color: '#0F172A', font: { size: 12 } }
                     }
                 }
             }
@@ -1024,8 +1338,8 @@
                 labels: ['LFP/LMFP', 'NMC', 'Solid-State', 'Sodium-Ion', 'Other'],
                 datasets: [{
                     data: [40, 35, 10, 10, 5],
-                    backgroundColor: ['#0A84FF', '#FF9F0A', '#AF52DE', '#00C805', '#B3B3B3'],
-                    borderColor: '#1C1C1C',
+                    backgroundColor: ['#0066FF', '#F59E0B', '#6366F1', '#10B981', '#94A3B8'],
+                    borderColor: '#FFFFFF',
                     borderWidth: 2
                 }]
             },
@@ -1035,66 +1349,535 @@
                 plugins: {
                     legend: {
                         position: 'bottom',
-                        labels: { color: '#FFFFFF', font: { size: 12 } }
+                        labels: { color: '#0F172A', font: { size: 12 } }
                     }
                 }
             }
         });
+        } // End initializeCharts
 
-        // Chatbot Functionality
-        document.getElementById('chatToggle').addEventListener('click', function() {
-            document.getElementById('chatWindow').classList.toggle('active');
-        });
+        // ========== ENHANCED RAG CHATBOT ==========
 
-        document.getElementById('chatSend').addEventListener('click', sendMessage);
-        document.getElementById('chatInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') sendMessage();
-        });
+        // Quick question buttons
+        function askQuickQuestion(question) {
+            document.getElementById('mainChatInput').value = question;
+            sendMainChatMessage();
+        }
 
-        function sendMessage() {
-            const input = document.getElementById('chatInput');
+        function sendMainChatMessage() {
+            const input = document.getElementById('mainChatInput');
             const message = input.value.trim();
             if (!message) return;
 
-            const messagesDiv = document.getElementById('chatMessages');
+            const messagesDiv = document.getElementById('mainChatMessages');
 
             // Add user message
-            messagesDiv.innerHTML += `<div class="message user">${message}</div>`;
+            const userMsg = document.createElement('div');
+            userMsg.style.cssText = 'background: #0066FF; color: #FFFFFF; padding: 1rem; border-radius: 12px; margin-bottom: 1rem; text-align: right; box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);';
+            userMsg.innerHTML = `<strong style="display: block; margin-bottom: 0.5rem;">You:</strong>${message}`;
+            messagesDiv.appendChild(userMsg);
+
             input.value = '';
 
-            // Process query and generate response
+            // Show typing indicator
+            const typingDiv = document.createElement('div');
+            typingDiv.id = 'typing-indicator';
+            typingDiv.style.cssText = 'background: #FFFFFF; padding: 1rem; border-radius: 12px; margin-bottom: 1rem; border: 1px solid #E2E8F0; box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);';
+            typingDiv.innerHTML = '<strong style="color: #0066FF;">🤖 Battery Research Assistant:</strong> <span class="loading" style="color: #475569;">Searching research data...</span>';
+            messagesDiv.appendChild(typingDiv);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+
+            // Process query with actual data
             setTimeout(() => {
-                const response = generateResponse(message.toLowerCase());
-                messagesDiv.innerHTML += `<div class="message bot">${response}</div>`;
+                const response = generateEnhancedResponse(message.toLowerCase());
+                document.getElementById('typing-indicator').remove();
+
+                const botMsg = document.createElement('div');
+                botMsg.style.cssText = 'background: #FFFFFF; padding: 1rem; border-radius: 12px; margin-bottom: 1rem; border: 1px solid #E2E8F0; box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);';
+                botMsg.innerHTML = `<strong style="color: #0066FF; display: block; margin-bottom: 0.5rem;">🤖 Battery Research Assistant:</strong><div style="color: #0F172A;">${response}</div>`;
+                messagesDiv.appendChild(botMsg);
                 messagesDiv.scrollTop = messagesDiv.scrollHeight;
-            }, 500);
+            }, 800);
         }
 
-        function generateResponse(query) {
-            // RAG-like response generation based on research data
-            if (query.includes('cost') || query.includes('price')) {
-                return "Battery costs have dropped dramatically from $600/kWh in 2015 to $115/kWh in 2024 - an 81% reduction. We crossed the critical $100/kWh threshold this year, enabling price parity with ICE vehicles. Projections suggest $69/kWh by 2030, approaching the material cost floor of $50-60/kWh.";
-            } else if (query.includes('lfp') || query.includes('lithium iron phosphate')) {
-                return "LFP (Lithium Iron Phosphate) has seen remarkable growth, rising from 8% market share in 2015 to 40% in 2024. Key advantages: 20-30% cost advantage over NMC, 3,000+ cycle life (vs 1,300 for NMC), and superior safety. Major players include CATL, BYD, Gotion, and FREYR Battery. Tesla's Model 3/Y Standard Range now uses LFP.";
-            } else if (query.includes('solid state') || query.includes('solidstate')) {
-                return "Solid-state batteries remain in development with commercial timelines delayed. QuantumScape delivered B-samples to VW in October 2024, targeting 2027-2028 commercialization (delayed from 2024). Projected advantages: 400+ Wh/kg energy density (vs 260 for NMC), 5,000+ cycle life. However, cost parity not expected until 2032-2035. Market share projection: 10% by 2030.";
-            } else if (query.includes('company') || query.includes('companies') || query.includes('manufacturer')) {
-                return "Top US battery manufacturers by capacity: 1) SK Battery America (180 GWh) - JVs with Ford/Hyundai, 2) LG Energy Solution (170 GWh) - Ultium Cells with GM, 3) Panasonic Energy (140 GWh) - Tesla partnership, 4) Tesla (110 GWh) - vertical integration. Total: 62 companies mapped across the value chain.";
-            } else if (query.includes('state') || query.includes('region') || query.includes('location')) {
-                return "Three major manufacturing clusters: 1) Southeast Automotive Corridor (500+ GWh) - GA, TN, KY, NC, SC - driven by OEM integration, 2) Midwest Battery Belt (200+ GWh) - MI, OH, IN - historic auto expertise, 3) Nevada Lithium Complex (120+ GWh) - vertical integration with Tesla/Panasonic/Redwood. Nevada leads individual states with 120 GWh capacity.";
-            } else if (query.includes('ira') || query.includes('incentive') || query.includes('policy')) {
-                return "The Inflation Reduction Act provides significant incentives: Section 45X offers $35/kWh for cells and $10/kWh for modules. DOE has $50B+ in lending authority. State incentives include Georgia ($3.3B), Tennessee ($900M), and Michigan ($1.7B). Political risk score: 8/10 due to potential policy changes.";
-            } else if (query.includes('capacity') || query.includes('gwh')) {
-                return "US battery capacity has grown exponentially from 10 GWh in 2015 to 850 GWh in 2024 (85x increase). Projected to reach 1,500 GWh by 2030, sufficient for ~10 million EVs annually. Major acceleration post-2020 driven by IRA incentives and OEM commitments. 60+ manufacturing facilities across 15+ states.";
-            } else if (query.includes('nmc') || query.includes('nickel manganese cobalt')) {
-                return "NMC (Nickel Manganese Cobalt) currently holds 50% market share (down from 85% in 2015). Evolution from NMC-333 to NMC-811 reduces cobalt dependence. Key advantage: 260 Wh/kg energy density enables 300+ mile range. Market leaders: LG Energy Solution, SK On, Panasonic. Projected share: 35% by 2030 as LFP gains ground.";
-            } else if (query.includes('sodium') || query.includes('na-ion')) {
-                return "Sodium-ion batteries are emerging as a lithium-free alternative. Current market share: ~1% (2024). Projected: 5-10% by 2030. Key advantage: 15-25% cost advantage, no lithium/cobalt dependence. Energy density: 160 Wh/kg (comparable to LFP). Best suited for budget EVs, city cars, and short-duration grid storage. Leaders: CATL (Gen 1 production), Natron Energy (US).";
-            } else if (query.includes('jobs') || query.includes('employment')) {
-                return "The US battery industry is projected to create 100,000+ direct manufacturing jobs by 2027, with 300,000+ total jobs when including multiplier effects. Major employment hubs: Southeast Automotive Corridor (20,000 jobs), Midwest Battery Belt (12,000 jobs), Nevada Complex (10,000 jobs).";
-            } else {
-                return "I can help you with information about: battery costs, manufacturing capacity, technology trends (LFP, NMC, solid-state, sodium-ion), top companies, regional clusters, IRA policy, employment, and market forecasts. What would you like to know?";
+        function generateEnhancedResponse(query) {
+            // Enhanced RAG using actual loaded data
+
+            // Check if data is loaded
+            const allDataLoaded = dataLoaded.companies && dataLoaded.timeline && dataLoaded.technologies;
+            if (!allDataLoaded) {
+                let loadingStatus = [];
+                if (!dataLoaded.companies) loadingStatus.push('companies');
+                if (!dataLoaded.timeline) loadingStatus.push('timeline');
+                if (!dataLoaded.technologies) loadingStatus.push('technologies');
+
+                return `<strong style="color: #F59E0B;">⏳ Loading research data...</strong><br><br>
+                    Still loading: ${loadingStatus.join(', ')}<br><br>
+                    <em>Please wait a moment and try again. The system is fetching all 11,359 lines of research data.</em>`;
             }
+
+            console.log(`RAG Query: "${query}"`);
+            console.log(`Data available: ${allCompanies.length} companies, ${allTimeline.length} events, ${allTechnologies.length} technologies`);
+
+            // Company queries
+            if (query.includes('company') || query.includes('companies') || query.includes('manufacturer') || query.includes('highest capacity') || query.includes('most capacity') || query.includes('top')) {
+                if (allCompanies.length > 0) {
+                    const sorted = [...allCompanies].sort((a, b) => (b.capacity_gwh || 0) - (a.capacity_gwh || 0));
+                    const top10 = sorted.slice(0, 10);
+
+                    let response = '<strong style="color: #0066FF;">Top 10 Companies by Capacity:</strong><br><br>';
+                    top10.forEach((company, idx) => {
+                        const capacity = company.capacity_gwh || 'N/A';
+                        const tech = company.technology || 'Various';
+                        response += `${idx + 1}. <strong>${company.name}</strong>`;
+                        if (company.ticker) response += ` (${company.ticker})`;
+                        response += ` - ${capacity} GWh<br>`;
+                        response += `   <span style="color: #475569;">Technology: ${tech}</span><br>`;
+                    });
+                    response += '<br><em style="color: #0066FF;">Total: ' + allCompanies.length + ' companies in database</em>';
+                    return response;
+                }
+            }
+
+            // Specific company search
+            if (query.includes('tell me about') || query.includes('what is') || query.includes('who is')) {
+                const companyMatch = allCompanies.find(c =>
+                    query.includes(c.name.toLowerCase()) ||
+                    (c.ticker && query.includes(c.ticker.toLowerCase()))
+                );
+
+                if (companyMatch) {
+                    let response = `<strong style="color: #0066FF;">${companyMatch.name}</strong>`;
+                    if (companyMatch.ticker) response += ` (${companyMatch.ticker})`;
+                    response += '<br><br>';
+                    response += `<strong>Headquarters:</strong> ${companyMatch.headquarters || 'N/A'}<br>`;
+                    response += `<strong>Technology:</strong> ${companyMatch.technology || 'N/A'}<br>`;
+                    response += `<strong>Stage:</strong> ${companyMatch.stage || 'N/A'}<br>`;
+                    response += `<strong>Capacity:</strong> ${companyMatch.capacity_gwh || 'N/A'} GWh<br>`;
+                    response += `<strong>Employees:</strong> ${companyMatch.employees ? companyMatch.employees.toLocaleString() : 'N/A'}<br>`;
+                    if (companyMatch.financials) {
+                        response += `<strong>2024 Revenue:</strong> ${companyMatch.financials['2024_revenue'] || 'N/A'}<br>`;
+                    }
+                    if (companyMatch.partnerships && companyMatch.partnerships.length > 0) {
+                        response += `<strong>Partners:</strong> ${companyMatch.partnerships.join(', ')}<br>`;
+                    }
+                    return response;
+                }
+            }
+
+            // IRA and policy queries
+            if (query.includes('ira') || query.includes('inflation reduction act') || query.includes('policy') || query.includes('incentive')) {
+                const iraEvent = allTimeline.find(e => e.event.toLowerCase().includes('inflation reduction act'));
+                if (iraEvent) {
+                    let response = `<strong style="color: #0066FF;">Inflation Reduction Act (IRA) - ${iraEvent.date}</strong><br><br>`;
+                    response += `<strong>Significance:</strong> ${iraEvent.significance}<br><br>`;
+                    response += `<strong>Impact:</strong> ${iraEvent.impact}<br><br>`;
+                    response += `<strong>Key Details:</strong><br>`;
+                    response += `• Section 45X: $35/kWh for cells, $10/kWh for modules<br>`;
+                    response += `• Section 48C: $10B in investment tax credits<br>`;
+                    response += `• Triggered 686% battery investment increase (Q2 2022 to Q2 2024)<br><br>`;
+                    response += `<em style="color: #475569;">Source: ${iraEvent.source} | Confidence: ${(iraEvent.confidence * 100).toFixed(0)}%</em>`;
+                    return response;
+                }
+            }
+
+            // Technology comparison
+            if (query.includes('compare') || (query.includes('lfp') && query.includes('nmc')) || query.includes('vs') || query.includes('versus')) {
+                const lfp = allTechnologies.find(t => t.name.includes('LFP') || t.name.includes('Iron Phosphate'));
+                const nmc = allTechnologies.find(t => t.name.includes('NMC') || t.name.includes('Nickel Manganese Cobalt'));
+
+                if (lfp && nmc) {
+                    let response = '<strong style="color: #0066FF;">LFP vs NMC Comparison:</strong><br><br>';
+                    response += '<table style="width: 100%; color: #0F172A;"><tr><th>Metric</th><th>LFP</th><th>NMC</th></tr>';
+                    response += `<tr><td>Energy Density (2024)</td><td>${lfp.specs.energy_density_cell_whkg['2024']} Wh/kg</td><td>${nmc.specs.energy_density_cell_whkg['2024']} Wh/kg</td></tr>`;
+                    response += `<tr><td>Cycle Life</td><td>${lfp.specs.cycle_life_real_world.toLocaleString()}</td><td>${nmc.specs.cycle_life_real_world.toLocaleString()}</td></tr>`;
+                    response += `<tr><td>Cost (2024)</td><td>$${lfp.specs.cost_per_kwh_2024}/kWh</td><td>$${nmc.specs.cost_per_kwh_2024}/kWh</td></tr>`;
+                    response += `<tr><td>Market Share (2024)</td><td>${lfp.market_share['2024']}%</td><td>${nmc.market_share['2024']}%</td></tr>`;
+                    response += `<tr><td>Safety</td><td>${lfp.specs.safety_rating}</td><td>${nmc.specs.safety_rating}</td></tr></table><br>`;
+                    response += `<strong>LFP Advantages:</strong> ${lfp.advantages.slice(0, 3).join(', ')}<br>`;
+                    response += `<strong>NMC Advantages:</strong> ${nmc.advantages.slice(0, 3).join(', ')}`;
+                    return response;
+                }
+            }
+
+            // Solid-state queries
+            if (query.includes('solid state') || query.includes('solidstate') || query.includes('quantumscape')) {
+                const solidState = allTechnologies.find(t => t.name.includes('Solid-State'));
+                if (solidState) {
+                    let response = '<strong style="color: #0066FF;">Solid-State Battery Technology:</strong><br><br>';
+                    response += `<strong>Status:</strong> ${solidState.status}<br>`;
+                    response += `<strong>Timeline:</strong> ${solidState.timeline_delays}<br>`;
+                    response += `<strong>Energy Density Target (2030):</strong> ${solidState.specs.energy_density_cell_whkg['2030_target']} Wh/kg<br>`;
+                    response += `<strong>Current Cost:</strong> $${solidState.specs.cost_per_kwh_2024}/kWh<br>`;
+                    response += `<strong>Projected Cost (2030):</strong> $${solidState.specs.cost_per_kwh_2030_projected}/kWh<br>`;
+                    response += `<strong>Market Share Projection:</strong> ${solidState.market_share['2030_projected']}% by 2030<br><br>`;
+                    response += `<strong>Key Developers:</strong> ${solidState.major_developers.join(', ')}<br><br>`;
+                    response += `<strong>Advantages:</strong><br>`;
+                    solidState.advantages.forEach(adv => response += `• ${adv}<br>`);
+                    return response;
+                }
+            }
+
+            // LFP queries
+            if (query.includes('lfp') || query.includes('lithium iron phosphate')) {
+                const lfp = allTechnologies.find(t => t.name.includes('LFP') || t.name.includes('Iron Phosphate'));
+                if (lfp) {
+                    let response = '<strong style="color: #0066FF;">Lithium Iron Phosphate (LFP):</strong><br><br>';
+                    response += `<strong>Market Share Evolution:</strong> ${lfp.market_share['2015']}% (2015) → ${lfp.market_share['2024']}% (2024) → ${lfp.market_share['2030_projected']}% (2030 projected)<br>`;
+                    response += `<strong>Energy Density:</strong> ${lfp.specs.energy_density_cell_whkg['2024']} Wh/kg (2024), ${lfp.specs.energy_density_cell_whkg['2030_projected']} Wh/kg projected (2030)<br>`;
+                    response += `<strong>Cycle Life:</strong> ${lfp.specs.cycle_life_real_world.toLocaleString()} cycles (real-world)<br>`;
+                    response += `<strong>Cost:</strong> $${lfp.specs.cost_per_kwh_2024}/kWh (2024)<br><br>`;
+                    response += `<strong>Top Advantages:</strong><br>`;
+                    lfp.advantages.forEach(adv => response += `• ${adv}<br>`);
+                    response += `<br><strong>Major Manufacturers:</strong> ${lfp.major_manufacturers.join(', ')}`;
+                    return response;
+                }
+            }
+
+            // State/location queries
+            if (query.includes('state') || query.includes('region') || query.includes('where') || query.includes('location') || query.includes('nevada') || query.includes('tennessee')) {
+                return `<strong style="color: #0066FF;">Manufacturing by State (Top 9):</strong><br><br>
+                    1. Nevada: 120 GWh - Tesla Gigafactory, Panasonic Energy<br>
+                    2. Tennessee: 95 GWh - BlueOval SK, Ultium Cells<br>
+                    3. Kentucky: 86 GWh - Envision AESC, BlueOval SK<br>
+                    4. Ohio: 75 GWh - Ultium Cells, Honda-LG JV<br>
+                    5. Indiana: 70 GWh - StarPlus Energy<br>
+                    6. Michigan: 55 GWh - Ford-CATL, Gotion<br>
+                    7. Illinois: 50 GWh - Gotion High-Tech<br>
+                    8. Arizona: 43 GWh - LG Energy Solution<br>
+                    9. Georgia: 40 GWh - Rivian, SK Innovation<br><br>
+                    <strong style="color: #0066FF;">Regional Clusters:</strong><br>
+                    • Southeast Automotive Corridor: 500+ GWh (GA, TN, KY, NC, SC)<br>
+                    • Midwest Battery Belt: 200+ GWh (MI, OH, IN)<br>
+                    • Nevada Lithium Complex: 120+ GWh (vertical integration)`;
+            }
+
+            // Cost trends
+            if (query.includes('cost') || query.includes('price') || query.includes('$/kwh')) {
+                return `<strong style="color: #0066FF;">Battery Pack Cost Evolution:</strong><br><br>
+                    <strong>Historical Decline:</strong><br>
+                    • 2010: $1,000/kWh<br>
+                    • 2015: $600/kWh<br>
+                    • 2020: $140/kWh<br>
+                    • 2024: $115/kWh (BEV packs: $97/kWh)<br><br>
+                    <strong>Future Projections:</strong><br>
+                    • 2025: $112/kWh<br>
+                    • 2027: $85/kWh<br>
+                    • 2030: $69/kWh<br><br>
+                    <strong>Key Milestone:</strong> Crossed the critical $100/kWh threshold in 2024, enabling price parity with ICE vehicles<br>
+                    <strong>Cost Reduction:</strong> 81% decrease from 2015 to 2024 | 89% decrease from 2010 to 2024<br>
+                    <strong>Cost Floor:</strong> Material limits suggest $50-60/kWh is the practical minimum`;
+            }
+
+            // Timeline/history queries
+            if (query.includes('history') || query.includes('timeline') || query.includes('when') || query.includes('happened')) {
+                const recentEvents = allTimeline.slice(-5).reverse();
+                let response = '<strong style="color: #0066FF;">Recent Major Events (Last 5):</strong><br><br>';
+                recentEvents.forEach(event => {
+                    response += `<strong>${event.date}:</strong> ${event.event}<br>`;
+                    response += `<em style="color: #475569;">${event.significance}</em><br><br>`;
+                });
+                response += `<em style="color: #0066FF;">Total events in database: ${allTimeline.length} (1991-2024)</em>`;
+                return response;
+            }
+
+            // Default response with capabilities
+            return `<strong style="color: #0066FF;">I can help you with:</strong><br><br>
+                • <strong>Companies:</strong> Ask about specific companies, rankings by capacity, technology focus<br>
+                • <strong>Technology:</strong> Compare chemistries (LFP vs NMC), get specs, market trends<br>
+                • <strong>Policy:</strong> IRA details, incentives, regulatory landscape<br>
+                • <strong>Geography:</strong> State rankings, regional clusters, facility locations<br>
+                • <strong>Costs:</strong> Historical trends, future projections, cost breakdowns<br>
+                • <strong>Timeline:</strong> Historical events, company births/failures, policy milestones<br><br>
+                <em>Try asking: "Compare LFP and NMC", "Which companies have the most capacity?", "Tell me about the IRA", or "What are the cost trends?"</em>`;
+        }
+
+        // ========== DATA-DRIVEN DETAILED SECTIONS ==========
+
+        // Global data storage
+        let allCompanies = [];
+        let allTimeline = [];
+        let allTechnologies = [];
+        let dataLoaded = {
+            companies: false,
+            timeline: false,
+            technologies: false
+        };
+
+        // Load all JSON data on page load
+        window.addEventListener('DOMContentLoaded', function() {
+            console.log('Loading research data...');
+            console.log('Initializing charts...');
+            initializeCharts();
+            loadCompaniesData();
+            loadTimelineData();
+            loadTechnologyData();
+        });
+
+        // ========== COMPANIES DATA ==========
+        async function loadCompaniesData() {
+            try {
+                console.log('Fetching companies data...');
+                const response = await fetch('data/companies-detailed.json');
+                if (!response.ok) throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                const data = await response.json();
+
+                // Combine all company types
+                allCompanies = [
+                    ...(data.publicCompanies || []),
+                    ...(data.privateCompanies || []),
+                    ...(data.jointVentures || [])
+                ];
+
+                dataLoaded.companies = true;
+                console.log(`✓ Loaded ${allCompanies.length} companies`);
+
+                displayCompanies(allCompanies);
+                document.getElementById('companyCount').textContent =
+                    `Showing ${allCompanies.length} companies (${data.publicCompanies?.length || 0} public, ${data.privateCompanies?.length || 0} private, ${data.jointVentures?.length || 0} joint ventures)`;
+
+                // Attach event listeners after data is loaded
+                document.getElementById('companySearch').addEventListener('input', filterCompanies);
+                document.getElementById('technologyFilter').addEventListener('change', filterCompanies);
+                document.getElementById('stageFilter').addEventListener('change', filterCompanies);
+            } catch (error) {
+                console.error('Error loading companies data:', error);
+                document.getElementById('companyGrid').innerHTML =
+                    '<div class="card"><h3 style="color: #FF0000;">Error loading company data: ' + error.message + '</h3></div>';
+            }
+        }
+
+        function displayCompanies(companies) {
+            const grid = document.getElementById('companyGrid');
+            grid.innerHTML = '';
+
+            companies.forEach(company => {
+                const card = document.createElement('div');
+                card.className = 'card';
+
+                const ticker = company.ticker ? ` (${company.ticker})` : '';
+                const capacity = company.capacity_gwh ? `${company.capacity_gwh} GWh` : 'N/A';
+                const employees = company.employees ? company.employees.toLocaleString() : 'N/A';
+                const revenue = company.financials?.['2024_revenue'] || 'N/A';
+                const stage = company.stage || 'N/A';
+                const hq = company.headquarters || 'N/A';
+
+                card.innerHTML = `
+                    <h3 style="color: #0066FF; margin-bottom: 0.5rem; font-weight: 700;">${company.name}${ticker}</h3>
+                    <p style="color: #475569; font-size: 0.875rem; margin-bottom: 1rem;"><strong>HQ:</strong> ${hq}</p>
+                    <div style="border-top: 1px solid #E2E8F0; padding-top: 1rem; margin-top: 1rem;">
+                        <p style="color: #475569; margin-bottom: 0.5rem;"><strong style="color: #0F172A;">Technology:</strong> ${company.technology || 'N/A'}</p>
+                        <p style="color: #475569; margin-bottom: 0.5rem;"><strong style="color: #0F172A;">Stage:</strong> ${stage}</p>
+                        <p style="color: #475569; margin-bottom: 0.5rem;"><strong style="color: #0F172A;">Capacity:</strong> ${capacity}</p>
+                        <p style="color: #475569; margin-bottom: 0.5rem;"><strong style="color: #0F172A;">Employees:</strong> ${employees}</p>
+                        <p style="color: #475569; margin-bottom: 0.5rem;"><strong style="color: #0F172A;">2024 Revenue:</strong> ${revenue}</p>
+                        ${company.partnerships ? `<p style="color: #475569; margin-top: 1rem; font-size: 0.875rem;"><strong style="color: #0F172A;">Partners:</strong> ${company.partnerships.join(', ')}</p>` : ''}
+                    </div>
+                `;
+
+                grid.appendChild(card);
+            });
+        }
+
+        function sortCompanies(field) {
+            let sorted = [...allCompanies];
+
+            if (field === 'capacity') {
+                sorted.sort((a, b) => (b.capacity_gwh || 0) - (a.capacity_gwh || 0));
+            } else if (field === 'employees') {
+                sorted.sort((a, b) => (b.employees || 0) - (a.employees || 0));
+            }
+
+            displayCompanies(sorted);
+        }
+
+        function resetFilters() {
+            document.getElementById('companySearch').value = '';
+            document.getElementById('technologyFilter').value = '';
+            document.getElementById('stageFilter').value = '';
+            displayCompanies(allCompanies);
+        }
+
+        function filterCompanies() {
+            const searchTerm = document.getElementById('companySearch').value.toLowerCase();
+            const techFilter = document.getElementById('technologyFilter').value.toLowerCase();
+            const stageFilter = document.getElementById('stageFilter').value.toLowerCase();
+
+            const filtered = allCompanies.filter(company => {
+                const matchesSearch = !searchTerm ||
+                    company.name.toLowerCase().includes(searchTerm) ||
+                    (company.technology && company.technology.toLowerCase().includes(searchTerm)) ||
+                    (company.headquarters && company.headquarters.toLowerCase().includes(searchTerm));
+
+                const matchesTech = !techFilter ||
+                    (company.technology && company.technology.toLowerCase().includes(techFilter));
+
+                const matchesStage = !stageFilter ||
+                    (company.stage && company.stage.toLowerCase().includes(stageFilter));
+
+                return matchesSearch && matchesTech && matchesStage;
+            });
+
+            displayCompanies(filtered);
+            document.getElementById('companyCount').textContent = `Showing ${filtered.length} of ${allCompanies.length} companies`;
+        }
+
+        // ========== TIMELINE DATA ==========
+        async function loadTimelineData() {
+            try {
+                console.log('Fetching timeline data...');
+                const response = await fetch('data/timeline-complete.json');
+                if (!response.ok) throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                const data = await response.json();
+                allTimeline = data.events || [];
+                dataLoaded.timeline = true;
+                console.log(`✓ Loaded ${allTimeline.length} timeline events`);
+                displayTimeline(allTimeline);
+            } catch (error) {
+                console.error('Error loading timeline data:', error);
+                document.getElementById('timelineDisplay').innerHTML =
+                    '<div class="card"><h3 style="color: #FF0000;">Error loading timeline data: ' + error.message + '</h3></div>';
+            }
+        }
+
+        function displayTimeline(events) {
+            const display = document.getElementById('timelineDisplay');
+            display.innerHTML = '<div style="position: absolute; left: 1.5rem; top: 0; bottom: 0; width: 2px; background: #E2E8F0;"></div>';
+
+            events.forEach(event => {
+                const eventDiv = document.createElement('div');
+                eventDiv.style.cssText = 'position: relative; margin-bottom: 2rem; padding-left: 2rem;';
+
+                const typeColor = {
+                    'Policy': '#0066FF',
+                    'Company Birth': '#00D4FF',
+                    'Company Failure': '#EF4444',
+                    'Technology': '#6366F1',
+                    'Manufacturing': '#F59E0B',
+                    'Finance': '#10B981',
+                    'Market': '#10B981'
+                }[event.type] || '#94A3B8';
+
+                eventDiv.innerHTML = `
+                    <div style="position: absolute; left: 0.9rem; top: 0; width: 12px; height: 12px; border-radius: 50%; background: ${typeColor}; border: 2px solid #FFFFFF;"></div>
+                    <div class="card">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem;">
+                            <div>
+                                <h3 style="color: ${typeColor}; margin-bottom: 0.5rem; font-weight: 700;">${event.event}</h3>
+                                <p style="color: #475569; font-size: 0.875rem;">${event.date}</p>
+                            </div>
+                            <span style="background: ${typeColor}; color: #FFFFFF; padding: 0.25rem 0.75rem; border-radius: 6px; font-size: 0.75rem; font-weight: 600;">${event.type}</span>
+                        </div>
+                        <p style="color: #0F172A; margin-bottom: 0.75rem;"><strong>Significance:</strong> ${event.significance}</p>
+                        <p style="color: #475569; margin-bottom: 0.75rem;"><strong>Impact:</strong> ${event.impact}</p>
+                        <p style="color: #94A3B8; font-size: 0.875rem;"><strong>Source:</strong> ${event.source} | <strong>Confidence:</strong> ${(event.confidence * 100).toFixed(0)}%</p>
+                    </div>
+                `;
+
+                display.appendChild(eventDiv);
+            });
+        }
+
+        function filterTimeline(type) {
+            if (type === 'all') {
+                displayTimeline(allTimeline);
+            } else {
+                const filtered = allTimeline.filter(event =>
+                    event.type.toLowerCase().includes(type.toLowerCase())
+                );
+                displayTimeline(filtered);
+            }
+        }
+
+        // ========== TECHNOLOGY DATA ==========
+        async function loadTechnologyData() {
+            try {
+                console.log('Fetching technology data...');
+                const response = await fetch('data/technology-specs.json');
+                if (!response.ok) throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                const data = await response.json();
+                allTechnologies = data.chemistries || [];
+                dataLoaded.technologies = true;
+                console.log(`✓ Loaded ${allTechnologies.length} battery chemistries`);
+                console.log('✓ All research data loaded successfully!');
+                displayTechnologyTable(allTechnologies);
+                displayTechnologyCards(allTechnologies);
+            } catch (error) {
+                console.error('Error loading technology data:', error);
+                document.getElementById('technologyTableBody').innerHTML =
+                    '<tr><td colspan="7" style="color: #FF0000; text-align: center;">Error loading technology data: ' + error.message + '</td></tr>';
+            }
+        }
+
+        function displayTechnologyTable(technologies) {
+            const tbody = document.getElementById('technologyTableBody');
+            tbody.innerHTML = '';
+
+            technologies.forEach(tech => {
+                const row = document.createElement('tr');
+
+                const energyDensity = tech.specs.energy_density_cell_whkg?.['2024'] ||
+                                    tech.specs.energy_density_cell_whkg?.current ||
+                                    'N/A';
+                const cycleLife = tech.specs.cycle_life_real_world || 'N/A';
+                const cost = tech.specs.cost_per_kwh_2024 ? `$${tech.specs.cost_per_kwh_2024}` : 'N/A';
+                const market2024 = tech.market_share?.['2024'] !== undefined ? `${tech.market_share['2024']}%` : 'N/A';
+                const market2030 = tech.market_share?.['2030_projected'] !== undefined ? `${tech.market_share['2030_projected']}%` : 'N/A';
+                const safety = tech.specs.safety_rating || 'N/A';
+
+                row.innerHTML = `
+                    <td><strong style="color: #0066FF;">${tech.name}</strong></td>
+                    <td>${energyDensity}</td>
+                    <td>${cycleLife.toLocaleString()}</td>
+                    <td>${cost}</td>
+                    <td>${market2024}</td>
+                    <td>${market2030}</td>
+                    <td>${safety}</td>
+                `;
+
+                tbody.appendChild(row);
+            });
+        }
+
+        function displayTechnologyCards(technologies) {
+            const cardsDiv = document.getElementById('technologyCards');
+            cardsDiv.innerHTML = '';
+
+            technologies.forEach(tech => {
+                const card = document.createElement('div');
+                card.className = 'card';
+
+                const advantages = tech.advantages ? tech.advantages.map(a => `<li>${a}</li>`).join('') : '';
+                const disadvantages = tech.disadvantages ? tech.disadvantages.map(d => `<li>${d}</li>`).join('') : '';
+                const manufacturers = tech.major_manufacturers || tech.major_developers || [];
+
+                card.innerHTML = `
+                    <h3 style="color: #0066FF; margin-bottom: 1rem; font-weight: 700;">${tech.name}</h3>
+                    ${tech.formula ? `<p style="color: #475569; margin-bottom: 1rem;"><strong>Formula:</strong> ${tech.formula}</p>` : ''}
+
+                    <div style="margin-bottom: 1rem;">
+                        <h4 style="color: #0F172A; font-size: 1rem; margin-bottom: 0.5rem; font-weight: 600;">Advantages</h4>
+                        <ul style="color: #475569; font-size: 0.875rem; margin-left: 1.25rem;">
+                            ${advantages}
+                        </ul>
+                    </div>
+
+                    <div style="margin-bottom: 1rem;">
+                        <h4 style="color: #0F172A; font-size: 1rem; margin-bottom: 0.5rem; font-weight: 600;">Disadvantages</h4>
+                        <ul style="color: #475569; font-size: 0.875rem; margin-left: 1.25rem;">
+                            ${disadvantages}
+                        </ul>
+                    </div>
+
+                    ${manufacturers.length > 0 ? `
+                        <div style="border-top: 1px solid #E2E8F0; padding-top: 1rem; margin-top: 1rem;">
+                            <p style="color: #475569; font-size: 0.875rem;"><strong style="color: #0F172A;">Major Manufacturers:</strong> ${manufacturers.join(', ')}</p>
+                        </div>
+                    ` : ''}
+                `;
+
+                cardsDiv.appendChild(card);
+            });
         }
     </script>
 </body>

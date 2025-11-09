@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technology Roadmap - Battery Intel</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #1C1C1C;
+            color: #FFFFFF;
+            line-height: 1.6;
+        }
+
+        nav {
+            background: #000000;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        nav .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #00C805;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: #FFFFFF;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #00C805;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, #000000 0%, #1C1C1C 100%);
+            padding: 3rem 2rem;
+            margin-bottom: 2rem;
+            border-bottom: 3px solid #00C805;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            color: #00C805;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-header p {
+            color: #B3B3B3;
+            font-size: 1.1rem;
+        }
+
+        .chart-container {
+            background: #2D2D2D;
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid #3D3D3D;
+            margin: 2rem 0;
+        }
+
+        .chart-container h2 {
+            margin-bottom: 1.5rem;
+            color: #00C805;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .tech-card {
+            background: #2D2D2D;
+            border: 1px solid #3D3D3D;
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .tech-card:hover {
+            transform: translateY(-5px);
+            border-color: #00C805;
+        }
+
+        .tech-card h3 {
+            color: #00C805;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .tech-metrics {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .metric {
+            background: #3D3D3D;
+            padding: 1rem;
+            border-radius: 8px;
+        }
+
+        .metric-label {
+            color: #B3B3B3;
+            font-size: 0.875rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .metric-value {
+            color: #FFFFFF;
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .progress-bar {
+            background: #3D3D3D;
+            height: 12px;
+            border-radius: 6px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, #00C805 0%, #00FF08 100%);
+            height: 100%;
+            transition: width 0.5s;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #00C805;
+        }
+
+        .timeline-item {
+            display: flex;
+            margin: 2rem 0;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(odd) {
+            flex-direction: row;
+            text-align: right;
+        }
+
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+            text-align: left;
+        }
+
+        .timeline-content {
+            flex: 1;
+            padding: 1.5rem;
+            background: #2D2D2D;
+            border: 1px solid #3D3D3D;
+            border-radius: 12px;
+            margin: 0 2rem;
+        }
+
+        .timeline-year {
+            color: #00C805;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-marker {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background: #00C805;
+            border: 3px solid #1C1C1C;
+            border-radius: 50%;
+        }
+
+        .comparison-table {
+            background: #2D2D2D;
+            border-radius: 12px;
+            overflow: hidden;
+            margin: 2rem 0;
+        }
+
+        .comparison-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .comparison-table th {
+            background: #000000;
+            color: #00C805;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .comparison-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #3D3D3D;
+            color: #B3B3B3;
+        }
+
+        .comparison-table tr:hover {
+            background: #3D3D3D;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin: 0.25rem;
+        }
+
+        .badge-success { background: rgba(0, 200, 5, 0.2); color: #00C805; }
+        .badge-warning { background: rgba(255, 159, 10, 0.2); color: #FF9F0A; }
+        .badge-danger { background: rgba(255, 69, 58, 0.2); color: #FF453A; }
+        .badge-info { background: rgba(10, 132, 255, 0.2); color: #0A84FF; }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <div class="logo">⚡ Battery Intel</div>
+            <ul>
+                <li><a href="index.html">Dashboard</a></li>
+                <li><a href="companies.html">Companies</a></li>
+                <li><a href="technology.html">Technology</a></li>
+                <li><a href="policy.html">Policy</a></li>
+                <li><a href="forecast.html">Forecast</a></li>
+                <li><a href="facilities.html">Facilities</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="page-header">
+        <div class="container">
+            <h1>Technology Roadmap</h1>
+            <p>Battery chemistry evolution, cost curves, and commercialization timelines</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Cost Evolution -->
+        <div class="chart-container">
+            <h2>Battery Pack Cost Evolution (2015-2030)</h2>
+            <canvas id="costChart"></canvas>
+            <p style="color: #B3B3B3; margin-top: 1rem; text-align: center;">
+                81% cost reduction achieved from 2015 to 2024 | Target: $58-69/kWh by 2030
+            </p>
+        </div>
+
+        <!-- Energy Density Trends -->
+        <div class="chart-container">
+            <h2>Energy Density Evolution by Chemistry</h2>
+            <canvas id="densityChart"></canvas>
+        </div>
+
+        <!-- Technology Comparison -->
+        <h2 style="color: #00C805; margin: 3rem 0 1.5rem;">Technology Comparison (2024 Status)</h2>
+        <div class="comparison-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Technology</th>
+                        <th>Energy Density</th>
+                        <th>Cost ($/kWh)</th>
+                        <th>Cycle Life</th>
+                        <th>Maturity</th>
+                        <th>Key Application</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Li-ion NMC 811</strong></td>
+                        <td>250-280 Wh/kg</td>
+                        <td>$95-105</td>
+                        <td>1,000-1,500 cycles</td>
+                        <td><span class="badge badge-success">Scaled</span></td>
+                        <td>Premium EVs, Grid Storage</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Li-ion LFP</strong></td>
+                        <td>160-180 Wh/kg</td>
+                        <td>$75-85</td>
+                        <td>3,000-4,000 cycles</td>
+                        <td><span class="badge badge-success">Scaled</span></td>
+                        <td>Standard EVs, Grid Storage</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Li-ion LMFP</strong></td>
+                        <td>180-200 Wh/kg</td>
+                        <td>$80-90</td>
+                        <td>2,500-3,500 cycles</td>
+                        <td><span class="badge badge-warning">Early Commercial</span></td>
+                        <td>Mid-range EVs</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Solid-State (Oxide)</strong></td>
+                        <td>350-400 Wh/kg (projected)</td>
+                        <td>$500-800 (pilot)</td>
+                        <td>5,000+ cycles (target)</td>
+                        <td><span class="badge badge-warning">Pilot</span></td>
+                        <td>Future premium EVs</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Sodium-Ion</strong></td>
+                        <td>140-160 Wh/kg</td>
+                        <td>$70-80</td>
+                        <td>2,000-3,000 cycles</td>
+                        <td><span class="badge badge-warning">Early Commercial</span></td>
+                        <td>Budget EVs, Stationary Storage</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Vanadium Flow</strong></td>
+                        <td>25-35 Wh/kg</td>
+                        <td>$250-400</td>
+                        <td>10,000+ cycles</td>
+                        <td><span class="badge badge-success">Commercial</span></td>
+                        <td>Long-duration Grid Storage (8+ hrs)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Zinc Flow (Eos)</strong></td>
+                        <td>60-80 Wh/kg</td>
+                        <td>$150-250</td>
+                        <td>5,000-10,000 cycles</td>
+                        <td><span class="badge badge-success">Commercial</span></td>
+                        <td>Grid Storage (4-8 hrs)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Technology Cards -->
+        <h2 style="color: #00C805; margin: 3rem 0 1.5rem;">Technology Deep Dives</h2>
+        <div class="tech-grid">
+            <div class="tech-card">
+                <h3>Lithium Iron Phosphate (LFP)</h3>
+                <div class="tech-metrics">
+                    <div class="metric">
+                        <div class="metric-label">Market Share 2024</div>
+                        <div class="metric-value">40%</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-label">Projected 2030</div>
+                        <div class="metric-value">53%</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-label">Cost Advantage</div>
+                        <div class="metric-value">20-30%</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-label">Cycle Life</div>
+                        <div class="metric-value">3,000+</div>
+                    </div>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 85%"></div>
+                </div>
+                <p style="color: #B3B3B3; margin-top: 1rem;">
+                    <strong>Key Advantage:</strong> Cost leadership + long cycle life makes LFP dominant for EVs (Tesla Model 3/Y Standard Range, BYD) and grid storage.
+                </p>
+                <p style="color: #B3B3B3; margin-top: 0.5rem;">
+                    <strong>Leaders:</strong> CATL, BYD, Gotion, FREYR Battery
+                </p>
+            </div>
+
+            <div class="tech-card">
+                <h3>NMC (Nickel Manganese Cobalt)</h3>
+                <div class="tech-metrics">
+                    <div class="metric">
+                        <div class="metric-label">Market Share 2024</div>
+                        <div class="metric-value">50%</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-label">Projected 2030</div>
+                        <div class="metric-value">38%</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-label">Energy Density</div>
+                        <div class="metric-value">260 Wh/kg</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-label">Premium Pricing</div>
+                        <div class="metric-value">+25%</div>
+                    </div>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 75%"></div>
+                </div>
+                <p style="color: #B3B3B3; margin-top: 1rem;">
+                    <strong>Key Advantage:</strong> Higher energy density enables longer range premium EVs (300+ miles). NMC 811 reduces cobalt dependence.
+                </p>
+                <p style="color: #B3B3B3; margin-top: 0.5rem;">
+                    <strong>Leaders:</strong> LG Energy Solution, SK On, Panasonic
+                </p>
+            </div>
+
+            <div class="tech-card">
+                <h3>Solid-State Batteries</h3>
+                <div class="tech-metrics">
+                    <div class="metric">
+                        <div class="metric-label">First Commercial</div>
+                        <div class="metric-value">2027-2028</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-label">Mass Production</div>
+                        <div class="metric-value">2030+</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-label">Energy Density Target</div>
+                        <div class="metric-value">400+ Wh/kg</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-label">Cost Parity</div>
+                        <div class="metric-value">2032-2035</div>
+                    </div>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 25%"></div>
+                </div>
+                <p style="color: #B3B3B3; margin-top: 1rem;">
+                    <strong>Status:</strong> QuantumScape delivered B-samples to VW (Oct 2024). Solid Power targeting 2030 mass production. Timeline delays persist.
+                </p>
+                <p style="color: #B3B3B3; margin-top: 0.5rem;">
+                    <strong>Risk:</strong> Commercialization repeatedly delayed 2-3 years. Investor expectations need resetting.
+                </p>
+            </div>
+
+            <div class="tech-card">
+                <h3>Sodium-Ion Batteries</h3>
+                <div class="tech-metrics">
+                    <div class="metric">
+                        <div class="metric-label">Market Share 2024</div>
+                        <div class="metric-value">~1%</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-label">Projected 2030</div>
+                        <div class="metric-value">5-10%</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-label">Cost Advantage</div>
+                        <div class="metric-value">15-25%</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-label">Energy Density</div>
+                        <div class="metric-value">160 Wh/kg</div>
+                    </div>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 40%"></div>
+                </div>
+                <p style="color: #B3B3B3; margin-top: 1rem;">
+                    <strong>Opportunity:</strong> No lithium/cobalt dependence. Lower cost for budget EVs (city cars, delivery vans) and short-duration grid storage.
+                </p>
+                <p style="color: #B3B3B3; margin-top: 0.5rem;">
+                    <strong>Leaders:</strong> CATL (Gen 1 production), Natron Energy (U.S.)
+                </p>
+            </div>
+        </div>
+
+        <!-- Technology Timeline -->
+        <h2 style="color: #00C805; margin: 3rem 0 1.5rem;">Commercialization Timeline</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                    <div class="timeline-year">2024</div>
+                    <p><strong>Current State:</strong> LFP reaches 40% market share globally. Battery costs cross below $100/kWh threshold ($97/kWh for BEV packs). Sodium-ion in limited commercial production (CATL Gen 1).</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                    <div class="timeline-year">2025-2026</div>
+                    <p><strong>Near-Term:</strong> LMFP enters volume production (10% market share). Dry electrode coating scaled by Tesla (4680 cells). QuantumScape first revenue from B-sample deliveries.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                    <div class="timeline-year">2027-2028</div>
+                    <p><strong>Mid-Term:</strong> Semi-solid-state pilot production begins. Solid-state limited commercialization (QuantumScape, Solid Power). Sodium-ion Gen 2 (200 Wh/kg) mass production. Cost reaches $60-70/kWh.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                    <div class="timeline-year">2029-2030</div>
+                    <p><strong>Technology Bifurcation:</strong> LFP/LMFP dominates cost-sensitive applications (53% share). Solid-state scales for premium vehicles (15% share optimistic). Li-ion cost floor reached ($58-69/kWh).</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                    <div class="timeline-year">2030+</div>
+                    <p><strong>Long-Term Outlook:</strong> Solid-state cost parity potential by 2032-2035 (requires massive scale). Flow batteries mainstream for long-duration grid storage (30-year lifespan). Li-ion continues incremental improvements.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Key Takeaways -->
+        <div style="background: #2D2D2D; padding: 2rem; border-radius: 12px; margin: 3rem 0; border-left: 4px solid #00C805;">
+            <h2 style="color: #00C805; margin-bottom: 1rem;">Strategic Technology Insights</h2>
+            <ul style="list-style: none; color: #B3B3B3;">
+                <li style="padding: 0.5rem 0;">✓ <strong>LFP has won the cost war</strong> - 40% market share is sustainable, not temporary. Chemistry will dominate budget/mid-range EVs and grid storage through 2030.</li>
+                <li style="padding: 0.5rem 0;">⚠️ <strong>Solid-state delayed 3-5 years</strong> vs original timelines. QuantumScape 2024→2027-2028, investor expectations need reset. Still holds 40-60% energy density advantage if commercialized.</li>
+                <li style="padding: 0.5rem 0;">📊 <strong>$100/kWh barrier broken in 2024</strong> - EV price parity achieved in China, U.S./Europe by 2026-2027. Cost floor $50-60/kWh is material cost limit.</li>
+                <li style="padding: 0.5rem 0;">🔄 <strong>Overcapacity drives consolidation</strong> - 30% excess cell capacity in 2024 caused 20% price drop. Margin compression will force M&A wave 2025-2027.</li>
+                <li style="padding: 0.5rem 0;">⚡ <strong>Flow batteries proven for grid</strong> - Vanadium RFBs viable for long-duration storage (8+ hrs). 30-year lifespan unmatched by Li-ion (3-5 years typical).</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Cost Chart
+        const costData = {
+            labels: [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2027, 2030],
+            datasets: [{
+                label: 'Battery Pack Cost ($/kWh)',
+                data: [600, 450, 350, 280, 230, 180, 140, 150, 130, 95, 72, 58],
+                borderColor: '#00C805',
+                backgroundColor: 'rgba(0, 200, 5, 0.1)',
+                tension: 0.4,
+                fill: true,
+                pointRadius: 6,
+                pointHoverRadius: 8
+            }]
+        };
+
+        const costCtx = document.getElementById('costChart').getContext('2d');
+        new Chart(costCtx, {
+            type: 'line',
+            data: costData,
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { labels: { color: '#FFFFFF', font: { size: 14 } } }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: { display: true, text: '$/kWh', color: '#FFFFFF' },
+                        ticks: { color: '#B3B3B3' },
+                        grid: { color: '#3D3D3D' }
+                    },
+                    x: {
+                        ticks: { color: '#B3B3B3' },
+                        grid: { color: '#3D3D3D' }
+                    }
+                }
+            }
+        });
+
+        // Energy Density Chart
+        const densityData = {
+            labels: [2015, 2018, 2020, 2024, 2027, 2030],
+            datasets: [
+                {
+                    label: 'LFP (Wh/kg)',
+                    data: [95, 120, 140, 160, 180, 200],
+                    borderColor: '#0A84FF',
+                    backgroundColor: 'rgba(10, 132, 255, 0.1)',
+                    tension: 0.4
+                },
+                {
+                    label: 'NMC (Wh/kg)',
+                    data: [180, 210, 230, 260, 280, 310],
+                    borderColor: '#FF9F0A',
+                    backgroundColor: 'rgba(255, 159, 10, 0.1)',
+                    tension: 0.4
+                },
+                {
+                    label: 'Solid-State (Wh/kg - projected)',
+                    data: [null, null, null, null, 350, 400],
+                    borderColor: '#AF52DE',
+                    backgroundColor: 'rgba(175, 82, 222, 0.1)',
+                    tension: 0.4,
+                    borderDash: [5, 5]
+                }
+            ]
+        };
+
+        const densityCtx = document.getElementById('densityChart').getContext('2d');
+        new Chart(densityCtx, {
+            type: 'line',
+            data: densityData,
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { labels: { color: '#FFFFFF', font: { size: 14 } } }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: { display: true, text: 'Wh/kg (gravimetric)', color: '#FFFFFF' },
+                        ticks: { color: '#B3B3B3' },
+                        grid: { color: '#3D3D3D' }
+                    },
+                    x: {
+                        ticks: { color: '#B3B3B3' },
+                        grid: { color: '#3D3D3D' }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
