@@ -1,0 +1,337 @@
+{
+  "costCurve": [
+    {"year": 2015, "cost": 600},
+    {"year": 2016, "cost": 540},
+    {"year": 2017, "cost": 480},
+    {"year": 2018, "cost": 420},
+    {"year": 2019, "cost": 156},
+    {"year": 2020, "cost": 137},
+    {"year": 2021, "cost": 155},
+    {"year": 2022, "cost": 161},
+    {"year": 2023, "cost": 150},
+    {"year": 2024, "cost": 115},
+    {"year": 2025, "cost": 112},
+    {"year": 2026, "cost": 98},
+    {"year": 2028, "cost": 80},
+    {"year": 2030, "cost": 69}
+  ],
+  "capacityGrowth": [
+    {"year": 2015, "capacity": 10},
+    {"year": 2016, "capacity": 20},
+    {"year": 2017, "capacity": 40},
+    {"year": 2018, "capacity": 90},
+    {"year": 2019, "capacity": 180},
+    {"year": 2020, "capacity": 350},
+    {"year": 2021, "capacity": 450},
+    {"year": 2022, "capacity": 650},
+    {"year": 2023, "capacity": 750},
+    {"year": 2024, "capacity": 850},
+    {"year": 2025, "capacity": 950},
+    {"year": 2026, "capacity": 1050},
+    {"year": 2027, "capacity": 1200},
+    {"year": 2030, "capacity": 1500}
+  ],
+  "topCompanies": [
+    {"name": "Tesla", "capacity": 110, "technology": "Li-ion (4680, 2170)"},
+    {"name": "SK Battery America", "capacity": 180, "technology": "Li-ion"},
+    {"name": "Ultium Cells (GM-LG)", "capacity": 130, "technology": "Li-ion (NCMA, LFP)"},
+    {"name": "BlueOval SK (Ford-SK)", "capacity": 130, "technology": "Li-ion, LFP"},
+    {"name": "Panasonic Energy", "capacity": 140, "technology": "Li-ion (2170)"},
+    {"name": "LG Energy Solution", "capacity": 170, "technology": "Li-ion, LFP"},
+    {"name": "StarPlus Energy (Stellantis-Samsung)", "capacity": 70, "technology": "Li-ion"},
+    {"name": "FREYR Battery", "capacity": 50, "technology": "LFP (SemiSolid)"},
+    {"name": "Gotion High-Tech", "capacity": 50, "technology": "Li-ion"},
+    {"name": "Ford-CATL", "capacity": 20, "technology": "LFP"}
+  ],
+  "stateRankings": [
+    {
+      "state": "Nevada",
+      "capacity": 120,
+      "facilities": 4,
+      "companies": ["Tesla", "Panasonic", "Lyten", "Redwood Materials"],
+      "flagship": "Tesla Gigafactory Nevada (100 GWh)"
+    },
+    {
+      "state": "Tennessee",
+      "capacity": 95,
+      "facilities": 6,
+      "companies": ["Ultium Cells", "BlueOval SK", "Microvast", "AESC"],
+      "flagship": "Ultium Spring Hill (50 GWh)"
+    },
+    {
+      "state": "Kentucky",
+      "capacity": 86,
+      "facilities": 4,
+      "companies": ["BlueOval SK", "Ascend Elements"],
+      "flagship": "BlueOval SK Battery Park (86 GWh)"
+    },
+    {
+      "state": "Ohio",
+      "capacity": 75,
+      "facilities": 5,
+      "companies": ["Ultium Cells", "LG Energy-Honda", "Cirba Solutions"],
+      "flagship": "Ultium Warren (41 GWh)"
+    },
+    {
+      "state": "Indiana",
+      "capacity": 70,
+      "facilities": 4,
+      "companies": ["StarPlus Energy", "GM Samsung"],
+      "flagship": "StarPlus Energy Kokomo Plant 1 (33 GWh)"
+    },
+    {
+      "state": "Michigan",
+      "capacity": 55,
+      "facilities": 5,
+      "companies": ["Ultium Cells", "LG Energy", "Ford-CATL", "Our Next Energy"],
+      "flagship": "Ultium Lansing (41 GWh)"
+    },
+    {
+      "state": "Illinois",
+      "capacity": 50,
+      "facilities": 1,
+      "companies": ["Gotion High-Tech"],
+      "flagship": "Gotion Manteno (50 GWh)"
+    },
+    {
+      "state": "Arizona",
+      "capacity": 43,
+      "facilities": 2,
+      "companies": ["LG Energy Solution"],
+      "flagship": "LGES Queen Creek (43 GWh)"
+    },
+    {
+      "state": "Georgia",
+      "capacity": 40,
+      "facilities": 4,
+      "companies": ["SK Innovation", "Hyundai-LG", "Ascend Elements"],
+      "flagship": "Hyundai-LG Savannah (30 GWh)"
+    },
+    {
+      "state": "North Carolina",
+      "capacity": 30,
+      "facilities": 2,
+      "companies": ["Toyota", "Natron Energy"],
+      "flagship": "Toyota Liberty (30 GWh)"
+    },
+    {
+      "state": "South Carolina",
+      "capacity": 30,
+      "facilities": 3,
+      "companies": ["AESC", "Redwood Materials"],
+      "flagship": "AESC Florence (30 GWh)"
+    },
+    {
+      "state": "Kansas",
+      "capacity": 30,
+      "facilities": 1,
+      "companies": ["Panasonic Energy"],
+      "flagship": "Panasonic De Soto (30 GWh)"
+    },
+    {
+      "state": "Mississippi",
+      "capacity": 21,
+      "facilities": 1,
+      "companies": ["Amplify Cell Technologies"],
+      "flagship": "Amplify Cell Marshall County (21 GWh)"
+    },
+    {
+      "state": "Alabama",
+      "capacity": 15,
+      "facilities": 1,
+      "companies": ["Mercedes-Benz"],
+      "flagship": "Mercedes-Benz Woodstock (custom)"
+    },
+    {
+      "state": "West Virginia",
+      "capacity": 1,
+      "facilities": 2,
+      "companies": ["Form Energy"],
+      "flagship": "Form Energy Weirton (iron-air specialty)"
+    }
+  ],
+  "technologyMix": {
+    "2024": {
+      "LFP": 40,
+      "NMC": 50,
+      "SolidState": 0,
+      "Other": 10
+    },
+    "2027": {
+      "LFP": 45,
+      "NMC": 42,
+      "SolidState": 2,
+      "Other": 11
+    },
+    "2030": {
+      "LFP": 40,
+      "NMC": 35,
+      "SolidState": 10,
+      "Sodium-ion": 10,
+      "Other": 5
+    }
+  },
+  "energyDensity": {
+    "LFP": {
+      "2015": {"cellLevel": 95, "packLevel": 80},
+      "2020": {"cellLevel": 120, "packLevel": 100},
+      "2024": {"cellLevel": 160, "packLevel": 140},
+      "2030": {"cellLevel": 220, "packLevel": 190}
+    },
+    "NMC": {
+      "2015": {"cellLevel": 180, "packLevel": 140},
+      "2020": {"cellLevel": 240, "packLevel": 190},
+      "2024": {"cellLevel": 260, "packLevel": 210},
+      "2030": {"cellLevel": 310, "packLevel": 250}
+    },
+    "SolidState": {
+      "2024": {"cellLevel": 350, "packLevel": 300},
+      "2030": {"cellLevel": 450, "packLevel": 380}
+    }
+  },
+  "marketShare": {
+    "2015": [
+      {"chemistry": "NMC-333", "share": 85},
+      {"chemistry": "NCA", "share": 5},
+      {"chemistry": "LFP", "share": 8},
+      {"chemistry": "Other", "share": 2}
+    ],
+    "2020": [
+      {"chemistry": "NMC-811", "share": 75},
+      {"chemistry": "NCA", "share": 8},
+      {"chemistry": "LFP", "share": 15},
+      {"chemistry": "Other", "share": 2}
+    ],
+    "2024": [
+      {"chemistry": "NMC", "share": 50},
+      {"chemistry": "LFP", "share": 40},
+      {"chemistry": "NCA", "share": 5},
+      {"chemistry": "Other", "share": 5}
+    ],
+    "2030": [
+      {"chemistry": "LFP/LMFP", "share": 40},
+      {"chemistry": "NMC", "share": 35},
+      {"chemistry": "Solid-state", "share": 10},
+      {"chemistry": "Sodium-ion", "share": 10},
+      {"chemistry": "Other", "share": 5}
+    ]
+  },
+  "cycleLife": {
+    "LFP": {
+      "laboratoryMax": 6000,
+      "realWorld": 3000,
+      "degradationRate": 2.5,
+      "capacityAfter1000Cycles": 74
+    },
+    "NMC": {
+      "laboratoryMax": 2500,
+      "realWorld": 1300,
+      "degradationRate": 4.5,
+      "capacityAfter1000Cycles": 63
+    },
+    "NCA": {
+      "laboratoryMax": 2500,
+      "realWorld": 1200,
+      "degradationRate": 5.5,
+      "capacityAfter1000Cycles": 60
+    }
+  },
+  "regionalClusters": [
+    {
+      "name": "Southeast Automotive Corridor",
+      "states": ["GA", "TN", "NC", "SC", "KY", "AL"],
+      "totalCapacity": 500,
+      "numFacilities": 15,
+      "employment": 20000,
+      "dominantPlayers": ["LG Energy Solution", "SK Innovation", "GM-LG Ultium", "Ford-SK"],
+      "advantages": ["OEM integration", "Supply chain density", "Port access", "Workforce"]
+    },
+    {
+      "name": "Midwest Battery Belt",
+      "states": ["MI", "OH", "IN"],
+      "totalCapacity": 200,
+      "numFacilities": 8,
+      "employment": 12000,
+      "dominantPlayers": ["GM-LG Ultium", "Stellantis-Samsung", "LG Energy-Honda"],
+      "advantages": ["Historic expertise", "Engineering talent", "OEM HQ proximity", "Energy costs"]
+    },
+    {
+      "name": "Nevada Lithium Complex",
+      "states": ["NV"],
+      "totalCapacity": 120,
+      "numFacilities": 4,
+      "employment": 10000,
+      "dominantPlayers": ["Tesla", "Panasonic", "Lyten", "Redwood Materials"],
+      "advantages": ["Lithium supply", "Renewable energy", "Vertical integration", "Innovation hub"]
+    },
+    {
+      "name": "Emerging Clusters",
+      "states": ["KS", "AZ", "IL"],
+      "totalCapacity": 120,
+      "numFacilities": 4,
+      "employment": 5000,
+      "dominantPlayers": ["Panasonic", "LG Energy", "Gotion"],
+      "advantages": ["Central logistics", "Underutilized capacity", "Growing ecosystem"]
+    }
+  ],
+  "timeline": {
+    "2015": {
+      "avgCost": 600,
+      "capacity": 10,
+      "dominantChemistry": "NMC-333",
+      "keyEvent": "Early gigafactory era"
+    },
+    "2020": {
+      "avgCost": 137,
+      "capacity": 350,
+      "dominantChemistry": "NMC-811",
+      "keyEvent": "LFP resurgence begins with Tesla Model 3 SR+ China"
+    },
+    "2024": {
+      "avgCost": 115,
+      "capacity": 850,
+      "dominantChemistry": "LFP 40%, NMC 50%",
+      "keyEvent": "BEV packs cross $100/kWh barrier"
+    },
+    "2030": {
+      "avgCost": 69,
+      "capacity": 1500,
+      "dominantChemistry": "LFP/LMFP 40%, NMC 35%, Solid-state 10%",
+      "keyEvent": "Solid-state commercialization, sodium-ion growth"
+    }
+  },
+  "keyMetrics": {
+    "costReduction": {
+      "2015to2024": "81% decline",
+      "costPerKwh": "600 to 115 $/kWh"
+    },
+    "marketSize": {
+      "2024": "850 GWh U.S. announced capacity",
+      "2030": "1500 GWh projected U.S. capacity"
+    },
+    "employment": {
+      "direct": "100,000+ manufacturing jobs by 2027",
+      "indirect": "300,000+ with multiplier effects"
+    },
+    "energyDensityImprovement": {
+      "LFP": "75% improvement 2015-2024",
+      "NMC": "50% improvement 2015-2024"
+    },
+    "supplyChainGap": {
+      "cathodeCapacity": "150K tonnes/year vs 800+ GWh demand = insufficient",
+      "separatorProduction": "ENTEK Terre Haute (3.2B sq m) covers 3.5M EVs/year",
+      "electrolyte": "Critical gap - minimal domestic production"
+    }
+  },
+  "metadata": {
+    "reportDate": "2025-11-08",
+    "dataSource": [
+      "US_Battery_Industry_Historical_Evolution_2000-2024.md",
+      "US_Battery_Industry_Mapping_Report.md",
+      "geospatial-manufacturing-facilities-report.md",
+      "technology-innovation-report.md"
+    ],
+    "updateFrequency": "Quarterly recommended",
+    "confidence": "High - verified against SEC filings, DOE announcements, company press releases"
+  }
+}
