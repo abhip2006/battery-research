@@ -135,7 +135,7 @@ class RAGService:
                 section_title=row.section_title,
                 similarity_score=float(row.similarity),
                 chunk_id=row.id,
-                metadata=row.metadata or {}
+                chunk_metadata=row.chunk_metadata or {}
             )
             contexts.append(context)
         

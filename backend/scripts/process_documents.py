@@ -11,6 +11,7 @@ import logging
 # Add parent directory to path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
+from sqlalchemy import text
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine, async_sessionmaker
 
@@ -120,7 +121,7 @@ class DocumentIngestionPipeline:
                             content=chunk.content,
                             content_hash=chunk.content_hash,
                             section_title=chunk.section_title,
-                            metadata=chunk.metadata,
+                            chunk_metadata=chunk.chunk_metadata,
                             embedding=embedding,
                             token_count=count_tokens_approximate(chunk.content)
                         )
@@ -184,7 +185,7 @@ async def main():
     
     # Create tables
     async with engine.begin() as conn:
-        await conn.execute("CREATE EXTENSION IF NOT EXISTS vector")
+        await conn.execute(text("CREATE EXTENSION IF NOT EXISTS vector"))
         await conn.run_sync(Base.metadata.create_all)
     
     # Create session factory

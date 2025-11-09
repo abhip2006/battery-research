@@ -32,7 +32,7 @@ class DocumentChunk(Base, TimestampMixin):
     # Metadata for citations
     section_title: Mapped[Optional[str]] = mapped_column(String(500), nullable=True)
     page_number: Mapped[Optional[int]] = mapped_column(Integer, nullable=True)
-    metadata: Mapped[Optional[dict]] = mapped_column(JSON, nullable=True)
+    chunk_metadata: Mapped[Optional[dict]] = mapped_column(JSON, nullable=True)
     
     # Vector embedding for similarity search
     embedding: Mapped[Vector] = mapped_column(Vector(1536), nullable=False)

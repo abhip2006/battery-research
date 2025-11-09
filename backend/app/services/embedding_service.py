@@ -296,4 +296,6 @@ def create_embedding_service(
     else:
         raise ValueError(f"Unknown provider type: {provider_type}")
     
-    return EmbeddingService(provider=provider, **kwargs)
+    # Extract cache_enabled from kwargs if present, filter out provider-specific args
+    cache_enabled = kwargs.get('cache_enabled', False)
+    return EmbeddingService(provider=provider, cache_enabled=cache_enabled)

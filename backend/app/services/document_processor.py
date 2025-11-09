@@ -25,7 +25,7 @@ class DocumentChunk:
         self.source_document = source_document
         self.chunk_index = chunk_index
         self.section_title = section_title
-        self.metadata = metadata or {}
+        self.chunk_metadata = metadata or {}
         self.content_hash = self._generate_hash()
     
     def _generate_hash(self) -> str:
@@ -39,7 +39,7 @@ class DocumentChunk:
             "source_document": self.source_document,
             "chunk_index": self.chunk_index,
             "section_title": self.section_title,
-            "metadata": self.metadata,
+            "metadata": self.chunk_metadata,
             "content_hash": self.content_hash
         }
 
