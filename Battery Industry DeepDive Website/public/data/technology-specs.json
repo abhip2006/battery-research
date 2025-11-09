@@ -1,0 +1,430 @@
+{
+  "chemistries": [
+    {
+      "name": "Lithium Iron Phosphate (LFP)",
+      "formula": "LiFePO4",
+      "market_share": {
+        "2015": 8,
+        "2020": 15,
+        "2024": 40,
+        "2030_projected": 40
+      },
+      "specs": {
+        "energy_density_cell_whkg": {
+          "2015": 95,
+          "2020": 120,
+          "2024": 160,
+          "2030_projected": 220
+        },
+        "energy_density_pack_whkg": {
+          "2015": 80,
+          "2020": 100,
+          "2024": 140,
+          "2030_projected": 190
+        },
+        "volumetric_density_whl": {
+          "current": 250
+        },
+        "cycle_life_laboratory": 6000,
+        "cycle_life_real_world": 3000,
+        "degradation_rate_percent_year": 2.5,
+        "capacity_after_1000_cycles_percent": 74,
+        "cost_per_kwh_2024": 85,
+        "cost_per_kwh_2030_projected": 60,
+        "charging_rate_c": "1-2C",
+        "operating_temp_min_celsius": -20,
+        "operating_temp_max_celsius": 60,
+        "safety_rating": "Excellent",
+        "thermal_stability": "Very High"
+      },
+      "advantages": [
+        "20-30% cost advantage over NMC",
+        "Superior cycle life (3,000 vs 1,300 for NMC)",
+        "Excellent thermal stability",
+        "Cobalt-free (ethical sourcing)",
+        "Lower degradation rate"
+      ],
+      "disadvantages": [
+        "Lower energy density than NMC",
+        "Reduced range vs NMC (260 vs 300+ miles typical)",
+        "Heavier for same capacity"
+      ],
+      "applications": [
+        "Tesla Model 3/Y Standard Range",
+        "BYD vehicles",
+        "Grid energy storage",
+        "Commercial vehicles",
+        "Entry-level EVs"
+      ],
+      "major_manufacturers": ["CATL", "BYD", "Gotion", "FREYR Battery", "EVE Energy"]
+    },
+    {
+      "name": "Lithium Nickel Manganese Cobalt Oxide (NMC)",
+      "formula": "Li(NixMnyCoz)O2",
+      "variants": ["NMC-333", "NMC-532", "NMC-622", "NMC-811", "NMC-9.5.5"],
+      "market_share": {
+        "2015": 85,
+        "2020": 75,
+        "2024": 50,
+        "2030_projected": 35
+      },
+      "specs": {
+        "energy_density_cell_whkg": {
+          "2015": 180,
+          "2020": 240,
+          "2024": 260,
+          "2030_projected": 310
+        },
+        "energy_density_pack_whkg": {
+          "2015": 140,
+          "2020": 190,
+          "2024": 210,
+          "2030_projected": 250
+        },
+        "cycle_life_laboratory": 2500,
+        "cycle_life_real_world": 1300,
+        "degradation_rate_percent_year": 4.5,
+        "capacity_after_1000_cycles_percent": 63,
+        "cost_per_kwh_2024": 105,
+        "cost_per_kwh_2030_projected": 80,
+        "charging_rate_c": "1C standard, 2C fast",
+        "operating_temp_min_celsius": -20,
+        "operating_temp_max_celsius": 55,
+        "safety_rating": "Good",
+        "thermal_stability": "Moderate"
+      },
+      "advantages": [
+        "High energy density (260 Wh/kg cell-level)",
+        "Enables 300+ mile range",
+        "Good power performance",
+        "Mature supply chain"
+      ],
+      "disadvantages": [
+        "Higher cost than LFP",
+        "Shorter cycle life",
+        "Higher degradation rate",
+        "Cobalt dependence (ethical/supply concerns)",
+        "Lower thermal stability"
+      ],
+      "applications": [
+        "Premium EVs (300+ mile range)",
+        "Performance vehicles",
+        "Hybrid electric vehicles",
+        "Power tools"
+      ],
+      "major_manufacturers": ["LG Energy Solution", "SK On", "Panasonic", "Samsung SDI", "CATL"]
+    },
+    {
+      "name": "Lithium Nickel Cobalt Aluminum Oxide (NCA)",
+      "formula": "LiNi0.8Co0.15Al0.05O2",
+      "market_share": {
+        "2015": 5,
+        "2020": 8,
+        "2024": 5,
+        "2030_projected": 3
+      },
+      "specs": {
+        "energy_density_cell_whkg": {
+          "current": 265
+        },
+        "cycle_life_laboratory": 2500,
+        "cycle_life_real_world": 1200,
+        "degradation_rate_percent_year": 5.5,
+        "capacity_after_1000_cycles_percent": 60,
+        "cost_per_kwh_2024": 110,
+        "charging_rate_c": "1-2C",
+        "safety_rating": "Good",
+        "thermal_stability": "Moderate-Low"
+      },
+      "advantages": [
+        "High energy density",
+        "Good specific power",
+        "Long calendar life"
+      ],
+      "disadvantages": [
+        "Shortest cycle life",
+        "Highest degradation rate",
+        "Cobalt dependence",
+        "Lower thermal stability"
+      ],
+      "applications": [
+        "Tesla Model S/X (historically)",
+        "Premium EVs"
+      ],
+      "major_manufacturers": ["Panasonic", "Sumitomo"]
+    },
+    {
+      "name": "Lithium Manganese Iron Phosphate (LMFP)",
+      "formula": "LiMn0.6Fe0.4PO4",
+      "market_share": {
+        "2024": 1,
+        "2027_projected": 10,
+        "2030_projected": 13
+      },
+      "specs": {
+        "energy_density_cell_whkg": {
+          "current": 180,
+          "2027_projected": 200,
+          "2030_projected": 230
+        },
+        "cycle_life_laboratory": 4000,
+        "cycle_life_real_world": 2500,
+        "degradation_rate_percent_year": 3.0,
+        "cost_per_kwh_2024": 90,
+        "cost_per_kwh_2030_projected": 70,
+        "charging_rate_c": "1-2C",
+        "operating_temp_min_celsius": -20,
+        "operating_temp_max_celsius": 60,
+        "safety_rating": "Excellent",
+        "thermal_stability": "Very High"
+      },
+      "advantages": [
+        "Higher energy density than LFP (180-200 Wh/kg)",
+        "Maintains LFP cost advantage",
+        "Improved voltage (3.7V vs 3.2V for LFP)",
+        "Cobalt-free",
+        "Good cycle life"
+      ],
+      "disadvantages": [
+        "Still early commercial stage",
+        "Manufacturing complexity vs pure LFP",
+        "Lower density than NMC"
+      ],
+      "applications": [
+        "Mid-range EVs (250-280 mile range)",
+        "Grid storage",
+        "Commercial vehicles"
+      ],
+      "major_manufacturers": ["CATL", "CALB", "Gotion (planned)"],
+      "status": "Early commercial (2024-2025 ramp)"
+    },
+    {
+      "name": "Solid-State (Oxide)",
+      "type": "Next-generation",
+      "market_share": {
+        "2024": 0,
+        "2027_projected": 2,
+        "2030_projected": 10
+      },
+      "specs": {
+        "energy_density_cell_whkg": {
+          "2024_prototype": 350,
+          "2030_target": 450
+        },
+        "energy_density_pack_whkg": {
+          "2024_prototype": 300,
+          "2030_target": 380
+        },
+        "cycle_life_target": 5000,
+        "cost_per_kwh_2024": 800,
+        "cost_per_kwh_2030_projected": 300,
+        "cost_parity_year": "2032-2035",
+        "charging_rate_target": "3C",
+        "operating_temp_range": "Wider than liquid electrolyte",
+        "safety_rating": "Excellent (no flammable electrolyte)",
+        "thermal_stability": "Excellent"
+      },
+      "advantages": [
+        "40-60% higher energy density potential",
+        "Improved safety (non-flammable solid electrolyte)",
+        "Longer cycle life target",
+        "Wider operating temperature",
+        "Faster charging potential"
+      ],
+      "disadvantages": [
+        "Very high current cost ($800/kWh pilot)",
+        "Manufacturing complexity",
+        "Interface resistance challenges",
+        "Repeated commercialization delays (2024→2027-2028)"
+      ],
+      "applications": [
+        "Premium EVs (2027-2030)",
+        "Long-range applications",
+        "Aerospace/defense"
+      ],
+      "major_developers": ["QuantumScape", "Solid Power", "Toyota", "Samsung SDI"],
+      "status": "Pilot/B-sample stage",
+      "timeline_delays": "Originally 2024-2025, now 2027-2028 commercial, mass production 2030+"
+    },
+    {
+      "name": "Sodium-Ion",
+      "formula": "Na-ion (various cathode chemistries)",
+      "market_share": {
+        "2024": 1,
+        "2027_projected": 3,
+        "2030_projected": 10
+      },
+      "specs": {
+        "energy_density_cell_whkg": {
+          "gen1_2024": 140,
+          "gen2_2027": 160,
+          "gen3_2030": 180
+        },
+        "cycle_life_laboratory": 5000,
+        "cycle_life_real_world": 3000,
+        "cost_per_kwh_2024": 80,
+        "cost_per_kwh_2030_projected": 60,
+        "cost_advantage": "15-25% vs Li-ion",
+        "charging_rate_c": "1-2C",
+        "operating_temp_min_celsius": -40,
+        "operating_temp_max_celsius": 60,
+        "safety_rating": "Excellent"
+      },
+      "advantages": [
+        "No lithium/cobalt dependence",
+        "15-25% cost advantage",
+        "Better low-temperature performance",
+        "Abundant raw materials (sodium)",
+        "Can use aluminum current collectors (cost savings)"
+      ],
+      "disadvantages": [
+        "Lower energy density than Li-ion",
+        "Heavier (23% more mass for same energy)",
+        "Shorter range for EVs"
+      ],
+      "applications": [
+        "Budget EVs and city cars",
+        "Delivery vans (short range)",
+        "Grid storage (cost-sensitive)",
+        "Two-wheelers",
+        "Data center backup"
+      ],
+      "major_manufacturers": ["CATL", "Natron Energy (US)", "Faradion"],
+      "status": "Gen 1 commercial (2024), Gen 2 development"
+    },
+    {
+      "name": "Vanadium Redox Flow Battery",
+      "type": "Stationary storage",
+      "market_share": {
+        "grid_storage_2024": 5,
+        "grid_storage_2030": 8
+      },
+      "specs": {
+        "energy_density_whkg": 25,
+        "volumetric_density_whl": 15,
+        "cycle_life": 10000,
+        "calendar_life_years": 30,
+        "cost_per_kwh_2024": 300,
+        "cost_per_kwh_2030_projected": 250,
+        "efficiency_round_trip_percent": 75,
+        "duration_hours": "4-12+",
+        "degradation_minimal": "Electrolyte can be regenerated"
+      },
+      "advantages": [
+        "Virtually unlimited cycles (10,000+)",
+        "30-year calendar life",
+        "Scalable duration independently of power",
+        "Electrolyte can be regenerated/reused",
+        "No degradation over time"
+      ],
+      "disadvantages": [
+        "Very low energy density",
+        "High upfront cost",
+        "Large footprint",
+        "Not suitable for mobile applications"
+      ],
+      "applications": [
+        "Long-duration grid storage (8+ hours)",
+        "Renewable energy integration",
+        "Peak shaving",
+        "Microgrid applications"
+      ],
+      "major_manufacturers": ["Invinity Energy Systems", "Sumitomo Electric"]
+    },
+    {
+      "name": "Zinc Flow Battery (Eos Znyth)",
+      "type": "Stationary storage",
+      "market_share": {
+        "grid_storage_2024": 3,
+        "grid_storage_2030": 5
+      },
+      "specs": {
+        "energy_density_whkg": 70,
+        "cycle_life": 7500,
+        "cost_per_kwh_2024": 200,
+        "cost_per_kwh_2030_projected": 150,
+        "efficiency_round_trip_percent": 75,
+        "duration_hours": "4-8",
+        "safety": "Non-flammable aqueous electrolyte"
+      },
+      "advantages": [
+        "Lower cost than vanadium",
+        "Non-flammable",
+        "Good cycle life",
+        "Domestic manufacturing (Eos Energy)"
+      ],
+      "disadvantages": [
+        "Lower energy density",
+        "Shorter duration than vanadium",
+        "Still developing supply chain"
+      ],
+      "applications": [
+        "Medium-duration grid storage (4-8 hours)",
+        "Behind-the-meter commercial"
+      ],
+      "major_manufacturers": ["Eos Energy Enterprises (US)"]
+    },
+    {
+      "name": "Iron-Air (Form Energy)",
+      "type": "Long-duration storage",
+      "market_share": {
+        "grid_storage_2027": 1,
+        "grid_storage_2030": 3
+      },
+      "specs": {
+        "energy_density_whkg": 150,
+        "cycle_life": 1000,
+        "cost_per_kwh_target": 20,
+        "lcos_target": "Less than $20/kWh",
+        "efficiency_round_trip_percent": 50,
+        "duration_hours": 100,
+        "calendar_life_years": 20
+      },
+      "advantages": [
+        "Breakthrough <$20/kWh economics",
+        "100-hour duration (multi-day storage)",
+        "Abundant materials (iron)",
+        "Revolutionary for renewable integration"
+      ],
+      "disadvantages": [
+        "Low round-trip efficiency (50%)",
+        "Limited cycles (1,000)",
+        "Still pre-commercial",
+        "Not suitable for short-duration"
+      ],
+      "applications": [
+        "Multi-day grid storage",
+        "Seasonal renewable buffering",
+        "Grid reliability"
+      ],
+      "major_manufacturers": ["Form Energy (US)"],
+      "status": "Pilot to commercial (Weirton, WV factory under construction)"
+    }
+  ],
+  "cost_trends": [
+    {"year": 2010, "cost_per_kwh": 1000},
+    {"year": 2015, "cost_per_kwh": 600},
+    {"year": 2016, "cost_per_kwh": 209},
+    {"year": 2017, "cost_per_kwh": 190},
+    {"year": 2018, "cost_per_kwh": 176},
+    {"year": 2019, "cost_per_kwh": 156},
+    {"year": 2020, "cost_per_kwh": 140},
+    {"year": 2021, "cost_per_kwh": 132},
+    {"year": 2022, "cost_per_kwh": 151},
+    {"year": 2023, "cost_per_kwh": 128},
+    {"year": 2024, "cost_per_kwh": 115, "bev_packs": 97},
+    {"year": 2025, "cost_per_kwh": 112},
+    {"year": 2026, "cost_per_kwh": 98},
+    {"year": 2027, "cost_per_kwh": 85},
+    {"year": 2028, "cost_per_kwh": 75},
+    {"year": 2030, "cost_per_kwh": 69}
+  ],
+  "summary": {
+    "total_chemistries": 9,
+    "commercial_chemistries": 4,
+    "emerging_chemistries": 3,
+    "grid_storage_specific": 3,
+    "cost_reduction_2015_2024": "81%",
+    "cost_reduction_2010_2024": "89%"
+  }
+}
