@@ -16,21 +16,58 @@ from app.services.embedding_service import create_embedding_service
 
 router = APIRouter(prefix="/chat", tags=["chat"])
 
-# Initialize services
-embedding_service = create_embedding_service(
-    provider_type="openai",
-    api_key=settings.OPENAI_API_KEY,
-    model=settings.EMBEDDING_MODEL,
-    dimensions=settings.EMBEDDING_DIMENSIONS
-)
+# Initialize services based on provider selection
+if settings.EMBEDDING_PROVIDER == "gemini":
+    embedding_service = create_embedding_service(
+        provider_type="gemini",
+        api_key=settings.GEMINI_API_KEY,
+        model=settings.GEMINI_EMBEDDING_MODEL
+    )
+elif settings.EMBEDDING_PROVIDER == "openai":
+    embedding_service = create_embedding_service(
+        provider_type="openai",
+        api_key=settings.OPENAI_API_KEY,
+        model=settings.EMBEDDING_MODEL,
+        dimensions=settings.EMBEDDING_DIMENSIONS
+    )
+else:
+    # Default to OpenAI
+    embedding_service = create_embedding_service(
+        provider_type="openai",
+        api_key=settings.OPENAI_API_KEY,
+        model=settings.EMBEDDING_MODEL,
+        dimensions=settings.EMBEDDING_DIMENSIONS
+    )
 
-rag_service = RAGService(
-    embedding_service=embedding_service,
-    anthropic_api_key=settings.ANTHROPIC_API_KEY,
-    model=settings.ANTHROPIC_MODEL,
-    top_k=settings.TOP_K_RESULTS,
-    similarity_threshold=settings.VECTOR_SIMILARITY_THRESHOLD
-)
+# Initialize RAG service with selected LLM provider
+if settings.LLM_PROVIDER == "gemini":
+    rag_service = RAGService(
+        embedding_service=embedding_service,
+        llm_provider="gemini",
+        llm_api_key=settings.GEMINI_API_KEY,
+        model=settings.GEMINI_LLM_MODEL,
+        top_k=settings.TOP_K_RESULTS,
+        similarity_threshold=settings.VECTOR_SIMILARITY_THRESHOLD
+    )
+elif settings.LLM_PROVIDER == "anthropic":
+    rag_service = RAGService(
+        embedding_service=embedding_service,
+        llm_provider="anthropic",
+        llm_api_key=settings.ANTHROPIC_API_KEY,
+        model=settings.ANTHROPIC_MODEL,
+        top_k=settings.TOP_K_RESULTS,
+        similarity_threshold=settings.VECTOR_SIMILARITY_THRESHOLD
+    )
+else:
+    # Default to Gemini
+    rag_service = RAGService(
+        embedding_service=embedding_service,
+        llm_provider="gemini",
+        llm_api_key=settings.GEMINI_API_KEY,
+        model=settings.GEMINI_LLM_MODEL,
+        top_k=settings.TOP_K_RESULTS,
+        similarity_threshold=settings.VECTOR_SIMILARITY_THRESHOLD
+    )
 
 conversation_manager = ConversationManager()
 
@@ -298,25 +335,47 @@ async def health_check():
     Health check endpoint for chatbot service.
     Verifies all required services are configured.
     """
+    # Check embedding service health
+    embedding_healthy = False
+    embedding_model = "Not configured"
+    if settings.EMBEDDING_PROVIDER == "gemini":
+        embedding_healthy = bool(settings.GEMINI_API_KEY)
+        embedding_model = settings.GEMINI_EMBEDDING_MODEL
+    elif settings.EMBEDDING_PROVIDER == "openai":
+        embedding_healthy = bool(settings.OPENAI_API_KEY)
+        embedding_model = settings.EMBEDDING_MODEL
+
+    # Check LLM service health
+    llm_healthy = False
+    llm_model = "Not configured"
+    if settings.LLM_PROVIDER == "gemini":
+        llm_healthy = bool(settings.GEMINI_API_KEY)
+        llm_model = settings.GEMINI_LLM_MODEL
+    elif settings.LLM_PROVIDER == "anthropic":
+        llm_healthy = bool(settings.ANTHROPIC_API_KEY)
+        llm_model = settings.ANTHROPIC_MODEL
+
     health_status = {
         "status": "healthy",
         "services": {
-            "embedding": bool(settings.OPENAI_API_KEY),
-            "llm": bool(settings.ANTHROPIC_API_KEY),
+            "embedding": embedding_healthy,
+            "llm": llm_healthy,
             "database": True  # If we got here, DB is working
         },
         "config": {
-            "embedding_model": settings.EMBEDDING_MODEL,
-            "llm_model": settings.ANTHROPIC_MODEL,
+            "embedding_provider": settings.EMBEDDING_PROVIDER,
+            "embedding_model": embedding_model,
+            "llm_provider": settings.LLM_PROVIDER,
+            "llm_model": llm_model,
             "top_k": settings.TOP_K_RESULTS,
             "similarity_threshold": settings.VECTOR_SIMILARITY_THRESHOLD
         }
     }
-    
+
     if not all(health_status["services"].values()):
         raise HTTPException(
             status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
             detail="Some services are not properly configured"
         )
-    
+
     return health_status

@@ -64,6 +64,16 @@ class Settings(BaseSettings):
     # Rate Limiting
     RATE_LIMIT_PER_MINUTE: int = 60
 
+    # Provider Selection
+    LLM_PROVIDER: str = "gemini"  # "anthropic" or "gemini"
+    EMBEDDING_PROVIDER: str = "gemini"  # "openai", "gemini", "cohere", or "local"
+
+    # Google Gemini Configuration
+    GEMINI_API_KEY: str = ""
+    GEMINI_EMBEDDING_MODEL: str = "models/text-embedding-004"
+    GEMINI_LLM_MODEL: str = "gemini-2.0-flash-exp"
+    GEMINI_EMBEDDING_DIMENSIONS: int = 768
+
     # OpenAI / Embeddings
     OPENAI_API_KEY: str = ""
     EMBEDDING_MODEL: str = "text-embedding-3-small"
