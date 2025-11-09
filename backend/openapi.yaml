@@ -1,0 +1,1260 @@
+openapi: 3.0.3
+info:
+  title: Battery Intelligence Platform API
+  description: |
+    Comprehensive REST API for US Battery Industry data, analytics, and forecasting.
+
+    ## Features
+    - Company and facility data with advanced filtering
+    - Geospatial queries for facility locations
+    - Market forecasts and cost projections
+    - Technology analytics and trends
+    - Policy impact analysis
+    - Natural language query interface (RAG-powered chatbot)
+
+    ## Authentication
+    All endpoints require API key authentication via `X-API-Key` header.
+
+    ## Rate Limiting
+    - Free tier: 100 requests/hour
+    - Standard tier: 1,000 requests/hour
+    - Enterprise tier: 10,000 requests/hour
+
+  version: 1.0.0
+  contact:
+    name: Battery Research Team
+    email: api@batteryintel.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+
+servers:
+  - url: https://api.batteryintel.com/v1
+    description: Production server
+  - url: http://localhost:8000/api/v1
+    description: Development server
+
+tags:
+  - name: Companies
+    description: Battery manufacturing companies and OEMs
+  - name: Facilities
+    description: Manufacturing facilities and plants
+  - name: Forecast
+    description: Market forecasts and projections
+  - name: Analytics
+    description: Market analytics and insights
+  - name: Policy
+    description: Government policies and incentives
+  - name: Chatbot
+    description: Natural language query interface
+  - name: Health
+    description: API health and status
+
+security:
+  - ApiKeyAuth: []
+
+paths:
+  /health:
+    get:
+      tags:
+        - Health
+      summary: Health check endpoint
+      description: Check API availability and status
+      security: []
+      responses:
+        '200':
+          description: API is healthy
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthResponse'
+
+  /companies:
+    get:
+      tags:
+        - Companies
+      summary: List all companies
+      description: Get a paginated list of battery companies with optional filtering
+      parameters:
+        - name: technology
+          in: query
+          description: Filter by battery technology (e.g., "Li-ion", "LFP", "Solid-state")
+          schema:
+            type: string
+            example: "LFP"
+        - name: state
+          in: query
+          description: Filter by state abbreviation
+          schema:
+            type: string
+            example: "NV"
+        - name: stage
+          in: query
+          description: Filter by development stage
+          schema:
+            type: string
+            enum: [announced, construction, operational, expansion]
+        - name: min_capacity
+          in: query
+          description: Minimum capacity in GWh
+          schema:
+            type: number
+            minimum: 0
+            example: 50
+        - name: max_capacity
+          in: query
+          description: Maximum capacity in GWh
+          schema:
+            type: number
+            example: 200
+        - name: page
+          in: query
+          description: Page number for pagination
+          schema:
+            type: integer
+            minimum: 1
+            default: 1
+        - name: page_size
+          in: query
+          description: Number of items per page
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 20
+        - name: sort_by
+          in: query
+          description: Sort field
+          schema:
+            type: string
+            enum: [name, capacity, state]
+            default: capacity
+        - name: sort_order
+          in: query
+          description: Sort order
+          schema:
+            type: string
+            enum: [asc, desc]
+            default: desc
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompanyListResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimitExceeded'
+
+  /companies/{id}:
+    get:
+      tags:
+        - Companies
+      summary: Get company details
+      description: Retrieve detailed information about a specific company
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Company ID or slug
+          schema:
+            type: string
+            example: "tesla"
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompanyDetail'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /companies/search:
+    get:
+      tags:
+        - Companies
+      summary: Full-text search companies
+      description: Search companies by name, technology, or other attributes
+      parameters:
+        - name: q
+          in: query
+          required: true
+          description: Search query
+          schema:
+            type: string
+            example: "solid state battery"
+        - name: fields
+          in: query
+          description: Fields to search (comma-separated)
+          schema:
+            type: string
+            default: "name,technology,description"
+            example: "name,technology"
+        - name: limit
+          in: query
+          description: Maximum number of results
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 10
+      responses:
+        '200':
+          description: Search results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+
+  /facilities:
+    get:
+      tags:
+        - Facilities
+      summary: List all facilities
+      description: Get a paginated list of manufacturing facilities with optional filtering
+      parameters:
+        - name: state
+          in: query
+          description: Filter by state abbreviation
+          schema:
+            type: string
+            example: "TN"
+        - name: company
+          in: query
+          description: Filter by company name or ID
+          schema:
+            type: string
+        - name: status
+          in: query
+          description: Filter by operational status
+          schema:
+            type: string
+            enum: [announced, under_construction, operational, expansion, decommissioned]
+        - name: min_capacity
+          in: query
+          description: Minimum capacity in GWh
+          schema:
+            type: number
+            minimum: 0
+        - name: technology
+          in: query
+          description: Filter by technology type
+          schema:
+            type: string
+        - name: bbox
+          in: query
+          description: Bounding box for geospatial filtering (minLon,minLat,maxLon,maxLat)
+          schema:
+            type: string
+            example: "-125.0,24.0,-66.0,49.0"
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+        - name: page_size
+          in: query
+          schema:
+            type: integer
+            default: 20
+            maximum: 100
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FacilityListResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+
+  /facilities/{id}:
+    get:
+      tags:
+        - Facilities
+      summary: Get facility details
+      description: Retrieve detailed information about a specific facility
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Facility ID
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FacilityDetail'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /facilities/nearby:
+    get:
+      tags:
+        - Facilities
+      summary: Find nearby facilities
+      description: Geospatial query to find facilities within a radius
+      parameters:
+        - name: lat
+          in: query
+          required: true
+          description: Latitude
+          schema:
+            type: number
+            format: double
+            example: 36.1627
+        - name: lng
+          in: query
+          required: true
+          description: Longitude
+          schema:
+            type: number
+            format: double
+            example: -86.7816
+        - name: radius
+          in: query
+          description: Search radius in kilometers
+          schema:
+            type: number
+            default: 100
+            minimum: 1
+            maximum: 1000
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 10
+            maximum: 50
+      responses:
+        '200':
+          description: Nearby facilities
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NearbyFacilitiesResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+
+  /forecast/capacity:
+    get:
+      tags:
+        - Forecast
+      summary: Get capacity forecast
+      description: Historical and projected battery capacity data
+      parameters:
+        - name: start_year
+          in: query
+          description: Starting year for forecast
+          schema:
+            type: integer
+            example: 2020
+        - name: end_year
+          in: query
+          description: Ending year for forecast
+          schema:
+            type: integer
+            example: 2030
+        - name: technology
+          in: query
+          description: Filter by technology type
+          schema:
+            type: string
+        - name: region
+          in: query
+          description: Filter by region (state or cluster)
+          schema:
+            type: string
+        - name: granularity
+          in: query
+          description: Data granularity
+          schema:
+            type: string
+            enum: [yearly, quarterly, monthly]
+            default: yearly
+      responses:
+        '200':
+          description: Capacity forecast data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CapacityForecast'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+
+  /forecast/cost:
+    get:
+      tags:
+        - Forecast
+      summary: Get cost projections
+      description: Historical and projected battery cost curve data
+      parameters:
+        - name: start_year
+          in: query
+          schema:
+            type: integer
+            example: 2015
+        - name: end_year
+          in: query
+          schema:
+            type: integer
+            example: 2030
+        - name: technology
+          in: query
+          description: Filter by technology type
+          schema:
+            type: string
+        - name: include_breakdown
+          in: query
+          description: Include cost component breakdown
+          schema:
+            type: boolean
+            default: false
+      responses:
+        '200':
+          description: Cost forecast data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CostForecast'
+
+  /analytics/market-share:
+    get:
+      tags:
+        - Analytics
+      summary: Get market share evolution
+      description: Market share data by technology/chemistry over time
+      parameters:
+        - name: start_year
+          in: query
+          schema:
+            type: integer
+            example: 2015
+        - name: end_year
+          in: query
+          schema:
+            type: integer
+            example: 2030
+        - name: chemistry
+          in: query
+          description: Filter by specific chemistry
+          schema:
+            type: string
+            example: "LFP"
+      responses:
+        '200':
+          description: Market share data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MarketShareResponse'
+
+  /analytics/regional-clusters:
+    get:
+      tags:
+        - Analytics
+      summary: Get regional cluster analysis
+      description: Analysis of battery manufacturing regional clusters
+      responses:
+        '200':
+          description: Regional cluster data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RegionalClusterResponse'
+
+  /analytics/technology-trends:
+    get:
+      tags:
+        - Analytics
+      summary: Get technology trends
+      description: Technology adoption and innovation trends
+      parameters:
+        - name: metric
+          in: query
+          description: Metric to analyze
+          schema:
+            type: string
+            enum: [energy_density, cycle_life, technology_mix]
+            default: technology_mix
+      responses:
+        '200':
+          description: Technology trend data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TechnologyTrendsResponse'
+
+  /analytics/supply-chain:
+    get:
+      tags:
+        - Analytics
+      summary: Get supply chain analysis
+      description: Critical materials and supply chain risk assessment
+      parameters:
+        - name: material
+          in: query
+          description: Filter by specific material
+          schema:
+            type: string
+            example: "lithium"
+      responses:
+        '200':
+          description: Supply chain analysis
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SupplyChainResponse'
+
+  /policies:
+    get:
+      tags:
+        - Policy
+      summary: List policies and incentives
+      description: Government policies, incentives, and regulations
+      parameters:
+        - name: type
+          in: query
+          description: Policy type
+          schema:
+            type: string
+            enum: [tax_credit, grant, loan, regulation, tariff]
+        - name: jurisdiction
+          in: query
+          description: Federal, state, or local
+          schema:
+            type: string
+            enum: [federal, state, local]
+        - name: state
+          in: query
+          description: State abbreviation for state-level policies
+          schema:
+            type: string
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum: [proposed, active, expired]
+      responses:
+        '200':
+          description: List of policies
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PolicyListResponse'
+
+  /policies/{id}:
+    get:
+      tags:
+        - Policy
+      summary: Get policy details
+      description: Detailed information about a specific policy
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Policy details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PolicyDetail'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /policies/{id}/impact:
+    get:
+      tags:
+        - Policy
+      summary: Get policy impact analysis
+      description: Analysis of a policy's economic and market impact
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Policy impact analysis
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PolicyImpactResponse'
+
+  /chat/query:
+    post:
+      tags:
+        - Chatbot
+      summary: Submit natural language query
+      description: Query the battery intelligence system using natural language (RAG-powered)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChatQueryRequest'
+      responses:
+        '200':
+          description: Query response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChatQueryResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+
+  /chat/history:
+    get:
+      tags:
+        - Chatbot
+      summary: Get conversation history
+      description: Retrieve past conversation history for the authenticated user
+      parameters:
+        - name: session_id
+          in: query
+          description: Filter by session ID
+          schema:
+            type: string
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 50
+            maximum: 100
+      responses:
+        '200':
+          description: Conversation history
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChatHistoryResponse'
+
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: API key for authentication
+
+  schemas:
+    HealthResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: "healthy"
+        version:
+          type: string
+          example: "1.0.0"
+        timestamp:
+          type: string
+          format: date-time
+        database:
+          type: string
+          example: "connected"
+
+    Company:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "tesla"
+        name:
+          type: string
+          example: "Tesla"
+        capacity:
+          type: number
+          description: Total capacity in GWh
+          example: 110
+        technology:
+          type: string
+          example: "Li-ion (4680, 2170)"
+        facilities:
+          type: array
+          items:
+            type: string
+        states:
+          type: array
+          items:
+            type: string
+          example: ["NV", "TX"]
+        partnerships:
+          type: array
+          items:
+            type: string
+        website:
+          type: string
+          format: uri
+
+    CompanyDetail:
+      allOf:
+        - $ref: '#/components/schemas/Company'
+        - type: object
+          properties:
+            description:
+              type: string
+            founded:
+              type: integer
+            headquarters:
+              type: object
+              properties:
+                city:
+                  type: string
+                state:
+                  type: string
+                country:
+                  type: string
+            facilities_detail:
+              type: array
+              items:
+                $ref: '#/components/schemas/Facility'
+            financial_data:
+              type: object
+              properties:
+                market_cap:
+                  type: number
+                revenue:
+                  type: number
+                investment:
+                  type: number
+            key_executives:
+              type: array
+              items:
+                type: object
+
+    CompanyListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Company'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        filters_applied:
+          type: object
+
+    Facility:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+          example: "Tesla Gigafactory Nevada"
+        company:
+          type: string
+        location:
+          $ref: '#/components/schemas/Location'
+        capacity:
+          type: number
+          description: Capacity in GWh
+          example: 100
+        technology:
+          type: string
+        status:
+          type: string
+          enum: [announced, under_construction, operational, expansion, decommissioned]
+        operational_date:
+          type: string
+          format: date
+        investment:
+          type: number
+          description: Investment in USD
+        employees:
+          type: integer
+
+    FacilityDetail:
+      allOf:
+        - $ref: '#/components/schemas/Facility'
+        - type: object
+          properties:
+            description:
+              type: string
+            production_lines:
+              type: integer
+            energy_source:
+              type: string
+            certifications:
+              type: array
+              items:
+                type: string
+            supply_chain:
+              type: object
+
+    FacilityListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Facility'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+
+    NearbyFacilitiesResponse:
+      type: object
+      properties:
+        query:
+          type: object
+          properties:
+            latitude:
+              type: number
+            longitude:
+              type: number
+            radius:
+              type: number
+        data:
+          type: array
+          items:
+            allOf:
+              - $ref: '#/components/schemas/Facility'
+              - type: object
+                properties:
+                  distance:
+                    type: number
+                    description: Distance in kilometers
+
+    Location:
+      type: object
+      properties:
+        address:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        zip_code:
+          type: string
+        country:
+          type: string
+          default: "USA"
+        coordinates:
+          type: object
+          properties:
+            latitude:
+              type: number
+              format: double
+            longitude:
+              type: number
+              format: double
+
+    CapacityForecast:
+      type: object
+      properties:
+        metadata:
+          type: object
+          properties:
+            start_year:
+              type: integer
+            end_year:
+              type: integer
+            granularity:
+              type: string
+            confidence_interval:
+              type: string
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              year:
+                type: integer
+              capacity:
+                type: number
+                description: Capacity in GWh
+              growth_rate:
+                type: number
+                description: Year-over-year growth percentage
+              breakdown:
+                type: object
+                additionalProperties:
+                  type: number
+
+    CostForecast:
+      type: object
+      properties:
+        metadata:
+          type: object
+          properties:
+            unit:
+              type: string
+              example: "$/kWh"
+            base_year:
+              type: integer
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              year:
+                type: integer
+              cost:
+                type: number
+              reduction_rate:
+                type: number
+              breakdown:
+                type: object
+                properties:
+                  cathode:
+                    type: number
+                  anode:
+                    type: number
+                  electrolyte:
+                    type: number
+                  separator:
+                    type: number
+                  manufacturing:
+                    type: number
+
+    MarketShareResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: object
+              properties:
+                chemistry:
+                  type: string
+                share:
+                  type: number
+                  description: Market share percentage
+
+    RegionalClusterResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              states:
+                type: array
+                items:
+                  type: string
+              total_capacity:
+                type: number
+              num_facilities:
+                type: integer
+              employment:
+                type: integer
+              dominant_players:
+                type: array
+                items:
+                  type: string
+              advantages:
+                type: array
+                items:
+                  type: string
+
+    TechnologyTrendsResponse:
+      type: object
+      properties:
+        metric:
+          type: string
+        data:
+          type: object
+
+    SupplyChainResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            materials:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  risk_level:
+                    type: string
+                    enum: [low, medium, high, critical]
+                  domestic_production:
+                    type: number
+                  import_dependency:
+                    type: number
+                  major_suppliers:
+                    type: array
+                    items:
+                      type: string
+
+    Policy:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+        jurisdiction:
+          type: string
+        state:
+          type: string
+        status:
+          type: string
+        effective_date:
+          type: string
+          format: date
+        expiration_date:
+          type: string
+          format: date
+        summary:
+          type: string
+
+    PolicyDetail:
+      allOf:
+        - $ref: '#/components/schemas/Policy'
+        - type: object
+          properties:
+            full_text:
+              type: string
+            requirements:
+              type: array
+              items:
+                type: string
+            benefits:
+              type: object
+            affected_companies:
+              type: array
+              items:
+                type: string
+
+    PolicyListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Policy'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+
+    PolicyImpactResponse:
+      type: object
+      properties:
+        policy_id:
+          type: string
+        impact_metrics:
+          type: object
+          properties:
+            jobs_created:
+              type: integer
+            investment_attracted:
+              type: number
+            capacity_added:
+              type: number
+            companies_benefited:
+              type: integer
+        economic_analysis:
+          type: object
+
+    ChatQueryRequest:
+      type: object
+      required:
+        - query
+      properties:
+        query:
+          type: string
+          example: "What are the top battery companies in Tennessee?"
+        session_id:
+          type: string
+          description: Session ID for conversation continuity
+        include_sources:
+          type: boolean
+          default: true
+          description: Include source references in response
+        max_sources:
+          type: integer
+          default: 5
+          minimum: 1
+          maximum: 10
+
+    ChatQueryResponse:
+      type: object
+      properties:
+        query:
+          type: string
+        response:
+          type: string
+        sources:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+                example: "company"
+              id:
+                type: string
+              relevance_score:
+                type: number
+              snippet:
+                type: string
+        session_id:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+
+    ChatHistoryResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              session_id:
+                type: string
+              query:
+                type: string
+              response:
+                type: string
+              timestamp:
+                type: string
+                format: date-time
+
+    SearchResponse:
+      type: object
+      properties:
+        query:
+          type: string
+        total_results:
+          type: integer
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+                example: "company"
+              item:
+                type: object
+              score:
+                type: number
+              highlights:
+                type: array
+                items:
+                  type: string
+
+    Pagination:
+      type: object
+      properties:
+        page:
+          type: integer
+        page_size:
+          type: integer
+        total_items:
+          type: integer
+        total_pages:
+          type: integer
+        has_next:
+          type: boolean
+        has_previous:
+          type: boolean
+
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+            message:
+              type: string
+            details:
+              type: object
+        timestamp:
+          type: string
+          format: date-time
+        path:
+          type: string
+
+  responses:
+    BadRequest:
+      description: Bad request - invalid parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error:
+              code: "BAD_REQUEST"
+              message: "Invalid query parameters"
+            timestamp: "2025-11-09T12:00:00Z"
+            path: "/api/v1/companies"
+
+    Unauthorized:
+      description: Unauthorized - missing or invalid API key
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error:
+              code: "UNAUTHORIZED"
+              message: "Invalid or missing API key"
+            timestamp: "2025-11-09T12:00:00Z"
+
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error:
+              code: "NOT_FOUND"
+              message: "Resource not found"
+            timestamp: "2025-11-09T12:00:00Z"
+
+    RateLimitExceeded:
+      description: Rate limit exceeded
+      headers:
+        X-RateLimit-Limit:
+          schema:
+            type: integer
+          description: Request limit per hour
+        X-RateLimit-Remaining:
+          schema:
+            type: integer
+          description: Remaining requests
+        X-RateLimit-Reset:
+          schema:
+            type: integer
+          description: Time when the rate limit resets (Unix timestamp)
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error:
+              code: "RATE_LIMIT_EXCEEDED"
+              message: "Rate limit exceeded. Try again later."
+            timestamp: "2025-11-09T12:00:00Z"
