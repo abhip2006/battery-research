@@ -52,7 +52,7 @@ function Building2({ className }: { className?: string }) {
 
 export function AboutPage() {
   return (
-    <div className="min-h-screen pt-24 bg-[#0A0A0A]">
+    <div className="min-h-screen pt-20 sm:pt-24 bg-[#0A0A0A]">
       {/* Hero Banner */}
       <div className="relative bg-[#0F0F0F] border-b-4 border-[#B2FF59] overflow-hidden">
         <motion.div
@@ -60,40 +60,40 @@ export function AboutPage() {
           transition={{ duration: 3, repeat: Infinity }}
           className="absolute inset-0 bg-gradient-to-r from-transparent via-[#B2FF59]/10 to-transparent"
         />
-        <div className="relative max-w-7xl mx-auto px-6 py-16">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h1 className="text-[#B2FF59] mb-4 text-5xl font-extrabold font-tech uppercase tracking-wider">About Battery Industry DeepDive</h1>
-            <p className="text-[#FAFAFA] max-w-2xl text-lg font-medium">
+            <h1 className="text-[#B2FF59] mb-3 sm:mb-4 text-2xl sm:text-3xl lg:text-5xl font-extrabold font-tech uppercase tracking-wider">About Battery Industry DeepDive</h1>
+            <p className="text-[#FAFAFA] max-w-2xl text-base sm:text-lg font-medium">
               A comprehensive, data-driven intelligence platform for understanding America's battery revolution
             </p>
           </motion.div>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 py-12 space-y-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-12 space-y-12 sm:space-y-16">
         {/* Mission Statement */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="bg-[#1A1A1A] p-12 rounded-2xl border-2 border-[#B2FF59]/30"
+          className="bg-[#1A1A1A] p-6 sm:p-12 rounded-2xl border-2 border-[#B2FF59]/30"
         >
-          <div className="flex items-start gap-8">
-            <div className="p-6 bg-[#0F0F0F] rounded-xl border-2 border-[#B2FF59]/30">
-              <Target className="size-12 text-[#B2FF59]" />
+          <div className="flex flex-col sm:flex-row items-start gap-6 sm:gap-8">
+            <div className="p-4 sm:p-6 bg-[#0F0F0F] rounded-xl border-2 border-[#B2FF59]/30">
+              <Target className="size-10 sm:size-12 text-[#B2FF59]" />
             </div>
             <div className="flex-1">
-              <h2 className="text-[#B2FF59] mb-4 text-3xl font-bold font-tech uppercase tracking-wider">Our Mission</h2>
-              <p className="text-[#CCCCCC] leading-relaxed mb-4 text-lg">
+              <h2 className="text-[#B2FF59] mb-3 sm:mb-4 text-2xl sm:text-3xl font-bold font-tech uppercase tracking-wider">Our Mission</h2>
+              <p className="text-[#CCCCCC] leading-relaxed mb-3 sm:mb-4 text-sm sm:text-base lg:text-lg">
                 Battery Industry DeepDive exists to provide transparent, comprehensive, and actionable intelligence
                 on the United States battery industry ecosystem. We aggregate data from public sources to create
                 a unified view of companies, technologies, investments, and market trends.
               </p>
-              <p className="text-[#CCCCCC] leading-relaxed text-lg">
+              <p className="text-[#CCCCCC] leading-relaxed text-sm sm:text-base lg:text-lg">
                 As the energy transition accelerates, stakeholders need reliable information to make informed
                 decisions. This platform serves researchers, policymakers, investors, and industry professionals
                 seeking to understand and participate in America's battery revolution.
@@ -109,8 +109,8 @@ export function AboutPage() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-[#B2FF59] mb-8 text-center">Core Principles</h2>
-          <div className="grid grid-cols-2 gap-6">
+          <h2 className="text-[#B2FF59] mb-6 sm:mb-8 text-center text-2xl sm:text-3xl font-bold">Core Principles</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
             {PRINCIPLES.map((principle, index) => {
               const Icon = principle.icon;
               return (
@@ -120,11 +120,11 @@ export function AboutPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="bg-[#1E1E1E] p-6 rounded-xl border border-[#B2FF59]/20 hover:border-[#B2FF59] hover:shadow-lg hover:shadow-[#B2FF59]/10 transition-all duration-300"
+                  className="bg-[#1E1E1E] p-5 sm:p-6 rounded-xl border border-[#B2FF59]/20 hover:border-[#B2FF59] hover:shadow-lg hover:shadow-[#B2FF59]/10 transition-all duration-300"
                 >
-                  <Icon className="size-8 text-[#B2FF59] mb-4" />
-                  <h3 className="text-[#FAFAFA] mb-3">{principle.title}</h3>
-                  <p className="text-[#FAFAFA]/70 text-sm leading-relaxed">{principle.description}</p>
+                  <Icon className="size-7 sm:size-8 text-[#B2FF59] mb-3 sm:mb-4" />
+                  <h3 className="text-[#FAFAFA] mb-2 sm:mb-3 text-base sm:text-lg font-semibold">{principle.title}</h3>
+                  <p className="text-[#FAFAFA]/70 text-xs sm:text-sm leading-relaxed">{principle.description}</p>
                 </motion.div>
               );
             })}
@@ -137,29 +137,29 @@ export function AboutPage() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="bg-[#1E1E1E] p-12 rounded-2xl border border-[#B2FF59]/20"
+          className="bg-[#1E1E1E] p-6 sm:p-12 rounded-2xl border border-[#B2FF59]/20"
         >
-          <h2 className="text-[#B2FF59] mb-6">Methodology</h2>
-          <div className="space-y-6">
+          <h2 className="text-[#B2FF59] mb-4 sm:mb-6 text-2xl sm:text-3xl font-bold">Methodology</h2>
+          <div className="space-y-5 sm:space-y-6">
             <div>
-              <h3 className="text-[#FAFAFA] mb-3">Data Collection</h3>
-              <p className="text-[#FAFAFA]/70 leading-relaxed">
+              <h3 className="text-[#FAFAFA] mb-2 sm:mb-3 text-base sm:text-lg font-semibold">Data Collection</h3>
+              <p className="text-[#FAFAFA]/70 leading-relaxed text-sm sm:text-base">
                 We systematically collect data from government agencies, regulatory filings, academic institutions,
                 and industry publications. All data points are cross-referenced and verified before inclusion in
                 our database.
               </p>
             </div>
             <div>
-              <h3 className="text-[#FAFAFA] mb-3">Analysis Framework</h3>
-              <p className="text-[#FAFAFA]/70 leading-relaxed">
+              <h3 className="text-[#FAFAFA] mb-2 sm:mb-3 text-base sm:text-lg font-semibold">Analysis Framework</h3>
+              <p className="text-[#FAFAFA]/70 leading-relaxed text-sm sm:text-base">
                 Our analysis combines quantitative metrics (funding amounts, capacity figures, employment data)
                 with qualitative insights (technology assessments, market trends, policy impacts) to provide
                 comprehensive sector intelligence.
               </p>
             </div>
             <div>
-              <h3 className="text-[#FAFAFA] mb-3">Update Cadence</h3>
-              <p className="text-[#FAFAFA]/70 leading-relaxed">
+              <h3 className="text-[#FAFAFA] mb-2 sm:mb-3 text-base sm:text-lg font-semibold">Update Cadence</h3>
+              <p className="text-[#FAFAFA]/70 leading-relaxed text-sm sm:text-base">
                 The database is updated continuously as new information becomes available. Major updates occur
                 monthly, with real-time updates for significant announcements such as funding rounds, facility
                 openings, and policy changes.
@@ -175,9 +175,9 @@ export function AboutPage() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-[#B2FF59] mb-6">Primary Data Sources</h2>
-          <div className="bg-[#1E1E1E] p-8 rounded-2xl border border-[#B2FF59]/20">
-            <div className="grid grid-cols-2 gap-4">
+          <h2 className="text-[#B2FF59] mb-4 sm:mb-6 text-2xl sm:text-3xl font-bold">Primary Data Sources</h2>
+          <div className="bg-[#1E1E1E] p-5 sm:p-8 rounded-2xl border border-[#B2FF59]/20">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               {DATA_SOURCES.map((source, index) => (
                 <motion.div
                   key={source}
@@ -185,10 +185,10 @@ export function AboutPage() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: index * 0.05 }}
-                  className="flex items-center gap-3 p-4 bg-[#2B2B2B] rounded-lg border border-[#B2FF59]/10"
+                  className="flex items-center gap-3 p-3 sm:p-4 bg-[#2B2B2B] rounded-lg border border-[#B2FF59]/10"
                 >
-                  <CheckCircle className="size-5 text-[#B2FF59] flex-shrink-0" />
-                  <span className="text-[#FAFAFA]/80">{source}</span>
+                  <CheckCircle className="size-4 sm:size-5 text-[#B2FF59] flex-shrink-0" />
+                  <span className="text-[#FAFAFA]/80 text-sm sm:text-base">{source}</span>
                 </motion.div>
               ))}
             </div>
@@ -202,8 +202,8 @@ export function AboutPage() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-[#B2FF59] mb-6">Platform Statistics</h2>
-          <div className="grid grid-cols-4 gap-6">
+          <h2 className="text-[#B2FF59] mb-4 sm:mb-6 text-2xl sm:text-3xl font-bold">Platform Statistics</h2>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {METRICS.map((metric, index) => {
               const Icon = metric.icon;
               return (
@@ -213,11 +213,11 @@ export function AboutPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: index * 0.1 }}
-                  className="bg-[#1E1E1E] p-6 rounded-xl border border-[#B2FF59]/20"
+                  className="bg-[#1E1E1E] p-5 sm:p-6 rounded-xl border border-[#B2FF59]/20"
                 >
-                  <Icon className="size-8 text-[#B2FF59] mb-3" />
-                  <div className="text-[#FAFAFA] font-mono mb-1">{metric.value}</div>
-                  <div className="text-[#FAFAFA]/70 text-sm">{metric.label}</div>
+                  <Icon className="size-7 sm:size-8 text-[#B2FF59] mb-3" />
+                  <div className="text-[#FAFAFA] font-mono mb-1 text-xl sm:text-2xl">{metric.value}</div>
+                  <div className="text-[#FAFAFA]/70 text-xs sm:text-sm">{metric.label}</div>
                 </motion.div>
               );
             })}
@@ -230,10 +230,10 @@ export function AboutPage() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="bg-[#1E1E1E] p-8 rounded-2xl border border-[#1565C0]/20"
+          className="bg-[#1E1E1E] p-5 sm:p-8 rounded-2xl border border-[#1565C0]/20"
         >
-          <h3 className="text-[#1565C0] mb-4">Disclaimer</h3>
-          <p className="text-[#FAFAFA]/70 text-sm leading-relaxed">
+          <h3 className="text-[#1565C0] mb-3 sm:mb-4 text-lg sm:text-xl font-semibold">Disclaimer</h3>
+          <p className="text-[#FAFAFA]/70 text-xs sm:text-sm leading-relaxed">
             Battery Industry DeepDive is an independent intelligence platform. We do not provide investment advice,
             endorse specific companies or technologies, nor accept commercial sponsorships that could compromise
             our neutrality. All data is presented for informational purposes only. Users should conduct their own
@@ -247,13 +247,13 @@ export function AboutPage() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="bg-gradient-to-r from-[#1E1E1E] to-[#2B2B2B] p-12 rounded-2xl border border-[#B2FF59] text-center"
+          className="bg-gradient-to-r from-[#1E1E1E] to-[#2B2B2B] p-8 sm:p-12 rounded-2xl border border-[#B2FF59] text-center"
         >
-          <h2 className="text-[#B2FF59] mb-4">Built with Transparency in Mind</h2>
-          <p className="text-[#FAFAFA]/80 max-w-2xl mx-auto mb-6">
+          <h2 className="text-[#B2FF59] mb-3 sm:mb-4 text-2xl sm:text-3xl font-bold">Built with Transparency in Mind</h2>
+          <p className="text-[#FAFAFA]/80 max-w-2xl mx-auto mb-5 sm:mb-6 text-sm sm:text-base">
             Have questions about our methodology or want to contribute data? We welcome feedback from the community.
           </p>
-          <button className="px-8 py-3 bg-[#B2FF59] text-[#1E1E1E] rounded-lg hover:bg-[#A0E050] transition-colors duration-300">
+          <button className="px-6 sm:px-8 py-3 bg-[#B2FF59] text-[#1E1E1E] rounded-lg hover:bg-[#A0E050] transition-colors duration-300 text-sm sm:text-base font-semibold">
             Get in Touch
           </button>
         </motion.div>

@@ -88,7 +88,7 @@ export function InvestmentsPage() {
   const [hoveredSector, setHoveredSector] = useState<string | null>(null);
 
   return (
-    <div className="min-h-screen pt-24 bg-[#0A0A0A]">
+    <div className="min-h-screen pt-20 sm:pt-24 bg-[#0A0A0A]">
       {/* Hero Banner */}
       <div className="relative bg-[#0F0F0F] border-b-4 border-[#B2FF59] overflow-hidden">
         <motion.div
@@ -96,30 +96,30 @@ export function InvestmentsPage() {
           transition={{ duration: 3, repeat: Infinity }}
           className="absolute inset-0 bg-gradient-to-r from-transparent via-[#B2FF59]/10 to-transparent"
         />
-        <div className="relative max-w-7xl mx-auto px-6 py-16">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h1 className="text-[#B2FF59] mb-4 text-5xl font-extrabold font-tech uppercase tracking-wider">Investment Landscape</h1>
-            <p className="text-[#FAFAFA] max-w-2xl text-lg font-medium">
+            <h1 className="text-[#B2FF59] mb-3 sm:mb-4 text-3xl sm:text-4xl lg:text-5xl font-extrabold font-tech uppercase tracking-wider">Investment Landscape</h1>
+            <p className="text-[#FAFAFA] max-w-2xl text-base sm:text-lg font-medium">
               Track capital flows, investor portfolios, and funding trends across the U.S. battery ecosystem
             </p>
           </motion.div>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 py-12 space-y-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-12 space-y-8 sm:space-y-12">
         {/* Investment Heatmap */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-[#B2FF59] mb-6">Investment Distribution by Sector</h2>
-          <div className="bg-[#1E1E1E] p-8 rounded-2xl border border-[#B2FF59]/20">
-            <div className="grid grid-cols-3 gap-4">
+          <h2 className="text-[#B2FF59] mb-4 sm:mb-6 text-2xl sm:text-3xl font-bold">Investment Distribution by Sector</h2>
+          <div className="bg-[#1E1E1E] p-4 sm:p-8 rounded-2xl border border-[#B2FF59]/20">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
               {INVESTMENT_DATA.map((item, index) => (
                 <motion.div
                   key={item.sector}
@@ -131,7 +131,7 @@ export function InvestmentsPage() {
                   className="relative group cursor-pointer"
                 >
                   <div
-                    className="p-6 rounded-xl border-2 transition-all duration-300"
+                    className="p-4 sm:p-6 rounded-xl border-2 transition-all duration-300 min-h-[120px] sm:min-h-[140px]"
                     style={{
                       backgroundColor: hoveredSector === item.sector ? item.color : '#2B2B2B',
                       borderColor: hoveredSector === item.sector ? item.color : 'transparent',
@@ -141,7 +141,7 @@ export function InvestmentsPage() {
                   >
                     <div className="flex items-center justify-between mb-3">
                       <PieChart
-                        className="size-8 transition-colors duration-300"
+                        className="size-7 sm:size-8 transition-colors duration-300"
                         style={{
                           color: hoveredSector === item.sector ? '#1E1E1E' : item.color,
                         }}
@@ -179,18 +179,18 @@ export function InvestmentsPage() {
               ))}
             </div>
 
-            <div className="mt-8 pt-6 border-t border-[#B2FF59]/20 flex justify-between items-center">
-              <div>
-                <div className="text-[#FAFAFA]/60 text-sm mb-1">Total Investment (2020-2024)</div>
-                <div className="text-[#B2FF59] font-mono text-2xl">$29.9B</div>
+            <div className="mt-6 sm:mt-8 pt-6 border-t border-[#B2FF59]/20 grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
+              <div className="text-center sm:text-left">
+                <div className="text-[#FAFAFA]/60 text-xs sm:text-sm mb-1">Total Investment (2020-2024)</div>
+                <div className="text-[#B2FF59] font-mono text-xl sm:text-2xl">$29.9B</div>
               </div>
-              <div>
-                <div className="text-[#FAFAFA]/60 text-sm mb-1">YoY Growth</div>
-                <div className="text-[#B2FF59] font-mono text-2xl">+34%</div>
+              <div className="text-center sm:text-left">
+                <div className="text-[#FAFAFA]/60 text-xs sm:text-sm mb-1">YoY Growth</div>
+                <div className="text-[#B2FF59] font-mono text-xl sm:text-2xl">+34%</div>
               </div>
-              <div>
-                <div className="text-[#FAFAFA]/60 text-sm mb-1">Active Investors</div>
-                <div className="text-[#B2FF59] font-mono text-2xl">240+</div>
+              <div className="text-center sm:text-left">
+                <div className="text-[#FAFAFA]/60 text-xs sm:text-sm mb-1">Active Investors</div>
+                <div className="text-[#B2FF59] font-mono text-xl sm:text-2xl">240+</div>
               </div>
             </div>
           </div>
@@ -203,8 +203,8 @@ export function InvestmentsPage() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-[#B2FF59] mb-6">Key Investors</h2>
-          <div className="space-y-4">
+          <h2 className="text-[#B2FF59] mb-4 sm:mb-6 text-2xl sm:text-3xl font-bold">Key Investors</h2>
+          <div className="space-y-3 sm:space-y-4">
             {INVESTORS.map((investor, index) => (
               <motion.div
                 key={investor.name}
@@ -212,16 +212,18 @@ export function InvestmentsPage() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: index * 0.1 }}
-                className="bg-[#1E1E1E] p-6 rounded-xl border border-[#B2FF59]/20 hover:border-[#B2FF59] hover:shadow-lg hover:shadow-[#B2FF59]/10 transition-all duration-300 group"
+                className="bg-[#1E1E1E] p-4 sm:p-6 rounded-xl border border-[#B2FF59]/20 hover:border-[#B2FF59] hover:shadow-lg hover:shadow-[#B2FF59]/10 transition-all duration-300 group"
               >
-                <div className="flex items-start justify-between">
-                  <div className="flex-1">
-                    <div className="flex items-center gap-3 mb-3">
-                      <Building2 className="size-6 text-[#B2FF59]" />
-                      <h3 className="text-[#FAFAFA] group-hover:text-[#B2FF59] transition-colors duration-300">
-                        {investor.name}
-                      </h3>
-                      <span className="px-3 py-1 bg-[#1565C0]/20 text-[#1565C0] text-sm rounded">
+                <div className="flex flex-col sm:flex-row items-start gap-4 sm:justify-between">
+                  <div className="flex-1 w-full">
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 mb-3">
+                      <div className="flex items-center gap-3">
+                        <Building2 className="size-5 sm:size-6 text-[#B2FF59] flex-shrink-0" />
+                        <h3 className="text-[#FAFAFA] text-base sm:text-lg group-hover:text-[#B2FF59] transition-colors duration-300">
+                          {investor.name}
+                        </h3>
+                      </div>
+                      <span className="px-3 py-1.5 bg-[#1565C0]/20 text-[#1565C0] text-xs sm:text-sm rounded self-start sm:self-auto">
                         {investor.type}
                       </span>
                     </div>
@@ -237,9 +239,9 @@ export function InvestmentsPage() {
                       ))}
                     </div>
                   </div>
-                  <div className="text-right">
-                    <div className="text-[#FAFAFA]/60 text-sm mb-1">Total Invested</div>
-                    <div className="text-[#B2FF59] font-mono">{investor.totalInvested}</div>
+                  <div className="text-left sm:text-right w-full sm:w-auto">
+                    <div className="text-[#FAFAFA]/60 text-xs sm:text-sm mb-1">Total Invested</div>
+                    <div className="text-[#B2FF59] font-mono text-lg sm:text-base">{investor.totalInvested}</div>
                   </div>
                 </div>
               </motion.div>
@@ -254,16 +256,18 @@ export function InvestmentsPage() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-[#B2FF59] mb-6">Recent Deals</h2>
-          <div className="bg-[#1E1E1E] rounded-xl border border-[#B2FF59]/20 overflow-hidden">
+          <h2 className="text-[#B2FF59] mb-4 sm:mb-6 text-2xl sm:text-3xl font-bold">Recent Deals</h2>
+
+          {/* Desktop Table View */}
+          <div className="hidden md:block bg-[#1E1E1E] rounded-xl border border-[#B2FF59]/20 overflow-hidden">
             {/* Header */}
             <div className="grid grid-cols-6 gap-4 p-4 bg-[#2B2B2B] border-b border-[#B2FF59]/20">
-              <div className="text-[#B2FF59] text-sm">Company</div>
-              <div className="text-[#B2FF59] text-sm">Investor</div>
-              <div className="text-[#B2FF59] text-sm">Amount</div>
-              <div className="text-[#B2FF59] text-sm">Round</div>
-              <div className="text-[#B2FF59] text-sm">Date</div>
-              <div className="text-[#B2FF59] text-sm">Sector</div>
+              <div className="text-[#B2FF59] text-sm font-semibold">Company</div>
+              <div className="text-[#B2FF59] text-sm font-semibold">Investor</div>
+              <div className="text-[#B2FF59] text-sm font-semibold">Amount</div>
+              <div className="text-[#B2FF59] text-sm font-semibold">Round</div>
+              <div className="text-[#B2FF59] text-sm font-semibold">Date</div>
+              <div className="text-[#B2FF59] text-sm font-semibold">Sector</div>
             </div>
 
             {/* Rows */}
@@ -287,6 +291,45 @@ export function InvestmentsPage() {
                   <span className="px-2 py-1 bg-[#B2FF59]/20 text-[#B2FF59] text-xs rounded">
                     {deal.sector}
                   </span>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Mobile Card View */}
+          <div className="md:hidden space-y-3">
+            {DEALS.map((deal, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: index * 0.05 }}
+                className="bg-[#1E1E1E] p-4 rounded-xl border border-[#B2FF59]/20"
+              >
+                <div className="flex justify-between items-start mb-3">
+                  <h3 className="text-[#FAFAFA] font-semibold text-base">{deal.company}</h3>
+                  <span className="px-2 py-1 bg-[#B2FF59]/20 text-[#B2FF59] text-xs rounded ml-2 flex-shrink-0">
+                    {deal.sector}
+                  </span>
+                </div>
+                <div className="space-y-2 text-sm">
+                  <div className="flex justify-between">
+                    <span className="text-[#FAFAFA]/60">Investor</span>
+                    <span className="text-[#FAFAFA]">{deal.investor}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-[#FAFAFA]/60">Amount</span>
+                    <span className="text-[#B2FF59] font-mono">{deal.amount}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-[#FAFAFA]/60">Round</span>
+                    <span className="text-[#1565C0]">{deal.round}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-[#FAFAFA]/60">Date</span>
+                    <span className="text-[#FAFAFA]">{deal.date}</span>
+                  </div>
                 </div>
               </motion.div>
             ))}
