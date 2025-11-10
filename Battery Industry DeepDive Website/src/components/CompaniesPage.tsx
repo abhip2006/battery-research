@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { Building2, MapPin, TrendingUp, DollarSign, Search, Loader2, Filter, X } from 'lucide-react';
 import { getCompanies, getCompanyFilters, type Company } from '../services/companies.service';
@@ -39,6 +40,7 @@ const REGIONS_MAP: Record<string, string> = {
 };
 
 export function CompaniesPage() {
+  const navigate = useNavigate();
   const [companies, setCompanies] = useState<Company[]>([]);
   const [filteredCompanies, setFilteredCompanies] = useState<Company[]>([]);
   const [loading, setLoading] = useState(true);
@@ -389,6 +391,7 @@ export function CompaniesPage() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.4, delay: index * 0.05 }}
+                    onClick={() => navigate(`/companies/${company.id}`)}
                     className="bg-[#1A1A1A] p-4 md:p-6 rounded-xl border-2 border-[#2B2B2B] hover:border-[#B2FF59] hover:shadow-lg hover:shadow-[#B2FF59]/20 transition-all duration-300 group cursor-pointer"
                   >
                     <div className="flex flex-col gap-4">

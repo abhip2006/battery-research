@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { ChevronDown, ChevronUp, MapPin, DollarSign, Award } from 'lucide-react';
 
@@ -88,6 +89,7 @@ const COMPANIES = [
 const FILTERS = ['All', 'Solid-State', 'Recycling', 'Grid Storage', 'Flow Batteries'];
 
 export function CompanyDashboard() {
+  const navigate = useNavigate();
   const [selectedFilter, setSelectedFilter] = useState('All');
   const [expandedRow, setExpandedRow] = useState<number | null>(null);
 
@@ -294,7 +296,13 @@ export function CompanyDashboard() {
                           <p className="text-[#CCCCCC] leading-relaxed mb-4 text-sm md:text-base">
                             {company.details.investors}
                           </p>
-                          <button className="w-full md:w-auto px-6 py-3 bg-[#B2FF59] text-[#0A0A0A] rounded-lg md:rounded-xl hover:bg-[#A0E050] transition-colors duration-300 shadow-lg shadow-[#B2FF59]/30 font-semibold text-sm md:text-base min-h-[44px]">
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              navigate(`/companies/${company.id}`);
+                            }}
+                            className="w-full md:w-auto px-6 py-3 bg-[#B2FF59] text-[#0A0A0A] rounded-lg md:rounded-xl hover:bg-[#A0E050] transition-colors duration-300 shadow-lg shadow-[#B2FF59]/30 font-semibold text-sm md:text-base min-h-[44px]"
+                          >
                             View Full Profile →
                           </button>
                         </div>
