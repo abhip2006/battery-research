@@ -1,19 +1,11 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { motion, AnimatePresence } from 'motion/react';
-import { Battery, Sun, Moon, Menu, X } from 'lucide-react';
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from './ui/sheet';
+import { motion } from 'motion/react';
+import { Battery, Sun, Moon } from 'lucide-react';
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [darkMode, setDarkMode] = useState(true);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
@@ -44,7 +36,7 @@ export function Navbar() {
       className="fixed top-0 left-0 right-0 z-50 border-b-2 border-[#B2FF59]/20"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4">
-        <div className="flex items-center justify-between gap-3">
+        <div className="flex items-center justify-between gap-6">
           {/* Logo and Title */}
           <Link to="/" className="flex items-center gap-2 sm:gap-3 group">
             <motion.div
@@ -67,13 +59,13 @@ export function Navbar() {
             </span>
           </Link>
 
-          {/* Desktop Navigation - Hidden on mobile, visible from md breakpoint */}
-          <div className="hidden md:flex items-center gap-4 lg:gap-8">
+          {/* Navigation Links - Always visible with proper spacing */}
+          <div className="flex items-center gap-6 lg:gap-8">
             {navItems.map((item) => (
               <Link
                 key={item.path}
                 to={item.path}
-                className="relative text-[#FAFAFA] hover:text-[#B2FF59] transition-colors duration-300 font-medium text-sm lg:text-base"
+                className="relative text-[#FAFAFA] hover:text-[#B2FF59] transition-colors duration-300 font-medium text-sm lg:text-base whitespace-nowrap"
               >
                 {item.name}
                 {location.pathname === item.path && (
@@ -86,126 +78,18 @@ export function Navbar() {
             ))}
           </div>
 
-          {/* Right Side Actions */}
-          <div className="flex items-center gap-2 sm:gap-3">
-            {/* Dark Mode Toggle - Visible on desktop */}
-            <button
-              onClick={() => setDarkMode(!darkMode)}
-              className="hidden md:flex p-2.5 sm:p-3 rounded-lg bg-[#1A1A1A] hover:bg-[#2B2B2B] border-2 border-[#2B2B2B] hover:border-[#B2FF59] transition-all duration-300 min-h-[44px] min-w-[44px] items-center justify-center"
-              aria-label="Toggle dark mode"
-            >
-              {darkMode ? (
-                <Sun className="size-5 text-[#B2FF59]" />
-              ) : (
-                <Moon className="size-5 text-[#B2FF59]" />
-              )}
-            </button>
-
-            {/* Hamburger Menu - Mobile Only */}
-            <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
-            <SheetTrigger asChild>
-              <button
-                className="md:hidden p-2.5 sm:p-3 rounded-lg bg-[#1A1A1A] hover:bg-[#2B2B2B] border-2 border-[#2B2B2B] hover:border-[#B2FF59] transition-all duration-300 min-h-[44px] min-w-[44px] flex items-center justify-center flex-shrink-0"
-                aria-label="Open menu"
-              >
-                <AnimatePresence mode="wait">
-                  {mobileMenuOpen ? (
-                    <motion.div
-                      key="close"
-                      initial={{ rotate: -90, opacity: 0 }}
-                      animate={{ rotate: 0, opacity: 1 }}
-                      exit={{ rotate: 90, opacity: 0 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <X className="size-6 text-[#B2FF59]" />
-                    </motion.div>
-                  ) : (
-                    <motion.div
-                      key="menu"
-                      initial={{ rotate: 90, opacity: 0 }}
-                      animate={{ rotate: 0, opacity: 1 }}
-                      exit={{ rotate: -90, opacity: 0 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <Menu className="size-6 text-[#B2FF59]" />
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </button>
-            </SheetTrigger>
-
-            {/* Menu Sheet */}
-            <SheetContent
-              side="right"
-              className="w-[280px] sm:w-[320px] bg-[#0A0A0A] border-l-2 border-[#B2FF59]/20 p-0"
-            >
-              <SheetHeader className="border-b-2 border-[#B2FF59]/20 p-6">
-                <SheetTitle className="flex items-center gap-3 text-[#FAFAFA]">
-                  <Battery className="size-6 text-[#B2FF59] fill-[#B2FF59]" />
-                  <span className="font-bold font-tech uppercase text-base">
-                    Menu
-                  </span>
-                </SheetTitle>
-              </SheetHeader>
-
-              {/* Navigation Links */}
-              <nav className="flex flex-col p-4 pb-24">
-                {navItems.map((item, index) => (
-                  <motion.div
-                    key={item.path}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.05 }}
-                  >
-                    <Link
-                      to={item.path}
-                      onClick={() => setMobileMenuOpen(false)}
-                      className={`
-                        relative flex items-center justify-between py-4 px-4 rounded-lg
-                        transition-all duration-300 min-h-[44px]
-                        ${location.pathname === item.path
-                          ? 'bg-[#B2FF59]/10 text-[#B2FF59] border-2 border-[#B2FF59]'
-                          : 'text-[#FAFAFA] hover:bg-[#1A1A1A] hover:text-[#B2FF59] border-2 border-transparent'
-                        }
-                      `}
-                    >
-                      <span className="font-medium text-base">{item.name}</span>
-                      {location.pathname === item.path && (
-                        <motion.div
-                          layoutId="mobileNavIndicator"
-                          className="size-2 rounded-full bg-[#B2FF59] shadow-lg shadow-[#B2FF59]/50"
-                        />
-                      )}
-                    </Link>
-                  </motion.div>
-                ))}
-
-                {/* Dark Mode Toggle in Menu */}
-                <div className="mt-6 pt-6 border-t-2 border-[#B2FF59]/20">
-                  <button
-                    onClick={() => setDarkMode(!darkMode)}
-                    className="w-full flex items-center justify-between py-4 px-4 rounded-lg bg-[#1A1A1A] hover:bg-[#2B2B2B] border-2 border-[#2B2B2B] hover:border-[#B2FF59] transition-all duration-300 min-h-[44px]"
-                  >
-                    <span className="font-medium text-base text-[#FAFAFA]">
-                      {darkMode ? 'Light Mode' : 'Dark Mode'}
-                    </span>
-                    {darkMode ? (
-                      <Sun className="size-5 text-[#B2FF59]" />
-                    ) : (
-                      <Moon className="size-5 text-[#B2FF59]" />
-                    )}
-                  </button>
-                </div>
-              </nav>
-
-              {/* Menu Footer */}
-              <div className="absolute bottom-0 left-0 right-0 p-6 border-t-2 border-[#B2FF59]/20">
-                <p className="text-[#FAFAFA]/60 text-xs text-center font-tech">
-                  Battery Industry DeepDive
-                </p>
-              </div>
-            </SheetContent>
-          </Sheet>
+          {/* Dark Mode Toggle */}
+          <button
+            onClick={() => setDarkMode(!darkMode)}
+            className="p-2.5 sm:p-3 rounded-lg bg-[#1A1A1A] hover:bg-[#2B2B2B] border-2 border-[#2B2B2B] hover:border-[#B2FF59] transition-all duration-300 min-h-[44px] min-w-[44px] flex items-center justify-center"
+            aria-label="Toggle dark mode"
+          >
+            {darkMode ? (
+              <Sun className="size-5 text-[#B2FF59]" />
+            ) : (
+              <Moon className="size-5 text-[#B2FF59]" />
+            )}
+          </button>
         </div>
       </div>
     </motion.nav>
