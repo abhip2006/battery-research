@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { HomePage } from './components/HomePage';
 import { CompaniesPage } from './components/CompaniesPage';
+import { CompanyDeepDivePage } from './components/CompanyDeepDivePage';
 import { SubsectorsPage } from './components/SubsectorsPage';
 import { InvestmentsPage } from './components/InvestmentsPage';
 import { ForecastsPage } from './components/ForecastsPage';
@@ -18,6 +19,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/companies" element={<CompaniesPage />} />
+          <Route path="/companies/:companyId" element={<CompanyDeepDivePage />} />
           <Route path="/subsectors" element={<SubsectorsPage />} />
           <Route path="/investments" element={<InvestmentsPage />} />
           <Route path="/forecasts" element={<ForecastsPage />} />
