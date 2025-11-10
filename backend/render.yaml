@@ -1,0 +1,112 @@
+services:
+  # PostgreSQL Database with pgvector
+  - type: pserv
+    name: battery-intelligence-db
+    env: docker
+    plan: free
+    region: oregon
+    databases:
+      - name: battery_intelligence
+        databaseName: battery_intelligence
+        user: battery_user
+    postDeploy:
+      - psql $DATABASE_URL -c "CREATE EXTENSION IF NOT EXISTS vector;"
+
+  # FastAPI Backend Service
+  - type: web
+    name: battery-intelligence-api
+    env: docker
+    plan: free
+    region: oregon
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
+    healthCheckPath: /health
+    envVars:
+      # Database
+      - key: DATABASE_URL
+        fromDatabase:
+          name: battery-intelligence-db
+          property: connectionString
+
+      # Application Settings
+      - key: APP_NAME
+        value: US Battery Industry Intelligence Platform
+      - key: APP_VERSION
+        value: 0.1.0
+      - key: ENVIRONMENT
+        value: production
+      - key: DEBUG
+        value: False
+      - key: API_V1_PREFIX
+        value: /api/v1
+
+      # Secret Key (generate random 32+ char string)
+      - key: SECRET_KEY
+        generateValue: true
+
+      # CORS (update with your frontend domain)
+      - key: BACKEND_CORS_ORIGINS
+        value: '["https://battery-research.net","https://www.battery-research.net"]'
+
+      # LLM Provider - Set via Render Dashboard
+      # Choose: anthropic, openai, or gemini
+      - key: LLM_PROVIDER
+        sync: false
+
+      # Anthropic Configuration (if using Claude)
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: ANTHROPIC_MODEL
+        value: claude-3-5-sonnet-20241022
+      - key: MAX_TOKENS
+        value: 4096
+
+      # OpenAI Configuration (if using OpenAI)
+      - key: OPENAI_API_KEY
+        sync: false
+
+      # Gemini Configuration (if using Gemini)
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GEMINI_LLM_MODEL
+        value: gemini-1.5-pro
+      - key: GEMINI_EMBEDDING_MODEL
+        value: text-embedding-004
+
+      # Embedding Provider
+      - key: EMBEDDING_PROVIDER
+        value: openai
+      - key: EMBEDDING_MODEL
+        value: text-embedding-3-small
+      - key: EMBEDDING_DIMENSIONS
+        value: 1536
+
+      # RAG Configuration
+      - key: CHUNK_SIZE
+        value: 1000
+      - key: CHUNK_OVERLAP
+        value: 200
+      - key: TOP_K_RESULTS
+        value: 5
+      - key: VECTOR_SIMILARITY_THRESHOLD
+        value: 0.7
+      - key: MAX_SEARCH_RESULTS
+        value: 10
+      - key: ENABLE_RERANKING
+        value: True
+      - key: CONVERSATION_MEMORY_LIMIT
+        value: 10
+
+      # Citation Configuration
+      - key: ENABLE_CITATIONS
+        value: True
+      - key: MIN_CITATION_CONFIDENCE
+        value: 0.7
+
+      # Logging
+      - key: LOG_LEVEL
+        value: INFO
+
+      # Rate Limiting
+      - key: RATE_LIMIT_PER_MINUTE
+        value: 60
