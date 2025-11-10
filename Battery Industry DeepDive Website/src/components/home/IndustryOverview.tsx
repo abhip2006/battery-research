@@ -75,21 +75,21 @@ export function IndustryOverview() {
         />
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-6">
+      <div className="relative max-w-7xl mx-auto px-4 md:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-8 md:mb-12 lg:mb-16"
         >
-          <h2 className="text-[#B2FF59] mb-4 text-5xl font-extrabold font-tech uppercase tracking-wider">Industry Overview</h2>
-          <p className="text-[#FAFAFA] text-lg max-w-2xl mx-auto font-medium">
+          <h2 className="text-[#B2FF59] mb-3 md:mb-4 text-3xl sm:text-4xl md:text-5xl font-extrabold font-tech uppercase tracking-wider">Industry Overview</h2>
+          <p className="text-[#FAFAFA] text-base sm:text-lg max-w-2xl mx-auto font-medium px-2">
             Six critical subsectors powering America's battery revolution
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
           {SUBSECTORS.map((sector, index) => {
             const Icon = sector.icon;
             const isHovered = hoveredCard === sector.id;
@@ -111,7 +111,7 @@ export function IndustryOverview() {
                     backgroundColor: isHovered ? sector.color : '#1A1A1A',
                   }}
                   transition={{ duration: 0.3 }}
-                  className="p-8 rounded-2xl border-2 transition-all duration-300 h-full relative overflow-hidden"
+                  className="p-6 md:p-8 rounded-xl md:rounded-2xl border-2 transition-all duration-300 h-full relative overflow-hidden"
                   style={{
                     borderColor: isHovered ? sector.color : '#2B2B2B',
                     boxShadow: isHovered ? `0 0 40px ${sector.color}60, inset 0 0 20px ${sector.color}20` : 'none',
@@ -126,7 +126,7 @@ export function IndustryOverview() {
                     transition={{ duration: 0.5 }}
                   />
 
-                  <div className="flex items-start justify-between mb-6">
+                  <div className="flex items-start justify-between mb-4 md:mb-6">
                     <motion.div
                       animate={{
                         color: isHovered ? '#0A0A0A' : sector.color,
@@ -134,7 +134,7 @@ export function IndustryOverview() {
                       }}
                       transition={{ duration: 0.3 }}
                     >
-                      <Icon className="size-12" />
+                      <Icon className="size-10 md:size-12" />
                     </motion.div>
                     <motion.div
                       initial={{ opacity: 0, scale: 0.5 }}
@@ -143,7 +143,7 @@ export function IndustryOverview() {
                         scale: isHovered ? 1.3 : 1,
                       }}
                       transition={{ duration: 0.3 }}
-                      className="font-mono text-2xl font-bold"
+                      className="font-mono text-xl md:text-2xl font-bold"
                       style={{
                         color: isHovered ? '#0A0A0A' : sector.color,
                       }}
@@ -157,13 +157,13 @@ export function IndustryOverview() {
                       color: isHovered ? '#0A0A0A' : '#FAFAFA',
                     }}
                     transition={{ duration: 0.3 }}
-                    className="mb-3 text-2xl font-bold"
+                    className="mb-2 md:mb-3 text-xl md:text-2xl font-bold"
                   >
                     {sector.name}
                   </motion.h3>
 
                   <motion.p
-                    className="text-sm leading-relaxed"
+                    className="text-sm md:text-base leading-relaxed"
                     animate={{
                       color: isHovered ? '#0A0A0A' : '#AAAAAA',
                     }}
@@ -179,13 +179,13 @@ export function IndustryOverview() {
                       height: isHovered ? 'auto' : 0,
                     }}
                     transition={{ duration: 0.3 }}
-                    className="mt-4 pt-4 border-t overflow-hidden"
+                    className="mt-3 md:mt-4 pt-3 md:pt-4 border-t overflow-hidden"
                     style={{
                       borderColor: isHovered ? 'rgba(10, 10, 10, 0.2)' : 'transparent',
                     }}
                   >
                     <button
-                      className="text-sm font-semibold flex items-center gap-2"
+                      className="text-sm font-semibold flex items-center gap-2 min-h-[44px] justify-center w-full md:w-auto md:justify-start"
                       style={{
                         color: isHovered ? '#0A0A0A' : sector.color,
                       }}

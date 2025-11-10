@@ -123,7 +123,7 @@ export function HeroSection() {
         </motion.div>
       ))}
 
-      <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
+      <div className="relative z-10 max-w-4xl mx-auto px-4 md:px-6 text-center">
         {/* Title */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -131,10 +131,10 @@ export function HeroSection() {
           transition={{ duration: 0.6 }}
           className="mb-4"
         >
-          <h1 className="text-[#B2FF59] mb-6 tracking-tight text-6xl font-extrabold font-tech uppercase">
+          <h1 className="text-[#B2FF59] mb-4 md:mb-6 tracking-tight text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold font-tech uppercase">
             Battery Industry DeepDive
           </h1>
-          <p className="text-[#FAFAFA] text-xl max-w-2xl mx-auto leading-relaxed font-medium">
+          <p className="text-[#FAFAFA] text-base sm:text-lg md:text-xl max-w-2xl mx-auto leading-relaxed font-medium px-2">
             Explore the full landscape of America's battery revolution — data, finance, and technology, in one place.
           </p>
         </motion.div>
@@ -144,9 +144,9 @@ export function HeroSection() {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="mt-12 mb-8"
+          className="mt-8 md:mt-12 mb-6 md:mb-8"
         >
-          <div className="bg-[#1A1A1A] rounded-3xl p-8 shadow-2xl border-2 border-[#B2FF59]/30 relative backdrop-blur-sm">
+          <div className="bg-[#1A1A1A] rounded-2xl md:rounded-3xl p-4 sm:p-6 md:p-8 shadow-2xl border-2 border-[#B2FF59]/30 relative backdrop-blur-sm">
             {/* Glow effect */}
             <motion.div
               animate={{
@@ -157,12 +157,12 @@ export function HeroSection() {
             />
 
             {/* Battery Charge Indicator */}
-            <div className="flex items-center gap-3 mb-6">
+            <div className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
               <div className="flex gap-1">
                 {[...Array(5)].map((_, i) => (
                   <motion.div
                     key={i}
-                    className="w-2 h-6 rounded-sm bg-[#B2FF59]"
+                    className="w-1.5 sm:w-2 h-4 sm:h-6 rounded-sm bg-[#B2FF59]"
                     animate={{
                       opacity: [0.3, 1, 0.3],
                     }}
@@ -174,13 +174,13 @@ export function HeroSection() {
                   />
                 ))}
               </div>
-              <span className="text-[#B2FF59] text-sm font-mono">SYSTEM ACTIVE</span>
-              <Sparkles className="size-4 text-[#B2FF59] ml-auto" />
+              <span className="text-[#B2FF59] text-xs sm:text-sm font-mono">SYSTEM ACTIVE</span>
+              <Sparkles className="size-3 sm:size-4 text-[#B2FF59] ml-auto" />
             </div>
 
             {/* Input Area */}
             <div
-              className={`flex gap-3 p-5 bg-[#0A0A0A] rounded-2xl border-2 transition-all duration-300 ${
+              className={`flex gap-2 sm:gap-3 p-3 sm:p-4 md:p-5 bg-[#0A0A0A] rounded-xl md:rounded-2xl border-2 transition-all duration-300 ${
                 isFocused ? 'border-[#B2FF59] shadow-lg shadow-[#B2FF59]/20' : 'border-[#2B2B2B]'
               }`}
             >
@@ -189,26 +189,26 @@ export function HeroSection() {
                 placeholder={displayText || "Ask anything about the U.S. battery industry..."}
                 onFocus={() => setIsFocused(true)}
                 onBlur={() => setIsFocused(false)}
-                className="flex-1 bg-transparent text-[#FAFAFA] text-lg outline-none placeholder:text-[#666666]"
+                className="flex-1 bg-transparent text-[#FAFAFA] text-sm sm:text-base md:text-lg outline-none placeholder:text-[#666666]"
               />
               <motion.span
                 animate={{ opacity: [1, 0, 1] }}
                 transition={{ duration: 0.8, repeat: Infinity }}
-                className="text-[#B2FF59] text-lg"
+                className="text-[#B2FF59] text-sm sm:text-base md:text-lg hidden sm:inline"
               >
                 |
               </motion.span>
-              <button className="p-3 bg-[#B2FF59] rounded-xl hover:bg-[#A0E050] transition-colors duration-300 shadow-lg shadow-[#B2FF59]/30">
-                <Send className="size-5 text-[#0A0A0A]" />
+              <button className="p-3 sm:p-3.5 md:p-3 bg-[#B2FF59] rounded-lg md:rounded-xl hover:bg-[#A0E050] transition-colors duration-300 shadow-lg shadow-[#B2FF59]/30 min-w-[44px] min-h-[44px] flex items-center justify-center">
+                <Send className="size-4 sm:size-5 text-[#0A0A0A]" />
               </button>
             </div>
 
             {/* Example Queries */}
-            <div className="mt-6 flex flex-wrap gap-3 justify-center">
+            <div className="mt-4 sm:mt-6 flex flex-wrap gap-2 sm:gap-3 justify-center">
               {['Solid-State Leaders', 'DOE Funding', 'Market Projections', 'Investment Flows'].map((tag) => (
                 <button
                   key={tag}
-                  className="px-5 py-2.5 bg-[#0A0A0A] text-[#FAFAFA] border border-[#2B2B2B] rounded-xl hover:bg-[#B2FF59] hover:text-[#0A0A0A] hover:border-[#B2FF59] transition-all duration-300"
+                  className="px-3 sm:px-4 md:px-5 py-2 sm:py-2.5 bg-[#0A0A0A] text-[#FAFAFA] text-xs sm:text-sm md:text-base border border-[#2B2B2B] rounded-lg md:rounded-xl hover:bg-[#B2FF59] hover:text-[#0A0A0A] hover:border-[#B2FF59] transition-all duration-300 min-h-[44px]"
                 >
                   {tag}
                 </button>
@@ -222,15 +222,15 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="flex gap-4 justify-center"
+          className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center"
         >
-          <button className="px-8 py-4 bg-[#B2FF59] text-[#0A0A0A] rounded-xl hover:bg-[#A0E050] transition-all duration-300 shadow-lg shadow-[#B2FF59]/30 font-semibold">
+          <button className="px-6 sm:px-8 py-3.5 sm:py-4 bg-[#B2FF59] text-[#0A0A0A] rounded-lg md:rounded-xl hover:bg-[#A0E050] transition-all duration-300 shadow-lg shadow-[#B2FF59]/30 font-semibold text-sm sm:text-base min-h-[44px]">
             Explore Companies
           </button>
-          <button className="px-8 py-4 bg-transparent text-[#FAFAFA] rounded-xl ring-2 ring-[#FAFAFA]/30 hover:ring-[#B2FF59] hover:text-[#B2FF59] transition-all duration-300 font-semibold">
+          <button className="px-6 sm:px-8 py-3.5 sm:py-4 bg-transparent text-[#FAFAFA] rounded-lg md:rounded-xl ring-2 ring-[#FAFAFA]/30 hover:ring-[#B2FF59] hover:text-[#B2FF59] transition-all duration-300 font-semibold text-sm sm:text-base min-h-[44px]">
             View Market Trends
           </button>
-          <button className="px-8 py-4 bg-[#1565C0] text-[#FAFAFA] rounded-xl hover:bg-[#1976D2] transition-all duration-300 shadow-lg shadow-[#1565C0]/30 font-semibold">
+          <button className="px-6 sm:px-8 py-3.5 sm:py-4 bg-[#1565C0] text-[#FAFAFA] rounded-lg md:rounded-xl hover:bg-[#1976D2] transition-all duration-300 shadow-lg shadow-[#1565C0]/30 font-semibold text-sm sm:text-base min-h-[44px]">
             Ask a Question
           </button>
         </motion.div>

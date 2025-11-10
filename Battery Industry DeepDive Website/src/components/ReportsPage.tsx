@@ -121,7 +121,7 @@ const CATEGORIES = ['All', 'Manufacturing', 'Materials', 'Technology', 'Economic
 
 export function ReportsPage() {
   return (
-    <div className="min-h-screen pt-24 bg-[#0A0A0A]">
+    <div className="min-h-screen pt-20 sm:pt-24 bg-[#0A0A0A]">
       {/* Hero Banner */}
       <div className="relative bg-[#0F0F0F] border-b-4 border-[#B2FF59] overflow-hidden">
         <motion.div
@@ -129,32 +129,32 @@ export function ReportsPage() {
           transition={{ duration: 3, repeat: Infinity }}
           className="absolute inset-0 bg-gradient-to-r from-transparent via-[#B2FF59]/10 to-transparent"
         />
-        <div className="relative max-w-7xl mx-auto px-6 py-16">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h1 className="text-[#B2FF59] mb-4 text-5xl font-extrabold font-tech uppercase tracking-wider">Research Reports</h1>
-            <p className="text-[#FAFAFA] max-w-2xl text-lg font-medium">
+            <h1 className="text-[#B2FF59] mb-3 sm:mb-4 text-3xl sm:text-4xl lg:text-5xl font-extrabold font-tech uppercase tracking-wider">Research Reports</h1>
+            <p className="text-[#FAFAFA] max-w-2xl text-base sm:text-lg font-medium">
               In-depth analysis from government agencies, research institutions, and industry analysts
             </p>
           </motion.div>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
         {/* Category Filter */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="flex gap-3 mb-12"
+          className="flex flex-wrap gap-2 sm:gap-3 mb-8 sm:mb-12"
         >
           {CATEGORIES.map((category) => (
             <button
               key={category}
-              className="px-4 py-2 bg-[#1E1E1E] text-[#FAFAFA]/70 rounded-lg hover:bg-[#B2FF59] hover:text-[#1E1E1E] transition-all duration-300"
+              className="px-3 sm:px-4 py-2 sm:py-2.5 bg-[#1E1E1E] text-[#FAFAFA]/70 rounded-lg hover:bg-[#B2FF59] hover:text-[#1E1E1E] transition-all duration-300 text-sm sm:text-base"
             >
               {category}
             </button>
@@ -162,7 +162,7 @@ export function ReportsPage() {
         </motion.div>
 
         {/* Reports Grid */}
-        <div className="space-y-6">
+        <div className="space-y-4 sm:space-y-6">
           {REPORTS.map((report, index) => (
             <motion.div
               key={report.id}
@@ -172,19 +172,19 @@ export function ReportsPage() {
               transition={{ duration: 0.6, delay: index * 0.1 }}
               className="bg-[#1E1E1E] rounded-2xl border border-[#B2FF59]/20 overflow-hidden hover:border-[#B2FF59] hover:shadow-lg hover:shadow-[#B2FF59]/10 transition-all duration-300 group"
             >
-              <div className="p-8">
+              <div className="p-4 sm:p-8">
                 {/* Header */}
-                <div className="flex items-start gap-6 mb-6">
-                  <div className="p-4 bg-[#2B2B2B] rounded-xl border border-[#B2FF59]/20 group-hover:border-[#B2FF59] transition-all duration-300">
-                    <FileText className="size-8 text-[#B2FF59]" />
+                <div className="flex flex-col sm:flex-row items-start gap-4 sm:gap-6 mb-4 sm:mb-6">
+                  <div className="p-3 sm:p-4 bg-[#2B2B2B] rounded-xl border border-[#B2FF59]/20 group-hover:border-[#B2FF59] transition-all duration-300">
+                    <FileText className="size-6 sm:size-8 text-[#B2FF59]" />
                   </div>
-                  <div className="flex-1">
-                    <div className="flex items-start justify-between mb-3">
-                      <div>
-                        <h3 className="text-[#FAFAFA] mb-2 group-hover:text-[#B2FF59] transition-colors duration-300">
+                  <div className="flex-1 w-full">
+                    <div className="flex flex-col sm:flex-row items-start justify-between mb-3 gap-3">
+                      <div className="flex-1">
+                        <h3 className="text-[#FAFAFA] mb-2 text-base sm:text-lg group-hover:text-[#B2FF59] transition-colors duration-300">
                           {report.title}
                         </h3>
-                        <div className="flex items-center gap-4 text-sm text-[#FAFAFA]/60">
+                        <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-xs sm:text-sm text-[#FAFAFA]/60">
                           <span className="flex items-center gap-1">
                             <ExternalLink className="size-3" />
                             {report.source}
@@ -195,7 +195,7 @@ export function ReportsPage() {
                           </span>
                         </div>
                       </div>
-                      <span className="px-3 py-1 bg-[#B2FF59]/20 text-[#B2FF59] rounded">
+                      <span className="px-3 py-1.5 bg-[#B2FF59]/20 text-[#B2FF59] rounded text-xs sm:text-sm self-start">
                         {report.category}
                       </span>
                     </div>
@@ -204,11 +204,11 @@ export function ReportsPage() {
                 </div>
 
                 {/* Key Findings */}
-                <div className="mb-6 p-6 bg-[#2B2B2B] rounded-xl border border-[#B2FF59]/10">
-                  <h4 className="text-[#B2FF59] mb-3">Key Findings</h4>
+                <div className="mb-4 sm:mb-6 p-4 sm:p-6 bg-[#2B2B2B] rounded-xl border border-[#B2FF59]/10">
+                  <h4 className="text-[#B2FF59] mb-3 text-sm sm:text-base font-semibold">Key Findings</h4>
                   <ul className="space-y-2">
                     {report.keyFindings.map((finding, i) => (
-                      <li key={i} className="text-[#FAFAFA]/80 text-sm flex items-start gap-2">
+                      <li key={i} className="text-[#FAFAFA]/80 text-xs sm:text-sm flex items-start gap-2">
                         <span className="text-[#B2FF59] mt-1">•</span>
                         <span>{finding}</span>
                       </li>
@@ -217,8 +217,8 @@ export function ReportsPage() {
                 </div>
 
                 {/* Footer */}
-                <div className="flex items-center justify-between">
-                  <div className="flex gap-2">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                  <div className="flex flex-wrap gap-2">
                     {report.tags.map((tag) => (
                       <span
                         key={tag}
@@ -229,11 +229,11 @@ export function ReportsPage() {
                       </span>
                     ))}
                   </div>
-                  <div className="flex items-center gap-6">
-                    <div className="text-sm text-[#FAFAFA]/60">
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-6 w-full sm:w-auto">
+                    <div className="text-xs sm:text-sm text-[#FAFAFA]/60">
                       {report.pages} pages • {report.downloads.toLocaleString()} downloads
                     </div>
-                    <button className="px-4 py-2 bg-[#B2FF59] text-[#1E1E1E] rounded-lg hover:bg-[#A0E050] transition-colors duration-300 text-sm flex items-center gap-2">
+                    <button className="px-4 py-2.5 sm:py-2 bg-[#B2FF59] text-[#1E1E1E] rounded-lg hover:bg-[#A0E050] transition-colors duration-300 text-sm flex items-center gap-2 w-full sm:w-auto justify-center">
                       <Download className="size-4" />
                       Download PDF
                     </button>
@@ -250,27 +250,27 @@ export function ReportsPage() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mt-12 grid grid-cols-4 gap-6"
+          className="mt-8 sm:mt-12 grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6"
         >
-          <div className="bg-[#1E1E1E] p-6 rounded-xl border border-[#B2FF59]/20">
-            <FileText className="size-8 text-[#B2FF59] mb-3" />
-            <div className="text-[#FAFAFA] font-mono mb-1">150+</div>
-            <div className="text-[#FAFAFA]/70 text-sm">Total Reports</div>
+          <div className="bg-[#1E1E1E] p-5 sm:p-6 rounded-xl border border-[#B2FF59]/20">
+            <FileText className="size-6 sm:size-8 text-[#B2FF59] mb-3" />
+            <div className="text-[#FAFAFA] font-mono mb-1 text-xl sm:text-2xl">150+</div>
+            <div className="text-[#FAFAFA]/70 text-xs sm:text-sm">Total Reports</div>
           </div>
-          <div className="bg-[#1E1E1E] p-6 rounded-xl border border-[#1565C0]/20">
-            <Download className="size-8 text-[#1565C0] mb-3" />
-            <div className="text-[#FAFAFA] font-mono mb-1">245K</div>
-            <div className="text-[#FAFAFA]/70 text-sm">Total Downloads</div>
+          <div className="bg-[#1E1E1E] p-5 sm:p-6 rounded-xl border border-[#1565C0]/20">
+            <Download className="size-6 sm:size-8 text-[#1565C0] mb-3" />
+            <div className="text-[#FAFAFA] font-mono mb-1 text-xl sm:text-2xl">245K</div>
+            <div className="text-[#FAFAFA]/70 text-xs sm:text-sm">Total Downloads</div>
           </div>
-          <div className="bg-[#1E1E1E] p-6 rounded-xl border border-[#B2FF59]/20">
-            <ExternalLink className="size-8 text-[#B2FF59] mb-3" />
-            <div className="text-[#FAFAFA] font-mono mb-1">42</div>
-            <div className="text-[#FAFAFA]/70 text-sm">Source Organizations</div>
+          <div className="bg-[#1E1E1E] p-5 sm:p-6 rounded-xl border border-[#B2FF59]/20">
+            <ExternalLink className="size-6 sm:size-8 text-[#B2FF59] mb-3" />
+            <div className="text-[#FAFAFA] font-mono mb-1 text-xl sm:text-2xl">42</div>
+            <div className="text-[#FAFAFA]/70 text-xs sm:text-sm">Source Organizations</div>
           </div>
-          <div className="bg-[#1E1E1E] p-6 rounded-xl border border-[#1565C0]/20">
-            <Calendar className="size-8 text-[#1565C0] mb-3" />
-            <div className="text-[#FAFAFA] font-mono mb-1">2024</div>
-            <div className="text-[#FAFAFA]/70 text-sm">Latest Updates</div>
+          <div className="bg-[#1E1E1E] p-5 sm:p-6 rounded-xl border border-[#1565C0]/20">
+            <Calendar className="size-6 sm:size-8 text-[#1565C0] mb-3" />
+            <div className="text-[#FAFAFA] font-mono mb-1 text-xl sm:text-2xl">2024</div>
+            <div className="text-[#FAFAFA]/70 text-xs sm:text-sm">Latest Updates</div>
           </div>
         </motion.div>
       </div>

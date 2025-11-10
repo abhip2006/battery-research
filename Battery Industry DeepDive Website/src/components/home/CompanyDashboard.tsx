@@ -112,26 +112,26 @@ export function CompanyDashboard() {
         />
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-6">
+      <div className="relative max-w-7xl mx-auto px-4 md:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mb-12"
+          className="mb-8 md:mb-12"
         >
-          <h2 className="text-[#B2FF59] mb-4 text-5xl font-extrabold font-tech uppercase tracking-wider">Company Intelligence Dashboard</h2>
-          <p className="text-[#FAFAFA] text-lg mb-8 font-medium">
+          <h2 className="text-[#B2FF59] mb-3 md:mb-4 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold font-tech uppercase tracking-wider">Company Intelligence Dashboard</h2>
+          <p className="text-[#FAFAFA] text-base sm:text-lg mb-6 md:mb-8 font-medium px-2">
             Comprehensive view of key players in the U.S. battery ecosystem
           </p>
 
           {/* Filters */}
-          <div className="flex gap-3">
+          <div className="flex flex-wrap gap-2 md:gap-3">
             {FILTERS.map((filter) => (
               <button
                 key={filter}
                 onClick={() => setSelectedFilter(filter)}
-                className={`px-5 py-2.5 rounded-xl transition-all duration-300 font-medium ${
+                className={`px-3 sm:px-4 md:px-5 py-2 md:py-2.5 rounded-lg md:rounded-xl transition-all duration-300 font-medium text-sm md:text-base min-h-[44px] ${
                   selectedFilter === filter
                     ? 'bg-[#B2FF59] text-[#0A0A0A] shadow-lg shadow-[#B2FF59]/30'
                     : 'bg-[#1A1A1A] text-[#AAAAAA] hover:bg-[#2B2B2B] border-2 border-[#2B2B2B]'
@@ -143,26 +143,26 @@ export function CompanyDashboard() {
           </div>
         </motion.div>
 
-        {/* Table */}
+        {/* Desktop Table / Mobile Cards */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="bg-[#1A1A1A] rounded-2xl border-2 border-[#B2FF59]/30 overflow-hidden shadow-2xl"
+          className="bg-[#1A1A1A] rounded-xl md:rounded-2xl border-2 border-[#B2FF59]/30 overflow-hidden shadow-2xl"
         >
-          {/* Header */}
-          <div className="grid grid-cols-7 gap-4 p-5 bg-[#0F0F0F] border-b-2 border-[#B2FF59]/30">
-            <div className="text-[#B2FF59] font-bold">Company</div>
-            <div className="text-[#B2FF59] font-bold">Sector</div>
-            <div className="text-[#B2FF59] font-bold">HQ</div>
-            <div className="text-[#B2FF59] font-bold">Market Cap</div>
-            <div className="text-[#B2FF59] font-bold">DOE Support</div>
-            <div className="text-[#B2FF59] font-bold">Funding</div>
-            <div className="text-[#B2FF59] font-bold">Source</div>
+          {/* Desktop Header - Hidden on Mobile */}
+          <div className="hidden lg:grid grid-cols-7 gap-4 p-5 bg-[#0F0F0F] border-b-2 border-[#B2FF59]/30">
+            <div className="text-[#B2FF59] font-bold text-sm">Company</div>
+            <div className="text-[#B2FF59] font-bold text-sm">Sector</div>
+            <div className="text-[#B2FF59] font-bold text-sm">HQ</div>
+            <div className="text-[#B2FF59] font-bold text-sm">Market Cap</div>
+            <div className="text-[#B2FF59] font-bold text-sm">DOE Support</div>
+            <div className="text-[#B2FF59] font-bold text-sm">Funding</div>
+            <div className="text-[#B2FF59] font-bold text-sm">Source</div>
           </div>
 
-          {/* Rows */}
+          {/* Rows - Responsive Cards/Table */}
           <div>
             {filteredCompanies.map((company, index) => (
               <motion.div
@@ -172,15 +172,16 @@ export function CompanyDashboard() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: index * 0.05 }}
               >
+                {/* Desktop Table Row */}
                 <div
                   onClick={() =>
                     setExpandedRow(expandedRow === company.id ? null : company.id)
                   }
-                  className={`grid grid-cols-7 gap-4 p-5 cursor-pointer transition-all duration-300 ${
+                  className={`hidden lg:grid grid-cols-7 gap-4 p-5 cursor-pointer transition-all duration-300 ${
                     index % 2 === 0 ? 'bg-[#1A1A1A]' : 'bg-[#141414]'
                   } hover:bg-[#222222] border-b border-[#2B2B2B]`}
                 >
-                  <div className="text-[#FAFAFA] font-medium flex items-center gap-2">
+                  <div className="text-[#FAFAFA] font-medium flex items-center gap-2 text-sm">
                     {company.name}
                     {expandedRow === company.id ? (
                       <ChevronUp className="size-4 text-[#B2FF59]" />
@@ -188,12 +189,63 @@ export function CompanyDashboard() {
                       <ChevronDown className="size-4 text-[#666666]" />
                     )}
                   </div>
-                  <div className="text-[#CCCCCC]">{company.sector}</div>
-                  <div className="text-[#CCCCCC]">{company.hq}</div>
-                  <div className="text-[#B2FF59] font-mono font-bold">{company.marketCap}</div>
-                  <div className="text-[#1565C0] font-mono font-bold">{company.doeSupport}</div>
-                  <div className="text-[#FAFAFA] font-mono font-bold">{company.funding}</div>
+                  <div className="text-[#CCCCCC] text-sm">{company.sector}</div>
+                  <div className="text-[#CCCCCC] text-sm">{company.hq}</div>
+                  <div className="text-[#B2FF59] font-mono font-bold text-sm">{company.marketCap}</div>
+                  <div className="text-[#1565C0] font-mono font-bold text-sm">{company.doeSupport}</div>
+                  <div className="text-[#FAFAFA] font-mono font-bold text-sm">{company.funding}</div>
                   <div>
+                    <span
+                      className={`px-3 py-1.5 rounded-lg text-xs font-semibold ${
+                        company.source === 'Public'
+                          ? 'bg-[#B2FF59]/20 text-[#B2FF59] border border-[#B2FF59]/50'
+                          : 'bg-[#1565C0]/20 text-[#1565C0] border border-[#1565C0]/50'
+                      }`}
+                    >
+                      {company.source}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Mobile Card */}
+                <div
+                  onClick={() =>
+                    setExpandedRow(expandedRow === company.id ? null : company.id)
+                  }
+                  className={`lg:hidden p-4 cursor-pointer transition-all duration-300 ${
+                    index % 2 === 0 ? 'bg-[#1A1A1A]' : 'bg-[#141414]'
+                  } hover:bg-[#222222] border-b border-[#2B2B2B]`}
+                >
+                  <div className="flex items-start justify-between mb-3">
+                    <div>
+                      <h3 className="text-[#FAFAFA] font-bold text-base mb-1">{company.name}</h3>
+                      <p className="text-[#CCCCCC] text-sm">{company.sector}</p>
+                    </div>
+                    {expandedRow === company.id ? (
+                      <ChevronUp className="size-5 text-[#B2FF59] flex-shrink-0" />
+                    ) : (
+                      <ChevronDown className="size-5 text-[#666666] flex-shrink-0" />
+                    )}
+                  </div>
+                  <div className="grid grid-cols-2 gap-3 text-sm">
+                    <div>
+                      <div className="text-[#AAAAAA] text-xs mb-1">HQ</div>
+                      <div className="text-[#FAFAFA]">{company.hq}</div>
+                    </div>
+                    <div>
+                      <div className="text-[#AAAAAA] text-xs mb-1">Market Cap</div>
+                      <div className="text-[#B2FF59] font-mono font-bold">{company.marketCap}</div>
+                    </div>
+                    <div>
+                      <div className="text-[#AAAAAA] text-xs mb-1">DOE Support</div>
+                      <div className="text-[#1565C0] font-mono font-bold">{company.doeSupport}</div>
+                    </div>
+                    <div>
+                      <div className="text-[#AAAAAA] text-xs mb-1">Funding</div>
+                      <div className="text-[#FAFAFA] font-mono font-bold">{company.funding}</div>
+                    </div>
+                  </div>
+                  <div className="mt-3">
                     <span
                       className={`px-3 py-1.5 rounded-lg text-xs font-semibold ${
                         company.source === 'Public'
@@ -216,20 +268,20 @@ export function CompanyDashboard() {
                       transition={{ duration: 0.3 }}
                       className="bg-[#0F0F0F] border-b-2 border-[#B2FF59]/30 overflow-hidden"
                     >
-                      <div className="p-8 grid grid-cols-2 gap-6">
+                      <div className="p-4 sm:p-6 md:p-8 grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
-                          <h4 className="text-[#B2FF59] mb-4 font-bold text-lg">Company Details</h4>
+                          <h4 className="text-[#B2FF59] mb-4 font-bold text-base md:text-lg">Company Details</h4>
                           <div className="space-y-3">
-                            <div className="flex items-center gap-2 text-[#CCCCCC]">
-                              <MapPin className="size-4 text-[#B2FF59]" />
+                            <div className="flex items-center gap-2 text-[#CCCCCC] text-sm md:text-base">
+                              <MapPin className="size-4 text-[#B2FF59] flex-shrink-0" />
                               Founded: <span className="text-[#FAFAFA] font-semibold">{company.details.founded}</span>
                             </div>
-                            <div className="flex items-center gap-2 text-[#CCCCCC]">
-                              <DollarSign className="size-4 text-[#B2FF59]" />
+                            <div className="flex items-center gap-2 text-[#CCCCCC] text-sm md:text-base">
+                              <DollarSign className="size-4 text-[#B2FF59] flex-shrink-0" />
                               Employees: <span className="text-[#FAFAFA] font-semibold">{company.details.employees}</span>
                             </div>
-                            <div className="flex items-start gap-2 text-[#CCCCCC]">
-                              <Award className="size-4 text-[#B2FF59] mt-1" />
+                            <div className="flex items-start gap-2 text-[#CCCCCC] text-sm md:text-base">
+                              <Award className="size-4 text-[#B2FF59] mt-1 flex-shrink-0" />
                               <div>
                                 <div>R&D Focus:</div>
                                 <div className="text-[#FAFAFA] font-semibold mt-1">{company.details.rdFocus}</div>
@@ -238,11 +290,11 @@ export function CompanyDashboard() {
                           </div>
                         </div>
                         <div>
-                          <h4 className="text-[#B2FF59] mb-4 font-bold text-lg">Key Investors</h4>
-                          <p className="text-[#CCCCCC] leading-relaxed mb-4">
+                          <h4 className="text-[#B2FF59] mb-4 font-bold text-base md:text-lg">Key Investors</h4>
+                          <p className="text-[#CCCCCC] leading-relaxed mb-4 text-sm md:text-base">
                             {company.details.investors}
                           </p>
-                          <button className="px-6 py-3 bg-[#B2FF59] text-[#0A0A0A] rounded-xl hover:bg-[#A0E050] transition-colors duration-300 shadow-lg shadow-[#B2FF59]/30 font-semibold">
+                          <button className="w-full md:w-auto px-6 py-3 bg-[#B2FF59] text-[#0A0A0A] rounded-lg md:rounded-xl hover:bg-[#A0E050] transition-colors duration-300 shadow-lg shadow-[#B2FF59]/30 font-semibold text-sm md:text-base min-h-[44px]">
                             View Full Profile →
                           </button>
                         </div>
