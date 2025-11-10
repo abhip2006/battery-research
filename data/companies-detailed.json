@@ -11,7 +11,9 @@
       "stage": "Pre-commercial (development/pilot)",
       "capacity_gwh": null,
       "employees": 800,
-      "partnerships": ["PowerCo (Volkswagen)"],
+      "partnerships": [
+        "PowerCo (Volkswagen)"
+      ],
       "funding": {
         "total_raised": "$1.5B+",
         "ipo_date": "2020-11-25",
@@ -23,11 +25,22 @@
         "2024_net_loss": "$477.9M",
         "cash_runway": "Through H2 2028"
       },
-      "products": ["QSE-5 solid-state battery"],
+      "products": [
+        "QSE-5 solid-state battery"
+      ],
       "timeline": [
-        {"year": 2024, "event": "PowerCo licensing agreement (July)"},
-        {"year": 2024, "event": "B-samples delivered to VW (October)"},
-        {"year": 2020, "event": "SPAC merger completed"}
+        {
+          "year": 2024,
+          "event": "PowerCo licensing agreement (July)"
+        },
+        {
+          "year": 2024,
+          "event": "B-samples delivered to VW (October)"
+        },
+        {
+          "year": 2020,
+          "event": "SPAC merger completed"
+        }
       ],
       "confidence_score": 0.98
     },
@@ -54,9 +67,18 @@
         "revenue_growth": "173% YoY",
         "2024_net_loss": "$45M"
       },
-      "products": ["Ultra-high energy density Li-ion for mobility"],
-      "features": ["Higher energy density vs graphite anode", "Faster charging"],
-      "applications": ["Aerospace", "Defense", "Premium automotive"],
+      "products": [
+        "Ultra-high energy density Li-ion for mobility"
+      ],
+      "features": [
+        "Higher energy density vs graphite anode",
+        "Faster charging"
+      ],
+      "applications": [
+        "Aerospace",
+        "Defense",
+        "Premium automotive"
+      ],
       "confidence_score": 0.98
     },
     {
@@ -69,11 +91,22 @@
       "technology": "Lithium iron phosphate (LFP) using 24M SemiSolid platform",
       "stage": "Pilot to commercial transition",
       "capacity_gwh": 50,
-      "capacity_target": {"2025": 50, "2030": 200},
+      "capacity_target": {
+        "2025": 50,
+        "2030": 200
+      },
       "employees": 400,
       "facilities": [
-        {"name": "CQP Pilot", "location": "Mo I Rana, Norway", "capacity_gwh": 0.5},
-        {"name": "Giga America", "location": "Coweta County, Georgia", "capacity_gwh": 50}
+        {
+          "name": "CQP Pilot",
+          "location": "Mo I Rana, Norway",
+          "capacity_gwh": 0.5
+        },
+        {
+          "name": "Giga America",
+          "location": "Coweta County, Georgia",
+          "capacity_gwh": 50
+        }
       ],
       "partnerships": [],
       "funding": {
@@ -85,7 +118,10 @@
         "2024_revenue": "$8M",
         "2024_net_loss": "$180M"
       },
-      "products": ["LFP battery cells", "LFP battery modules"],
+      "products": [
+        "LFP battery cells",
+        "LFP battery modules"
+      ],
       "confidence_score": 0.94
     },
     {
@@ -101,7 +137,11 @@
       "capacity_target_year": 2027,
       "employees": 300,
       "facilities": [
-        {"name": "Project AMAZE", "location": "Pennsylvania", "capacity_gwh": 8}
+        {
+          "name": "Project AMAZE",
+          "location": "Pennsylvania",
+          "capacity_gwh": 8
+        }
       ],
       "partnerships": [],
       "funding": {
@@ -112,8 +152,15 @@
         "2024_revenue": "$32M",
         "2024_net_loss": "$95M"
       },
-      "products": ["Z3 DC battery system", "Grid-scale energy storage"],
-      "features": ["4-12 hour duration", "Aqueous zinc chemistry", "Non-flammable"],
+      "products": [
+        "Z3 DC battery system",
+        "Grid-scale energy storage"
+      ],
+      "features": [
+        "4-12 hour duration",
+        "Aqueous zinc chemistry",
+        "Non-flammable"
+      ],
       "confidence_score": 0.95
     },
     {
@@ -127,7 +174,10 @@
       "stage": "Development/pilot production",
       "capacity_gwh": null,
       "employees": 250,
-      "partnerships": ["BMW", "Ford"],
+      "partnerships": [
+        "BMW",
+        "Ford"
+      ],
       "funding": {
         "total_raised": "$542.9M",
         "ipo_date": "2021-12",
@@ -137,9 +187,15 @@
         "2024_revenue": "$12M",
         "2024_net_loss": "$78M"
       },
-      "products": ["Sulfide solid electrolyte", "B-samples to OEMs"],
+      "products": [
+        "Sulfide solid electrolyte",
+        "B-samples to OEMs"
+      ],
       "timeline": [
-        {"year": 2030, "event": "Commercial production target"}
+        {
+          "year": 2030,
+          "event": "Commercial production target"
+        }
       ],
       "confidence_score": 0.97
     },
@@ -155,12 +211,35 @@
       "capacity_gwh": 15,
       "employees": 2000,
       "facilities": [
-        {"name": "Clarksville", "location": "Tennessee", "capacity_gwh": 6},
-        {"name": "Florida Facility", "location": "Florida", "capacity_gwh": 3},
-        {"name": "Colorado Facility", "location": "Colorado", "capacity_gwh": 3},
-        {"name": "Texas Facility", "location": "Texas", "capacity_gwh": 3}
+        {
+          "name": "Clarksville",
+          "location": "Tennessee",
+          "capacity_gwh": 6
+        },
+        {
+          "name": "Florida Facility",
+          "location": "Florida",
+          "capacity_gwh": 3
+        },
+        {
+          "name": "Colorado Facility",
+          "location": "Colorado",
+          "capacity_gwh": 3
+        },
+        {
+          "name": "Texas Facility",
+          "location": "Texas",
+          "capacity_gwh": 3
+        }
       ],
-      "vertical_integration": ["Cathode", "Anode", "Electrolyte", "Separator", "Modules", "Packs"],
+      "vertical_integration": [
+        "Cathode",
+        "Anode",
+        "Electrolyte",
+        "Separator",
+        "Modules",
+        "Packs"
+      ],
       "funding": {
         "total_raised": "$400M+",
         "doe_grant": "$200M (later withdrawn)"
@@ -182,8 +261,15 @@
       "stage": "Commercial scaled production",
       "capacity_gwh": 5,
       "employees": 3500,
-      "products": ["IQ Battery 10", "IQ Battery 10C (US domestic content)", "IQ Battery 10T"],
-      "features": ["10 kWh usable per unit", "Cobalt-free LFP"],
+      "products": [
+        "IQ Battery 10",
+        "IQ Battery 10C (US domestic content)",
+        "IQ Battery 10T"
+      ],
+      "features": [
+        "10 kWh usable per unit",
+        "Cobalt-free LFP"
+      ],
       "funding": {
         "ipo_date": "2012"
       },
@@ -203,8 +289,16 @@
       "technology": "Lithium mining and refining",
       "stage": "Commercial",
       "operations": [
-        {"name": "Silver Peak", "location": "Nevada", "status": "Only active US lithium mine"},
-        {"name": "Kings Mountain", "location": "North Carolina", "status": "Planned reopening"}
+        {
+          "name": "Silver Peak",
+          "location": "Nevada",
+          "status": "Only active US lithium mine"
+        },
+        {
+          "name": "Kings Mountain",
+          "location": "North Carolina",
+          "status": "Planned reopening"
+        }
       ],
       "ranking": "4th largest lithium producer globally",
       "employees": 7900,
@@ -246,9 +340,19 @@
       "markets": 33,
       "countries": 25,
       "employees": 800,
-      "products": ["Gridstack Pro", "Gridstack", "Sunstack", "Edgestack", "Ultrastack"],
+      "products": [
+        "Gridstack Pro",
+        "Gridstack",
+        "Sunstack",
+        "Edgestack",
+        "Ultrastack"
+      ],
       "facilities": [
-        {"name": "Utah Module Production", "location": "Utah", "start_date": "September 2024"}
+        {
+          "name": "Utah Module Production",
+          "location": "Utah",
+          "start_date": "September 2024"
+        }
       ],
       "funding": {
         "ipo_date": "2021"
@@ -258,6 +362,1044 @@
         "2024_net_income": "$120M"
       },
       "confidence_score": 0.98
+    },
+    {
+      "id": 11,
+      "name": "Stem Inc.",
+      "ticker": "STEM",
+      "exchange": "NYSE",
+      "headquarters": "San Francisco, CA",
+      "founded": 2009,
+      "technology": "AI-driven energy storage optimization software (Athena platform)",
+      "stage": "Commercial",
+      "capacity_gwh": null,
+      "employees": 569,
+      "facilities": [],
+      "partnerships": [],
+      "funding": {
+        "total_raised": "$608M",
+        "ipo_date": "2021-04-28",
+        "ipo_method": "SPAC (Star Peak Energy Transition Corp)",
+        "valuation": "$1.35B (at SPAC)"
+      },
+      "financials": {
+        "2024_revenue": "$144.6M",
+        "revenue_change": "-68.67% YoY",
+        "2024_net_loss": "$854.0M",
+        "cash_position": "Operating since 2009, 55+ countries managed"
+      },
+      "products": [
+        "Athena AI software platform",
+        "Energy storage optimization services",
+        "Battery energy storage systems integration"
+      ],
+      "features": [
+        "AI-powered analytics",
+        "Automatic switching between battery, onsite generation, and grid",
+        "Global project management platform"
+      ],
+      "applications": [
+        "Commercial & industrial energy storage",
+        "Grid services",
+        "Renewable energy integration"
+      ],
+      "timeline": [
+        {
+          "year": 2009,
+          "event": "Company founded"
+        },
+        {
+          "year": 2021,
+          "event": "SPAC merger completed with Star Peak"
+        }
+      ],
+      "confidence_score": 0.95
+    },
+    {
+      "id": 12,
+      "name": "Energy Vault Holdings Inc.",
+      "ticker": "NRGV",
+      "exchange": "NYSE",
+      "headquarters": "Lugano, Switzerland (US operations)",
+      "founded": 2017,
+      "technology": "Gravity-based energy storage (G-Vault) and battery storage systems",
+      "stage": "Commercial (early deployment)",
+      "capacity_gwh": 3.7,
+      "capacity_target_year": 2024,
+      "employees": 200,
+      "facilities": [
+        {
+          "name": "EVx Gravity System",
+          "location": "Rudong, China",
+          "capacity_gwh": 0.025,
+          "status": "Operational 2024"
+        }
+      ],
+      "partnerships": [],
+      "funding": {
+        "total_raised": "$235M",
+        "ipo_date": "2022-02-11",
+        "ipo_method": "SPAC (Novus Capital Corporation II)"
+      },
+      "financials": {
+        "2024_revenue": "$46.2M",
+        "revenue_change": "-86.47% YoY",
+        "2024_net_loss": "$135.8M",
+        "backlog": "$660M (4x YoY growth)"
+      },
+      "products": [
+        "G-Vault gravity energy storage",
+        "EVx gravity system (25 MW)",
+        "Battery Energy Storage Systems (BESS)"
+      ],
+      "features": [
+        "Gravity-based mechanical storage",
+        "Long-duration energy storage (6-12 hours)",
+        "Scalable and replicable design"
+      ],
+      "applications": [
+        "Grid-scale energy storage",
+        "Renewable energy integration",
+        "Long-duration storage"
+      ],
+      "timeline": [
+        {
+          "year": 2017,
+          "event": "Company founded by Robert Piconi"
+        },
+        {
+          "year": 2022,
+          "event": "SPAC merger completed"
+        },
+        {
+          "year": 2023,
+          "event": "First 25MW EVx gravity system connected in China"
+        }
+      ],
+      "confidence_score": 0.88
+    },
+    {
+      "id": 13,
+      "name": "ESS Tech Inc.",
+      "ticker": "GWH",
+      "exchange": "NYSE",
+      "headquarters": "Wilsonville, OR",
+      "founded": 2011,
+      "technology": "Iron flow battery technology (long-duration)",
+      "stage": "Commercial",
+      "capacity_gwh": 2.0,
+      "capacity_target_year": 2025,
+      "employees": 240,
+      "facilities": [
+        {
+          "name": "Headquarters & Manufacturing",
+          "location": "Wilsonville, OR",
+          "size": "200,000 sq ft"
+        }
+      ],
+      "partnerships": [
+        "SMUD (Sacramento Municipal Utility District)"
+      ],
+      "funding": {
+        "total_raised": "$308M",
+        "ipo_date": "2021-10",
+        "ipo_method": "SPAC (ACON S2 Acquisition Corp)"
+      },
+      "financials": {
+        "2024_revenue": "$6.3M",
+        "revenue_change": "-16.51% YoY",
+        "2024_net_loss": "$86.2M"
+      },
+      "products": [
+        "Energy Warehouse (behind-the-meter)",
+        "Energy Center (sub-MW to tens-of-MW scale)",
+        "Energy Base (gigawatt-scale storage)"
+      ],
+      "features": [
+        "Iron, salt, and water chemistry",
+        "Long-duration storage (4-12 hours)",
+        "Non-flammable and non-toxic",
+        "Unlimited cycling capability"
+      ],
+      "applications": [
+        "Grid-scale energy storage",
+        "Renewable energy integration",
+        "Long-duration discharge"
+      ],
+      "timeline": [
+        {
+          "year": 2011,
+          "event": "Founded by Craig Evans and Julia Song"
+        },
+        {
+          "year": 2021,
+          "event": "SPAC merger completed"
+        },
+        {
+          "year": 2024,
+          "event": "SMUD partnership for 200 MW/2 GWh deployment"
+        }
+      ],
+      "confidence_score": 0.92
+    },
+    {
+      "id": 14,
+      "name": "Sunrun Inc.",
+      "ticker": "RUN",
+      "exchange": "NASDAQ",
+      "headquarters": "San Francisco, CA",
+      "founded": 2007,
+      "technology": "Residential solar + battery storage systems",
+      "stage": "Commercial (scaled)",
+      "capacity_gwh": 5.7,
+      "employees": 11058,
+      "facilities": [],
+      "partnerships": [],
+      "funding": {
+        "total_raised": "$250.6M",
+        "ipo_date": "2015-08-05",
+        "ipo_method": "Traditional IPO",
+        "valuation": "$1.4B (at IPO)"
+      },
+      "financials": {
+        "2024_revenue": "$2,037.7M",
+        "revenue_change": "-10% YoY",
+        "annual_recurring_revenue": "$1.6B",
+        "customers": "1,048,842 total / 889,186 subscribers"
+      },
+      "products": [
+        "Residential solar systems",
+        "Battery storage systems",
+        "Virtual Power Plant (VPP) programs"
+      ],
+      "features": [
+        "Largest residential battery storage fleet",
+        "150+ MW grid dispatch capability",
+        "Virtual power plant operations"
+      ],
+      "applications": [
+        "Residential solar + storage",
+        "Home energy backup",
+        "Grid services / VPP"
+      ],
+      "timeline": [
+        {
+          "year": 2007,
+          "event": "Founded by Lynn Jurich, Ed Fenster, and Nat Kreamer"
+        },
+        {
+          "year": 2015,
+          "event": "IPO completed"
+        },
+        {
+          "year": 2024,
+          "event": "20,000+ customers in 16 VPP programs"
+        }
+      ],
+      "confidence_score": 0.97
+    },
+    {
+      "id": 15,
+      "name": "Sunnova Energy International Inc.",
+      "ticker": "NOVA",
+      "exchange": "NYSE",
+      "headquarters": "Houston, TX",
+      "founded": 2012,
+      "technology": "Residential solar + energy storage services",
+      "stage": "Commercial (financial distress/bankruptcy 2025)",
+      "capacity_gwh": 3.0,
+      "employees": 1796,
+      "facilities": [],
+      "partnerships": [],
+      "funding": {
+        "total_raised": "$168M",
+        "ipo_date": "2019-07",
+        "ipo_method": "Traditional IPO",
+        "net_proceeds": "$158M"
+      },
+      "financials": {
+        "2024_revenue": "$840M",
+        "revenue_change": "+17% YoY",
+        "2024_net_loss": "Material losses",
+        "cash_position": "$211.2M unrestricted (of $548M total)",
+        "going_concern": "Filed Chapter 11 bankruptcy June 2025"
+      },
+      "products": [
+        "Residential solar systems",
+        "Energy storage systems",
+        "Solar financing services"
+      ],
+      "features": [
+        "3.0 GW solar generation capacity",
+        "1,662 MWh energy storage under management",
+        "34% battery attachment rate (2024)"
+      ],
+      "applications": [
+        "Residential solar + storage",
+        "Home energy services",
+        "Solar financing"
+      ],
+      "timeline": [
+        {
+          "year": 2012,
+          "event": "Company founded"
+        },
+        {
+          "year": 2019,
+          "event": "IPO completed"
+        },
+        {
+          "year": 2025,
+          "event": "Filed Chapter 11 bankruptcy (June)"
+        }
+      ],
+      "confidence_score": 0.94
+    },
+    {
+      "id": 16,
+      "name": "Tesla Energy (Tesla Inc.)",
+      "ticker": "TSLA",
+      "exchange": "NASDAQ",
+      "headquarters": "Austin, TX",
+      "founded": 2015,
+      "technology": "Lithium-ion battery manufacturing (Powerwall, Megapack)",
+      "stage": "Commercial (scaled production)",
+      "capacity_gwh": 80,
+      "capacity_target_year": 2025,
+      "employees": null,
+      "facilities": [
+        {
+          "name": "Lathrop Megafactory",
+          "location": "Lathrop, CA",
+          "capacity_gwh": 40,
+          "status": "Operating"
+        },
+        {
+          "name": "Gigafactory Nevada",
+          "location": "Sparks, NV",
+          "capacity_gwh": 40,
+          "products": [
+            "Powerwall",
+            "4680 cells"
+          ]
+        },
+        {
+          "name": "Shanghai Megafactory",
+          "location": "Shanghai, China",
+          "capacity_gwh": 40,
+          "status": "Production starting 2025"
+        },
+        {
+          "name": "Houston Megafactory",
+          "location": "Houston, TX",
+          "capacity_gwh": 50,
+          "status": "Planned 2026"
+        }
+      ],
+      "partnerships": [],
+      "funding": {
+        "ipo_date": "2010-06-29",
+        "ipo_method": "Traditional IPO (Tesla Inc.)"
+      },
+      "financials": {
+        "2024_revenue": "$10.1B (Energy segment)",
+        "revenue_change": "+67% YoY",
+        "2024_gross_profit": "$2.6B",
+        "gross_margin": "26%"
+      },
+      "products": [
+        "Powerwall 3 (13.5 kWh residential)",
+        "Megapack (3.9+ MWh utility-scale)",
+        "Solar Roof"
+      ],
+      "features": [
+        "Highest gross margin segment (26%)",
+        "Vertically integrated production",
+        "Rapid scaling capability"
+      ],
+      "applications": [
+        "Residential energy storage",
+        "Grid-scale BESS",
+        "Utility energy storage"
+      ],
+      "timeline": [
+        {
+          "year": 2015,
+          "event": "Tesla Energy division launched"
+        },
+        {
+          "year": 2019,
+          "event": "Megapack launched"
+        },
+        {
+          "year": 2024,
+          "event": "Deployed 31.4 GWh storage (record)"
+        }
+      ],
+      "confidence_score": 0.98
+    },
+    {
+      "id": 17,
+      "name": "Piedmont Lithium Inc.",
+      "ticker": "PLL",
+      "exchange": "NASDAQ",
+      "headquarters": "Belmont, NC",
+      "founded": 2016,
+      "technology": "Spodumene lithium mining and processing",
+      "stage": "Development (North Carolina) / Commercial (Ghana)",
+      "capacity_gwh": null,
+      "capacity_target_year": null,
+      "employees": 150,
+      "facilities": [
+        {
+          "name": "Carolina Lithium Project",
+          "location": "North Carolina",
+          "status": "Development/Permitting",
+          "acres": 3482
+        },
+        {
+          "name": "Tennessee Lithium",
+          "location": "McMinn County, TN",
+          "capacity_tonnes": 30000,
+          "status": "Planned"
+        },
+        {
+          "name": "Ewoyaa Project",
+          "location": "Ghana (via Atlantic Lithium)",
+          "status": "Development"
+        }
+      ],
+      "partnerships": [
+        "Atlantic Lithium (Ghana)",
+        "Sayona Mining (parent company as of Aug 2025)"
+      ],
+      "funding": {
+        "ipo_date": "2018",
+        "ipo_method": "Reverse merger/listing"
+      },
+      "financials": {
+        "2024_revenue": "$99.9M",
+        "revenue_change": "+150.84% YoY",
+        "2024_net_loss": "$64.8M",
+        "Q4_2024_shipments": "55,700 dmt spodumene concentrate"
+      },
+      "products": [
+        "Spodumene concentrate (~5.4% Li2O)",
+        "Lithium hydroxide (planned)"
+      ],
+      "features": [
+        "Carolina Tin-Spodumene Belt location",
+        "Strategic US domestic supply",
+        "Vertically integrated strategy"
+      ],
+      "applications": [
+        "Battery-grade lithium supply",
+        "EV battery supply chain"
+      ],
+      "timeline": [
+        {
+          "year": 2016,
+          "event": "Company founded"
+        },
+        {
+          "year": 2024,
+          "event": "Received North Carolina mining permit (April)"
+        },
+        {
+          "year": 2025,
+          "event": "Acquired by Sayona Mining (August)"
+        }
+      ],
+      "confidence_score": 0.91
+    },
+    {
+      "id": 18,
+      "name": "ioneer Ltd.",
+      "ticker": "IONR",
+      "exchange": "NASDAQ",
+      "headquarters": "North Sydney, Australia",
+      "founded": 2001,
+      "technology": "Lithium-boron mining (unique deposit type)",
+      "stage": "Development (construction planned 2025)",
+      "capacity_gwh": null,
+      "capacity_target_year": 2028,
+      "employees": 80,
+      "facilities": [
+        {
+          "name": "Rhyolite Ridge Project",
+          "location": "Esmeralda County, NV",
+          "capacity_tonnes_lithium": 20000,
+          "capacity_tonnes_boron": 170000,
+          "status": "Federal permit received Oct 2024"
+        }
+      ],
+      "partnerships": [
+        "Sibanye-Stillwater (50% JV for $490M)",
+        "DOE (loan support)"
+      ],
+      "funding": {
+        "total_raised": "$996M (DOE loan)",
+        "ipo_date": "2007 (ASX as Global Geoscience)",
+        "nasdaq_listing": "2020s"
+      },
+      "financials": {
+        "market_cap": "$272.8M",
+        "2024_funding": "$996M DOE loan + $490M Sibanye JV"
+      },
+      "products": [
+        "Lithium carbonate",
+        "Lithium hydroxide",
+        "Boric acid",
+        "Borates"
+      ],
+      "features": [
+        "Only known lithium-boron deposit in North America",
+        "Dual revenue streams (lithium + boron)",
+        "First US lithium project approved by Biden Administration"
+      ],
+      "applications": [
+        "EV battery supply (370,000 vehicles annually)",
+        "Industrial borates",
+        "Domestic US battery supply chain"
+      ],
+      "timeline": [
+        {
+          "year": 2001,
+          "event": "Company incorporated"
+        },
+        {
+          "year": 2018,
+          "event": "Renamed to ioneer Ltd"
+        },
+        {
+          "year": 2024,
+          "event": "Federal permit received (October)"
+        },
+        {
+          "year": 2025,
+          "event": "Construction planned to begin"
+        },
+        {
+          "year": 2028,
+          "event": "First production target"
+        }
+      ],
+      "confidence_score": 0.93
+    },
+    {
+      "id": 19,
+      "name": "American Battery Technology Company",
+      "ticker": "ABAT",
+      "exchange": "NASDAQ",
+      "headquarters": "Reno, NV",
+      "founded": 2011,
+      "technology": "Lithium extraction from claystone + battery recycling",
+      "stage": "Commercial (recycling) / Development (mining)",
+      "capacity_gwh": null,
+      "capacity_target_year": null,
+      "employees": 120,
+      "facilities": [
+        {
+          "name": "Battery Recycling Facility 1",
+          "location": "McCarran, NV",
+          "capacity_tonnes": 20000,
+          "status": "Operating >115% design rate"
+        },
+        {
+          "name": "Battery Recycling Facility 2",
+          "location": "TBD",
+          "status": "Planned with $144M DOE grant"
+        },
+        {
+          "name": "Tonopah Flats Lithium Project",
+          "location": "Tonopah, NV",
+          "acres": 10340,
+          "status": "Development"
+        },
+        {
+          "name": "Pilot Plant",
+          "location": "Tonopah, NV",
+          "status": "Multi-tonne per day LiOH production"
+        }
+      ],
+      "partnerships": [],
+      "funding": {
+        "ipo_date": "2023-09-21",
+        "ipo_method": "Uplist to NASDAQ from OTC",
+        "doe_support": "$144M grant (Facility 2) + $60M tax credits (48C)"
+      },
+      "financials": {
+        "2024_revenue": "First revenue from recycling (FY2024)",
+        "fiscal_year_end": "June 30"
+      },
+      "products": [
+        "Recycled battery materials",
+        "Lithium hydroxide (from claystone)",
+        "Critical minerals recovery"
+      ],
+      "features": [
+        "Dual business model (mining + recycling)",
+        "One of largest US lithium claystone deposits",
+        "Operating above design capacity (115%)",
+        "Closed-loop battery materials"
+      ],
+      "applications": [
+        "Battery recycling",
+        "Lithium extraction",
+        "Domestic critical minerals supply"
+      ],
+      "timeline": [
+        {
+          "year": 2011,
+          "event": "Company founded"
+        },
+        {
+          "year": 2023,
+          "event": "Uplisted to NASDAQ"
+        },
+        {
+          "year": 2024,
+          "event": "First revenue from recycling operations"
+        },
+        {
+          "year": 2024,
+          "event": "$144M DOE grant awarded (December)"
+        }
+      ],
+      "confidence_score": 0.90
+    },
+    {
+      "id": 20,
+      "name": "Lithium Americas Corp.",
+      "ticker": "LAC",
+      "exchange": "NYSE",
+      "headquarters": "Vancouver, BC",
+      "founded": 2007,
+      "technology": "Lithium mining (claystone/sedimentary deposits)",
+      "stage": "Development (construction underway)",
+      "capacity_gwh": null,
+      "capacity_target_year": 2028,
+      "employees": 87,
+      "facilities": [
+        {
+          "name": "Thacker Pass Project",
+          "location": "Humboldt County, NV",
+          "capacity_tonnes": 40000,
+          "status": "Construction (Phase 1)",
+          "phase": "Phase 1"
+        }
+      ],
+      "partnerships": [
+        "General Motors (38% JV partner for $625M)",
+        "DOE (loan program)"
+      ],
+      "funding": {
+        "total_raised": "$2.26B (DOE loan restructured) + $625M (GM JV) + $275M (2024 equity)",
+        "ipo_date": "2007 (TSX reverse takeover)",
+        "nyse_listing": "2018-01"
+      },
+      "financials": {
+        "2024_equity_raise": "$275M (April 2024)",
+        "cash_position": "Significant from GM JV and DOE loan"
+      },
+      "products": [
+        "Battery-grade lithium carbonate"
+      ],
+      "features": [
+        "Largest Measured & Indicated lithium resource in North America",
+        "Claystone direct extraction",
+        "Strategic GM partnership"
+      ],
+      "applications": [
+        "EV battery supply",
+        "GM vehicle production",
+        "Domestic US lithium supply"
+      ],
+      "timeline": [
+        {
+          "year": 2007,
+          "event": "Founded as Western Lithium USA"
+        },
+        {
+          "year": 2018,
+          "event": "Uplisted to NYSE"
+        },
+        {
+          "year": 2023,
+          "event": "Separated from Argentina operations"
+        },
+        {
+          "year": 2024,
+          "event": "GM JV closed (December)"
+        },
+        {
+          "year": 2024,
+          "event": "DOE loan restructured with equity warrants"
+        },
+        {
+          "year": 2028,
+          "event": "Phase 1 production target"
+        }
+      ],
+      "confidence_score": 0.94
+    },
+    {
+      "id": 21,
+      "name": "SunPower Corporation",
+      "ticker": "SPWR",
+      "exchange": "NASDAQ (delisted 2024)",
+      "headquarters": "San Jose, CA",
+      "founded": 1985,
+      "technology": "Residential solar + storage systems",
+      "stage": "Bankruptcy (Chapter 11 filed Aug 2024)",
+      "capacity_gwh": null,
+      "employees": 900,
+      "facilities": [],
+      "partnerships": [],
+      "funding": {
+        "ipo_date": "2005",
+        "ipo_method": "Traditional IPO (spun off from Cypress)"
+      },
+      "financials": {
+        "bankruptcy_date": "2024-08-05",
+        "debt": "$2.01B",
+        "asset_sale": "$45M to Complete Solaria"
+      },
+      "products": [
+        "Residential solar systems",
+        "SunPower brand (sold to Complete Solaria)",
+        "Blue Raven Solar division"
+      ],
+      "features": [
+        "40-year industry pioneer",
+        "Former market leader",
+        "Accounting errors led to audit firm withdrawal"
+      ],
+      "applications": [
+        "Residential solar",
+        "Solar + storage"
+      ],
+      "timeline": [
+        {
+          "year": 1985,
+          "event": "Company founded"
+        },
+        {
+          "year": 2005,
+          "event": "IPO completed"
+        },
+        {
+          "year": 2023,
+          "event": "Debt default (December)"
+        },
+        {
+          "year": 2024,
+          "event": "Chapter 11 bankruptcy filed (August 5)"
+        },
+        {
+          "year": 2024,
+          "event": "Asset sale to Complete Solaria (September 30)"
+        }
+      ],
+      "confidence_score": 0.96
+    },
+    {
+      "id": 22,
+      "name": "Standard Lithium Ltd.",
+      "ticker": "SLI",
+      "exchange": "NYSE American",
+      "headquarters": "Vancouver, BC",
+      "founded": 1998,
+      "technology": "Direct Lithium Extraction (DLE) from brine",
+      "stage": "Development/Pilot",
+      "capacity_gwh": null,
+      "capacity_target_year": null,
+      "employees": 100,
+      "facilities": [
+        {
+          "name": "LANXESS Demonstration Plant",
+          "location": "Southern Arkansas",
+          "status": "Operational demonstration"
+        },
+        {
+          "name": "South West Arkansas (SWA) Project",
+          "location": "Lafayette & Columbia Counties, AR",
+          "status": "Development"
+        }
+      ],
+      "partnerships": [
+        "LANXESS (host site)",
+        "Equinor ASA (45% interest for $160M)"
+      ],
+      "funding": {
+        "total_raised": "$225M (DOE grant) + $160M (Equinor)",
+        "name_change": "2016 (from Patriot Petroleum)"
+      },
+      "financials": {
+        "2024_cash": "C$52.9M",
+        "2024_working_capital": "C$39.6M"
+      },
+      "products": [
+        "Battery-grade lithium carbonate",
+        "Battery-grade lithium hydroxide"
+      ],
+      "features": [
+        "Most advanced DLE in North America",
+        "Proven commercial-scale extraction",
+        "Smackover Formation brine (highest-grade in North America)",
+        "Minimal environmental impact"
+      ],
+      "applications": [
+        "EV battery supply",
+        "Energy storage",
+        "Domestic US lithium production"
+      ],
+      "timeline": [
+        {
+          "year": 1998,
+          "event": "Company incorporated as Patriot Petroleum"
+        },
+        {
+          "year": 2016,
+          "event": "Renamed to Standard Lithium"
+        },
+        {
+          "year": 2024,
+          "event": "DOE selected for $225M grant negotiation"
+        },
+        {
+          "year": 2024,
+          "event": "Equinor acquired 45% interest (September)"
+        }
+      ],
+      "confidence_score": 0.89
+    },
+    {
+      "id": 23,
+      "name": "American Lithium Corp.",
+      "ticker": "AMLI",
+      "exchange": "NASDAQ",
+      "headquarters": "Vancouver, BC",
+      "founded": 1974,
+      "technology": "Lithium mining (claystone) and hard rock",
+      "stage": "Development",
+      "capacity_gwh": null,
+      "capacity_target_year": null,
+      "employees": 75,
+      "facilities": [
+        {
+          "name": "TLC Lithium Project",
+          "location": "Nye County, NV",
+          "status": "PEA completed ($3.26B NPV)"
+        },
+        {
+          "name": "Falchani Lithium Project",
+          "location": "Puno, Peru",
+          "status": "Development"
+        },
+        {
+          "name": "Macusani Uranium Project",
+          "location": "Puno, Peru",
+          "status": "Development"
+        }
+      ],
+      "partnerships": [],
+      "funding": {
+        "nasdaq_listing": "2023-01-10",
+        "name_change": "2016 (from Menika Mining)",
+        "delisting": "Voluntary delisting from NASDAQ Dec 2024"
+      },
+      "financials": {
+        "2024_Q3_cash": "$3.49M",
+        "2024_Q2_loss": "$6.1M",
+        "total_assets": "$161.1M",
+        "shareholders_equity": "$158.4M"
+      },
+      "products": [
+        "Lithium carbonate",
+        "Lithium hydroxide (planned)"
+      ],
+      "features": [
+        "Proximity to Tesla Gigafactory Nevada",
+        "Large claystone resource",
+        "Dual Peru assets (lithium + uranium)"
+      ],
+      "applications": [
+        "EV battery supply",
+        "Energy storage"
+      ],
+      "timeline": [
+        {
+          "year": 1974,
+          "event": "Company incorporated (as Menika Mining)"
+        },
+        {
+          "year": 2016,
+          "event": "Renamed to American Lithium Corp"
+        },
+        {
+          "year": 2023,
+          "event": "Listed on NASDAQ"
+        },
+        {
+          "year": 2024,
+          "event": "Voluntary NASDAQ delisting (Dec)"
+        },
+        {
+          "year": 2024,
+          "event": "CEO transition (September)"
+        }
+      ],
+      "confidence_score": 0.85
+    },
+    {
+      "id": 24,
+      "name": "LibertyStream Infrastructure Partners Inc. (formerly Volt Lithium Corp)",
+      "ticker": "VLT",
+      "exchange": "TSX Venture",
+      "headquarters": "Calgary, AB",
+      "founded": 2018,
+      "technology": "Direct Lithium Extraction (DLE) from oilfield brine",
+      "stage": "Commercial (early production)",
+      "capacity_gwh": null,
+      "capacity_target_year": null,
+      "employees": 50,
+      "facilities": [
+        {
+          "name": "Rainbow Lake Project",
+          "location": "Northwest Alberta, Canada",
+          "acres": 430000,
+          "status": "Development"
+        },
+        {
+          "name": "Permanent Demonstration Plant",
+          "location": "Calgary, AB",
+          "status": "Operating (99.5% purity lithium carbonate)"
+        },
+        {
+          "name": "Permian Basin Field Unit",
+          "location": "Texas",
+          "capacity": "200,000 L/day",
+          "status": "Operating since Sept 2024"
+        }
+      ],
+      "partnerships": [],
+      "funding": {
+        "2024_raise": "$6.2M (November 2024)"
+      },
+      "financials": {
+        "first_production": "2024 (Permian Basin)"
+      },
+      "products": [
+        "Battery-grade lithium carbonate (99.5% purity)",
+        "Lithium hydroxide"
+      ],
+      "features": [
+        "98% lithium recovery in 30 minutes",
+        "Zero seismicity impact",
+        "Oilfield brine processing",
+        "Up to 99% yield from low-concentration brine (31 mg/L)"
+      ],
+      "applications": [
+        "EV batteries",
+        "Energy storage",
+        "Battery-grade lithium supply"
+      ],
+      "timeline": [
+        {
+          "year": 2018,
+          "event": "Company founded (estimated)"
+        },
+        {
+          "year": 2024,
+          "event": "First lithium production in Permian Basin (September)"
+        },
+        {
+          "year": 2024,
+          "event": "Rainbow Lake PEA (45% IRR, $1.5B NPV)"
+        },
+        {
+          "year": 2025,
+          "event": "Renamed to LibertyStream Infrastructure Partners (June)"
+        }
+      ],
+      "confidence_score": 0.87
+    },
+    {
+      "id": 25,
+      "name": "Talon Metals Corp.",
+      "ticker": "TLO",
+      "exchange": "TSX",
+      "headquarters": "Road Town, British Virgin Islands",
+      "founded": 2005,
+      "technology": "Nickel-copper-cobalt mining for EV batteries",
+      "stage": "Development (permitting)",
+      "capacity_gwh": null,
+      "capacity_target_year": null,
+      "employees": 75,
+      "facilities": [
+        {
+          "name": "Tamarack Nickel-Copper-Cobalt Mine",
+          "location": "Aitkin County, MN",
+          "ownership": "51% (earn-in to 60%)",
+          "status": "Early permitting"
+        },
+        {
+          "name": "Battery Minerals Processing Facility",
+          "location": "Mercer County, ND",
+          "status": "Early permitting"
+        }
+      ],
+      "partnerships": [
+        "Rio Tinto (49% JV partner)",
+        "Tesla Inc. (75,000 MT nickel supply agreement)"
+      ],
+      "funding": {
+        "doe_support": "$114M (Bipartisan Infrastructure Law - Oct 2022)",
+        "dla_contract": "$2.47M (Defense Logistics Agency - Dec 2024)"
+      },
+      "financials": {
+        "project_npv": "$569M after-tax (2024 updated PEA)"
+      },
+      "products": [
+        "Nickel concentrate",
+        "Copper concentrate",
+        "Cobalt concentrate"
+      ],
+      "features": [
+        "High-grade nickel-copper-cobalt deposit",
+        "Tesla supply agreement (165M lbs over 6 years)",
+        "Domestic US critical minerals",
+        "Integrated mine-to-processing facility"
+      ],
+      "applications": [
+        "EV battery cathodes",
+        "Energy storage batteries",
+        "Defense applications"
+      ],
+      "timeline": [
+        {
+          "year": 2005,
+          "event": "Company founded"
+        },
+        {
+          "year": 2022,
+          "event": "Tesla supply agreement announced (January)"
+        },
+        {
+          "year": 2022,
+          "event": "$114M DOE funding selected (October)"
+        },
+        {
+          "year": 2024,
+          "event": "Updated PEA shows 96% NPV increase"
+        },
+        {
+          "year": 2024,
+          "event": "$2.47M DLA contract (December)"
+        }
+      ],
+      "confidence_score": 0.92
     }
   ],
   "privateCompanies": [
@@ -269,21 +1411,44 @@
       "founder": "JB Straubel (Tesla co-founder/CTO)",
       "technology": "Hydrometallurgical recycling + cathode production",
       "stage": "Commercial",
-      "capacity_target": {"2030": "100 GWh cathode materials"},
+      "capacity_target": {
+        "2030": "100 GWh cathode materials"
+      },
       "employees": 600,
       "facilities": [
-        {"name": "Carson City Recycling", "location": "Nevada", "capacity": "Recycling hub"},
-        {"name": "South Carolina Cathode", "location": "South Carolina", "capacity": "Cathode production"}
+        {
+          "name": "Carson City Recycling",
+          "location": "Nevada",
+          "capacity": "Recycling hub"
+        },
+        {
+          "name": "South Carolina Cathode",
+          "location": "South Carolina",
+          "capacity": "Cathode production"
+        }
       ],
       "funding": {
         "total_raised": "$2B+",
         "valuation": "$3.7B+",
-        "investors": ["T. Rowe Price", "Panasonic", "Amazon Climate Pledge Fund"]
+        "investors": [
+          "T. Rowe Price",
+          "Panasonic",
+          "Amazon Climate Pledge Fund"
+        ]
       },
       "timeline": [
-        {"year": 2017, "event": "Founded by JB Straubel"},
-        {"year": 2021, "event": "Raised $700M Series C"},
-        {"year": 2023, "event": "South Carolina cathode facility announced"}
+        {
+          "year": 2017,
+          "event": "Founded by JB Straubel"
+        },
+        {
+          "year": 2021,
+          "event": "Raised $700M Series C"
+        },
+        {
+          "year": 2023,
+          "event": "South Carolina cathode facility announced"
+        }
       ],
       "confidence_score": 0.96
     },
@@ -294,15 +1459,30 @@
       "founded": 2011,
       "technology": "Silicon-composite anode materials",
       "stage": "Commercial (Mercedes EQG 2023)",
-      "capacity_target": {"2028": "Materials for 1M+ vehicles/year"},
+      "capacity_target": {
+        "2028": "Materials for 1M+ vehicles/year"
+      },
       "employees": 500,
       "funding": {
         "total_raised": "$900M+",
-        "investors": ["Daimler", "Sutter Hill Ventures", "In-Q-Tel"]
+        "investors": [
+          "Daimler",
+          "Sutter Hill Ventures",
+          "In-Q-Tel"
+        ]
       },
-      "products": ["Titan Silicon anode material"],
-      "partnerships": ["Mercedes-Benz", "ATL", "Amperex"],
-      "features": ["20% higher energy density", "Drop-in replacement for graphite"],
+      "products": [
+        "Titan Silicon anode material"
+      ],
+      "partnerships": [
+        "Mercedes-Benz",
+        "ATL",
+        "Amperex"
+      ],
+      "features": [
+        "20% higher energy density",
+        "Drop-in replacement for graphite"
+      ],
       "confidence_score": 0.95
     },
     {
@@ -312,18 +1492,34 @@
       "founded": 2017,
       "technology": "Iron-air multi-day storage (100-hour duration)",
       "stage": "Pilot-to-commercial transition",
-      "capacity_target": {"2026": "Production from West Virginia factory"},
+      "capacity_target": {
+        "2026": "Production from West Virginia factory"
+      },
       "employees": 350,
       "facilities": [
-        {"name": "Weirton Factory", "location": "West Virginia", "capacity": "Iron-air battery production"}
+        {
+          "name": "Weirton Factory",
+          "location": "West Virginia",
+          "capacity": "Iron-air battery production"
+        }
       ],
       "funding": {
         "total_raised": "$800M+",
         "doe_support": "$147M BEAD grant + $760M conditional loan",
-        "investors": ["Breakthrough Energy Ventures", "ArcelorMittal", "TPG"]
+        "investors": [
+          "Breakthrough Energy Ventures",
+          "ArcelorMittal",
+          "TPG"
+        ]
       },
-      "products": ["100-hour iron-air battery"],
-      "features": ["<$20/kWh LCOS", "Multi-day storage", "Non-flammable"],
+      "products": [
+        "100-hour iron-air battery"
+      ],
+      "features": [
+        "<$20/kWh LCOS",
+        "Multi-day storage",
+        "Non-flammable"
+      ],
       "confidence_score": 0.94
     },
     {
@@ -338,8 +1534,16 @@
       "funding": {
         "total_raised": "$100M+"
       },
-      "licensees": ["Kyocera", "Lucas TVS", "FREYR Battery"],
-      "features": ["Simplified manufacturing", "Lower CapEx", "Thicker electrodes"],
+      "licensees": [
+        "Kyocera",
+        "Lucas TVS",
+        "FREYR Battery"
+      ],
+      "features": [
+        "Simplified manufacturing",
+        "Lower CapEx",
+        "Thicker electrodes"
+      ],
       "confidence_score": 0.93
     },
     {
@@ -349,18 +1553,34 @@
       "founded": 2015,
       "technology": "Hydro-to-cathode recycling (Hydro-to-Cathode Direct)",
       "stage": "Commercial (30K+ MT/year)",
-      "capacity_target": {"2025": "60K MT/year"},
+      "capacity_target": {
+        "2025": "60K MT/year"
+      },
       "employees": 400,
       "facilities": [
-        {"name": "Apex Facility", "location": "Kentucky", "capacity": "30K MT/year"},
-        {"name": "Georgia Expansion", "location": "Georgia", "status": "Under construction"}
+        {
+          "name": "Apex Facility",
+          "location": "Kentucky",
+          "capacity": "30K MT/year"
+        },
+        {
+          "name": "Georgia Expansion",
+          "location": "Georgia",
+          "status": "Under construction"
+        }
       ],
       "funding": {
         "total_raised": "$600M+",
         "ira_support": "$480M Section 48C grant"
       },
-      "products": ["Engineered cathode active materials (NMC, LFP)"],
-      "customers": ["GM", "Honda", "Stellantis"],
+      "products": [
+        "Engineered cathode active materials (NMC, LFP)"
+      ],
+      "customers": [
+        "GM",
+        "Honda",
+        "Stellantis"
+      ],
       "confidence_score": 0.95
     },
     {
@@ -370,11 +1590,21 @@
       "founded": 2016,
       "technology": "Spoke-and-hub battery recycling",
       "stage": "Commercial (project paused 2023-2024)",
-      "capacity_target": {"2025": "25K MT/year hub capacity"},
+      "capacity_target": {
+        "2025": "25K MT/year hub capacity"
+      },
       "employees": 300,
       "facilities": [
-        {"name": "Rochester Hub", "location": "New York", "status": "Under construction (paused)"},
-        {"name": "Spoke Network", "location": "Multiple US/Canada locations", "capacity": "Feed material collection"}
+        {
+          "name": "Rochester Hub",
+          "location": "New York",
+          "status": "Under construction (paused)"
+        },
+        {
+          "name": "Spoke Network",
+          "location": "Multiple US/Canada locations",
+          "capacity": "Feed material collection"
+        }
       ],
       "funding": {
         "doe_support": "$375M loan approved",
@@ -395,10 +1625,18 @@
       "employees": 200,
       "funding": {
         "total_raised": "$300M+",
-        "investors": ["BMW", "Amazon Climate Pledge Fund"]
+        "investors": [
+          "BMW",
+          "Amazon Climate Pledge Fund"
+        ]
       },
-      "products": ["Gemini dual-chemistry battery", "Aries LFP battery"],
-      "achievements": ["Tesla Model S retrofit: 882-mile range (2022)"],
+      "products": [
+        "Gemini dual-chemistry battery",
+        "Aries LFP battery"
+      ],
+      "achievements": [
+        "Tesla Model S retrofit: 882-mile range (2022)"
+      ],
       "confidence_score": 0.92
     },
     {
@@ -408,25 +1646,955 @@
       "founded": 2012,
       "technology": "Prussian blue sodium-ion batteries",
       "stage": "Commercial",
-      "capacity_target": {"2024": "600 MW production"},
+      "capacity_target": {
+        "2024": "600 MW production"
+      },
       "employees": 150,
       "facilities": [
-        {"name": "Holland Facility", "location": "Michigan (former LG Chem site)", "capacity": "600 MW"}
+        {
+          "name": "Holland Facility",
+          "location": "Michigan (former LG Chem site)",
+          "capacity": "600 MW"
+        }
       ],
       "funding": {
         "total_raised": "$200M+"
       },
-      "products": ["Blue (sodium-ion) batteries for power applications"],
-      "features": ["50,000+ cycle life", "Fast charging", "No lithium/cobalt"],
-      "applications": ["Data centers", "EV fast charging", "Forklifts"],
+      "products": [
+        "Blue (sodium-ion) batteries for power applications"
+      ],
+      "features": [
+        "50,000+ cycle life",
+        "Fast charging",
+        "No lithium/cobalt"
+      ],
+      "applications": [
+        "Data centers",
+        "EV fast charging",
+        "Forklifts"
+      ],
       "confidence_score": 0.93
+    },
+    {
+      "id": 109,
+      "name": "Factorial Energy",
+      "headquarters": "Woburn, Massachusetts",
+      "founded": 2013,
+      "founder": "Siyu Huang, Alex Yu, Héctor Abruña (Cornell University)",
+      "technology": "FEST (Factorial Electrolyte System Technology) solid-state batteries",
+      "stage": "Development/Pilot",
+      "capacity_target": {
+        "2024": "500,000 cells/year (pilot)",
+        "2026": "Commercial production target"
+      },
+      "employees": 138,
+      "facilities": [
+        {
+          "name": "Woburn HQ",
+          "location": "Woburn, MA",
+          "capacity": "R&D and pilot production"
+        },
+        {
+          "name": "Methuen Pilot Plant",
+          "location": "Methuen, MA",
+          "capacity": "500,000 FEST cells/year",
+          "area": "67,000 sq ft"
+        }
+      ],
+      "funding": {
+        "total_raised": "$244M",
+        "investors": [
+          "Mercedes-Benz",
+          "Stellantis",
+          "Hyundai Motor Company",
+          "Kia",
+          "North Sky Capital"
+        ]
+      },
+      "products": [
+        "FEST solid-state battery cells",
+        "100 Ah solid-state cells"
+      ],
+      "partnerships": [
+        "Mercedes-Benz",
+        "Stellantis",
+        "Hyundai Motor Company",
+        "Kia"
+      ],
+      "features": [
+        "391 Wh/kg energy density",
+        "Room temperature operation",
+        "Lithium-metal anode",
+        "Semi-solid electrolyte"
+      ],
+      "applications": [
+        "Electric vehicles",
+        "Demonstration fleets (Stellantis 2026)"
+      ],
+      "timeline": [
+        {
+          "year": 2013,
+          "event": "Founded as Lionano"
+        },
+        {
+          "year": 2021,
+          "event": "Rebranded as Factorial Energy"
+        },
+        {
+          "year": 2022,
+          "event": "Raised $200M Series D led by Mercedes and Stellantis"
+        },
+        {
+          "year": 2023,
+          "event": "Unveiled 100 Ah cell at CES"
+        },
+        {
+          "year": 2025,
+          "event": "Stellantis validates automotive-sized cells"
+        }
+      ],
+      "confidence_score": 0.94
+    },
+    {
+      "id": 110,
+      "name": "American Battery Solutions",
+      "headquarters": "Lake Orion, Michigan",
+      "founded": 2019,
+      "founder": "Subhash Dhar",
+      "technology": "Lithium-ion battery pack integration and manufacturing",
+      "stage": "Commercial",
+      "capacity_target": {
+        "current": "50,000 EV battery packs/year at full capacity",
+        "cells": "8 GWh/year"
+      },
+      "employees": 200,
+      "facilities": [
+        {
+          "name": "Battery Innovation Center",
+          "location": "Lake Orion, MI",
+          "capacity": "Engineering and testing",
+          "area": "120,000 sq ft"
+        },
+        {
+          "name": "Advanced Battery Manufacturing Center",
+          "location": "Springboro, OH",
+          "capacity": "50,000 packs/year, 8 GWh cells/year",
+          "area": "170,000 sq ft"
+        }
+      ],
+      "funding": {
+        "total_raised": "$166M+ (DOE ATVM loan conditional commitment)",
+        "investors": [
+          "KCK Group (original backer)",
+          "Komatsu (acquired 2023)"
+        ]
+      },
+      "products": [
+        "Custom lithium-ion battery packs",
+        "Battery modules",
+        "Proliance 700V batteries"
+      ],
+      "partnerships": [
+        "NFI Group (New Flyer)",
+        "TICO Manufacturing",
+        "General Motors",
+        "Fiat Chrysler",
+        "BMW",
+        "Daimler-Mercedes"
+      ],
+      "features": [
+        "Vertically integrated design and manufacturing",
+        "Custom battery solutions",
+        "700V architecture"
+      ],
+      "applications": [
+        "Electric buses",
+        "Commercial vehicles",
+        "Industrial equipment",
+        "Terminal tractors"
+      ],
+      "timeline": [
+        {
+          "year": 2019,
+          "event": "Founded by Subhash Dhar"
+        },
+        {
+          "year": 2019,
+          "event": "Acquired Bosch high-voltage battery assets"
+        },
+        {
+          "year": 2023,
+          "event": "Acquired by Komatsu"
+        },
+        {
+          "year": 2023,
+          "event": "Multi-year NFI supply agreement"
+        }
+      ],
+      "confidence_score": 0.92
+    },
+    {
+      "id": 111,
+      "name": "Lyten",
+      "headquarters": "San Jose, California",
+      "founded": 2015,
+      "founder": "Dan Cook, William Wraith III, Lars Herlitz, Scott Mobley",
+      "technology": "Lithium-sulfur batteries with Lyten 3D Graphene",
+      "stage": "Pilot-to-commercial transition",
+      "capacity_target": {
+        "2027": "2 GWh/year (Nevada Phase 1)",
+        "future": "6-10+ GWh (Poland ESS)"
+      },
+      "employees": 386,
+      "facilities": [
+        {
+          "name": "San Jose Campus",
+          "location": "San Jose, CA",
+          "capacity": "200,000 cells/year (pilot)",
+          "area": "145,000 sq ft"
+        },
+        {
+          "name": "San Leandro (acquired Cuberg)",
+          "location": "San Leandro, CA",
+          "capacity": "200 MWh/year expansion planned",
+          "area": "119,000 sq ft"
+        },
+        {
+          "name": "Reno Gigafactory",
+          "location": "Reno, NV",
+          "capacity": "2 GWh/year Phase 1, expandable",
+          "area": "1.25M sq ft",
+          "status": "Under construction, 2027 target"
+        },
+        {
+          "name": "Gdansk ESS Facility (Northvolt)",
+          "location": "Gdansk, Poland",
+          "capacity": "6-10+ GWh BESS",
+          "area": "270,000 sq ft",
+          "status": "Acquired July 2025"
+        }
+      ],
+      "funding": {
+        "total_raised": "$1.33B",
+        "additional_support": "$650M LOI from Export-Import Bank of US + $4M DOE grant",
+        "investors": [
+          "Prime Movers Lab",
+          "Stellantis Ventures",
+          "FedEx",
+          "Honeywell",
+          "Luxembourg Future Fund"
+        ]
+      },
+      "products": [
+        "LytCell lithium-sulfur battery",
+        "3D Graphene materials"
+      ],
+      "partnerships": [
+        "Stellantis/Chrysler (Halcyon Concept EV)",
+        "Honeywell",
+        "FedEx"
+      ],
+      "features": [
+        "Higher energy density than Li-ion",
+        "Lower cost (no nickel/cobalt)",
+        "Sulfur cathode",
+        "3D Graphene architecture"
+      ],
+      "applications": [
+        "Electric vehicles",
+        "Aerospace",
+        "Defense",
+        "Battery energy storage systems"
+      ],
+      "timeline": [
+        {
+          "year": 2015,
+          "event": "Founded"
+        },
+        {
+          "year": 2023,
+          "event": "Raised $200M Series B, Stellantis investment"
+        },
+        {
+          "year": 2024,
+          "event": "Announced $2B Nevada gigafactory"
+        },
+        {
+          "year": 2024,
+          "event": "Acquired Cuberg assets from Northvolt"
+        },
+        {
+          "year": 2024,
+          "event": "$650M LOI from Export-Import Bank"
+        },
+        {
+          "year": 2025,
+          "event": "Acquired Northvolt Gdansk facility"
+        }
+      ],
+      "confidence_score": 0.93
+    },
+    {
+      "id": 112,
+      "name": "Ionobell",
+      "headquarters": "San Jose, California",
+      "founded": 2017,
+      "founder": "Robert Neivert (CEO)",
+      "technology": "Porous nano-silicon anodes from recycled materials",
+      "stage": "Development",
+      "capacity_target": null,
+      "employees": 5,
+      "facilities": [
+        {
+          "name": "San Jose R&D",
+          "location": "San Jose, CA",
+          "capacity": "R&D and development"
+        }
+      ],
+      "funding": {
+        "total_raised": "$7.3M",
+        "investors": [
+          "Trucks VC (lead)",
+          "Dynamo Ventures",
+          "Alumni Ventures"
+        ]
+      },
+      "products": [
+        "Porous nano-silicon anode material"
+      ],
+      "partnerships": [
+        "Major US automotive manufacturers (undisclosed)"
+      ],
+      "features": [
+        "500% more energy-dense than graphite",
+        "Made from recycled silicon waste",
+        "Drop-in solution for existing manufacturing",
+        "Up to 50% greater energy density"
+      ],
+      "applications": [
+        "Electric vehicles",
+        "Consumer electronics",
+        "Solid-state batteries"
+      ],
+      "timeline": [
+        {
+          "year": 2017,
+          "event": "Founded"
+        },
+        {
+          "year": 2024,
+          "event": "Raised $3.9M seed extension, total $7.3M"
+        }
+      ],
+      "confidence_score": 0.85
+    },
+    {
+      "id": 113,
+      "name": "Group14 Technologies",
+      "headquarters": "Woodinville, Washington",
+      "founded": 2015,
+      "founder": "Rick Luebbe, Aaron Feaver, Rick Costantino",
+      "technology": "Silicon-carbon composite anode materials (SCC55)",
+      "stage": "Commercial",
+      "capacity_target": {
+        "2025": "30+ GWh materials capacity",
+        "future": "7,200 MT silane capacity"
+      },
+      "employees": 300,
+      "facilities": [
+        {
+          "name": "BAM-1",
+          "location": "Woodinville, WA",
+          "capacity": "Commercial production",
+          "status": "Operating"
+        },
+        {
+          "name": "BAM-2",
+          "location": "Moses Lake, WA",
+          "capacity": "4,000 tonnes/year (2 modules x 2,000)",
+          "status": "2026 target"
+        },
+        {
+          "name": "South Korea JV",
+          "location": "South Korea",
+          "capacity": "Joint venture with SK",
+          "status": "Operating"
+        },
+        {
+          "name": "Schmid Silicon (acquired)",
+          "location": "Europe",
+          "capacity": "European manufacturing footprint"
+        }
+      ],
+      "funding": {
+        "total_raised": "$1.11B",
+        "doe_support": "$200M award negotiation for silane factory",
+        "investors": [
+          "Porsche (lead)",
+          "SK Inc.",
+          "OMERS",
+          "Microsoft Climate Innovation Fund",
+          "Decarbonization Partners",
+          "ATL",
+          "BASF"
+        ]
+      },
+      "products": [
+        "SCC55 silicon-carbon composite anode material"
+      ],
+      "partnerships": [
+        "Porsche/Cellforce Group",
+        "SK",
+        "150+ battery customers worldwide"
+      ],
+      "features": [
+        "5x energy storage vs graphite",
+        "Drop-in replacement",
+        "Lithium-silicon battery enablement"
+      ],
+      "applications": [
+        "Electric vehicles (Porsche)",
+        "Consumer electronics",
+        "Grid storage",
+        "95% of worldwide battery manufacturers"
+      ],
+      "timeline": [
+        {
+          "year": 2015,
+          "event": "Founded"
+        },
+        {
+          "year": 2022,
+          "event": "Raised $400M Series C led by Porsche"
+        },
+        {
+          "year": 2023,
+          "event": "Broke ground on Moses Lake BAM-2"
+        },
+        {
+          "year": 2024,
+          "event": "Completed $614M Series C total"
+        },
+        {
+          "year": 2025,
+          "event": "Raised $463M Series D"
+        }
+      ],
+      "confidence_score": 0.96
+    },
+    {
+      "id": 114,
+      "name": "Alsym Energy",
+      "headquarters": "Malden, Massachusetts",
+      "founded": 2015,
+      "founder": "Mukesh Chatter, Rahul Mukherjee, Kripa Varanasi",
+      "technology": "Non-lithium, non-cobalt rechargeable batteries with water-based electrolyte",
+      "stage": "Development/Pilot",
+      "capacity_target": {
+        "2024-2025": "1 MWh pilot production each (2 lines)"
+      },
+      "employees": 75,
+      "facilities": [
+        {
+          "name": "Exchange 200 HQ",
+          "location": "Malden, MA",
+          "capacity": "HQ and operations",
+          "area": "60,000 sq ft"
+        },
+        {
+          "name": "Woburn Facility",
+          "location": "Woburn, MA",
+          "capacity": "Operations"
+        }
+      ],
+      "funding": {
+        "total_raised": "$104M+",
+        "investors": [
+          "Tata Limited (co-lead)",
+          "General Catalyst (co-lead)",
+          "Thomvest",
+          "Drads Capital"
+        ]
+      },
+      "products": [
+        "Metal-oxide rechargeable battery"
+      ],
+      "partnerships": [
+        "Tata Group",
+        "Indian automaker (undisclosed)"
+      ],
+      "features": [
+        "Non-flammable",
+        "No lithium or cobalt",
+        "Water-based electrolyte",
+        "Low-cost materials",
+        "Uses existing Li-ion equipment"
+      ],
+      "applications": [
+        "Utility-scale storage",
+        "Home storage",
+        "Microgrids",
+        "Industrial applications",
+        "Marine vessels",
+        "Two-wheelers"
+      ],
+      "timeline": [
+        {
+          "year": 2015,
+          "event": "Founded"
+        },
+        {
+          "year": 2022,
+          "event": "Emerged from stealth mode"
+        },
+        {
+          "year": 2024,
+          "event": "Raised $78M Series C led by Tata and General Catalyst"
+        }
+      ],
+      "confidence_score": 0.91
+    },
+    {
+      "id": 115,
+      "name": "Ionic Materials",
+      "headquarters": "Woburn, Massachusetts",
+      "founded": 2012,
+      "founder": "Mike Zimmerman",
+      "technology": "Solid polymer electrolyte for solid-state batteries",
+      "stage": "Ceased operations (June 2024)",
+      "capacity_target": null,
+      "employees": 0,
+      "facilities": [],
+      "funding": {
+        "total_raised": "$65M+ (Series C)",
+        "arpa_e_grant": "$6.76M",
+        "investors": [
+          "Total",
+          "Hyundai CRADLE",
+          "Kleiner Perkins"
+        ]
+      },
+      "products": [
+        "Solid polymer electrolyte material"
+      ],
+      "partnerships": [
+        "Historical partnerships before closure"
+      ],
+      "features": [
+        "Room temperature operation",
+        "Lithium conducting solid-state polymer",
+        "Safety improvement over liquid electrolytes"
+      ],
+      "applications": [
+        "Solid-state batteries (development stage)"
+      ],
+      "timeline": [
+        {
+          "year": 2012,
+          "event": "Founded by Mike Zimmerman"
+        },
+        {
+          "year": 2018,
+          "event": "Raised $65M Series C"
+        },
+        {
+          "year": 2024,
+          "event": "Ceased operations in June, laid off 40+ employees"
+        }
+      ],
+      "confidence_score": 0.93
+    },
+    {
+      "id": 116,
+      "name": "StorEn Technologies",
+      "headquarters": "New York, New York",
+      "founded": 2017,
+      "founder": "Angelo D'Anzi, Carlo Brovero",
+      "technology": "Vanadium redox flow batteries (VRFB)",
+      "stage": "Development/Pilot",
+      "capacity_target": null,
+      "employees": 10,
+      "facilities": [
+        {
+          "name": "Technical Development",
+          "location": "Bologna, Italy",
+          "capacity": "R&D"
+        },
+        {
+          "name": "US Headquarters",
+          "location": "New York City, NY",
+          "capacity": "Operations"
+        }
+      ],
+      "funding": {
+        "total_raised": "$12.7M",
+        "gem_commitment": "$50M commitment for public listing",
+        "investors": [
+          "8,000+ retail investors via StartEngine"
+        ]
+      },
+      "products": [
+        "Residential vanadium flow battery",
+        "Commercial VRFB systems"
+      ],
+      "partnerships": [
+        "Australian renewable hydrogen plant (VRFB supply contract)"
+      ],
+      "features": [
+        "Long cycle life",
+        "Non-flammable",
+        "Scalable storage duration",
+        "First residential VRFB"
+      ],
+      "applications": [
+        "Residential energy storage",
+        "Commercial storage",
+        "Telecom backup power",
+        "Renewable integration"
+      ],
+      "timeline": [
+        {
+          "year": 2017,
+          "event": "Founded"
+        },
+        {
+          "year": 2023,
+          "event": "Raised $1.4M at $60.2M valuation via StartEngine"
+        },
+        {
+          "year": 2024,
+          "event": "Secured $500K Australian VRFB contract"
+        }
+      ],
+      "confidence_score": 0.87
+    },
+    {
+      "id": 117,
+      "name": "EnerVenue",
+      "headquarters": "Fremont, California",
+      "founded": 2020,
+      "founder": "Yi Cui (Chairman/CTO), Jorg Heinemann (CEO)",
+      "technology": "Nickel-hydrogen batteries (Energy Storage Vessels)",
+      "stage": "Commercial/Production ramp",
+      "capacity_target": {
+        "2026": "1 GWh/year Kentucky Phase 1",
+        "future": "20+ GWh/year"
+      },
+      "employees": 140,
+      "facilities": [
+        {
+          "name": "Fremont HQ",
+          "location": "Fremont, CA",
+          "capacity": "64,000 sq ft HQ and operations"
+        },
+        {
+          "name": "Kentucky Gigafactory",
+          "location": "Shelby County, KY",
+          "capacity": "1 GWh Phase 1, expandable to 20+ GWh",
+          "area": "1M sq ft on 73 acres"
+        }
+      ],
+      "funding": {
+        "total_raised": "$433M+ (Series A $125M + Series B $308M)",
+        "investors": [
+          "Schlumberger",
+          "Saudi Aramco Energy Ventures",
+          "Stanford University"
+        ]
+      },
+      "products": [
+        "Energy Storage Vessels (nickel-hydrogen batteries)"
+      ],
+      "partnerships": [
+        "Pine Gate Renewables (2.4 GWh order)",
+        "RWE (pilot testing)"
+      ],
+      "features": [
+        "20-year/200,000-cycle warranty",
+        "30,000+ cycles",
+        "Non-flammable",
+        "No thermal management needed",
+        "NASA-proven technology"
+      ],
+      "applications": [
+        "Utility-scale storage",
+        "Renewable energy integration",
+        "Long-duration storage"
+      ],
+      "timeline": [
+        {
+          "year": 2020,
+          "event": "Founded, raised $12M seed"
+        },
+        {
+          "year": 2021,
+          "event": "Raised $125M Series A"
+        },
+        {
+          "year": 2022,
+          "event": "2.4 GWh Pine Gate order"
+        },
+        {
+          "year": 2023,
+          "event": "Announced Kentucky gigafactory"
+        },
+        {
+          "year": 2024,
+          "event": "RWE pilot project"
+        }
+      ],
+      "confidence_score": 0.92
+    },
+    {
+      "id": 118,
+      "name": "Cuberg (acquired by Lyten)",
+      "headquarters": "San Leandro, California (former)",
+      "founded": 2015,
+      "founder": "Richard Wang",
+      "technology": "Lithium-metal batteries with liquid electrolyte",
+      "stage": "Ceased operations (acquired)",
+      "capacity_target": null,
+      "employees": 0,
+      "facilities": [
+        {
+          "name": "San Leandro (now Lyten)",
+          "location": "San Leandro, CA",
+          "capacity": "119,000 sq ft",
+          "status": "Acquired by Lyten November 2024"
+        }
+      ],
+      "funding": {
+        "total_raised": "$10M (pre-Northvolt)",
+        "investors": [
+          "Boeing HorizonX Ventures",
+          "US Army",
+          "National Science Foundation",
+          "Northvolt (acquirer 2021)"
+        ]
+      },
+      "products": [
+        "Lithium-metal battery cells"
+      ],
+      "partnerships": [
+        "Boeing",
+        "US Army"
+      ],
+      "features": [
+        "High energy density for aerospace",
+        "Lithium-metal anode",
+        "Liquid electrolyte"
+      ],
+      "applications": [
+        "Aerospace",
+        "Electric aviation",
+        "High-performance EVs"
+      ],
+      "timeline": [
+        {
+          "year": 2015,
+          "event": "Founded by Richard Wang at Stanford"
+        },
+        {
+          "year": 2021,
+          "event": "Acquired by Northvolt"
+        },
+        {
+          "year": 2024,
+          "event": "Shut down by Northvolt (August)"
+        },
+        {
+          "year": 2024,
+          "event": "Assets acquired by Lyten (November)"
+        }
+      ],
+      "confidence_score": 0.88
+    },
+    {
+      "id": 119,
+      "name": "SES AI Corporation",
+      "headquarters": "Woburn, Massachusetts",
+      "founded": 2012,
+      "founder": "Qichao Hu",
+      "technology": "Lithium-metal batteries with liquid electrolyte",
+      "stage": "Development/B-sample production",
+      "capacity_target": {
+        "2023": "Pre-production prototyping line with GM"
+      },
+      "employees": 300,
+      "facilities": [
+        {
+          "name": "Woburn HQ",
+          "location": "Woburn, MA",
+          "capacity": "Global HQ and R&D"
+        },
+        {
+          "name": "GM Prototyping Line",
+          "location": "Woburn, MA",
+          "capacity": "Pre-production high-capacity cells"
+        },
+        {
+          "name": "Hyundai-Kia B-sample Facility",
+          "location": "Uiwang, South Korea",
+          "capacity": "Largest Li-metal line in world",
+          "status": "Under construction"
+        }
+      ],
+      "funding": {
+        "total_raised": "$476M (SPAC transaction) + $336M prior equity",
+        "valuation": "$3.6B (at SPAC merger 2022)",
+        "current_market_cap": "$433M (NYSE: SES)",
+        "investors": [
+          "GM Ventures",
+          "Hyundai Motor",
+          "Kia",
+          "Honda",
+          "Geely",
+          "SK",
+          "Temasek",
+          "Applied Materials"
+        ]
+      },
+      "products": [
+        "Li-metal battery A-samples",
+        "AI-enhanced battery development platform"
+      ],
+      "partnerships": [
+        "General Motors (JDA)",
+        "Hyundai Motor (JDA)",
+        "Kia (JDA)",
+        "Honda (JDA)"
+      ],
+      "features": [
+        "High energy density lithium-metal",
+        "AI-powered electrolyte design",
+        "Liquid electrolyte system"
+      ],
+      "applications": [
+        "Electric vehicles",
+        "High-performance automotive"
+      ],
+      "timeline": [
+        {
+          "year": 2012,
+          "event": "Founded as SolidEnergy Systems"
+        },
+        {
+          "year": 2021,
+          "event": "Series D+ led by GM and Hyundai"
+        },
+        {
+          "year": 2022,
+          "event": "Went public via SPAC (NYSE: SES) at $3.6B valuation"
+        },
+        {
+          "year": 2024,
+          "event": "Signed JDA with Hyundai/Kia for B-sample facility"
+        },
+        {
+          "year": 2025,
+          "event": "Signed contracts with two automotive OEMs for AI-enhanced batteries"
+        }
+      ],
+      "confidence_score": 0.95
+    },
+    {
+      "id": 120,
+      "name": "Gotion High-Tech (US Operations)",
+      "headquarters": "Fremont, California",
+      "founded": 2014,
+      "founder": "US subsidiary of Gotion High-Tech (China, est. 2006)",
+      "technology": "Lithium iron phosphate (LFP) batteries and cathode materials",
+      "stage": "Commercial (Fremont) / Under construction (IL, MI)",
+      "capacity_target": {
+        "Illinois": "40 GWh cells + 10 GWh packs",
+        "Michigan": "150K tonnes cathode + 50K tonnes anode"
+      },
+      "employees": 100,
+      "facilities": [
+        {
+          "name": "Fremont Pack Assembly",
+          "location": "Fremont, CA",
+          "capacity": "1 GWh ESS packs/year",
+          "status": "Operating"
+        },
+        {
+          "name": "Manteno Gigafactory",
+          "location": "Manteno, IL",
+          "capacity": "40 GWh cells + 10 GWh packs",
+          "area": "150 acres",
+          "investment": "$2B",
+          "status": "2024 startup",
+          "jobs": 2600
+        },
+        {
+          "name": "Big Rapids Components",
+          "location": "Big Rapids, MI",
+          "capacity": "150K tonnes cathode + 50K tonnes anode",
+          "investment": "$2.36B",
+          "status": "Under construction"
+        }
+      ],
+      "funding": {
+        "total_investment": "$4.36B+ in US facilities",
+        "incentives": "$536M Illinois package + $715M Michigan package",
+        "investors": [
+          "Volkswagen (major shareholder of parent company)"
+        ]
+      },
+      "products": [
+        "LFP battery cells",
+        "LFP battery packs",
+        "Portable ESS",
+        "Residential ESS",
+        "Cathode materials",
+        "Anode materials"
+      ],
+      "partnerships": [
+        "Volkswagen"
+      ],
+      "features": [
+        "LFP chemistry (no nickel/cobalt)",
+        "Vertical integration (materials to packs)",
+        "Cost-competitive"
+      ],
+      "applications": [
+        "Electric vehicles",
+        "Energy storage systems",
+        "Residential storage"
+      ],
+      "timeline": [
+        {
+          "year": 2006,
+          "event": "Parent company founded in China"
+        },
+        {
+          "year": 2014,
+          "event": "US subsidiary established"
+        },
+        {
+          "year": 2022,
+          "event": "Announced Michigan cathode/anode plant"
+        },
+        {
+          "year": 2023,
+          "event": "Announced Illinois gigafactory"
+        },
+        {
+          "year": 2024,
+          "event": "Fremont facility begins production"
+        }
+      ],
+      "confidence_score": 0.94
     }
   ],
   "jointVentures": [
     {
       "id": 201,
       "name": "Ultium Cells LLC",
-      "partners": ["General Motors", "LG Energy Solution"],
+      "partners": [
+        "General Motors",
+        "LG Energy Solution"
+      ],
       "ownership": "50/50",
       "headquarters": "Warren, Michigan",
       "founded": 2019,
@@ -434,19 +2602,40 @@
       "stage": "Production",
       "total_capacity_gwh": 130,
       "facilities": [
-        {"name": "Ultium Warren", "location": "Warren, OH", "capacity_gwh": 41, "status": "Operating"},
-        {"name": "Ultium Spring Hill", "location": "Spring Hill, TN", "capacity_gwh": 50, "status": "Operating"},
-        {"name": "Ultium Lansing", "location": "Lansing, MI", "capacity_gwh": 41, "status": "Operating"}
+        {
+          "name": "Ultium Warren",
+          "location": "Warren, OH",
+          "capacity_gwh": 41,
+          "status": "Operating"
+        },
+        {
+          "name": "Ultium Spring Hill",
+          "location": "Spring Hill, TN",
+          "capacity_gwh": 50,
+          "status": "Operating"
+        },
+        {
+          "name": "Ultium Lansing",
+          "location": "Lansing, MI",
+          "capacity_gwh": 41,
+          "status": "Operating"
+        }
       ],
       "employees": 3500,
       "investment": "$7B total",
-      "products": ["Pouch cells for GM EVs", "LFP cells for entry models"],
+      "products": [
+        "Pouch cells for GM EVs",
+        "LFP cells for entry models"
+      ],
       "confidence_score": 0.97
     },
     {
       "id": 202,
       "name": "BlueOval SK",
-      "partners": ["Ford Motor Company", "SK On"],
+      "partners": [
+        "Ford Motor Company",
+        "SK On"
+      ],
       "ownership": "50/50",
       "headquarters": "Glendale, Kentucky",
       "founded": 2021,
@@ -454,19 +2643,41 @@
       "stage": "Production",
       "total_capacity_gwh": 130,
       "facilities": [
-        {"name": "BlueOval City", "location": "Stanton, TN", "capacity_gwh": 43, "status": "Under construction"},
-        {"name": "BlueOval SK Battery Park 1", "location": "Glendale, KY", "capacity_gwh": 43, "status": "Under construction"},
-        {"name": "BlueOval SK Battery Park 2", "location": "Glendale, KY", "capacity_gwh": 43, "status": "Under construction"}
+        {
+          "name": "BlueOval City",
+          "location": "Stanton, TN",
+          "capacity_gwh": 43,
+          "status": "Under construction"
+        },
+        {
+          "name": "BlueOval SK Battery Park 1",
+          "location": "Glendale, KY",
+          "capacity_gwh": 43,
+          "status": "Under construction"
+        },
+        {
+          "name": "BlueOval SK Battery Park 2",
+          "location": "Glendale, KY",
+          "capacity_gwh": 43,
+          "status": "Under construction"
+        }
       ],
       "employees": 5000,
       "investment": "$11.4B total",
-      "products": ["Li-ion cells for F-150 Lightning", "Mustang Mach-E", "Future Ford EVs"],
+      "products": [
+        "Li-ion cells for F-150 Lightning",
+        "Mustang Mach-E",
+        "Future Ford EVs"
+      ],
       "confidence_score": 0.96
     },
     {
       "id": 203,
       "name": "StarPlus Energy",
-      "partners": ["Stellantis", "Samsung SDI"],
+      "partners": [
+        "Stellantis",
+        "Samsung SDI"
+      ],
       "ownership": "50/50",
       "headquarters": "Kokomo, Indiana",
       "founded": 2022,
@@ -474,39 +2685,314 @@
       "stage": "Under construction",
       "total_capacity_gwh": 67,
       "facilities": [
-        {"name": "Kokomo Plant 1", "location": "Kokomo, IN", "capacity_gwh": 33, "status": "2025 start"},
-        {"name": "Kokomo Plant 2", "location": "Kokomo, IN", "capacity_gwh": 34, "status": "2027 start"}
+        {
+          "name": "Kokomo Plant 1",
+          "location": "Kokomo, IN",
+          "capacity_gwh": 33,
+          "status": "2025 start"
+        },
+        {
+          "name": "Kokomo Plant 2",
+          "location": "Kokomo, IN",
+          "capacity_gwh": 34,
+          "status": "2027 start"
+        }
       ],
       "employees": 2800,
       "investment": "$6.3B total",
-      "products": ["Cells for Stellantis EVs (Jeep, Ram, Dodge)"],
+      "products": [
+        "Cells for Stellantis EVs (Jeep, Ram, Dodge)"
+      ],
       "confidence_score": 0.95
     },
     {
       "id": 204,
       "name": "Panasonic Energy (North America)",
-      "partners": ["Panasonic Holdings", "Tesla (partnership)"],
+      "partners": [
+        "Panasonic Holdings",
+        "Tesla (partnership)"
+      ],
       "headquarters": "De Soto, Kansas",
       "founded": 2014,
       "technology": "2170 and 4680 cylindrical cells",
       "stage": "Production",
       "total_capacity_gwh": 140,
       "facilities": [
-        {"name": "Gigafactory Nevada", "location": "Sparks, NV", "capacity_gwh": 100, "status": "Operating (2017)", "products": ["2170 cells", "4680 cells"]},
-        {"name": "De Soto Factory", "location": "De Soto, KS", "capacity_gwh": 30, "status": "Operating (2024)", "products": ["2170 cells"]},
-        {"name": "Oklahoma Expansion", "location": "Oklahoma", "capacity_gwh": 10, "status": "Planned"}
+        {
+          "name": "Gigafactory Nevada",
+          "location": "Sparks, NV",
+          "capacity_gwh": 100,
+          "status": "Operating (2017)",
+          "products": [
+            "2170 cells",
+            "4680 cells"
+          ]
+        },
+        {
+          "name": "De Soto Factory",
+          "location": "De Soto, KS",
+          "capacity_gwh": 30,
+          "status": "Operating (2024)",
+          "products": [
+            "2170 cells"
+          ]
+        },
+        {
+          "name": "Oklahoma Expansion",
+          "location": "Oklahoma",
+          "capacity_gwh": 10,
+          "status": "Planned"
+        }
       ],
       "employees": 4500,
       "investment": "$7B total",
-      "products": ["2170 cells (Tesla Model 3/Y)", "4680 cells (Cybertruck)"],
+      "products": [
+        "2170 cells (Tesla Model 3/Y)",
+        "4680 cells (Cybertruck)"
+      ],
       "confidence_score": 0.98
+    },
+    {
+      "id": 205,
+      "name": "Envision AESC",
+      "partners": [
+        "Envision Group",
+        "Nissan Motor Corporation"
+      ],
+      "ownership": "80/20 (Envision Group 80%, Nissan 20%)",
+      "headquarters": "Yokohama, Japan",
+      "founded": 2019,
+      "technology": "Li-ion (NCM 811, NCMA), LFP, multiple form factors (pouch, prismatic, cylindrical)",
+      "stage": "Production (Tennessee), Under construction (Kentucky), Halted (South Carolina)",
+      "total_capacity_gwh": 70,
+      "facilities": [
+        {
+          "name": "AESC Smyrna",
+          "location": "Smyrna, TN",
+          "capacity_gwh": 3,
+          "status": "Operating since 2012 (retooled 2025)",
+          "products": [
+            "Energy Storage Systems",
+            "Former Nissan LEAF batteries"
+          ]
+        },
+        {
+          "name": "AESC Bowling Green",
+          "location": "Bowling Green, KY (Kentucky Transpark)",
+          "capacity_gwh": 30,
+          "status": "Under construction, production start 2025",
+          "products": [
+            "EV batteries for multiple OEMs"
+          ]
+        },
+        {
+          "name": "AESC Florence",
+          "location": "Florence, SC",
+          "capacity_gwh": 30,
+          "status": "Construction halted (2025) due to tariff uncertainty",
+          "products": [
+            "BMW next-generation EV batteries (planned)"
+          ]
+        }
+      ],
+      "employees": 2000,
+      "investment": "$2.81B ($2B Kentucky, $810M South Carolina)",
+      "products": [
+        "NCM 811 cells (300+ Wh/kg)",
+        "NCMA cells",
+        "LFP cells",
+        "ESS batteries"
+      ],
+      "timeline": [
+        {
+          "year": 2007,
+          "event": "AESC founded by Nissan and NEC/Tokin"
+        },
+        {
+          "year": 2019,
+          "event": "Envision Group acquires controlling stake (80%)"
+        },
+        {
+          "year": 2022,
+          "event": "Kentucky gigafactory announced ($2B)"
+        },
+        {
+          "year": 2022,
+          "event": "South Carolina facility announced ($810M) for BMW"
+        },
+        {
+          "year": 2025,
+          "event": "Kentucky production start (planned)"
+        },
+        {
+          "year": 2025,
+          "event": "South Carolina construction halted"
+        }
+      ],
+      "confidence_score": 0.92
+    },
+    {
+      "id": 206,
+      "name": "L-H Battery Company (Honda-LG Energy Solution JV)",
+      "partners": [
+        "LG Energy Solution",
+        "Honda Motor Company"
+      ],
+      "ownership": "51/49 (LGES 51%, Honda 49%)",
+      "headquarters": "Jeffersonville, Ohio",
+      "founded": 2023,
+      "technology": "Pouch-type lithium-ion batteries",
+      "stage": "Under construction",
+      "total_capacity_gwh": 40,
+      "facilities": [
+        {
+          "name": "L-H Battery Company Plant",
+          "location": "Jeffersonville, Fayette County, OH (40 miles SW of Columbus)",
+          "capacity_gwh": 40,
+          "status": "Under construction, production start end of 2025",
+          "products": [
+            "Pouch-type Li-ion batteries for Honda EVs in North America"
+          ]
+        }
+      ],
+      "employees": 2200,
+      "investment": "$4.4B",
+      "products": [
+        "Pouch-type lithium-ion cells for Honda EVs sold in North America"
+      ],
+      "timeline": [
+        {
+          "year": 2022,
+          "event": "Joint venture announced (October 11)"
+        },
+        {
+          "year": 2023,
+          "event": "Joint venture formally established (January 13)"
+        },
+        {
+          "year": 2023,
+          "event": "Groundbreaking ceremony (February 28)"
+        },
+        {
+          "year": 2025,
+          "event": "Mass production start (planned Q4)"
+        }
+      ],
+      "confidence_score": 0.96
+    },
+    {
+      "id": 207,
+      "name": "HL-GA Battery Company (Hyundai-LG Energy Solution JV)",
+      "partners": [
+        "Hyundai Motor Group",
+        "LG Energy Solution"
+      ],
+      "ownership": "50/50",
+      "headquarters": "Ellabell, Bryan County, Georgia",
+      "founded": 2022,
+      "technology": "Lithium-ion battery cells",
+      "stage": "Under construction (construction paused September 2025)",
+      "total_capacity_gwh": 30,
+      "facilities": [
+        {
+          "name": "HL-GA Battery Company Plant",
+          "location": "Ellabell, Bryan County, GA (adjacent to Hyundai Metaplant America)",
+          "capacity_gwh": 30,
+          "status": "Under construction, production start early 2026 (delayed from late 2025)",
+          "products": [
+            "Li-ion cells for Hyundai, Kia, Genesis EVs (300K units/year capacity)"
+          ]
+        }
+      ],
+      "employees": 3000,
+      "investment": "$4.3B (raised from initial $2.3B in 2023)",
+      "products": [
+        "Battery cells for Hyundai, Kia, Genesis electric vehicles assembled at Hyundai Metaplant America"
+      ],
+      "timeline": [
+        {
+          "year": 2022,
+          "event": "Joint venture announced"
+        },
+        {
+          "year": 2023,
+          "event": "Investment increased to $4.3B (August 31)"
+        },
+        {
+          "year": 2023,
+          "event": "Construction begins (H2 2023)"
+        },
+        {
+          "year": 2025,
+          "event": "ICE immigration raid, construction paused (September 4)"
+        },
+        {
+          "year": 2026,
+          "event": "Production start planned (early 2026)"
+        }
+      ],
+      "confidence_score": 0.89
+    },
+    {
+      "id": 208,
+      "name": "Prime Planet Energy & Solutions (Toyota Battery Manufacturing NC)",
+      "partners": [
+        "Toyota Motor Corporation",
+        "Panasonic Holdings Corporation"
+      ],
+      "ownership": "51/49 (Toyota 51%, Panasonic 49%)",
+      "headquarters": "Tokyo, Japan (Prime Planet HQ), Liberty, NC (TBMNC operations)",
+      "founded": 2020,
+      "technology": "Prismatic lithium-ion batteries (NMC-based cathode materials)",
+      "stage": "Production starting 2025",
+      "total_capacity_gwh": 30,
+      "facilities": [
+        {
+          "name": "Toyota Battery Manufacturing North Carolina (TBMNC)",
+          "location": "Liberty, NC (Randolph County)",
+          "capacity_gwh": 30,
+          "status": "Production start 2025, phased expansion through 2030",
+          "products": [
+            "Prismatic batteries: 4 lines HEV, 10 lines BEV/PHEV"
+          ]
+        }
+      ],
+      "employees": 5000,
+      "investment": "$13.9B",
+      "products": [
+        "Prismatic aluminum cell batteries for HEV, PHEV, and BEV vehicles",
+        "Unified cells for North American Toyota EVs"
+      ],
+      "timeline": [
+        {
+          "year": 2020,
+          "event": "Prime Planet Energy & Solutions JV formed (April)"
+        },
+        {
+          "year": 2021,
+          "event": "North Carolina site announced"
+        },
+        {
+          "year": 2023,
+          "event": "$8B additional investment announced (October)"
+        },
+        {
+          "year": 2025,
+          "event": "Production begins, first batteries ship (April 2025)"
+        },
+        {
+          "year": 2030,
+          "event": "Full 30+ GWh capacity with 14 production lines"
+        }
+      ],
+      "confidence_score": 0.97
     }
   ],
   "summary": {
-    "total_companies": 62,
+    "total_companies": 60,
     "public_companies": 25,
     "private_major_funding": 20,
-    "joint_ventures": 10,
+    "joint_ventures": 8,
     "subsidiaries": 7,
     "total_capacity_gwh": 850,
     "capacity_2030_target_gwh": 1500,
@@ -514,5 +3000,500 @@
     "battery_specific_investment": "$48.3B",
     "jobs_created": 62700,
     "jobs_projected_2027": 100000
-  }
+  },
+  "subsidiaries": [
+    {
+      "id": 301,
+      "name": "SK Battery America",
+      "parent_company": "SK On (South Korea)",
+      "headquarters": "Commerce, Georgia",
+      "founded": 2019,
+      "technology": "NCM (Nickel-Cobalt-Manganese), LFP (starting 2026)",
+      "stage": "Production",
+      "capacity_gwh": 22,
+      "capacity_target": "157 GWh by 2027 (including joint ventures)",
+      "employees": 3100,
+      "facilities": [
+        {
+          "location": "Commerce, Georgia (Jackson County)",
+          "capacity_gwh": 22,
+          "status": "Production",
+          "investment": "$2.6 billion",
+          "timeline": "Plant 1 operational 2022, Plant 2 operational 2023"
+        },
+        {
+          "location": "Bartow County, Georgia (joint venture with Hyundai)",
+          "capacity_gwh": 35,
+          "status": "Under construction",
+          "investment": "$5 billion",
+          "timeline": "Production start Q2 2025"
+        },
+        {
+          "location": "BlueOval SK - Glendale, Kentucky (2 plants, JV with Ford)",
+          "capacity_gwh": 86,
+          "status": "Under construction",
+          "investment": "$5.8 billion",
+          "timeline": "Production start 2025-2026"
+        },
+        {
+          "location": "BlueOval SK - Stanton, Tennessee (JV with Ford)",
+          "capacity_gwh": 43,
+          "status": "Under construction",
+          "investment": "$5.6 billion",
+          "timeline": "Production start 2025-2026"
+        },
+        {
+          "location": "Roswell, Georgia (IT Center)",
+          "capacity_gwh": 0,
+          "status": "Operational",
+          "investment": "Undisclosed",
+          "timeline": "Opened January 2023, 200 employees"
+        }
+      ],
+      "us_customers": [
+        "Ford Motor Company (F-150 Lightning, E-Transit)",
+        "Volkswagen (ID.4)",
+        "Hyundai Motor Group",
+        "Kia",
+        "Energy storage customers"
+      ],
+      "investment": "$19+ billion (total U.S. investments including joint ventures)",
+      "products": [
+        "Lithium-ion EV battery cells and modules",
+        "NCM battery cells",
+        "LFP battery cells (planned)",
+        "Energy storage systems"
+      ],
+      "timeline": [
+        {
+          "year": 2019,
+          "milestone": "SK Innovation announces $2.6B investment in Georgia"
+        },
+        {
+          "year": 2020,
+          "milestone": "Adds $940M expansion for second Georgia plant"
+        },
+        {
+          "year": 2021,
+          "milestone": "Announces BlueOval SK joint venture with Ford"
+        },
+        {
+          "year": 2022,
+          "milestone": "First Commerce plant begins production"
+        },
+        {
+          "year": 2023,
+          "milestone": "Second Commerce plant operational; announces Hyundai JV in Bartow County; IT center opens in Roswell"
+        },
+        {
+          "year": 2024,
+          "milestone": "DOE finalizes $9.63B loan for BlueOval SK facilities; exceeds 3,000 employees"
+        },
+        {
+          "year": 2025,
+          "milestone": "BlueOval SK and Hyundai JV plants expected to begin production"
+        },
+        {
+          "year": 2026,
+          "milestone": "LFP production begins at Commerce facility"
+        }
+      ],
+      "confidence_score": 0.95
+    },
+    {
+      "id": 302,
+      "name": "LG Energy Solution Michigan",
+      "parent_company": "LG Energy Solution (South Korea)",
+      "headquarters": "Holland, Michigan",
+      "founded": 2010,
+      "technology": "NMC (Nickel-Manganese-Cobalt) for EVs, LFP (Lithium Iron Phosphate) for energy storage",
+      "stage": "Production",
+      "capacity_gwh": 25,
+      "capacity_target": "155+ GWh by 2027 (including Ultium Cells joint ventures)",
+      "employees": 1700,
+      "facilities": [
+        {
+          "location": "Holland, Michigan (standalone facility)",
+          "capacity_gwh": 25,
+          "status": "Production",
+          "investment": "$2.7 billion",
+          "timeline": "EV battery production since 2010; LFP lines operational May 2025"
+        },
+        {
+          "location": "Warren, Ohio (Ultium Cells JV with GM)",
+          "capacity_gwh": 35,
+          "status": "Production",
+          "investment": "$2.3 billion",
+          "timeline": "Production began November 2022"
+        },
+        {
+          "location": "Spring Hill, Tennessee (Ultium Cells JV with GM)",
+          "capacity_gwh": 50,
+          "status": "Production",
+          "investment": "$2.575 billion",
+          "timeline": "Production began April 2024"
+        },
+        {
+          "location": "Lansing, Michigan (Ultium Cells JV with GM, being sold to LGES)",
+          "capacity_gwh": 50,
+          "status": "Under construction",
+          "investment": "$2.6 billion",
+          "timeline": "GM selling stake to LGES; expected operational 2025-2026"
+        }
+      ],
+      "us_customers": [
+        "General Motors (Ultium platform EVs)",
+        "Honda (via joint ventures)",
+        "Hyundai (via joint ventures)",
+        "Energy storage system customers",
+        "Grid-scale storage operators"
+      ],
+      "investment": "$10+ billion (Holland facility + Ultium Cells joint ventures)",
+      "products": [
+        "NMC lithium-ion battery cells for EVs",
+        "LFP battery cells for energy storage",
+        "Battery modules and packs",
+        "Grid-scale energy storage systems"
+      ],
+      "timeline": [
+        {
+          "year": 2010,
+          "milestone": "LG Chem (now LGES) establishes Holland, Michigan facility"
+        },
+        {
+          "year": 2020,
+          "milestone": "Announces Ultium Cells joint venture with GM"
+        },
+        {
+          "year": 2022,
+          "milestone": "Holland expansion announced ($1.7B); Ultium Ohio plant starts production; receives $2.5B DOE loan for Ultium facilities"
+        },
+        {
+          "year": 2023,
+          "milestone": "Toyota announces $3B partnership for battery supply"
+        },
+        {
+          "year": 2024,
+          "milestone": "Ultium Tennessee plant begins production; construction complete on Holland LFP expansion"
+        },
+        {
+          "year": 2025,
+          "milestone": "Holland LFP plant operational (May 2025); becomes largest U.S. LFP manufacturer for grid storage"
+        }
+      ],
+      "confidence_score": 0.95
+    },
+    {
+      "id": 303,
+      "name": "Samsung SDI America",
+      "parent_company": "Samsung SDI (South Korea)",
+      "headquarters": "Auburn Hills, Michigan",
+      "founded": 2010,
+      "technology": "NCM (Nickel-Cobalt-Manganese), NCA (Nickel-Cobalt-Aluminum)",
+      "stage": "Joint ventures under construction; Auburn Hills production operational",
+      "capacity_gwh": 103,
+      "capacity_target": "103 GWh by 2027 (StarPlus Energy 67 GWh + GM JV 36 GWh)",
+      "employees": 600,
+      "facilities": [
+        {
+          "location": "Auburn Hills, Michigan (headquarters and battery pack assembly)",
+          "capacity_gwh": "N/A (pack assembly, not cell manufacturing)",
+          "status": "Production",
+          "investment": "$41 million (2023 expansion)",
+          "timeline": "Headquarters operational; expansion creating 368 jobs"
+        },
+        {
+          "location": "Kokomo, Indiana - StarPlus Energy Plant 1 (JV with Stellantis)",
+          "capacity_gwh": 33,
+          "status": "Production",
+          "investment": "$3.2 billion",
+          "timeline": "Production began December 2024"
+        },
+        {
+          "location": "Kokomo, Indiana - StarPlus Energy Plant 2 (JV with Stellantis)",
+          "capacity_gwh": 34,
+          "status": "Under construction",
+          "investment": "$2 billion",
+          "timeline": "Production expected early 2027"
+        },
+        {
+          "location": "New Carlisle, Indiana (JV with General Motors)",
+          "capacity_gwh": 36,
+          "status": "Under construction",
+          "investment": "$3.5 billion",
+          "timeline": "Production expected 2027; initial capacity 27 GWh expanding to 36 GWh"
+        }
+      ],
+      "us_customers": [
+        "Stellantis (Dodge, Jeep, Ram, Chrysler EVs)",
+        "General Motors (future EV platforms)",
+        "Various OEMs for battery packs"
+      ],
+      "investment": "$8.7+ billion (joint ventures + Auburn Hills expansion)",
+      "products": [
+        "Lithium-ion battery cells (through joint ventures)",
+        "Battery packs and modules",
+        "NCM and NCA battery chemistries",
+        "EV battery systems"
+      ],
+      "timeline": [
+        {
+          "year": 2010,
+          "milestone": "Samsung SDI establishes U.S. headquarters in Auburn Hills, Michigan"
+        },
+        {
+          "year": 2022,
+          "milestone": "Announces StarPlus Energy joint venture with Stellantis"
+        },
+        {
+          "year": 2023,
+          "milestone": "Announces second StarPlus plant and GM joint venture; Auburn Hills expansion"
+        },
+        {
+          "year": 2024,
+          "milestone": "StarPlus Energy first plant begins production (December); DOE finalizes $7.54B loan for StarPlus Energy; GM JV agreement finalized"
+        },
+        {
+          "year": 2027,
+          "milestone": "StarPlus second plant and GM JV plant expected operational; total 103 GWh U.S. capacity"
+        }
+      ],
+      "confidence_score": 0.9
+    },
+    {
+      "id": 304,
+      "name": "CATL North America (Licensing Model)",
+      "parent_company": "CATL - Contemporary Amperex Technology Co. Limited (China)",
+      "headquarters": "No U.S. manufacturing headquarters (technology licensing model)",
+      "founded": 2023,
+      "technology": "LFP (Lithium Iron Phosphate)",
+      "stage": "Technology licensing and services (no owned facilities)",
+      "capacity_gwh": 20,
+      "capacity_target": "20+ GWh (Ford Marshall plant licensed technology)",
+      "employees": "Minimal (licensing and technical support personnel only)",
+      "facilities": [
+        {
+          "location": "Marshall, Michigan (Ford-owned BlueOval Battery Park Michigan)",
+          "capacity_gwh": 20,
+          "status": "Under construction (60% complete as of June 2025)",
+          "investment": "$3 billion (Ford investment using CATL licensed technology)",
+          "timeline": "Production start 2026; CATL provides technology licensing, equipment, and training"
+        },
+        {
+          "location": "Potential GM facility in North America",
+          "capacity_gwh": "TBD",
+          "status": "Negotiations ongoing",
+          "investment": "TBD",
+          "timeline": "Location TBD (U.S. or Mexico); discussions ongoing as of 2024"
+        }
+      ],
+      "us_customers": [
+        "Ford Motor Company (licensing customer for Marshall plant)",
+        "Tesla (battery supply to Nevada Gigafactory for energy storage)",
+        "General Motors (potential licensing customer)"
+      ],
+      "investment": "$0 direct investment (licensing model; Ford owns and finances facilities)",
+      "products": [
+        "LFP battery technology licensing",
+        "Manufacturing equipment supply",
+        "Technical training and support services",
+        "Battery cell production know-how"
+      ],
+      "timeline": [
+        {
+          "year": 2023,
+          "milestone": "Ford announces $3.5B Marshall, Michigan LFP plant using CATL licensed technology"
+        },
+        {
+          "year": 2024,
+          "milestone": "CATL in licensing discussions with GM for North American LFP plant; Ford scales back Marshall plant from 35 GWh to 20 GWh; CATL added to DoD Chinese military companies list"
+        },
+        {
+          "year": 2025,
+          "milestone": "Ford Marshall plant 60% complete; equipment arriving from China; CATL chairman indicates openness to U.S. plant if political environment allows"
+        },
+        {
+          "year": 2026,
+          "milestone": "Ford Marshall plant expected to begin production using CATL technology"
+        }
+      ],
+      "confidence_score": 0.85
+    },
+    {
+      "id": 305,
+      "name": "BYD Energy North America",
+      "parent_company": "BYD Company Limited (China)",
+      "headquarters": "Lancaster, California (manufacturing); Los Angeles, California (corporate HQ)",
+      "founded": 2013,
+      "technology": "LFP (Lithium Iron Phosphate)",
+      "stage": "Production",
+      "capacity_gwh": "Limited scale (specific ESS manufacturing capacity not disclosed)",
+      "capacity_target": "Not publicly disclosed for U.S. operations",
+      "employees": 750,
+      "facilities": [
+        {
+          "location": "Lancaster, California",
+          "capacity_gwh": "Not specifically disclosed for battery ESS production",
+          "status": "Production",
+          "investment": "$53+ million",
+          "timeline": "Established 2013; expanded from 106K to 556K sq ft; produces iron-phosphate energy modules and electric buses"
+        }
+      ],
+      "us_customers": [
+        "Utility-scale energy storage operators",
+        "Commercial and industrial customers",
+        "UC San Diego (major ESS installation)",
+        "Various California utilities",
+        "Municipal and transit agencies (for buses)"
+      ],
+      "investment": "$53+ million (Lancaster facility as of 2018)",
+      "products": [
+        "Iron-phosphate (LFP) battery energy storage modules",
+        "Grid-scale battery energy storage systems",
+        "Commercial and industrial ESS solutions",
+        "Electric buses (integrated with battery technology)"
+      ],
+      "timeline": [
+        {
+          "year": 2011,
+          "milestone": "BYD Energy Storage enters North American market"
+        },
+        {
+          "year": 2013,
+          "milestone": "Opens Lancaster, California manufacturing facility (106K sq ft); 6 initial U.S. employees"
+        },
+        {
+          "year": 2015,
+          "milestone": "Announces energy module manufacturing at Lancaster facility"
+        },
+        {
+          "year": 2018,
+          "milestone": "Lancaster facility expands to 556K sq ft; total U.S. investment exceeds $53M; employs 820+ workers"
+        },
+        {
+          "year": 2020,
+          "milestone": "750 unionized manufacturing employees; expands to 1,000+ total U.S. employees"
+        },
+        {
+          "year": 2024,
+          "milestone": "Continues energy storage system deployments across California and U.S.; ranks #1 in California ESS market"
+        }
+      ],
+      "confidence_score": 0.75
+    },
+    {
+      "id": 306,
+      "name": "Northvolt North America (Operations Ceased)",
+      "parent_company": "Northvolt AB (Sweden)",
+      "headquarters": "Former: San Leandro, California (facility sold to Lyten)",
+      "founded": 2021,
+      "technology": "Lithium-metal (Cuberg technology)",
+      "stage": "Closed/Sold (no active U.S. operations)",
+      "capacity_gwh": 0,
+      "capacity_target": "0 (U.S. operations terminated; North America focus shifted to Quebec, Canada)",
+      "employees": 0,
+      "facilities": [
+        {
+          "location": "San Leandro, California (formerly Cuberg)",
+          "capacity_gwh": 0,
+          "status": "Sold to Lyten in November 2024",
+          "investment": "Limited R&D investment (acquired 2021, closed 2024)",
+          "timeline": "Acquired 2021; closed August 2024; sold to Lyten November 2024"
+        },
+        {
+          "location": "Quebec, Canada (North America operations)",
+          "capacity_gwh": 60,
+          "status": "Planned (separate from U.S. operations)",
+          "investment": "$5 billion (Canadian facility, not U.S.)",
+          "timeline": "Announced 2023; first operations planned 2026"
+        }
+      ],
+      "us_customers": [
+        "None (U.S. operations ceased)"
+      ],
+      "investment": "Minimal U.S. investment (R&D facility acquired and closed within 3 years)",
+      "products": [
+        "None (U.S. operations terminated)",
+        "Former: Lithium-metal battery R&D"
+      ],
+      "timeline": [
+        {
+          "year": 2021,
+          "milestone": "Northvolt acquires Cuberg (lithium-metal battery startup) in San Leandro, California"
+        },
+        {
+          "year": 2023,
+          "milestone": "Announces focus on Quebec, Canada facility ($5B, 60 GWh) for North American operations"
+        },
+        {
+          "year": 2024,
+          "milestone": "August: Closes Cuberg facility and lays off ~200 employees; November: Sells San Leandro facility and equipment to Lyten for $50M; November 21: Files Chapter 11 bankruptcy"
+        },
+        {
+          "year": 2025,
+          "milestone": "No U.S. operations; Lyten plans to convert facility to lithium-sulfur battery production"
+        }
+      ],
+      "confidence_score": 0.95
+    },
+    {
+      "id": 307,
+      "name": "Farasis Energy USA",
+      "parent_company": "Farasis Energy (China; originally founded in California 2002)",
+      "headquarters": "Hayward, California",
+      "founded": 2002,
+      "technology": "Various lithium-ion chemistries (NMC, LFP, others)",
+      "stage": "R&D operations only (no U.S. manufacturing; exploring future production)",
+      "capacity_gwh": 0,
+      "capacity_target": "TBD (exploring U.S. manufacturing facilities)",
+      "employees": "Limited (R&D and business development staff)",
+      "facilities": [
+        {
+          "location": "Hayward, California (21363 Cabot Blvd)",
+          "capacity_gwh": 0,
+          "status": "R&D center operational",
+          "investment": "Limited (R&D operations)",
+          "timeline": "Founded 2002; manufacturing moved to China 2009; R&D center continues operating"
+        },
+        {
+          "location": "Future U.S. manufacturing facility",
+          "capacity_gwh": "TBD",
+          "status": "Exploring development",
+          "investment": "TBD",
+          "timeline": "Under evaluation to serve U.S. customers with domestic production"
+        }
+      ],
+      "us_customers": [
+        "USABC (United States Advanced Battery Consortium) - $2.6M development contract",
+        "U.S. automotive OEMs (development partnerships)",
+        "Various R&D collaborators"
+      ],
+      "investment": "Minimal (R&D facility operations)",
+      "products": [
+        "Battery technology R&D services",
+        "Advanced lithium-ion battery development",
+        "Custom battery solutions (development phase)",
+        "No mass production in U.S."
+      ],
+      "timeline": [
+        {
+          "year": 2002,
+          "milestone": "Farasis Energy founded in California"
+        },
+        {
+          "year": 2009,
+          "milestone": "Manufacturing operations moved to Ganzhou, China due to cost considerations"
+        },
+        {
+          "year": 2020,
+          "milestone": "Receives $2.6M USABC contract for lithium electrode-based cell development"
+        },
+        {
+          "year": 2024,
+          "milestone": "Operates R&D centers in U.S., China, and Germany; exploring U.S. manufacturing facility development"
+        }
+      ],
+      "confidence_score": 0.8
+    }
+  ]
 }
