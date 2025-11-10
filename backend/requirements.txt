@@ -40,7 +40,7 @@ pandas==2.2.0
 
 # RAG & LLM
 langchain==0.1.6
-langchain-community==0.0.17
+langchain-community==0.0.18
 anthropic==0.8.1
 cohere==4.47
 sentence-transformers==2.3.1
