@@ -1,152 +1,693 @@
 {
   "costCurve": [
-    {"year": 2015, "cost": 600},
-    {"year": 2016, "cost": 540},
-    {"year": 2017, "cost": 480},
-    {"year": 2018, "cost": 420},
-    {"year": 2019, "cost": 156},
-    {"year": 2020, "cost": 137},
-    {"year": 2021, "cost": 155},
-    {"year": 2022, "cost": 161},
-    {"year": 2023, "cost": 150},
-    {"year": 2024, "cost": 115},
-    {"year": 2025, "cost": 112},
-    {"year": 2026, "cost": 98},
-    {"year": 2028, "cost": 80},
-    {"year": 2030, "cost": 69}
+    {
+      "year": 2015,
+      "cost": 600
+    },
+    {
+      "year": 2016,
+      "cost": 540
+    },
+    {
+      "year": 2017,
+      "cost": 480
+    },
+    {
+      "year": 2018,
+      "cost": 420
+    },
+    {
+      "year": 2019,
+      "cost": 156
+    },
+    {
+      "year": 2020,
+      "cost": 137
+    },
+    {
+      "year": 2021,
+      "cost": 155
+    },
+    {
+      "year": 2022,
+      "cost": 161
+    },
+    {
+      "year": 2023,
+      "cost": 150
+    },
+    {
+      "year": 2024,
+      "cost": 115
+    },
+    {
+      "year": 2025,
+      "cost": 112
+    },
+    {
+      "year": 2026,
+      "cost": 98
+    },
+    {
+      "year": 2028,
+      "cost": 80
+    },
+    {
+      "year": 2030,
+      "cost": 69
+    }
   ],
   "capacityGrowth": [
-    {"year": 2015, "capacity": 10},
-    {"year": 2016, "capacity": 20},
-    {"year": 2017, "capacity": 40},
-    {"year": 2018, "capacity": 90},
-    {"year": 2019, "capacity": 180},
-    {"year": 2020, "capacity": 350},
-    {"year": 2021, "capacity": 450},
-    {"year": 2022, "capacity": 650},
-    {"year": 2023, "capacity": 750},
-    {"year": 2024, "capacity": 850},
-    {"year": 2025, "capacity": 950},
-    {"year": 2026, "capacity": 1050},
-    {"year": 2027, "capacity": 1200},
-    {"year": 2030, "capacity": 1500}
+    {
+      "year": 2015,
+      "capacity": 10
+    },
+    {
+      "year": 2016,
+      "capacity": 20
+    },
+    {
+      "year": 2017,
+      "capacity": 40
+    },
+    {
+      "year": 2018,
+      "capacity": 90
+    },
+    {
+      "year": 2019,
+      "capacity": 180
+    },
+    {
+      "year": 2020,
+      "capacity": 350
+    },
+    {
+      "year": 2021,
+      "capacity": 450
+    },
+    {
+      "year": 2022,
+      "capacity": 650
+    },
+    {
+      "year": 2023,
+      "capacity": 750
+    },
+    {
+      "year": 2024,
+      "capacity": 850
+    },
+    {
+      "year": 2025,
+      "capacity": 950
+    },
+    {
+      "year": 2026,
+      "capacity": 1050
+    },
+    {
+      "year": 2027,
+      "capacity": 1200
+    },
+    {
+      "year": 2030,
+      "capacity": 1500
+    }
   ],
   "topCompanies": [
-    {"name": "Tesla", "capacity": 110, "technology": "Li-ion (4680, 2170)"},
-    {"name": "SK Battery America", "capacity": 180, "technology": "Li-ion"},
-    {"name": "Ultium Cells (GM-LG)", "capacity": 130, "technology": "Li-ion (NCMA, LFP)"},
-    {"name": "BlueOval SK (Ford-SK)", "capacity": 130, "technology": "Li-ion, LFP"},
-    {"name": "Panasonic Energy", "capacity": 140, "technology": "Li-ion (2170)"},
-    {"name": "LG Energy Solution", "capacity": 170, "technology": "Li-ion, LFP"},
-    {"name": "StarPlus Energy (Stellantis-Samsung)", "capacity": 70, "technology": "Li-ion"},
-    {"name": "FREYR Battery", "capacity": 50, "technology": "LFP (SemiSolid)"},
-    {"name": "Gotion High-Tech", "capacity": 50, "technology": "Li-ion"},
-    {"name": "Ford-CATL", "capacity": 20, "technology": "LFP"}
+    {
+      "name": "Panasonic Energy (North America)",
+      "capacity": 140,
+      "technology": "2170 and 4680 cylindrical cells",
+      "headquarters": "De Soto, Kansas",
+      "founded": 2014
+    },
+    {
+      "name": "Ultium Cells LLC",
+      "capacity": 130,
+      "technology": "NCMA and LFP battery cells",
+      "headquarters": "Warren, Michigan",
+      "founded": 2019
+    },
+    {
+      "name": "BlueOval SK",
+      "capacity": 130,
+      "technology": "Li-ion and LFP battery cells",
+      "headquarters": "Glendale, Kentucky",
+      "founded": 2021
+    },
+    {
+      "name": "Samsung SDI America",
+      "capacity": 103,
+      "technology": "NCM (Nickel-Cobalt-Manganese), NCA (Nickel-Cobalt-Aluminum)",
+      "headquarters": "Auburn Hills, Michigan",
+      "founded": 2010
+    },
+    {
+      "name": "Redwood Materials",
+      "capacity": 100,
+      "technology": "Hydrometallurgical recycling + cathode production",
+      "headquarters": "Carson City, Nevada",
+      "founded": 2017
+    },
+    {
+      "name": "Tesla Energy (Tesla Inc.)",
+      "capacity": 80,
+      "technology": "Lithium-ion battery manufacturing (Powerwall, Megapack)",
+      "headquarters": "Austin, TX",
+      "founded": 2015
+    },
+    {
+      "name": "Envision AESC",
+      "capacity": 70,
+      "technology": "Li-ion, NCM 811",
+      "headquarters": "Yokohama, Japan",
+      "founded": 2019
+    },
+    {
+      "name": "StarPlus Energy",
+      "capacity": 67,
+      "technology": "Li-ion battery cells",
+      "headquarters": "Kokomo, Indiana",
+      "founded": 2022
+    },
+    {
+      "name": "Northvolt North America (Operations Ceased)",
+      "capacity": 60,
+      "technology": "Lithium-metal (Cuberg technology)",
+      "headquarters": "Former: San Leandro, California (facility sold to Lyten)",
+      "founded": 2021
+    },
+    {
+      "name": "FREYR Battery",
+      "capacity": 50,
+      "technology": "Lithium iron phosphate (LFP) using 24M SemiSolid platform",
+      "headquarters": "Luxembourg (redomiciled to US 2023)",
+      "founded": 2018
+    },
+    {
+      "name": "Gotion High-Tech (US Operations)",
+      "capacity": 41,
+      "technology": "Lithium iron phosphate (LFP) batteries and cathode materials",
+      "headquarters": "Fremont, California",
+      "founded": 2014
+    },
+    {
+      "name": "L-H Battery Company (Honda-LG Energy Solution JV)",
+      "capacity": 40,
+      "technology": "Pouch-type lithium-ion batteries",
+      "headquarters": "Jeffersonville, Ohio",
+      "founded": 2023
+    },
+    {
+      "name": "HL-GA Battery Company (Hyundai-LG Energy Solution JV)",
+      "capacity": 30,
+      "technology": "Lithium-ion battery cells",
+      "headquarters": "Ellabell, Bryan County, Georgia",
+      "founded": 2022
+    },
+    {
+      "name": "Prime Planet Energy & Solutions (Toyota Battery Manufacturing NC)",
+      "capacity": 30,
+      "technology": "Prismatic lithium-ion batteries (NMC-based cathode materials)",
+      "headquarters": "Tokyo, Japan (Prime Planet HQ), Liberty, NC (TBMNC operations)",
+      "founded": 2020
+    },
+    {
+      "name": "LG Energy Solution Michigan",
+      "capacity": 25,
+      "technology": "NMC, Nickel-Manganese-Cobalt",
+      "headquarters": "Holland, Michigan",
+      "founded": 2010
+    },
+    {
+      "name": "SK Battery America",
+      "capacity": 22,
+      "technology": "NCM (Nickel-Cobalt-Manganese), LFP (starting 2026)",
+      "headquarters": "Commerce, Georgia",
+      "founded": 2019
+    },
+    {
+      "name": "CATL North America (Licensing Model)",
+      "capacity": 20,
+      "technology": "LFP (Lithium Iron Phosphate)",
+      "headquarters": "No U.S. manufacturing headquarters (technology licensing model)",
+      "founded": 2023
+    },
+    {
+      "name": "Microvast Holdings",
+      "capacity": 15,
+      "technology": "Lithium-ion batteries with polyaramid separator",
+      "headquarters": "Stafford, Texas",
+      "founded": 2006
+    },
+    {
+      "name": "Eos Energy Enterprises",
+      "capacity": 8,
+      "technology": "Znyth aqueous zinc battery (non-lithium)",
+      "headquarters": "Edison, New Jersey",
+      "founded": 2008
+    },
+    {
+      "name": "American Battery Solutions",
+      "capacity": 8,
+      "technology": "Lithium-ion battery pack integration and manufacturing",
+      "headquarters": "Lake Orion, Michigan",
+      "founded": 2019
+    },
+    {
+      "name": "Sunrun Inc.",
+      "capacity": 5.7,
+      "technology": "Residential solar + battery storage systems",
+      "headquarters": "San Francisco, CA",
+      "founded": 2007
+    },
+    {
+      "name": "Amprius Technologies",
+      "capacity": 5,
+      "technology": "Silicon anode lithium-ion batteries (NOT solid-state)",
+      "headquarters": "Fremont, CA",
+      "founded": 2008
+    },
+    {
+      "name": "Enphase Energy",
+      "capacity": 5,
+      "technology": "IQ Battery (lithium iron phosphate - LFP) residential storage",
+      "headquarters": "Fremont, California",
+      "founded": 2006
+    },
+    {
+      "name": "Energy Vault Holdings Inc.",
+      "capacity": 3.7,
+      "technology": "Gravity-based energy storage (G-Vault) and battery storage systems",
+      "headquarters": "Lugano, Switzerland (US operations)",
+      "founded": 2017
+    },
+    {
+      "name": "Sunnova Energy International Inc.",
+      "capacity": 3,
+      "technology": "Residential solar + energy storage services",
+      "headquarters": "Houston, TX",
+      "founded": 2012
+    },
+    {
+      "name": "Lyten",
+      "capacity": 2.2,
+      "technology": "Lithium-sulfur batteries with Lyten 3D Graphene",
+      "headquarters": "San Jose, California",
+      "founded": 2015
+    },
+    {
+      "name": "ESS Tech Inc.",
+      "capacity": 2,
+      "technology": "Iron flow battery technology (long-duration)",
+      "headquarters": "Wilsonville, OR",
+      "founded": 2011
+    },
+    {
+      "name": "EnerVenue",
+      "capacity": 1,
+      "technology": "Nickel-hydrogen batteries (Energy Storage Vessels)",
+      "headquarters": "Fremont, California",
+      "founded": 2020
+    },
+    {
+      "name": "Natron Energy",
+      "capacity": 0.6,
+      "technology": "Prussian blue sodium-ion batteries",
+      "headquarters": "Santa Clara, California",
+      "founded": 2012
+    },
+    {
+      "name": "Solid Power Inc",
+      "capacity": 0.1,
+      "technology": "Sulfide-based solid electrolyte for all-solid-state batteries",
+      "headquarters": "Louisville, Colorado",
+      "founded": 2011
+    },
+    {
+      "name": "Piedmont Lithium Inc.",
+      "capacity": 0.1,
+      "technology": "Spodumene lithium mining and processing",
+      "headquarters": "Belmont, NC",
+      "founded": 2016
+    },
+    {
+      "name": "ioneer Ltd.",
+      "capacity": 0.1,
+      "technology": "Lithium-boron mining (unique deposit type)",
+      "headquarters": "North Sydney, Australia",
+      "founded": 2001
+    },
+    {
+      "name": "American Battery Technology Company",
+      "capacity": 0.1,
+      "technology": "Lithium extraction from claystone + battery recycling",
+      "headquarters": "Reno, NV",
+      "founded": 2011
+    },
+    {
+      "name": "Lithium Americas Corp.",
+      "capacity": 0.1,
+      "technology": "Lithium mining (claystone/sedimentary deposits)",
+      "headquarters": "Vancouver, BC",
+      "founded": 2007
+    },
+    {
+      "name": "Standard Lithium Ltd.",
+      "capacity": 0.1,
+      "technology": "Direct Lithium Extraction (DLE) from brine",
+      "headquarters": "Vancouver, BC",
+      "founded": 1998
+    },
+    {
+      "name": "American Lithium Corp.",
+      "capacity": 0.1,
+      "technology": "Lithium mining (claystone) and hard rock",
+      "headquarters": "Vancouver, BC",
+      "founded": 1974
+    },
+    {
+      "name": "Talon Metals Corp.",
+      "capacity": 0.1,
+      "technology": "Nickel-copper-cobalt mining for EV batteries",
+      "headquarters": "Road Town, British Virgin Islands",
+      "founded": 2005
+    },
+    {
+      "name": "Form Energy",
+      "capacity": 0.1,
+      "technology": "Iron-air multi-day storage (100-hour duration)",
+      "headquarters": "Somerville, Massachusetts",
+      "founded": 2017
+    },
+    {
+      "name": "Our Next Energy (ONE)",
+      "capacity": 0.1,
+      "technology": "LFP + structural battery pack design",
+      "headquarters": "Novi, Michigan",
+      "founded": 2020
+    },
+    {
+      "name": "Factorial Energy",
+      "capacity": 0.1,
+      "technology": "FEST (Factorial Electrolyte System Technology) solid-state batteries",
+      "headquarters": "Woburn, Massachusetts",
+      "founded": 2013
+    },
+    {
+      "name": "Ionobell",
+      "capacity": 0.1,
+      "technology": "Porous nano-silicon anodes from recycled materials",
+      "headquarters": "San Jose, California",
+      "founded": 2017
+    },
+    {
+      "name": "StorEn Technologies",
+      "capacity": 0.1,
+      "technology": "Vanadium redox flow batteries (VRFB)",
+      "headquarters": "New York, New York",
+      "founded": 2017
+    },
+    {
+      "name": "SES AI Corporation",
+      "capacity": 0.1,
+      "technology": "Lithium-metal batteries with liquid electrolyte",
+      "headquarters": "Woburn, Massachusetts",
+      "founded": 2012
+    },
+    {
+      "name": "Alsym Energy",
+      "capacity": 0.001,
+      "technology": "Non-lithium, non-cobalt rechargeable batteries with water-based electrolyte",
+      "headquarters": "Malden, Massachusetts",
+      "founded": 2015
+    },
+    {
+      "name": "QuantumScape Corporation",
+      "capacity": 0,
+      "technology": "Solid-state lithium-metal battery",
+      "headquarters": "San Jose, CA",
+      "founded": 2010
+    },
+    {
+      "name": "Albemarle Corporation",
+      "capacity": 0,
+      "technology": "Lithium mining and refining",
+      "headquarters": "Charlotte, North Carolina",
+      "founded": 1994
+    },
+    {
+      "name": "Livent Corporation",
+      "capacity": 0,
+      "technology": "Lithium hydroxide and carbonate production",
+      "headquarters": "Philadelphia, Pennsylvania",
+      "founded": 2018
+    },
+    {
+      "name": "Fluence Energy",
+      "capacity": 0,
+      "technology": "Integrated battery energy storage systems (BESS)",
+      "headquarters": "Arlington, Virginia",
+      "founded": 2018
+    },
+    {
+      "name": "Stem Inc.",
+      "capacity": 0,
+      "technology": "AI-driven energy storage optimization software (Athena platform)",
+      "headquarters": "San Francisco, CA",
+      "founded": 2009
+    },
+    {
+      "name": "SunPower Corporation",
+      "capacity": 0,
+      "technology": "Residential solar + storage systems",
+      "headquarters": "San Jose, CA",
+      "founded": 1985
+    },
+    {
+      "name": "LibertyStream Infrastructure Partners Inc. (formerly Volt Lithium Corp)",
+      "capacity": 0,
+      "technology": "Direct Lithium Extraction (DLE) from oilfield brine",
+      "headquarters": "Calgary, AB",
+      "founded": 2018
+    },
+    {
+      "name": "Sila Nanotechnologies",
+      "capacity": 0,
+      "technology": "Silicon-composite anode materials",
+      "headquarters": "Alameda, California",
+      "founded": 2011
+    },
+    {
+      "name": "24M Technologies",
+      "capacity": 0,
+      "technology": "Semi-solid lithium-ion (SemiSolid platform)",
+      "headquarters": "Cambridge, Massachusetts",
+      "founded": 2010
+    },
+    {
+      "name": "Ascend Elements",
+      "capacity": 0,
+      "technology": "Hydro-to-cathode recycling (Hydro-to-Cathode Direct)",
+      "headquarters": "Westborough, Massachusetts",
+      "founded": 2015
+    },
+    {
+      "name": "Li-Cycle",
+      "capacity": 0,
+      "technology": "Spoke-and-hub battery recycling",
+      "headquarters": "Rochester, New York",
+      "founded": 2016
+    },
+    {
+      "name": "Group14 Technologies",
+      "capacity": 0,
+      "technology": "Silicon-carbon composite anode materials (SCC55)",
+      "headquarters": "Woodinville, Washington",
+      "founded": 2015
+    },
+    {
+      "name": "Ionic Materials",
+      "capacity": 0,
+      "technology": "Solid polymer electrolyte for solid-state batteries",
+      "headquarters": "Woburn, Massachusetts",
+      "founded": 2012
+    },
+    {
+      "name": "Cuberg (acquired by Lyten)",
+      "capacity": 0,
+      "technology": "Lithium-metal batteries with liquid electrolyte",
+      "headquarters": "San Leandro, California (former)",
+      "founded": 2015
+    },
+    {
+      "name": "BYD Energy North America",
+      "capacity": 0,
+      "technology": "LFP (Lithium Iron Phosphate)",
+      "headquarters": "Lancaster, California (manufacturing); Los Angeles, California (corporate HQ)",
+      "founded": 2013
+    },
+    {
+      "name": "Farasis Energy USA",
+      "capacity": 0,
+      "technology": "Various lithium-ion chemistries (NMC, LFP, others)",
+      "headquarters": "Hayward, California",
+      "founded": 2002
+    }
   ],
   "stateRankings": [
     {
       "state": "Nevada",
       "capacity": 120,
       "facilities": 4,
-      "companies": ["Tesla", "Panasonic", "Lyten", "Redwood Materials"],
+      "companies": [
+        "Tesla",
+        "Panasonic",
+        "Lyten",
+        "Redwood Materials"
+      ],
       "flagship": "Tesla Gigafactory Nevada (100 GWh)"
     },
     {
       "state": "Tennessee",
       "capacity": 95,
       "facilities": 6,
-      "companies": ["Ultium Cells", "BlueOval SK", "Microvast", "AESC"],
+      "companies": [
+        "Ultium Cells",
+        "BlueOval SK",
+        "Microvast",
+        "AESC"
+      ],
       "flagship": "Ultium Spring Hill (50 GWh)"
     },
     {
       "state": "Kentucky",
       "capacity": 86,
       "facilities": 4,
-      "companies": ["BlueOval SK", "Ascend Elements"],
+      "companies": [
+        "BlueOval SK",
+        "Ascend Elements"
+      ],
       "flagship": "BlueOval SK Battery Park (86 GWh)"
     },
     {
       "state": "Ohio",
       "capacity": 75,
       "facilities": 5,
-      "companies": ["Ultium Cells", "LG Energy-Honda", "Cirba Solutions"],
+      "companies": [
+        "Ultium Cells",
+        "LG Energy-Honda",
+        "Cirba Solutions"
+      ],
       "flagship": "Ultium Warren (41 GWh)"
     },
     {
       "state": "Indiana",
       "capacity": 70,
       "facilities": 4,
-      "companies": ["StarPlus Energy", "GM Samsung"],
+      "companies": [
+        "StarPlus Energy",
+        "GM Samsung"
+      ],
       "flagship": "StarPlus Energy Kokomo Plant 1 (33 GWh)"
     },
     {
       "state": "Michigan",
       "capacity": 55,
       "facilities": 5,
-      "companies": ["Ultium Cells", "LG Energy", "Ford-CATL", "Our Next Energy"],
+      "companies": [
+        "Ultium Cells",
+        "LG Energy",
+        "Ford-CATL",
+        "Our Next Energy"
+      ],
       "flagship": "Ultium Lansing (41 GWh)"
     },
     {
       "state": "Illinois",
       "capacity": 50,
       "facilities": 1,
-      "companies": ["Gotion High-Tech"],
+      "companies": [
+        "Gotion High-Tech"
+      ],
       "flagship": "Gotion Manteno (50 GWh)"
     },
     {
       "state": "Arizona",
       "capacity": 43,
       "facilities": 2,
-      "companies": ["LG Energy Solution"],
+      "companies": [
+        "LG Energy Solution"
+      ],
       "flagship": "LGES Queen Creek (43 GWh)"
     },
     {
       "state": "Georgia",
       "capacity": 40,
       "facilities": 4,
-      "companies": ["SK Innovation", "Hyundai-LG", "Ascend Elements"],
+      "companies": [
+        "SK Innovation",
+        "Hyundai-LG",
+        "Ascend Elements"
+      ],
       "flagship": "Hyundai-LG Savannah (30 GWh)"
     },
     {
       "state": "North Carolina",
       "capacity": 30,
       "facilities": 2,
-      "companies": ["Toyota", "Natron Energy"],
+      "companies": [
+        "Toyota",
+        "Natron Energy"
+      ],
       "flagship": "Toyota Liberty (30 GWh)"
     },
     {
       "state": "South Carolina",
       "capacity": 30,
       "facilities": 3,
-      "companies": ["AESC", "Redwood Materials"],
+      "companies": [
+        "AESC",
+        "Redwood Materials"
+      ],
       "flagship": "AESC Florence (30 GWh)"
     },
     {
       "state": "Kansas",
       "capacity": 30,
       "facilities": 1,
-      "companies": ["Panasonic Energy"],
+      "companies": [
+        "Panasonic Energy"
+      ],
       "flagship": "Panasonic De Soto (30 GWh)"
     },
     {
       "state": "Mississippi",
       "capacity": 21,
       "facilities": 1,
-      "companies": ["Amplify Cell Technologies"],
+      "companies": [
+        "Amplify Cell Technologies"
+      ],
       "flagship": "Amplify Cell Marshall County (21 GWh)"
     },
     {
       "state": "Alabama",
       "capacity": 15,
       "facilities": 1,
-      "companies": ["Mercedes-Benz"],
+      "companies": [
+        "Mercedes-Benz"
+      ],
       "flagship": "Mercedes-Benz Woodstock (custom)"
     },
     {
       "state": "West Virginia",
       "capacity": 1,
       "facilities": 2,
-      "companies": ["Form Energy"],
+      "companies": [
+        "Form Energy"
+      ],
       "flagship": "Form Energy Weirton (iron-air specialty)"
     }
   ],
@@ -173,47 +714,128 @@
   },
   "energyDensity": {
     "LFP": {
-      "2015": {"cellLevel": 95, "packLevel": 80},
-      "2020": {"cellLevel": 120, "packLevel": 100},
-      "2024": {"cellLevel": 160, "packLevel": 140},
-      "2030": {"cellLevel": 220, "packLevel": 190}
+      "2015": {
+        "cellLevel": 95,
+        "packLevel": 80
+      },
+      "2020": {
+        "cellLevel": 120,
+        "packLevel": 100
+      },
+      "2024": {
+        "cellLevel": 160,
+        "packLevel": 140
+      },
+      "2030": {
+        "cellLevel": 220,
+        "packLevel": 190
+      }
     },
     "NMC": {
-      "2015": {"cellLevel": 180, "packLevel": 140},
-      "2020": {"cellLevel": 240, "packLevel": 190},
-      "2024": {"cellLevel": 260, "packLevel": 210},
-      "2030": {"cellLevel": 310, "packLevel": 250}
+      "2015": {
+        "cellLevel": 180,
+        "packLevel": 140
+      },
+      "2020": {
+        "cellLevel": 240,
+        "packLevel": 190
+      },
+      "2024": {
+        "cellLevel": 260,
+        "packLevel": 210
+      },
+      "2030": {
+        "cellLevel": 310,
+        "packLevel": 250
+      }
     },
     "SolidState": {
-      "2024": {"cellLevel": 350, "packLevel": 300},
-      "2030": {"cellLevel": 450, "packLevel": 380}
+      "2024": {
+        "cellLevel": 350,
+        "packLevel": 300
+      },
+      "2030": {
+        "cellLevel": 450,
+        "packLevel": 380
+      }
     }
   },
   "marketShare": {
     "2015": [
-      {"chemistry": "NMC-333", "share": 85},
-      {"chemistry": "NCA", "share": 5},
-      {"chemistry": "LFP", "share": 8},
-      {"chemistry": "Other", "share": 2}
+      {
+        "chemistry": "NMC-333",
+        "share": 85
+      },
+      {
+        "chemistry": "NCA",
+        "share": 5
+      },
+      {
+        "chemistry": "LFP",
+        "share": 8
+      },
+      {
+        "chemistry": "Other",
+        "share": 2
+      }
     ],
     "2020": [
-      {"chemistry": "NMC-811", "share": 75},
-      {"chemistry": "NCA", "share": 8},
-      {"chemistry": "LFP", "share": 15},
-      {"chemistry": "Other", "share": 2}
+      {
+        "chemistry": "NMC-811",
+        "share": 75
+      },
+      {
+        "chemistry": "NCA",
+        "share": 8
+      },
+      {
+        "chemistry": "LFP",
+        "share": 15
+      },
+      {
+        "chemistry": "Other",
+        "share": 2
+      }
     ],
     "2024": [
-      {"chemistry": "NMC", "share": 50},
-      {"chemistry": "LFP", "share": 40},
-      {"chemistry": "NCA", "share": 5},
-      {"chemistry": "Other", "share": 5}
+      {
+        "chemistry": "NMC",
+        "share": 50
+      },
+      {
+        "chemistry": "LFP",
+        "share": 40
+      },
+      {
+        "chemistry": "NCA",
+        "share": 5
+      },
+      {
+        "chemistry": "Other",
+        "share": 5
+      }
     ],
     "2030": [
-      {"chemistry": "LFP/LMFP", "share": 40},
-      {"chemistry": "NMC", "share": 35},
-      {"chemistry": "Solid-state", "share": 10},
-      {"chemistry": "Sodium-ion", "share": 10},
-      {"chemistry": "Other", "share": 5}
+      {
+        "chemistry": "LFP/LMFP",
+        "share": 40
+      },
+      {
+        "chemistry": "NMC",
+        "share": 35
+      },
+      {
+        "chemistry": "Solid-state",
+        "share": 10
+      },
+      {
+        "chemistry": "Sodium-ion",
+        "share": 10
+      },
+      {
+        "chemistry": "Other",
+        "share": 5
+      }
     ]
   },
   "cycleLife": {
@@ -239,39 +861,93 @@
   "regionalClusters": [
     {
       "name": "Southeast Automotive Corridor",
-      "states": ["GA", "TN", "NC", "SC", "KY", "AL"],
+      "states": [
+        "GA",
+        "TN",
+        "NC",
+        "SC",
+        "KY",
+        "AL"
+      ],
       "totalCapacity": 500,
       "numFacilities": 15,
       "employment": 20000,
-      "dominantPlayers": ["LG Energy Solution", "SK Innovation", "GM-LG Ultium", "Ford-SK"],
-      "advantages": ["OEM integration", "Supply chain density", "Port access", "Workforce"]
+      "dominantPlayers": [
+        "LG Energy Solution",
+        "SK Innovation",
+        "GM-LG Ultium",
+        "Ford-SK"
+      ],
+      "advantages": [
+        "OEM integration",
+        "Supply chain density",
+        "Port access",
+        "Workforce"
+      ]
     },
     {
       "name": "Midwest Battery Belt",
-      "states": ["MI", "OH", "IN"],
+      "states": [
+        "MI",
+        "OH",
+        "IN"
+      ],
       "totalCapacity": 200,
       "numFacilities": 8,
       "employment": 12000,
-      "dominantPlayers": ["GM-LG Ultium", "Stellantis-Samsung", "LG Energy-Honda"],
-      "advantages": ["Historic expertise", "Engineering talent", "OEM HQ proximity", "Energy costs"]
+      "dominantPlayers": [
+        "GM-LG Ultium",
+        "Stellantis-Samsung",
+        "LG Energy-Honda"
+      ],
+      "advantages": [
+        "Historic expertise",
+        "Engineering talent",
+        "OEM HQ proximity",
+        "Energy costs"
+      ]
     },
     {
       "name": "Nevada Lithium Complex",
-      "states": ["NV"],
+      "states": [
+        "NV"
+      ],
       "totalCapacity": 120,
       "numFacilities": 4,
       "employment": 10000,
-      "dominantPlayers": ["Tesla", "Panasonic", "Lyten", "Redwood Materials"],
-      "advantages": ["Lithium supply", "Renewable energy", "Vertical integration", "Innovation hub"]
+      "dominantPlayers": [
+        "Tesla",
+        "Panasonic",
+        "Lyten",
+        "Redwood Materials"
+      ],
+      "advantages": [
+        "Lithium supply",
+        "Renewable energy",
+        "Vertical integration",
+        "Innovation hub"
+      ]
     },
     {
       "name": "Emerging Clusters",
-      "states": ["KS", "AZ", "IL"],
+      "states": [
+        "KS",
+        "AZ",
+        "IL"
+      ],
       "totalCapacity": 120,
       "numFacilities": 4,
       "employment": 5000,
-      "dominantPlayers": ["Panasonic", "LG Energy", "Gotion"],
-      "advantages": ["Central logistics", "Underutilized capacity", "Growing ecosystem"]
+      "dominantPlayers": [
+        "Panasonic",
+        "LG Energy",
+        "Gotion"
+      ],
+      "advantages": [
+        "Central logistics",
+        "Underutilized capacity",
+        "Growing ecosystem"
+      ]
     }
   ],
   "timeline": {
@@ -324,12 +1000,13 @@
     }
   },
   "metadata": {
-    "reportDate": "2025-11-08",
+    "reportDate": "2025-11-10",
     "dataSource": [
       "US_Battery_Industry_Historical_Evolution_2000-2024.md",
       "US_Battery_Industry_Mapping_Report.md",
       "geospatial-manufacturing-facilities-report.md",
-      "technology-innovation-report.md"
+      "technology-innovation-report.md",
+      "data/companies-detailed.json"
     ],
     "updateFrequency": "Quarterly recommended",
     "confidence": "High - verified against SEC filings, DOE announcements, company press releases"
