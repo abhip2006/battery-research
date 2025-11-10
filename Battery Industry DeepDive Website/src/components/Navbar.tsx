@@ -43,10 +43,10 @@ export function Navbar() {
       transition={{ duration: 0.3 }}
       className="fixed top-0 left-0 right-0 z-50 border-b-2 border-[#B2FF59]/20"
     >
-      <div className="max-w-full px-4 sm:px-6 py-3 sm:py-4">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4">
         <div className="flex items-center justify-between gap-3">
-          {/* Logo and Title - Stretches across the screen */}
-          <Link to="/" className="flex items-center gap-2 sm:gap-3 group flex-1 min-w-0">
+          {/* Logo and Title */}
+          <Link to="/" className="flex items-center gap-2 sm:gap-3 group">
             <motion.div
               animate={{
                 opacity: [1, 0.7, 1],
@@ -62,16 +62,50 @@ export function Navbar() {
                 transition={{ duration: 2, repeat: Infinity }}
               />
             </motion.div>
-            <span className="text-[#FAFAFA] tracking-tight font-bold text-sm sm:text-base md:text-lg lg:text-xl font-tech uppercase truncate">
+            <span className="text-[#FAFAFA] tracking-tight font-bold text-sm sm:text-base lg:text-lg font-tech uppercase">
               Battery Industry DeepDive
             </span>
           </Link>
 
-          {/* Hamburger Menu - Far Right */}
-          <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
+          {/* Desktop Navigation - Hidden on mobile, visible from md breakpoint */}
+          <div className="hidden md:flex items-center gap-4 lg:gap-8">
+            {navItems.map((item) => (
+              <Link
+                key={item.path}
+                to={item.path}
+                className="relative text-[#FAFAFA] hover:text-[#B2FF59] transition-colors duration-300 font-medium text-sm lg:text-base"
+              >
+                {item.name}
+                {location.pathname === item.path && (
+                  <motion.div
+                    layoutId="navUnderline"
+                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-[#B2FF59] shadow-lg shadow-[#B2FF59]/50"
+                  />
+                )}
+              </Link>
+            ))}
+          </div>
+
+          {/* Right Side Actions */}
+          <div className="flex items-center gap-2 sm:gap-3">
+            {/* Dark Mode Toggle - Visible on desktop */}
+            <button
+              onClick={() => setDarkMode(!darkMode)}
+              className="hidden md:flex p-2.5 sm:p-3 rounded-lg bg-[#1A1A1A] hover:bg-[#2B2B2B] border-2 border-[#2B2B2B] hover:border-[#B2FF59] transition-all duration-300 min-h-[44px] min-w-[44px] items-center justify-center"
+              aria-label="Toggle dark mode"
+            >
+              {darkMode ? (
+                <Sun className="size-5 text-[#B2FF59]" />
+              ) : (
+                <Moon className="size-5 text-[#B2FF59]" />
+              )}
+            </button>
+
+            {/* Hamburger Menu - Mobile Only */}
+            <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
             <SheetTrigger asChild>
               <button
-                className="p-2.5 sm:p-3 rounded-lg bg-[#1A1A1A] hover:bg-[#2B2B2B] border-2 border-[#2B2B2B] hover:border-[#B2FF59] transition-all duration-300 min-h-[44px] min-w-[44px] flex items-center justify-center flex-shrink-0"
+                className="md:hidden p-2.5 sm:p-3 rounded-lg bg-[#1A1A1A] hover:bg-[#2B2B2B] border-2 border-[#2B2B2B] hover:border-[#B2FF59] transition-all duration-300 min-h-[44px] min-w-[44px] flex items-center justify-center flex-shrink-0"
                 aria-label="Open menu"
               >
                 <AnimatePresence mode="wait">
