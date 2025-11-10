@@ -1,25 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
-import { Building2, MapPin, TrendingUp, DollarSign, Search, Loader2, Filter, X } from 'lucide-react';
+import { Building2, MapPin, Search, Loader2, X, ChevronDown, SlidersHorizontal } from 'lucide-react';
 import { getCompanies, getCompanyFilters, type Company } from '../services/companies.service';
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-} from './ui/sheet';
-
-const SECTORS_MAPPING: Record<string, string> = {
-  'Solid-state lithium-metal battery': 'Solid-State',
-  'Solid-state': 'Solid-State',
-  'Silicon anode lithium-ion batteries': 'Silicon Anode',
-  'Lithium iron phosphate': 'LFP',
-  'Znyth aqueous zinc battery': 'Zinc Battery',
-  'Recycling': 'Recycling',
-  'Grid Storage': 'Grid Storage',
-  'Flow Batteries': 'Flow Batteries',
-  'Materials': 'Materials',
-};
 
 const REGIONS_MAP: Record<string, string> = {
   CA: 'West',
@@ -44,16 +26,21 @@ export function CompaniesPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const [selectedSector, setSelectedSector] = useState('All');
-  const [selectedRegion, setSelectedRegion] = useState('All');
-  const [selectedFunding, setSelectedFunding] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
 
-  const [availableSectors, setAvailableSectors] = useState<string[]>([]);
+  // Multi-select filters
+  const [selectedTechnologies, setSelectedTechnologies] = useState<string[]>([]);
+  const [selectedCompanyTypes, setSelectedCompanyTypes] = useState<string[]>([]);
+  const [selectedStages, setSelectedStages] = useState<string[]>([]);
+  const [selectedRegions, setSelectedRegions] = useState<string[]>([]);
+
+  // Sorting
+  const [sortBy, setSortBy] = useState<'name' | 'capacity' | 'employees' | 'founded'>('name');
+
   const [availableRegions, setAvailableRegions] = useState<string[]>([]);
 
-  // Mobile filter drawer state
-  const [isFilterOpen, setIsFilterOpen] = useState(false);
+  // Dropdown states
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
   // Load companies and filters
   useEffect(() => {
@@ -67,15 +54,6 @@ export function CompaniesPage() {
 
         setCompanies(companiesData);
         setFilteredCompanies(companiesData);
-
-        // Map technologies to sectors
-        const sectors = new Set<string>();
-        filters.technologies.forEach((tech) => {
-          const sector = SECTORS_MAPPING[tech] || tech;
-          sectors.add(sector);
-        });
-
-        setAvailableSectors(Array.from(sectors).sort());
 
         // Map states to regions
         const regions = new Set<string>();
@@ -95,38 +73,71 @@ export function CompaniesPage() {
     loadData();
   }, []);
 
+  // Helper functions for categorization
+  const categorizeTechnology = (tech: string): string[] => {
+    const techLower = tech.toLowerCase();
+    const categories: string[] = [];
+
+    if (techLower.includes('solid-state') || techLower.includes('solid state')) categories.push('solid-state');
+    if (techLower.includes('li-ion') || techLower.includes('lithium-ion') || techLower.includes('lithium ion')) categories.push('li-ion');
+    if (techLower.includes('lfp') || techLower.includes('lithium iron phosphate')) categories.push('lfp');
+    if (techLower.includes('flow') || techLower.includes('zinc') || techLower.includes('iron-air')) categories.push('flow');
+    if (techLower.includes('silicon')) categories.push('silicon');
+
+    return categories;
+  };
+
+  const categorizeStage = (stage: string): string => {
+    const stageLower = stage.toLowerCase();
+    if (stageLower.includes('commercial') || stageLower.includes('production') || stageLower.includes('scaled')) return 'commercial';
+    if (stageLower.includes('pilot')) return 'pilot';
+    return 'development';
+  };
+
+  const getCompanyType = (company: Company): string => {
+    if (company.ticker || company.is_publicly_traded) return 'public';
+    if (company.name.toLowerCase().includes('llc') || company.name.toLowerCase().includes('jv') ||
+        (company as any).partners) return 'jv';
+    return 'private';
+  };
+
   // Apply filters
   useEffect(() => {
     let result = companies;
 
-    // Filter by sector
-    if (selectedSector !== 'All') {
+    // Filter by technologies
+    if (selectedTechnologies.length > 0) {
       result = result.filter((company) => {
-        const sector = SECTORS_MAPPING[company.technology] || company.technology;
-        return sector === selectedSector;
+        const companyTechs = categorizeTechnology(company.technology);
+        return selectedTechnologies.some(tech => companyTechs.includes(tech));
       });
     }
 
-    // Filter by region
-    if (selectedRegion !== 'All') {
+    // Filter by company type
+    if (selectedCompanyTypes.length > 0) {
+      result = result.filter((company) => {
+        const companyType = getCompanyType(company);
+        return selectedCompanyTypes.includes(companyType);
+      });
+    }
+
+    // Filter by stage
+    if (selectedStages.length > 0) {
+      result = result.filter((company) => {
+        const stage = categorizeStage(company.stage || '');
+        return selectedStages.includes(stage);
+      });
+    }
+
+    // Filter by regions
+    if (selectedRegions.length > 0) {
       result = result.filter((company) => {
         const stateMatch = company.headquarters.match(/,\s*([A-Z]{2})\s*$/);
         if (stateMatch) {
           const region = REGIONS_MAP[stateMatch[1]];
-          return region === selectedRegion;
+          return region && selectedRegions.includes(region);
         }
         return false;
-      });
-    }
-
-    // Filter by funding status
-    if (selectedFunding !== 'All') {
-      result = result.filter((company) => {
-        if (selectedFunding === 'Public') {
-          return company.ticker || company.is_publicly_traded;
-        } else {
-          return !company.ticker && !company.is_publicly_traded;
-        }
       });
     }
 
@@ -141,23 +152,69 @@ export function CompaniesPage() {
       );
     }
 
+    // Apply sorting
+    result.sort((a, b) => {
+      switch(sortBy) {
+        case 'name':
+          return a.name.localeCompare(b.name);
+        case 'capacity':
+          return (b.capacity_gwh || 0) - (a.capacity_gwh || 0);
+        case 'employees':
+          return (b.employees || 0) - (a.employees || 0);
+        case 'founded':
+          return (b.founded || 0) - (a.founded || 0);
+        default:
+          return 0;
+      }
+    });
+
     setFilteredCompanies(result);
-  }, [companies, selectedSector, selectedRegion, selectedFunding, searchQuery]);
+  }, [companies, selectedTechnologies, selectedCompanyTypes, selectedStages, selectedRegions, searchQuery, sortBy]);
 
   // Calculate active filters count
-  const activeFiltersCount = [
-    selectedSector !== 'All',
-    selectedRegion !== 'All',
-    selectedFunding !== 'All',
-    searchQuery !== '',
-  ].filter(Boolean).length;
+  const activeFiltersCount =
+    selectedTechnologies.length +
+    selectedCompanyTypes.length +
+    selectedStages.length +
+    selectedRegions.length +
+    (searchQuery ? 1 : 0);
 
   // Clear all filters
   const clearAllFilters = () => {
-    setSelectedSector('All');
-    setSelectedRegion('All');
-    setSelectedFunding('All');
+    setSelectedTechnologies([]);
+    setSelectedCompanyTypes([]);
+    setSelectedStages([]);
+    setSelectedRegions([]);
     setSearchQuery('');
+    setSortBy('name');
+  };
+
+  // Toggle filter selection
+  const toggleFilter = (filterArray: string[], setFilter: (val: string[]) => void, value: string) => {
+    if (filterArray.includes(value)) {
+      setFilter(filterArray.filter(v => v !== value));
+    } else {
+      setFilter([...filterArray, value]);
+    }
+    setOpenDropdown(null);
+  };
+
+  // Remove individual filter
+  const removeFilter = (type: 'tech' | 'type' | 'stage' | 'region', value: string) => {
+    switch(type) {
+      case 'tech':
+        setSelectedTechnologies(prev => prev.filter(v => v !== value));
+        break;
+      case 'type':
+        setSelectedCompanyTypes(prev => prev.filter(v => v !== value));
+        break;
+      case 'stage':
+        setSelectedStages(prev => prev.filter(v => v !== value));
+        break;
+      case 'region':
+        setSelectedRegions(prev => prev.filter(v => v !== value));
+        break;
+    }
   };
 
   if (loading) {
@@ -187,306 +244,365 @@ export function CompaniesPage() {
     );
   }
 
-  const SECTORS = ['All', ...availableSectors];
-  const REGIONS = ['All', ...availableRegions];
-  const FUNDING_TYPES = ['All', 'Public', 'Private'];
-
-  // Filter section component (reusable for both desktop and mobile)
-  const FilterSection = () => (
-    <div className="space-y-4 md:space-y-6">
-      {/* Search */}
-      <div className="bg-[#1A1A1A] p-4 md:p-6 rounded-xl border-2 border-[#B2FF59]/30">
-        <h3 className="text-[#B2FF59] mb-3 md:mb-4 font-bold font-tech uppercase tracking-wider text-sm md:text-base">
-          Search
-        </h3>
-        <div className="relative">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-[#666666]" />
-          <input
-            type="text"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Search companies..."
-            className="w-full pl-10 pr-4 py-3 bg-[#0A0A0A] text-[#FAFAFA] rounded-lg border-2 border-[#2B2B2B] focus:border-[#B2FF59] outline-none transition-all duration-300 placeholder:text-[#666666] min-h-[44px]"
-          />
-        </div>
-      </div>
-
-      {/* Sector Filter */}
-      <div className="bg-[#1A1A1A] p-4 md:p-6 rounded-xl border-2 border-[#B2FF59]/30">
-        <h3 className="text-[#B2FF59] mb-3 md:mb-4 font-bold font-tech uppercase tracking-wider text-sm md:text-base">
-          Subsector
-        </h3>
-        <div className="space-y-2">
-          {SECTORS.map((sector) => (
-            <button
-              key={sector}
-              onClick={() => setSelectedSector(sector)}
-              className={`w-full text-left px-4 py-3 rounded-lg transition-all duration-300 font-medium min-h-[44px] ${
-                selectedSector === sector
-                  ? 'bg-[#B2FF59] text-[#0A0A0A] shadow-lg shadow-[#B2FF59]/30'
-                  : 'text-[#CCCCCC] hover:bg-[#2B2B2B] hover:text-[#FAFAFA]'
-              }`}
-            >
-              {sector}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      {/* Region Filter */}
-      <div className="bg-[#1A1A1A] p-4 md:p-6 rounded-xl border-2 border-[#B2FF59]/30">
-        <h3 className="text-[#B2FF59] mb-3 md:mb-4 font-bold font-tech uppercase tracking-wider text-sm md:text-base">
-          Region
-        </h3>
-        <div className="space-y-2">
-          {REGIONS.map((region) => (
-            <button
-              key={region}
-              onClick={() => setSelectedRegion(region)}
-              className={`w-full text-left px-4 py-3 rounded-lg transition-all duration-300 font-medium min-h-[44px] ${
-                selectedRegion === region
-                  ? 'bg-[#B2FF59] text-[#0A0A0A] shadow-lg shadow-[#B2FF59]/30'
-                  : 'text-[#CCCCCC] hover:bg-[#2B2B2B] hover:text-[#FAFAFA]'
-              }`}
-            >
-              {region}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      {/* Funding Type Filter */}
-      <div className="bg-[#1A1A1A] p-4 md:p-6 rounded-xl border-2 border-[#B2FF59]/30">
-        <h3 className="text-[#B2FF59] mb-3 md:mb-4 font-bold font-tech uppercase tracking-wider text-sm md:text-base">
-          Funding Type
-        </h3>
-        <div className="space-y-2">
-          {FUNDING_TYPES.map((type) => (
-            <button
-              key={type}
-              onClick={() => setSelectedFunding(type)}
-              className={`w-full text-left px-4 py-3 rounded-lg transition-all duration-300 font-medium min-h-[44px] ${
-                selectedFunding === type
-                  ? 'bg-[#B2FF59] text-[#0A0A0A] shadow-lg shadow-[#B2FF59]/30'
-                  : 'text-[#CCCCCC] hover:bg-[#2B2B2B] hover:text-[#FAFAFA]'
-              }`}
-            >
-              {type}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      {/* Clear Filters (Mobile only) */}
-      {activeFiltersCount > 0 && (
-        <button
-          onClick={clearAllFilters}
-          className="w-full px-4 py-3 bg-[#2B2B2B] text-[#FAFAFA] rounded-lg hover:bg-[#3B3B3B] transition-colors font-medium min-h-[44px] lg:hidden"
-        >
-          Clear All Filters
-        </button>
-      )}
-    </div>
-  );
+  const TECHNOLOGIES = ['li-ion', 'solid-state', 'lfp', 'flow', 'silicon'];
+  const COMPANY_TYPES = ['public', 'private', 'jv'];
+  const STAGES = ['commercial', 'pilot', 'development'];
 
   return (
     <div className="min-h-screen pt-16 md:pt-24 bg-[#0A0A0A]">
       {/* Hero Banner */}
-      <div className="relative bg-[#0F0F0F] border-b-4 border-[#B2FF59] overflow-hidden">
-        <motion.div
-          animate={{ opacity: [0.3, 0.5, 0.3] }}
-          transition={{ duration: 3, repeat: Infinity }}
-          className="absolute inset-0 bg-gradient-to-r from-transparent via-[#B2FF59]/10 to-transparent"
-        />
-        <div className="relative max-w-7xl mx-auto px-4 md:px-6 py-8 md:py-16">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <h1 className="text-[#B2FF59] mb-3 md:mb-4 text-3xl md:text-5xl font-extrabold font-tech uppercase tracking-wider">
-              Company Directory
-            </h1>
-            <p className="text-[#FAFAFA] max-w-2xl text-base md:text-lg font-medium">
-              Comprehensive database of {companies.length} U.S. battery companies across all subsectors
-            </p>
-          </motion.div>
+      <div className="relative bg-[#0F0F0F] border-b-2 border-[#B2FF59]/30">
+        <div className="max-w-7xl mx-auto px-4 md:px-6 py-6 md:py-8">
+          <h1 className="text-[#B2FF59] mb-2 text-2xl md:text-4xl font-extrabold font-tech uppercase tracking-wider">
+            Company Directory
+          </h1>
+          <p className="text-[#FAFAFA] text-sm md:text-base font-medium">
+            {companies.length} U.S. battery companies across all subsectors
+          </p>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 md:px-6 py-6 md:py-12">
-        {/* Mobile Filter Button */}
-        <div className="lg:hidden mb-4">
-          <div className="flex items-center justify-between gap-3">
-            <button
-              onClick={() => setIsFilterOpen(true)}
-              className="flex items-center gap-2 px-4 py-3 bg-[#1A1A1A] text-[#FAFAFA] rounded-lg border-2 border-[#B2FF59]/30 hover:border-[#B2FF59] transition-all duration-300 min-h-[44px] font-medium"
-            >
-              <Filter className="size-5" />
-              <span>Filters</span>
-              {activeFiltersCount > 0 && (
-                <span className="ml-1 px-2 py-0.5 bg-[#B2FF59] text-[#0A0A0A] rounded-full text-xs font-bold">
-                  {activeFiltersCount}
-                </span>
+      <div className="max-w-7xl mx-auto px-4 md:px-6 py-6">
+        {/* Modern CRM-Style Filter Bar */}
+        <div className="mb-6 space-y-4">
+          {/* Top Row: Search + Filter Dropdowns */}
+          <div className="flex flex-wrap items-center gap-3">
+            {/* Search */}
+            <div className="relative flex-1 min-w-[200px]">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-[#666666]" />
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Search companies..."
+                className="w-full pl-10 pr-4 py-2.5 bg-[#1A1A1A] text-[#FAFAFA] rounded-lg border border-[#2B2B2B] focus:border-[#B2FF59] outline-none transition-all placeholder:text-[#666666] text-sm"
+              />
+            </div>
+
+            {/* Filter Dropdowns */}
+            <div className="flex items-center gap-2 flex-wrap">
+              {/* Technology Filter */}
+              <div className="relative">
+                <button
+                  onClick={() => setOpenDropdown(openDropdown === 'tech' ? null : 'tech')}
+                  className={`px-4 py-2.5 rounded-lg border text-sm font-medium transition-all flex items-center gap-2 ${
+                    selectedTechnologies.length > 0
+                      ? 'bg-[#B2FF59] text-[#0A0A0A] border-[#B2FF59]'
+                      : 'bg-[#1A1A1A] text-[#FAFAFA] border-[#2B2B2B] hover:border-[#B2FF59]'
+                  }`}
+                >
+                  <SlidersHorizontal className="size-4" />
+                  Technology
+                  {selectedTechnologies.length > 0 && (
+                    <span className="ml-1 px-1.5 py-0.5 bg-[#0A0A0A] text-[#B2FF59] rounded text-xs font-bold">
+                      {selectedTechnologies.length}
+                    </span>
+                  )}
+                  <ChevronDown className="size-4" />
+                </button>
+                {openDropdown === 'tech' && (
+                  <div className="absolute top-full mt-2 left-0 bg-[#1A1A1A] border border-[#2B2B2B] rounded-lg shadow-xl z-50 min-w-[200px]">
+                    {TECHNOLOGIES.map((tech) => (
+                      <label
+                        key={tech}
+                        className="flex items-center gap-3 px-4 py-2.5 hover:bg-[#2B2B2B] cursor-pointer transition-colors"
+                      >
+                        <input
+                          type="checkbox"
+                          checked={selectedTechnologies.includes(tech)}
+                          onChange={() => toggleFilter(selectedTechnologies, setSelectedTechnologies, tech)}
+                          className="w-4 h-4 rounded border border-[#B2FF59] bg-[#0A0A0A] text-[#B2FF59] focus:ring-2 focus:ring-[#B2FF59] cursor-pointer"
+                        />
+                        <span className="text-[#FAFAFA] text-sm capitalize">
+                          {tech === 'lfp' ? 'LFP' : tech.replace('-', ' ')}
+                        </span>
+                      </label>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* Company Type Filter */}
+              <div className="relative">
+                <button
+                  onClick={() => setOpenDropdown(openDropdown === 'type' ? null : 'type')}
+                  className={`px-4 py-2.5 rounded-lg border text-sm font-medium transition-all flex items-center gap-2 ${
+                    selectedCompanyTypes.length > 0
+                      ? 'bg-[#B2FF59] text-[#0A0A0A] border-[#B2FF59]'
+                      : 'bg-[#1A1A1A] text-[#FAFAFA] border-[#2B2B2B] hover:border-[#B2FF59]'
+                  }`}
+                >
+                  Company Type
+                  {selectedCompanyTypes.length > 0 && (
+                    <span className="ml-1 px-1.5 py-0.5 bg-[#0A0A0A] text-[#B2FF59] rounded text-xs font-bold">
+                      {selectedCompanyTypes.length}
+                    </span>
+                  )}
+                  <ChevronDown className="size-4" />
+                </button>
+                {openDropdown === 'type' && (
+                  <div className="absolute top-full mt-2 left-0 bg-[#1A1A1A] border border-[#2B2B2B] rounded-lg shadow-xl z-50 min-w-[180px]">
+                    {COMPANY_TYPES.map((type) => (
+                      <label
+                        key={type}
+                        className="flex items-center gap-3 px-4 py-2.5 hover:bg-[#2B2B2B] cursor-pointer transition-colors"
+                      >
+                        <input
+                          type="checkbox"
+                          checked={selectedCompanyTypes.includes(type)}
+                          onChange={() => toggleFilter(selectedCompanyTypes, setSelectedCompanyTypes, type)}
+                          className="w-4 h-4 rounded border border-[#B2FF59] bg-[#0A0A0A] text-[#B2FF59] focus:ring-2 focus:ring-[#B2FF59] cursor-pointer"
+                        />
+                        <span className="text-[#FAFAFA] text-sm capitalize">
+                          {type === 'jv' ? 'Joint Venture' : type}
+                        </span>
+                      </label>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* Stage Filter */}
+              <div className="relative">
+                <button
+                  onClick={() => setOpenDropdown(openDropdown === 'stage' ? null : 'stage')}
+                  className={`px-4 py-2.5 rounded-lg border text-sm font-medium transition-all flex items-center gap-2 ${
+                    selectedStages.length > 0
+                      ? 'bg-[#B2FF59] text-[#0A0A0A] border-[#B2FF59]'
+                      : 'bg-[#1A1A1A] text-[#FAFAFA] border-[#2B2B2B] hover:border-[#B2FF59]'
+                  }`}
+                >
+                  Stage
+                  {selectedStages.length > 0 && (
+                    <span className="ml-1 px-1.5 py-0.5 bg-[#0A0A0A] text-[#B2FF59] rounded text-xs font-bold">
+                      {selectedStages.length}
+                    </span>
+                  )}
+                  <ChevronDown className="size-4" />
+                </button>
+                {openDropdown === 'stage' && (
+                  <div className="absolute top-full mt-2 left-0 bg-[#1A1A1A] border border-[#2B2B2B] rounded-lg shadow-xl z-50 min-w-[180px]">
+                    {STAGES.map((stage) => (
+                      <label
+                        key={stage}
+                        className="flex items-center gap-3 px-4 py-2.5 hover:bg-[#2B2B2B] cursor-pointer transition-colors"
+                      >
+                        <input
+                          type="checkbox"
+                          checked={selectedStages.includes(stage)}
+                          onChange={() => toggleFilter(selectedStages, setSelectedStages, stage)}
+                          className="w-4 h-4 rounded border border-[#B2FF59] bg-[#0A0A0A] text-[#B2FF59] focus:ring-2 focus:ring-[#B2FF59] cursor-pointer"
+                        />
+                        <span className="text-[#FAFAFA] text-sm capitalize">
+                          {stage}
+                        </span>
+                      </label>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* Region Filter */}
+              {availableRegions.length > 0 && (
+                <div className="relative">
+                  <button
+                    onClick={() => setOpenDropdown(openDropdown === 'region' ? null : 'region')}
+                    className={`px-4 py-2.5 rounded-lg border text-sm font-medium transition-all flex items-center gap-2 ${
+                      selectedRegions.length > 0
+                        ? 'bg-[#B2FF59] text-[#0A0A0A] border-[#B2FF59]'
+                        : 'bg-[#1A1A1A] text-[#FAFAFA] border-[#2B2B2B] hover:border-[#B2FF59]'
+                    }`}
+                  >
+                    Region
+                    {selectedRegions.length > 0 && (
+                      <span className="ml-1 px-1.5 py-0.5 bg-[#0A0A0A] text-[#B2FF59] rounded text-xs font-bold">
+                        {selectedRegions.length}
+                      </span>
+                    )}
+                    <ChevronDown className="size-4" />
+                  </button>
+                  {openDropdown === 'region' && (
+                    <div className="absolute top-full mt-2 left-0 bg-[#1A1A1A] border border-[#2B2B2B] rounded-lg shadow-xl z-50 min-w-[180px]">
+                      {availableRegions.map((region) => (
+                        <label
+                          key={region}
+                          className="flex items-center gap-3 px-4 py-2.5 hover:bg-[#2B2B2B] cursor-pointer transition-colors"
+                        >
+                          <input
+                            type="checkbox"
+                            checked={selectedRegions.includes(region)}
+                            onChange={() => toggleFilter(selectedRegions, setSelectedRegions, region)}
+                            className="w-4 h-4 rounded border border-[#B2FF59] bg-[#0A0A0A] text-[#B2FF59] focus:ring-2 focus:ring-[#B2FF59] cursor-pointer"
+                          />
+                          <span className="text-[#FAFAFA] text-sm">
+                            {region}
+                          </span>
+                        </label>
+                      ))}
+                    </div>
+                  )}
+                </div>
               )}
-            </button>
-            <div className="text-[#AAAAAA] font-medium text-sm">
-              {filteredCompanies.length} companies
-            </div>
-          </div>
-        </div>
 
-        {/* Mobile Filter Sheet */}
-        <Sheet open={isFilterOpen} onOpenChange={setIsFilterOpen}>
-          <SheetContent side="left" className="bg-[#0A0A0A] border-[#2B2B2B] w-[85vw] sm:w-[400px] overflow-y-auto">
-            <SheetHeader>
-              <SheetTitle className="text-[#B2FF59] font-bold font-tech uppercase tracking-wider">
-                Filter Companies
-              </SheetTitle>
-            </SheetHeader>
-            <div className="mt-6">
-              <FilterSection />
-            </div>
-          </SheetContent>
-        </Sheet>
+              {/* Sort */}
+              <select
+                value={sortBy}
+                onChange={(e) => setSortBy(e.target.value as typeof sortBy)}
+                className="px-4 py-2.5 bg-[#1A1A1A] text-[#FAFAFA] rounded-lg border border-[#2B2B2B] focus:border-[#B2FF59] outline-none text-sm font-medium"
+              >
+                <option value="name">Sort: Name</option>
+                <option value="capacity">Sort: Capacity</option>
+                <option value="employees">Sort: Employees</option>
+                <option value="founded">Sort: Founded</option>
+              </select>
 
-        {/* Desktop/Tablet Layout */}
-        <div className="lg:grid lg:grid-cols-4 lg:gap-6">
-          {/* Desktop Left Sidebar: Filters */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-            className="hidden lg:block"
-          >
-            <FilterSection />
-          </motion.div>
-
-          {/* Right: Company Cards */}
-          <div className="lg:col-span-3">
-            {/* Desktop Filter Count */}
-            <div className="hidden lg:block text-[#AAAAAA] mb-6 font-medium flex items-center justify-between">
-              <span>Showing {filteredCompanies.length} companies</span>
+              {/* Clear All */}
               {activeFiltersCount > 0 && (
                 <button
                   onClick={clearAllFilters}
-                  className="text-[#B2FF59] hover:text-[#A0E050] transition-colors text-sm font-semibold"
+                  className="px-4 py-2.5 bg-[#2B2B2B] text-[#FAFAFA] rounded-lg hover:bg-[#3B3B3B] transition-colors text-sm font-medium flex items-center gap-2"
                 >
-                  Clear All Filters
+                  <X className="size-4" />
+                  Clear
                 </button>
               )}
             </div>
+          </div>
 
-            {/* Company Cards Grid - Responsive */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-4 md:gap-6">
-              {filteredCompanies.map((company, index) => {
-                const sector = SECTORS_MAPPING[company.technology] || company.technology;
-                const isPublic = company.ticker || company.is_publicly_traded;
-
-                return (
-                  <motion.div
-                    key={company.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.4, delay: index * 0.05 }}
-                    className="bg-[#1A1A1A] p-4 md:p-6 rounded-xl border-2 border-[#2B2B2B] hover:border-[#B2FF59] hover:shadow-lg hover:shadow-[#B2FF59]/20 transition-all duration-300 group cursor-pointer"
-                  >
-                    <div className="flex flex-col gap-4">
-                      {/* Header: Logo and Name */}
-                      <div className="flex items-start gap-4">
-                        {/* Logo */}
-                        <div className="w-12 h-12 md:w-16 md:h-16 bg-[#0F0F0F] rounded-xl flex items-center justify-center flex-shrink-0 border-2 border-[#2B2B2B] group-hover:border-[#B2FF59] transition-all duration-300">
-                          <Building2 className="size-6 md:size-8 text-[#B2FF59]" />
-                        </div>
-
-                        {/* Name and Basic Info */}
-                        <div className="flex-1 min-w-0">
-                          <h3 className="text-[#FAFAFA] mb-2 text-lg md:text-xl font-bold group-hover:text-[#B2FF59] transition-colors duration-300 truncate">
-                            {company.name}
-                            {company.ticker && (
-                              <span className="ml-2 text-xs md:text-sm text-[#B2FF59]">
-                                ({company.ticker})
-                              </span>
-                            )}
-                          </h3>
-                          <div className="flex flex-wrap items-center gap-2 text-xs md:text-sm">
-                            <span className="px-2 md:px-3 py-1 md:py-1.5 bg-[#B2FF59]/20 text-[#B2FF59] rounded-lg font-semibold border border-[#B2FF59]/50 whitespace-nowrap">
-                              {sector}
-                            </span>
-                            <span
-                              className={`px-2 md:px-3 py-1 md:py-1.5 rounded-lg font-semibold border whitespace-nowrap ${
-                                isPublic
-                                  ? 'bg-[#B2FF59]/20 text-[#B2FF59] border-[#B2FF59]/50'
-                                  : 'bg-[#1565C0]/20 text-[#1565C0] border-[#1565C0]/50'
-                              }`}
-                            >
-                              {isPublic ? 'Public' : 'Private'}
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Location */}
-                      <div className="flex items-center gap-1.5 text-xs md:text-sm text-[#AAAAAA] font-medium">
-                        <MapPin className="size-3.5 md:size-4 flex-shrink-0" />
-                        <span className="truncate">{company.headquarters}</span>
-                      </div>
-
-                      {/* Stats Grid - 2x2 on mobile, 4 cols on larger */}
-                      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 pt-4 border-t-2 border-[#2B2B2B]">
-                        <div>
-                          <div className="text-[#888888] text-[10px] md:text-xs mb-1 md:mb-1.5 font-semibold uppercase tracking-wide">
-                            Founded
-                          </div>
-                          <div className="text-[#FAFAFA] text-sm md:text-base font-mono font-semibold">
-                            {company.founded}
-                          </div>
-                        </div>
-                        <div>
-                          <div className="text-[#888888] text-[10px] md:text-xs mb-1 md:mb-1.5 font-semibold uppercase tracking-wide">
-                            Capacity
-                          </div>
-                          <div className="text-[#B2FF59] text-sm md:text-base font-mono font-bold truncate">
-                            {company.capacity_gwh ? `${company.capacity_gwh} GWh` : 'N/A'}
-                          </div>
-                        </div>
-                        <div>
-                          <div className="text-[#888888] text-[10px] md:text-xs mb-1 md:mb-1.5 font-semibold uppercase tracking-wide">
-                            Funding
-                          </div>
-                          <div className="text-[#1565C0] text-sm md:text-base font-mono font-bold truncate">
-                            {company.funding?.total_raised || 'N/A'}
-                          </div>
-                        </div>
-                        <div>
-                          <div className="text-[#888888] text-[10px] md:text-xs mb-1 md:mb-1.5 font-semibold uppercase tracking-wide">
-                            Employees
-                          </div>
-                          <div className="text-[#FAFAFA] text-sm md:text-base font-mono font-semibold">
-                            {company.employees}+
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Technology Description */}
-                      <div className="text-xs md:text-sm text-[#CCCCCC] line-clamp-2">
-                        {company.technology}
-                      </div>
-                    </div>
-                  </motion.div>
-                );
-              })}
+          {/* Active Filters Pills */}
+          {activeFiltersCount > 0 && (
+            <div className="flex items-center gap-2 flex-wrap">
+              <span className="text-xs text-[#888888] font-medium">Active filters:</span>
+              {selectedTechnologies.map((tech) => (
+                <button
+                  key={tech}
+                  onClick={() => removeFilter('tech', tech)}
+                  className="px-3 py-1.5 bg-[#B2FF59]/20 text-[#B2FF59] rounded-full text-xs font-medium flex items-center gap-1.5 hover:bg-[#B2FF59]/30 transition-colors"
+                >
+                  {tech === 'lfp' ? 'LFP' : tech.replace('-', ' ')}
+                  <X className="size-3" />
+                </button>
+              ))}
+              {selectedCompanyTypes.map((type) => (
+                <button
+                  key={type}
+                  onClick={() => removeFilter('type', type)}
+                  className="px-3 py-1.5 bg-[#1565C0]/20 text-[#1565C0] rounded-full text-xs font-medium flex items-center gap-1.5 hover:bg-[#1565C0]/30 transition-colors"
+                >
+                  {type === 'jv' ? 'Joint Venture' : type}
+                  <X className="size-3" />
+                </button>
+              ))}
+              {selectedStages.map((stage) => (
+                <button
+                  key={stage}
+                  onClick={() => removeFilter('stage', stage)}
+                  className="px-3 py-1.5 bg-[#FF9F0A]/20 text-[#FF9F0A] rounded-full text-xs font-medium flex items-center gap-1.5 hover:bg-[#FF9F0A]/30 transition-colors capitalize"
+                >
+                  {stage}
+                  <X className="size-3" />
+                </button>
+              ))}
+              {selectedRegions.map((region) => (
+                <button
+                  key={region}
+                  onClick={() => removeFilter('region', region)}
+                  className="px-3 py-1.5 bg-[#AF52DE]/20 text-[#AF52DE] rounded-full text-xs font-medium flex items-center gap-1.5 hover:bg-[#AF52DE]/30 transition-colors"
+                >
+                  {region}
+                  <X className="size-3" />
+                </button>
+              ))}
             </div>
+          )}
 
-            {filteredCompanies.length === 0 && (
-              <div className="text-center py-12 px-4">
-                <p className="text-[#AAAAAA] text-base md:text-lg">
-                  No companies match your filters. Try adjusting your search criteria.
-                </p>
-              </div>
-            )}
+          {/* Results Count */}
+          <div className="flex items-center justify-between text-sm">
+            <span className="text-[#AAAAAA] font-medium">
+              Showing {filteredCompanies.length} of {companies.length} companies
+            </span>
           </div>
         </div>
+
+        {/* Company Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {filteredCompanies.map((company, index) => {
+            const isPublic = company.ticker || company.is_publicly_traded;
+
+            return (
+              <motion.div
+                key={company.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: index * 0.02 }}
+                className="bg-[#1A1A1A] p-5 rounded-lg border border-[#2B2B2B] hover:border-[#B2FF59] hover:shadow-lg hover:shadow-[#B2FF59]/10 transition-all duration-300 group"
+              >
+                <div className="flex items-start gap-3 mb-4">
+                  <div className="w-10 h-10 bg-[#0F0F0F] rounded-lg flex items-center justify-center flex-shrink-0 border border-[#2B2B2B] group-hover:border-[#B2FF59] transition-all">
+                    <Building2 className="size-5 text-[#B2FF59]" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-[#FAFAFA] text-base font-bold group-hover:text-[#B2FF59] transition-colors truncate">
+                      {company.name}
+                    </h3>
+                    <div className="flex items-center gap-2 mt-1">
+                      {company.ticker && (
+                        <span className="text-xs text-[#B2FF59] font-mono">
+                          {company.ticker}
+                        </span>
+                      )}
+                      <span
+                        className={`px-2 py-0.5 rounded text-xs font-semibold ${
+                          isPublic
+                            ? 'bg-[#B2FF59]/20 text-[#B2FF59]'
+                            : 'bg-[#1565C0]/20 text-[#1565C0]'
+                        }`}
+                      >
+                        {isPublic ? 'Public' : 'Private'}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-1.5 text-xs text-[#AAAAAA] mb-3">
+                  <MapPin className="size-3.5 flex-shrink-0" />
+                  <span className="truncate">{company.headquarters}</span>
+                </div>
+
+                <div className="grid grid-cols-2 gap-3 pt-3 border-t border-[#2B2B2B]">
+                  <div>
+                    <div className="text-[10px] text-[#888888] mb-1 uppercase tracking-wide font-semibold">
+                      Capacity
+                    </div>
+                    <div className="text-sm text-[#B2FF59] font-mono font-bold">
+                      {company.capacity_gwh ? `${company.capacity_gwh} GWh` : 'N/A'}
+                    </div>
+                  </div>
+                  <div>
+                    <div className="text-[10px] text-[#888888] mb-1 uppercase tracking-wide font-semibold">
+                      Employees
+                    </div>
+                    <div className="text-sm text-[#FAFAFA] font-mono font-semibold">
+                      {company.employees}+
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-3 text-xs text-[#CCCCCC] line-clamp-2">
+                  {company.technology}
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
+
+        {filteredCompanies.length === 0 && (
+          <div className="text-center py-16 px-4">
+            <p className="text-[#AAAAAA] text-base">
+              No companies match your filters. Try adjusting your search criteria.
+            </p>
+          </div>
+        )}
       </div>
     </div>
   );

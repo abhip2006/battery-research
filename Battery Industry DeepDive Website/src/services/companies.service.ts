@@ -41,6 +41,7 @@ export interface Company {
 export interface CompaniesData {
   publicCompanies?: Company[];
   privateCompanies?: Company[];
+  jointVentures?: Company[];
 }
 
 let cachedCompanies: Company[] | null = null;
@@ -59,10 +60,11 @@ async function fetchFromLocal(): Promise<Company[]> {
 
     const data: CompaniesData = await response.json();
 
-    // Combine public and private companies
+    // Combine all company types
     const allCompanies = [
       ...(data.publicCompanies || []),
       ...(data.privateCompanies || []),
+      ...(data.jointVentures || []),
     ];
 
     cachedCompanies = allCompanies;

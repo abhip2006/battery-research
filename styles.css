@@ -232,7 +232,7 @@ a:hover {
 .navbar-menu {
   display: flex;
   list-style: none;
-  gap: var(--spacing-xl);
+  gap: var(--spacing-2xl);
   align-items: center;
 }
 
@@ -1397,7 +1397,7 @@ tbody td {
   }
 
   .navbar-toggle {
-    display: flex;
+    display: none !important;
   }
 
   .grid,
