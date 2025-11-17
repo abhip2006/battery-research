@@ -49,6 +49,7 @@ sentence-transformers==2.3.1
 unstructured>=0.18.0
 markdown==3.5.2
 beautifulsoup4==4.12.3
+watchdog==3.0.0
 
 # Development & testing
 pytest==8.0.0

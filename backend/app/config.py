@@ -87,6 +87,9 @@ class Settings(BaseSettings):
     # Cohere Configuration
     COHERE_API_KEY: str = ""
 
+    # Local Embedding Configuration (sentence-transformers)
+    LOCAL_EMBEDDING_MODEL: str = "all-MiniLM-L6-v2"
+
     # RAG Configuration
     CHUNK_SIZE: int = 1000
     CHUNK_OVERLAP: int = 200
