@@ -1,0 +1,37 @@
+company_id,ticker,legal_name,ownership_category,investor_name,ownership_pct,shares_held_m,filing_type,filing_date,investor_type,notes
+COMP-001,EOSE,Eos Energy Enterprises Inc,Strategic,Cerberus Capital Management,Not Disclosed,Not Disclosed,8-K,2024-06-21,Private Equity,$315.5M strategic investment
+COMP-001,EOSE,Eos Energy Enterprises Inc,Institutional,BlackRock Inc,Not Disclosed,Not Disclosed,13-F,2024-Q4,Asset Manager,Major institutional holder
+COMP-001,EOSE,Eos Energy Enterprises Inc,Institutional,Vanguard Group Inc,Not Disclosed,Not Disclosed,13-F,2024-Q4,Asset Manager,Major institutional holder
+COMP-002,AMPX,Amprius Technologies Inc,Strategic,Airbus Ventures,Not Disclosed,Not Disclosed,13-D/G,2024,Corporate Venture,Aviation applications focus
+COMP-002,AMPX,Amprius Technologies Inc,Strategic,Traxys,Not Disclosed,Not Disclosed,13-D/G,2024,Strategic Partner,Materials supply partnership
+COMP-002,AMPX,Amprius Technologies Inc,Institutional,BlackRock Inc,Not Disclosed,Not Disclosed,13-F,2024-Q4,Asset Manager,Major institutional holder
+COMP-003,QS,QuantumScape Corporation,Strategic,Volkswagen AG,~20.0,Not Disclosed,13-D/G,2024,OEM,Largest automotive shareholder; $100M invested 2018
+COMP-003,QS,QuantumScape Corporation,Strategic,Bill Gates,Not Disclosed,Not Disclosed,13-D/G,2020,Individual,Early investor
+COMP-003,QS,QuantumScape Corporation,Strategic,Continental AG,Not Disclosed,Not Disclosed,13-D/G,2020,Automotive Supplier,Strategic partner
+COMP-003,QS,QuantumScape Corporation,Institutional,Coatue Management,Not Disclosed,Not Disclosed,13-F,2023-Q2,Hedge Fund,$24.4M stake; largest hedge fund investor
+COMP-003,QS,QuantumScape Corporation,Institutional,BlackRock Inc,Not Disclosed,Not Disclosed,13-F,2024-Q4,Asset Manager,Major institutional holder
+COMP-005,FLNC,Fluence Energy Inc,Strategic,Siemens AG,Not Disclosed,Not Disclosed,DEF 14A,2024,Industrial Conglomerate,Parent company shareholder
+COMP-005,FLNC,Fluence Energy Inc,Strategic,AES Corporation,Not Disclosed,Not Disclosed,DEF 14A,2024,Energy Company,Parent company shareholder
+COMP-005,FLNC,Fluence Energy Inc,Retail,Public Markets,Not Disclosed,Not Disclosed,N/A,2024,Public Float,Publicly traded shares
+COMP-006,ABAT,American Battery Technology Company,Institutional,BlackRock Inc,Not Disclosed,Not Disclosed,13-F,2024-Q4,Asset Manager,Largest shareholder
+COMP-006,ABAT,American Battery Technology Company,Institutional,Vanguard Group Inc,Not Disclosed,Not Disclosed,13-F,2024-Q4,Asset Manager,Major holder
+COMP-006,ABAT,American Battery Technology Company,Institutional,Geode Capital Management,Not Disclosed,Not Disclosed,13-F,2024-Q4,Asset Manager,Top institutional holder
+COMP-007,ENVX,Enovix Corporation,Strategic,Intel Capital,Not Disclosed,Not Disclosed,13-D/G,2024,Corporate Venture,Strategic technology investor
+COMP-007,ENVX,Enovix Corporation,Strategic,Qualcomm Ventures,Not Disclosed,Not Disclosed,13-D/G,2024,Corporate Venture,Consumer electronics applications
+COMP-007,ENVX,Enovix Corporation,Institutional,BlackRock Inc,Not Disclosed,Not Disclosed,13-F,2024-Q4,Asset Manager,Major institutional holder
+COMP-008,SES,SES AI Corporation,Strategic,General Motors,Not Disclosed,Not Disclosed,13-D/G,2024,OEM,Strategic partner and investor
+COMP-008,SES,SES AI Corporation,Strategic,Hyundai Motor,Not Disclosed,Not Disclosed,13-D/G,2024,OEM,Strategic partner and investor
+COMP-008,SES,SES AI Corporation,Strategic,Honda Motor,Not Disclosed,Not Disclosed,13-D/G,2024,OEM,Strategic partner and investor
+COMP-009,MVST,Microvast Holdings Inc,Insider,Yang Wu (CEO),27.0,Not Disclosed,Form 4,2024,Management,Largest shareholder
+COMP-009,MVST,Microvast Holdings Inc,Strategic,CDH Investment Management,13.0,Not Disclosed,13-D/G,2024,Private Equity,Second largest shareholder
+COMP-009,MVST,Microvast Holdings Inc,Strategic,International Finance Corporation,4.1,Not Disclosed,13-D/G,2024,Development Finance,World Bank Group member
+COMP-009,MVST,Microvast Holdings Inc,Institutional,BlackRock Inc,Not Disclosed,Not Disclosed,13-F,2024-Q4,Asset Manager,Major institutional holder
+COMP-009,MVST,Microvast Holdings Inc,Institutional,Vanguard Group Inc,3.0,9.1,13-F,2025-Q1,Asset Manager,Largest institutional holder
+COMP-009,MVST,Microvast Holdings Inc,Strategic,General Motors,Partnership,N/A,Press Release,2022,OEM,Technology partnership (not equity stake)
+COMP-010,SLDP,Solid Power Inc,Insider,Management & Insiders,7.2,Not Disclosed,DEF 14A,2024,Management,Insider ownership
+COMP-010,SLDP,Solid Power Inc,Strategic,Ford Motor Company,Not Disclosed,Not Disclosed,13-D/G,2024,OEM,Strategic investor and partner
+COMP-010,SLDP,Solid Power Inc,Strategic,BMW AG,Not Disclosed,Not Disclosed,13-D/G,2024,OEM,Strategic investor and partner
+COMP-010,SLDP,Solid Power Inc,Institutional,Institutional Investors,33.7,Not Disclosed,13-F,2024-Q4,Various,Total institutional ownership
+COMP-011,NRGV,Energy Vault Holdings Inc,Strategic,SoftBank Group,Not Disclosed,Not Disclosed,13-D/G,2024,Private Equity,Strategic investor
+COMP-041,FREY,FREYR Battery,Strategic,Koch Strategic Platforms,Not Disclosed,Not Disclosed,13-D/G,2024,Private Equity,Strategic investor
+COMP-041,FREY,FREYR Battery,Institutional,Encompass Capital Advisors,Not Disclosed,Not Disclosed,13-F,2023-Q2,Hedge Fund,Largest hedge fund holder; $64.9M stake

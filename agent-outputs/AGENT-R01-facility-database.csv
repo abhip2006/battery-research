@@ -1,0 +1,55 @@
+facility_id,company_id,facility_name,address,city,state,zip,facility_type,operational_status,capacity_gwh,announced_date,operational_date,incentives_received,source_url
+FAC-001,COMP-001,Eos Turtle Creek Manufacturing,3920 Park Ave,Pittsburgh,PA,15201,Manufacturing,Operational,2.0,2019-03-01,2024-07-01,DOE Loan Guarantee $305.3M,https://investors.eose.com
+FAC-002,COMP-001,Eos Marshall Township Facility,Not Disclosed,Pittsburgh,PA,Not Disclosed,Manufacturing,Under Construction,6.0,2024-01-01,2026-01-01,DOE Loan Guarantee,https://www.eose.com
+FAC-003,COMP-002,Amprius Fremont Facility,1180 Page Ave,Fremont,CA,94538,Manufacturing,Operational,0.0,2020-01-01,2021-01-01,None disclosed,https://amprius.com
+FAC-004,COMP-003,QuantumScape HQ & Pilot,1730 S Amphlett Blvd,San Jose,CA,95131,R&D; Pilot,Operational,Not Disclosed,2010-01-01,2020-01-01,None disclosed,https://www.quantumscape.com
+FAC-005,COMP-004,Rosamond Central BESS,Not Disclosed,Rosamond,CA,Not Disclosed,Energy Storage,Operational,0.147,2024-01-01,2025-01-01,None disclosed,https://investor.clearwayenergy.com
+FAC-006,COMP-005,Fluence U.S. Manufacturing,Not Disclosed,Mesa,AZ,Not Disclosed,Manufacturing,Operational,Not Disclosed,2025-09-01,2025-09-01,None disclosed,https://ir.fluenceenergy.com
+FAC-007,COMP-006,ABTC Recycling Facility,16000 Wedge Pkwy,Reno,NV,89511,Recycling,Operational,0.02,2020-01-01,2023-10-01,DOE Grant $144M,https://americanbatterytechnology.com
+FAC-008,COMP-006,ABTC Tonopah Flats Lithium,Not Disclosed,Tonopah,NV,Not Disclosed,Mining; Processing,Pilot,Not Disclosed,2023-01-01,2024-01-01,None disclosed,https://americanbatterytechnology.com
+FAC-009,COMP-007,Enovix Fab-1,47200 Bayside Pkwy,Fremont,CA,94538,Manufacturing,Operational,Not Disclosed,2020-12-01,2022-07-01,None disclosed,https://www.enovix.com
+FAC-010,COMP-007,Enovix Fab-2,Not Disclosed,Penang,Malaysia,Not Disclosed,Manufacturing,Under Construction,Not Disclosed,2024-01-01,2025-01-01,None disclosed,https://www.enovix.com
+FAC-011,COMP-008,SES AI Woburn HQ,35 Cabot Rd,Woburn,MA,01801,R&D,Operational,Not Disclosed,2012-01-01,2015-01-01,None disclosed,https://www.ses.ai
+FAC-012,COMP-010,Solid Power Thornton Facility,486 S. Pierce Ave,Louisville,CO,80027,Manufacturing,Operational,0.14,2021-09-01,2022-01-01,DOE Grant $50M,https://www.solidpower.com
+FAC-013,COMP-012,Redwood McCarran Campus,6425 Klondike Dr,Carson City,NV,89706,Recycling; Manufacturing,Operational,20.0,2020-01-01,2024-01-01,DOE Loan $2B,https://www.redwoodmaterials.com
+FAC-014,COMP-013,Sila Moses Lake Plant,Not Disclosed,Moses Lake,WA,98837,Manufacturing,Operational,0.2,2021-01-01,2025-01-01,DOE Grant $100M,https://www.silanano.com
+FAC-015,COMP-014,Form Energy Weirton Factory,3200 Main St,Weirton,WV,26062,Manufacturing,Under Construction,Not Disclosed,2023-02-01,2025-01-01,None disclosed,https://formenergy.com
+FAC-016,COMP-014,Form Energy Maine Project,Not Disclosed,Lincoln,ME,Not Disclosed,Energy Storage,Under Construction,8.5,2024-01-01,2028-01-01,DOE Grant $147M,https://formenergy.com
+FAC-017,COMP-015,Factorial Woburn Facility,139 Flanders Rd,Woburn,MA,01801,R&D; Pilot,Operational,Not Disclosed,2015-01-01,2020-01-01,None disclosed,https://factorialenergy.com
+FAC-018,COMP-016,ESS Wilsonville Facility,10480 SW Nimbus Ave,Wilsonville,OR,97070,Manufacturing,Operational,Not Disclosed,2015-01-01,2020-01-01,None disclosed,https://essinc.com
+FAC-019,COMP-017,Ascend Hopkinsville Apex 1,Not Disclosed,Hopkinsville,KY,42240,Manufacturing,Under Construction,0.75,2022-01-01,2025-01-01,State Incentives,https://ascendelements.com
+FAC-020,COMP-018,Li-Cycle Rochester Spoke,260 E Elm St,Rochester,NY,14445,Recycling,Operational,0.005,2020-01-01,2020-12-01,State Incentives,https://li-cycle.com
+FAC-021,COMP-018,Li-Cycle Rochester Hub,260 E Elm St,Rochester,NY,14445,Recycling,Announced,0.06,2020-09-01,Not Disclosed,State Incentives,https://li-cycle.com
+FAC-022,COMP-019,ONE Van Buren Factory,Not Disclosed,Van Buren Township,MI,48111,Manufacturing,Under Construction,20.0,2023-01-01,2025-01-01,State Incentives $1.6B,https://one.ai
+FAC-023,COMP-020,Natron Holland Facility,Not Disclosed,Holland,MI,49423,Manufacturing,Operational (Defunct),0.6,2023-01-01,2024-04-01,ARPA-E $19.8M,https://natron.energy
+FAC-024,COMP-021,Enevate Irvine Facility,17871 Cartwright Rd,Irvine,CA,92614,R&D; Pilot,Operational,Not Disclosed,2010-01-01,2018-01-01,None disclosed,https://www.enevate.com
+FAC-025,COMP-024,6K Tennessee PlusCAM,Not Disclosed,Jackson,TN,38301,Manufacturing,Under Construction,0.013,2023-04-01,2025-01-01,DOE Grant $50M,https://www.6kinc.com
+FAC-026,COMP-024,6K North Andover R&D,20 Hampshire Dr,North Andover,MA,01845,R&D,Operational,Not Disclosed,2015-01-01,2020-01-01,None disclosed,https://www.6kinc.com
+FAC-027,COMP-025,Powin Tualatin HQ,15550 SW Jay St,Tualatin,OR,97062,Engineering; Integration,Operational,Not Disclosed,2015-01-01,2018-01-01,None disclosed,https://powin.com
+FAC-028,COMP-026,Tesla Gigafactory Nevada,1 Electric Ave,Sparks,NV,89434,Manufacturing,Operational,41.0,2014-01-01,2016-01-01,State Incentives $1.3B,https://www.tesla.com/gigafactory
+FAC-029,COMP-027,LGES Holland LFP Plant,Not Disclosed,Holland,MI,49423,Manufacturing,Operational,16.5,2022-01-01,2025-06-01,State Incentives,https://lgenergymi.com
+FAC-030,COMP-027,LGES Queen Creek Plant,Not Disclosed,Queen Creek,AZ,85142,Manufacturing,Under Construction,36.0,2023-01-01,2026-01-01,State Incentives,https://www.lgensol.com
+FAC-031,COMP-027,Ultium Cells Warren Plant,Not Disclosed,Warren,OH,44483,Manufacturing,Operational,35.0,2020-01-01,2022-01-01,None disclosed,https://www.ultiumcellsllc.com
+FAC-032,COMP-027,Ultium Cells Spring Hill,Not Disclosed,Spring Hill,TN,37174,Manufacturing,Operational,35.0,2020-01-01,2023-01-01,None disclosed,https://www.ultiumcellsllc.com
+FAC-033,COMP-027,Ultium Cells Lansing,Not Disclosed,Lansing,MI,48933,Manufacturing,Operational,5.0,2021-01-01,2024-01-01,State Incentives,https://www.ultiumcellsllc.com
+FAC-034,COMP-028,SK Battery America Factory 1,2445 Innovation Dr,Commerce,GA,30529,Manufacturing,Operational,9.8,2019-01-01,2021-01-01,State Incentives,https://www.skbatteryamerica.com
+FAC-035,COMP-028,SK Battery America Factory 2,2500 Innovation Dr,Commerce,GA,30529,Manufacturing,Operational,9.8,2019-01-01,2022-01-01,State Incentives,https://www.skbatteryamerica.com
+FAC-036,COMP-028,BlueOval SK Glendale KY,Not Disclosed,Glendale,KY,42740,Manufacturing,Under Construction,86.0,2021-09-01,2025-01-01,State Incentives,https://eng.sk.com
+FAC-037,COMP-028,BlueOval SK Stanton TN,Not Disclosed,Stanton,TN,38069,Manufacturing,Under Construction,43.0,2021-09-01,2025-01-01,State Incentives,https://eng.sk.com
+FAC-038,COMP-028,SK Hyundai Bartow GA,Not Disclosed,Bartow County,GA,30120,Manufacturing,Under Construction,35.0,2022-01-01,2026-01-01,State Incentives,https://eng.sk.com
+FAC-039,COMP-029,Panasonic Kansas Factory,Not Disclosed,De Soto,KS,66018,Manufacturing,Operational,32.0,2021-07-01,2025-07-01,State Incentives $330M,https://na.panasonic.com
+FAC-040,COMP-030,StarPlus Kokomo Plant 1,Not Disclosed,Kokomo,IN,46901,Manufacturing,Under Construction,33.0,2022-05-01,2025-03-01,DOE Loan $7.54B; State Incentives,https://news.samsungsdi.com
+FAC-041,COMP-030,StarPlus Kokomo Plant 2,Not Disclosed,Kokomo,IN,46901,Manufacturing,Under Construction,34.0,2023-10-01,2027-01-01,DOE Loan $7.54B; State Incentives,https://news.samsungsdi.com
+FAC-042,COMP-031,Gotion Manteno Plant,Not Disclosed,Manteno,IL,60950,Manufacturing,Under Construction,50.0,2023-09-01,2026-01-01,State Incentives $536M,https://www.gotion.com
+FAC-043,COMP-031,Gotion Big Rapids Plant,Not Disclosed,Big Rapids,MI,49307,Manufacturing,Under Construction,Not Disclosed,2022-01-01,2025-01-01,State Incentives,https://www.gotion.com
+FAC-044,COMP-032,A123 Livonia Plant,41300 Concept Dr,Livonia,MI,48150,Manufacturing,Operational,30.0,2009-08-01,2010-09-01,DOE Grant $249M,https://www.a123systems.com
+FAC-045,COMP-032,A123 Romulus Plant,Not Disclosed,Romulus,MI,48174,Manufacturing,Operational,Not Disclosed,2010-01-01,2012-01-01,DOE Grant,https://www.a123systems.com
+FAC-046,COMP-033,Cirba Lancaster OH,1800 Granville Rd,Lancaster,OH,43130,Recycling,Operational,0.2,2020-01-01,2022-01-01,DOE Grant $75M,https://www.cirbasolutions.com
+FAC-047,COMP-033,Cirba Eloy AZ,Not Disclosed,Eloy,AZ,85131,Recycling,Announced,0.05,2022-01-01,Not Disclosed,None disclosed,https://www.cirbasolutions.com
+FAC-048,COMP-034,Piedmont Carolina Lithium,Not Disclosed,Gaston County,NC,28052,Mining; Processing,Announced,Not Disclosed,2022-01-01,Not Disclosed,None disclosed,https://www.piedmontlithium.com
+FAC-049,COMP-035,Ioneer Rhyolite Ridge,Not Disclosed,Esmeralda County,NV,89010,Mining,Under Construction,0.022,2024-10-01,2028-01-01,DOE Loan $996M,https://www.ioneer.com
+FAC-050,COMP-043,Albemarle Kings Mountain,Not Disclosed,Kings Mountain,NC,28086,Mining,Announced,Not Disclosed,2023-01-01,Not Disclosed,None disclosed,https://www.albemarle.com
+FAC-051,COMP-011,Energy Vault Snyder TX,Not Disclosed,Snyder,TX,79549,Energy Storage,Under Construction,0.15,2024-01-01,2025-01-01,None disclosed,https://www.energyvault.com
+FAC-052,COMP-023,EnergyX Austin HQ,Not Disclosed,Austin,TX,78701,R&D; DLE Production,Operational,0.001,2023-01-01,2024-11-01,None disclosed,https://energyx.com
+FAC-053,COMP-038,OneD Moses Lake Pilot,Not Disclosed,Moses Lake,WA,98837,Manufacturing,Closed,0.0001,2023-10-01,2024-07-01,None disclosed,https://onedsinanode.com
+FAC-054,COMP-045,BASF Elyria Plant,840 North Abbe Rd,Elyria,OH,44035,Manufacturing,Operational,Not Disclosed,2020-01-01,2023-01-01,None disclosed,https://battery-materials.basf.com

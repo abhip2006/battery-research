@@ -1,0 +1,90 @@
+date,year,month,company,technology_category,milestone_type,milestone_description,significance_level,commercial_impact,trl_change,source_type,validation_status
+2020-01-15,2020,January,Sila Nanotechnologies,Silicon Anode,Funding,Series F $170M raised from Daimler and others,High,Medium,6→6,Press Release,Confirmed
+2020-03-10,2020,March,QuantumScape,Solid-State,Partnership,Volkswagen increases investment to $300M,Very High,Medium,5→5,Company Filing,Confirmed
+2020-06-22,2020,June,Eos Energy,Flow Battery,Production,Automated manufacturing line operational,High,High,7→8,Company Announcement,Confirmed
+2020-09-15,2020,September,Form Energy,Metal-Air,Technology,Iron-air 100-hour storage announced,Very High,Low,4→5,Press Release,Confirmed
+2020-12-08,2020,December,QuantumScape,Solid-State,Technical,24-layer cell demonstrated 800+ cycles,Very High,Medium,5→6,Independent Test,Validated
+2021-02-18,2021,February,Amprius,Silicon Anode,Production,500 Wh/kg cells entering production,Very High,Medium,6→7,Company Announcement,Confirmed
+2021-03-12,2021,March,Sila Nanotechnologies,Silicon Anode,Commercial,Mercedes partnership announced for EQG,Very High,High,6→7,OEM Announcement,Confirmed
+2021-06-01,2021,June,CATL,Sodium-Ion,Technology,First-generation sodium-ion cell (160 Wh/kg) revealed,High,Medium,6→7,Product Launch,Confirmed
+2021-07-15,2021,July,Enovix,Silicon Anode,IPO,SPAC merger completed raising $425M,High,Medium,6→7,SEC Filing,Confirmed
+2021-09-20,2021,September,Solid Power,Solid-State,Commercial,Delivered 20 Ah sulfide cells to BMW and Ford,Very High,High,6→7,Partnership Announcement,Confirmed
+2021-10-18,2021,October,Form Energy,Metal-Air,Commercial,Georgia Power 15 MW / 1500 MWh project announced,Very High,High,5→6,Utility Announcement,Confirmed
+2021-11-30,2021,November,Tesla,Li-ion Manufacturing,Production,4680 cell production begins at pilot facility,Very High,Very High,8→9,Earnings Call,Confirmed
+2022-01-12,2022,January,Sila Nanotechnologies,Silicon Anode,Funding,Series F extension $590M total,High,High,7→7,Press Release,Confirmed
+2022-02-22,2022,February,Our Next Energy,LFP / Li-Metal,Technology,Gemini dual-chemistry 752-mile range demonstrated,High,Medium,5→6,Press Release,Confirmed
+2022-03-28,2022,March,Enevate,Silicon Anode,Technology,5-minute fast charging silicon anode demonstrated,Very High,Medium,6→6,Technical Publication,Validated
+2022-04-15,2022,April,Factorial Energy,Solid-State,Technology,40 Ah FEST solid-state cells demonstrated,High,Medium,6→6,Company Announcement,Confirmed
+2022-05-10,2022,May,Redwood Materials,Recycling,Production,Campus expansion 100 GWh annual capacity target,Very High,High,7→8,Company Announcement,Confirmed
+2022-06-08,2022,June,Amprius,Silicon Anode,Production,500 Wh/kg cells in commercial production,Very High,High,7→8,Production Announcement,Confirmed
+2022-08-15,2022,August,LG Energy Solution,Li-ion Manufacturing,Production,Holland MI expansion to 70 GWh announced,Very High,Very High,9→9,Company Filing,Confirmed
+2022-09-01,2022,September,Natron Energy,Sodium-Ion,Commercial,Commercial production of Prussian Blue cells begins,High,Medium,7→8,Press Release,Confirmed
+2022-10-12,2022,October,Panasonic,Li-ion Manufacturing,Production,Kansas facility $4B investment announced,Very High,Very High,9→9,State Announcement,Confirmed
+2022-11-18,2022,November,QuantumScape,Solid-State,Technical,QSE-5 single-layer cell performance data released,High,Medium,6→6,Technical Report,Validated
+2023-01-09,2023,January,Sila Nanotechnologies,Silicon Anode,Commercial,Commercial deliveries to automotive partners begin,Very High,Very High,7→8,Company Announcement,Confirmed
+2023-02-14,2023,February,Redwood Materials,Recycling,Funding,DOE $2B loan for Nevada cathode facility,Very High,Very High,8→8,DOE Announcement,Confirmed
+2023-03-22,2023,March,SK On,Li-ion Manufacturing,Production,150 GWh total U.S. capacity announced,Very High,Very High,9→9,Company Report,Confirmed
+2023-04-10,2023,April,CATL,LMFP,Technology,M3P (LMFP variant) launched for Li Auto,Very High,High,7→8,Product Launch,Confirmed
+2023-05-18,2023,May,ESS Inc,Flow Battery,Commercial,75 MWh Sacramento Municipal Utility District project,High,High,7→8,Utility Announcement,Confirmed
+2023-06-01,2023,June,Our Next Energy,LFP,Funding,Series B $300M led by Bill Gates,High,High,6→6,Press Release,Confirmed
+2023-07-12,2023,July,Eos Energy,Flow Battery,Production,1.0 GWh automated manufacturing capacity operational,Very High,Very High,8→8,Production Announcement,Confirmed
+2023-07-25,2023,July,Toyota,Solid-State,Technology,Solid-state prototype EV demonstrated,High,Medium,6→6,Press Conference,Confirmed
+2023-08-08,2023,August,Ascend Elements,Recycling,Commercial,Hydro-to-Cathode commercial production begins,Very High,High,7→8,Company Announcement,Confirmed
+2023-09-15,2023,September,QuantumScape,Solid-State,Commercial,A-sample cells delivered to automotive customers,Very High,High,6→6,Earnings Call,Confirmed
+2023-10-03,2023,October,Form Energy,Metal-Air,Funding,Series E $760M raised,Very High,High,6→7,Press Release,Confirmed
+2023-10-20,2023,October,Solid Power,Solid-State,Production,Pilot production facility operational,High,High,7→7,Facility Opening,Confirmed
+2023-11-14,2023,November,Samsung SDI,Solid-State,Production,Solid-state pilot line operational,High,Medium,6→7,Company Announcement,Confirmed
+2023-12-05,2023,December,Northvolt,Sodium-Ion,Technology,Sodium-ion development program announced,Medium,Medium,5→6,Press Release,Confirmed
+2024-01-10,2024,January,Redwood Materials,Recycling,Partnership,$2B DOE loan finalized for cathode production,Very High,Very High,8→8,DOE Press Release,Confirmed
+2024-01-22,2024,January,Enevate,Silicon Anode,Partnership,Licensing agreements with major cell manufacturers,High,High,6→7,Company Announcement,Confirmed
+2024-02-08,2024,February,CATL,Sodium-Ion,Commercial,Sodium-ion cells in Chery EV (first automotive use),Very High,Very High,8→8,Product Launch,Confirmed
+2024-02-28,2024,February,Amprius,Silicon Anode,Technology,525 Wh/kg cell demonstrated (highest commercial),Very High,High,8→8,Press Release,Validated
+2024-03-15,2024,March,LG Energy Solution,Manufacturing,Technology,Dry electrode process pilot announced,High,Medium,6→7,Technical Conference,Confirmed
+2024-04-02,2024,April,BYD,Sodium-Ion,Product,Sodium-ion budget EV announced for 2025,High,High,7→8,Product Announcement,Confirmed
+2024-04-18,2024,April,Gotion High-Tech,LMFP,Technology,LMFP cells (210 Wh/kg) production begins,High,High,7→8,Production Announcement,Confirmed
+2024-05-06,2024,May,QuantumScape,Solid-State,Commercial,B-sample cells delivered to automotive partners,Very High,Very High,6→7,Earnings Call,Confirmed
+2024-05-20,2024,May,Factorial Energy,Solid-State,Funding,Series D $200M raised from Mercedes Stellantis Hyundai,Very High,High,6→7,Press Release,Confirmed
+2024-06-03,2024,June,Enovix,Silicon Anode,Production,High-volume manufacturing facility operational,High,Very High,7→8,Facility Opening,Confirmed
+2024-06-28,2024,June,Li-Cycle,Recycling,Acquisition,Glencore acquires Li-Cycle operations,Medium,Medium,7→7,Acquisition Announcement,Confirmed
+2024-07-15,2024,July,Panasonic,Li-ion Manufacturing,Production,Kansas facility begins 2170 cell production,Very High,Very High,9→9,Production Start,Confirmed
+2024-08-01,2024,August,Form Energy,Metal-Air,Production,West Virginia factory construction begins,Very High,Very High,7→7,Groundbreaking,Confirmed
+2024-08-22,2024,August,Ascend Elements,Recycling,Facility,Kentucky facility (30 GWh) construction underway,Very High,Very High,8→8,Construction Start,Confirmed
+2024-09-10,2024,September,Solid Power,Solid-State,Funding,$50M Series C extension for automotive scale-up,High,High,7→7,Press Release,Confirmed
+2024-09-25,2024,September,SES AI,Lithium-Metal,Technology,A-sample Li-Metal cells to automotive partners,High,High,6→6,Partnership Update,Confirmed
+2024-10-08,2024,October,SK On,Manufacturing,Facility,Commerce GA expansion 25 GWh additional capacity,Very High,Very High,9→9,State Announcement,Confirmed
+2024-10-30,2024,October,CATL,Sodium-Ion,Technology,Second-generation Na-ion (200 Wh/kg target),High,Medium,8→8,Technology Roadmap,Announced
+2024-11-12,2024,November,Tesla,Manufacturing,Technology,4680 cell production at scale (Giga Texas),Very High,Very High,9→9,Production Update,Confirmed
+2024-11-28,2024,November,Our Next Energy,LFP,Production,Michigan facility construction begins (20 GWh),Very High,Very High,6→7,Groundbreaking,Confirmed
+2025-01-07,2025,January,Natron Energy,Sodium-Ion,Commercial,Expanded data center UPS deployments,Medium,High,8→8,Customer Announcement,Projected
+2025-01-20,2025,January,Sila Nanotechnologies,Silicon Anode,Production,Automotive production scale-up (multiple OEMs),Very High,Very High,8→8,Production Milestone,Projected
+2025-02-15,2025,February,QuantumScape,Solid-State,Production,Pre-production facility ramp-up begins,Very High,Very High,7→7,Production Timeline,Projected
+2025-03-01,2025,March,Redwood Materials,Recycling,Production,Cathode production begins (closed-loop material),Very High,Very High,8→9,Production Start,Projected
+2025-03-30,2025,March,Form Energy,Metal-Air,Technology,Pilot system validation data released,High,High,7→7,Technical Report,Projected
+2025-04-15,2025,April,Factorial Energy,Solid-State,Funding,Additional funding for automotive qualification,High,High,7→7,Funding Round,Projected
+2025-05-10,2025,May,LMFP Category,LMFP,Commercial,Multiple manufacturers scaling LMFP production,Very High,Very High,8→8,Industry Trend,Projected
+2025-06-01,2025,June,Ascend Elements,Recycling,Production,Kentucky facility begins cathode production,Very High,Very High,8→9,Production Start,Projected
+2025-06-20,2025,June,Sodium-ion Category,Sodium-Ion,Commercial,5% market share in stationary storage achieved,High,Very High,8→8,Market Milestone,Projected
+2025-07-15,2025,July,Enovix,Silicon Anode,Commercial,Automotive partnerships announced,High,Very High,8→8,Partnership,Projected
+2025-08-01,2025,August,Solid Power,Solid-State,Commercial,Automotive qualification testing progress update,High,High,7→8,Technical Milestone,Projected
+2025-09-10,2025,September,Tesla,Manufacturing,Technology,4680 cell cost parity with 2170 cells achieved,Very High,Very High,9→9,Cost Milestone,Projected
+2025-10-01,2025,October,Multiple Companies,Recycling,Industry,30% of U.S. battery material from recycled sources,Very High,Very High,9→9,Industry Milestone,Projected
+2025-11-15,2025,November,Our Next Energy,LFP,Production,Michigan facility production begins,Very High,Very High,7→8,Production Start,Projected
+2026-01-15,2026,January,Form Energy,Metal-Air,Commercial,Georgia Power system commissioning begins,Very High,Very High,7→8,Deployment,Projected
+2026-03-01,2026,March,QuantumScape,Solid-State,Production,Low-volume production for automotive launch,Very High,Very High,7→8,Production Milestone,Projected
+2026-04-15,2026,April,Sodium-ion Category,Sodium-Ion,Commercial,First mainstream EV with sodium-ion battery (non-China),High,Very High,8→8,Market Milestone,Projected
+2026-06-01,2026,June,Silicon Anode Category,Silicon Anode,Commercial,30% of premium EVs using silicon anode,Very High,Very High,8→9,Market Penetration,Projected
+2026-09-01,2026,September,CATL,LMFP,Technology,LMFP energy density reaches 220 Wh/kg,High,High,8→8,Technical Milestone,Projected
+2026-12-15,2026,December,Solid-State Category,Solid-State,Commercial,First production vehicles with solid-state batteries,Very High,Very High,8→8,Market Launch,Projected
+2027-01-30,2027,January,Form Energy,Metal-Air,Validation,100-hour duration validated in real-world operation,Very High,Very High,8→8,Performance Validation,Projected
+2027-03-15,2027,March,Factorial Energy,Solid-State,Production,Production facility operational,Very High,Very High,7→8,Production Start,Projected
+2027-06-01,2027,June,QuantumScape,Solid-State,Commercial,Production vehicles with QS cells on road,Very High,Very High,8→9,Market Launch,Projected
+2027-09-15,2027,September,Recycling Category,Recycling,Industry,50% of U.S. cathode material from recycled sources,Very High,Very High,9→9,Industry Milestone,Projected
+2027-12-01,2027,December,Solid Power,Solid-State,Commercial,Automotive production launch with BMW/Ford,Very High,Very High,8→9,Market Launch,Projected
+2028-03-15,2028,March,Lithium-Metal Category,Lithium-Metal,Commercial,First commercial lithium-metal batteries (liquid electrolyte),High,High,7→8,Market Launch,Projected
+2028-06-01,2028,June,Sodium-ion Category,Sodium-Ion,Commercial,15% market share in energy storage globally,Very High,Very High,8→9,Market Milestone,Projected
+2028-09-01,2028,September,Form Energy,Metal-Air,Commercial,Multi-day storage systems at commercial scale,Very High,Very High,8→9,Market Maturity,Projected
+2028-12-15,2028,December,Solid-State Category,Solid-State,Cost,Solid-state approaching cost parity with Li-ion,Very High,Very High,9→9,Economic Milestone,Projected
+2029-06-01,2029,June,Silicon Anode Category,Silicon Anode,Commercial,Silicon anode standard in premium EV segment,Very High,Very High,9→9,Market Dominance,Projected
+2029-12-01,2029,December,Multiple Technologies,Industry,Milestone,$50/kWh battery pack cost achieved (LFP),Very High,Very High,9→9,Industry Milestone,Projected
+2030-06-15,2030,June,Solid-State Category,Solid-State,Commercial,Solid-state 20% of new EV production,Very High,Very High,9→9,Market Penetration,Projected
+2030-12-01,2030,December,Industry Overall,Multiple,Milestone,U.S. battery production 1 TWh annual capacity,Very High,Very High,9→9,Industry Milestone,Projected

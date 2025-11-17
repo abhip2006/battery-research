@@ -1,0 +1,62 @@
+Date,Event Type,Policy/Regulation,Agency,Description,Impact on Battery Industry,Status
+2005-08-08,Enacted,Energy Policy Act - Title 17,DOE,Created DOE Loan Guarantee Program for innovative energy technologies,Established foundation for battery manufacturing financing,Historical - Expanded
+2007-12-19,Enacted,Energy Independence and Security Act - ATVM,DOE,Created Advanced Technology Vehicles Manufacturing loan program,Enabled direct loans for battery and EV manufacturing,Historical - Active
+2012,Regulatory,California ZEV Mandate,CARB,California implements Zero Emission Vehicle sales requirements,Creates demand-pull for EV batteries; other states follow,Historical - Ongoing
+2014-09,Incentive,Nevada Tesla Gigafactory Package,State of Nevada,"$1.3B incentive package for Tesla Gigafactory 1",Catalyzed first US battery gigafactory; model for future deals,Historical
+2018-02-15,Regulatory,FERC Order 841,FERC,Requires RTOs/ISOs to enable energy storage market participation,Opens wholesale electricity markets to battery storage,Historical - Implemented
+2018,Regulatory,Massachusetts Energy Storage Target,MA DOER,"1,000 MWh storage target by 2025",First Northeast state storage mandate,Historical - Active
+2019-08-16,Regulatory,Colorado ZEV Mandate Adoption,CO AQCC,Colorado adopts California ZEV standards,Expands ZEV states beyond California; increases battery demand,Historical - Active
+2020-09-17,Regulatory,FERC Order 2222,FERC,Enables DER aggregation in wholesale markets,Allows distributed batteries to participate in markets; enables VPPs,Historical - In Implementation
+2021-11-15,Enacted,Bipartisan Infrastructure Law,Congress/Biden,"$7B for battery supply chain; $15.5B for EV infrastructure",Largest federal battery investment to date; manufacturing boom,Historical - Active
+2021-10,Incentive,Tennessee Ford BlueOval City Package,State of Tennessee,$900M incentive package for Ford EV and battery complex,Secured major integrated EV/battery facility,Historical - Active
+2022-03-31,Executive Action,Defense Production Act - Battery Materials,White House/DOD,"DPA invoked for lithium, nickel, cobalt, graphite, manganese",Prioritizes domestic critical mineral production,Historical - Active
+2022-06-09,Regulatory Notice,EPA Battery Collection Best Practices RFI,EPA,Request for information on battery collection and labeling,Initiates battery recycling regulatory framework,Historical - In Progress
+2022-07,Incentive,Kansas Panasonic Gigafactory Package,State of Kansas,$829M incentive package for Panasonic battery facility,Major Midwest battery manufacturing hub,Historical - Active
+2022-08-09,Enacted,CHIPS and Science Act,Congress/Biden,$52.7B for semiconductor manufacturing; implications for battery supply chain,Supports automotive semiconductors critical for EVs and battery systems,Historical - Active
+2022-08-16,Enacted,Inflation Reduction Act,Congress/Biden,"$369B climate package including 45X manufacturing credits, 30D EV credits, ITC for storage",Game-changing policy driving battery manufacturing surge,Historical - Active
+2022-10,Grant Awards,BIL Battery Grants Round 1,DOE,$1.82B to 14 battery manufacturing projects,First wave of BIL-funded battery facilities,Historical - Active
+2023-01,Guidance,IRA 30D Foreign Entity of Concern,Treasury/IRS,FEOC restrictions begin for battery components,Drives supply chain shift away from China,Historical - Active
+2023-03,Incentive,Nevada Tesla Expansion Package,State of Nevada,$330M for Tesla Gigafactory expansion,Enables additional battery production capacity,Historical - Active
+2023-05-24,Guidance,EPA Lithium Battery Hazardous Waste Memo,EPA,"Clarifies RCRA status of lithium batteries; recommends universal waste handling",Impacts battery recycling permitting and handling requirements,Historical - Active
+2023-08,State Law,Washington Battery EPR Law,Washington State,Extended Producer Responsibility law for batteries with labeling requirements,First West Coast battery EPR law,Historical - Active
+2023-09,Regulatory,FERC Order 901,FERC,Reliability standards for inverter-based resources including batteries,"Addresses grid integration, safety, and reliability for battery systems",Historical - Active
+2023-10,Investment,Toyota NC Battery Plant Expansion,Toyota,$8B additional investment in North Carolina battery plant,Major capacity expansion for OEM battery supply,Historical
+2024-01,Regulatory,California LDES Procurement Target,CPUC,2 GW long-duration energy storage (12-hour + multi-day) by 2031-2037,Drives innovation in long-duration battery technologies,Recent - Active
+2024-02,Guidance,IRA 45X Final Guidance,Treasury/IRS,Final rules for Advanced Manufacturing Production Credit,Clarifies eligibility and credit calculations for battery manufacturers,Recent - Active
+2024-05-06,Guidance,IRA 30D Final Regulations,Treasury/IRS,"Final EV tax credit rules including battery component, critical mineral, and FEOC requirements",Sets clear compliance path for battery supply chain,Recent - Active
+2024-06,Regulatory,New York Storage Target Doubled,NY PSC,Increases energy storage target from 3 GW to 6 GW by 2030,Doubles near-term storage market opportunity,Recent - Active
+2024-07-01,Requirement,USMCA Battery RVC Increase,USTR,Regional Value Content for batteries increases to 64% (trucks),Drives North American battery content,Recent - Active
+2024-07-01,Requirement,Buy America EV Charger Content,FHWA,55% domestic content requirement for federally funded EV chargers,Supports domestic battery and electronics manufacturing,Recent - Active
+2024-09,Grant Awards,BIL Battery Grants Round 2,DOE,$3B to 25 battery manufacturing and recycling projects,Second major wave of federal battery manufacturing support,Recent - Active
+2024-10,Guidance,IRA 45X Updated Guidance,Treasury/IRS,Updated production cost calculation methods for critical minerals and electrode materials,Enhances credit value for upstream battery materials,Recent - Active
+2024-11,State Law,Massachusetts Energy Storage Law Expansion,Massachusetts Legislature,New law expanding energy storage requirements (details pending),Increases state storage mandate,Recent - Active
+2024-11,Regulatory,CAISO FERC Order 2222 Implementation Complete,CAISO,Full implementation of DER aggregation in CAISO markets,Enables battery aggregation in nation's largest grid,Recent - Implemented
+2024-12,Export Control,China Critical Mineral Export Restrictions,China,Restricts gallium/germanium/antimony exports to US,Heightens critical mineral supply chain concerns,Recent - Active
+2025-01,Regulatory,UL 9540A:2025 Thermal Runaway Standard,UL,Updated battery thermal runaway testing standard,Enhanced safety requirements for battery energy storage systems,Future - Published
+2025-01,Grant NOI,BIL Battery Grants Round 3 NOI,DOE,Notice of Intent for $725M in additional battery grants,Third round of federal battery manufacturing support,Future - Pending
+2025-01,Foreign Entity Restriction,IRA 30D Critical Minerals FEOC Ban,Treasury/IRS,Ban on critical minerals from FOECs takes effect,Further restricts Chinese battery supply chain participation,Future - Active
+2025,State Requirement,Oregon State Fleet 100% ZEV,State of Oregon,All new light-duty state vehicle purchases must be ZEVs,Government leading by example on EV adoption,Future - Active
+2025,Regulatory,California ZEV Mandate - 22%,CARB,22% of new vehicle sales must be ZEVs (up from 19.5% in 2024),Continues ramp-up of battery demand,Future - Active
+2025,Regulatory,Massachusetts Energy Storage Target - 1000 MWh,MA DOER,Original 2025 target deadline,First Northeast storage mandate deadline,Future - Active
+2026,Requirement,IRA 30D Battery Components 70%,Treasury/IRS,Battery component North American content requirement increases to 70%,Drives continued supply chain localization,Future
+2026,Regulatory,California ZEV Mandate - 35%,CARB,35% of new vehicle sales must be ZEVs or PHEVs,Major acceleration of EV battery demand,Future
+2026-11,Regulatory,NYISO FERC Order 2222 Implementation,NYISO,Full implementation of DER aggregation in NYISO markets,Enables battery aggregation in New York grid,Future
+2026-11,Regulatory,ISO-NE FERC Order 2222 Implementation,ISO-NE,Full implementation of DER aggregation in ISO-NE energy and ancillary services markets,Enables battery aggregation in New England grid,Future
+2027,Requirement,IRA 30D Critical Minerals 70%,Treasury/IRS,Critical mineral domestic/FTA sourcing requirement increases to 70%,Continued pressure to develop non-Chinese mineral sources,Future
+2027,Requirement,IRA 30D Battery Components 80%,Treasury/IRS,Battery component North American content requirement increases to 80%,High bar for supply chain localization,Future
+2027-07-01,Requirement,USMCA Battery RVC Final,USTR,Regional Value Content for batteries reaches final 70% (trucks),Full implementation of USMCA battery requirements,Future
+2028,Requirement,IRA 30D Battery Components 90%,Treasury/IRS,Battery component North American content requirement reaches 90%,Near-complete domestic supply chain required,Future
+2029-12-31,Phase-out Begin,IRA 45X Credit Reduction Begins,IRS,Advanced Manufacturing Production Credit begins 25% annual phase-down,Manufacturing credits start declining,Future
+2030,Regulatory,New York Energy Storage Target - 6 GW,NY PSC,Deadline for 6 GW energy storage deployment,Major storage market milestone,Future
+2030,Regulatory,California Energy Storage Target,CPUC,Original procurement targets complete,First wave of CA storage mandates complete,Future
+2030,Phase-out,IRA 45X Credit at 75%,IRS,Manufacturing credit reduced to 75% of original value,Continued incentive but reduced value,Future
+2031,Phase-out,IRA 45X Credit at 50%,IRS,Manufacturing credit reduced to 50% of original value,Halfway through credit phase-out,Future
+2031-2037,Regulatory,California LDES Deployment,CPUC,2 GW long-duration storage deployment period,Major LDES market opportunity,Future
+2032,Phase-out,IRA 45X Credit at 25%,IRS,Manufacturing credit reduced to 25% of original value,Near end of manufacturing credits,Future
+2032,Regulatory,Colorado/Delaware/New Mexico ZEV Program End,State regulators,"ZEV programs end for these states at 82% mandate level (others may continue to 100%)",Potential policy shift in some ZEV states,Future
+2033,Phase-out,IRA 48 ITC Reduction to 26%,IRS,Investment Tax Credit for standalone storage reduced from 30% to 26%,Storage deployment incentives begin declining,Future
+2033,Phase-out,IRA 45X Credit Expires,IRS,Manufacturing credit fully phases out,End of battery manufacturing production credits,Future
+2034,Phase-out,IRA 48 ITC Reduction to 22%,IRS,Investment Tax Credit for standalone storage reduced to 22%,Further reduction in storage incentives,Future
+2035,Regulatory,California 100% ZEV Mandate,CARB,100% of new vehicle sales must be zero-emission,Complete transition to electric vehicles in California,Future
+2035,Phase-out,IRA 48 ITC Expiration,IRS,Investment Tax Credit for standalone storage expires (unless extended),End of current storage tax incentives,Future
+2037,Regulatory,California LDES Target Complete,CPUC,Completion of 2 GW long-duration storage deployment,LDES mandate deadline,Future
