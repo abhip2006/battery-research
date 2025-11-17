@@ -371,6 +371,134 @@ $$ LANGUAGE plpgsql IMMUTABLE;
 -- GRANT EXECUTE ON ALL FUNCTIONS IN SCHEMA public TO battery_app;
 
 --------------------------------------------------------------------------------
+-- VECTOR DATABASE TABLES (RAG System)
+--------------------------------------------------------------------------------
+
+-- Enable pgvector extension for vector similarity search
+CREATE EXTENSION IF NOT EXISTS vector;
+
+-- Document chunks table with vector embeddings
+CREATE TABLE document_chunks (
+    id SERIAL PRIMARY KEY,
+
+    -- Document metadata
+    source_document VARCHAR(500) NOT NULL,
+    chunk_index INTEGER NOT NULL,
+
+    -- Content
+    content TEXT NOT NULL,
+    content_hash VARCHAR(64) NOT NULL UNIQUE,
+
+    -- Metadata for citations
+    section_title VARCHAR(500),
+    page_number INTEGER,
+    chunk_metadata JSONB,
+
+    -- Vector embedding for similarity search (1536 dimensions for OpenAI text-embedding-3-small)
+    embedding vector(1536) NOT NULL,
+
+    -- Token count for cost tracking
+    token_count INTEGER NOT NULL DEFAULT 0,
+
+    -- Timestamps
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Indexes for document_chunks
+CREATE INDEX idx_document_chunks_source ON document_chunks (source_document);
+CREATE INDEX idx_document_chunks_hash ON document_chunks (content_hash);
+CREATE INDEX idx_document_chunks_embedding ON document_chunks USING ivfflat (embedding vector_cosine_ops) WITH (lists = 100);
+
+-- Trigger for updated_at
+CREATE TRIGGER update_document_chunks_updated_at
+    BEFORE UPDATE ON document_chunks
+    FOR EACH ROW
+    EXECUTE FUNCTION update_updated_at_column();
+
+-- Document metadata table
+CREATE TABLE document_metadata (
+    id SERIAL PRIMARY KEY,
+
+    -- Document info
+    file_path VARCHAR(1000) NOT NULL UNIQUE,
+    file_name VARCHAR(500) NOT NULL,
+    file_type VARCHAR(50) NOT NULL,
+    file_size INTEGER NOT NULL,
+
+    -- Processing status
+    processing_status VARCHAR(50) NOT NULL DEFAULT 'pending' CHECK (
+        processing_status IN ('pending', 'processing', 'completed', 'failed')
+    ),
+
+    -- Statistics
+    total_chunks INTEGER NOT NULL DEFAULT 0,
+    total_tokens INTEGER NOT NULL DEFAULT 0,
+
+    -- Checksum for detecting changes
+    file_hash VARCHAR(64) NOT NULL,
+
+    -- Error tracking
+    error_message TEXT,
+
+    -- Timestamps
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Indexes for document_metadata
+CREATE INDEX idx_document_metadata_path ON document_metadata (file_path);
+CREATE INDEX idx_document_metadata_status ON document_metadata (processing_status);
+CREATE INDEX idx_document_metadata_hash ON document_metadata (file_hash);
+
+-- Trigger for updated_at
+CREATE TRIGGER update_document_metadata_updated_at
+    BEFORE UPDATE ON document_metadata
+    FOR EACH ROW
+    EXECUTE FUNCTION update_updated_at_column();
+
+--------------------------------------------------------------------------------
+-- CONVERSATION TABLES (Chat History)
+--------------------------------------------------------------------------------
+
+-- Conversations table
+CREATE TABLE conversations (
+    id SERIAL PRIMARY KEY,
+    session_id VARCHAR(255) NOT NULL UNIQUE,
+    user_id VARCHAR(255),
+    is_active BOOLEAN NOT NULL DEFAULT TRUE,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Indexes for conversations
+CREATE INDEX idx_conversations_session ON conversations (session_id);
+CREATE INDEX idx_conversations_user ON conversations (user_id);
+
+-- Trigger for updated_at
+CREATE TRIGGER update_conversations_updated_at
+    BEFORE UPDATE ON conversations
+    FOR EACH ROW
+    EXECUTE FUNCTION update_updated_at_column();
+
+-- Messages table
+CREATE TABLE messages (
+    id SERIAL PRIMARY KEY,
+    conversation_id INTEGER NOT NULL REFERENCES conversations(id) ON DELETE CASCADE,
+    role VARCHAR(50) NOT NULL CHECK (role IN ('user', 'assistant', 'system')),
+    content TEXT NOT NULL,
+    citations JSONB,
+    source_chunks JSONB,
+    confidence_score FLOAT,
+    model VARCHAR(100),
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Indexes for messages
+CREATE INDEX idx_messages_conversation ON messages (conversation_id);
+CREATE INDEX idx_messages_created_at ON messages (created_at DESC);
+
+--------------------------------------------------------------------------------
 -- COMMENTS
 --------------------------------------------------------------------------------
 COMMENT ON TABLE companies IS 'Battery manufacturing companies';
@@ -381,3 +509,10 @@ COMMENT ON TABLE policies IS 'Government policies and incentives';
 COMMENT ON COLUMN facilities.coordinates IS 'Geographic coordinates stored as PostGIS POINT';
 COMMENT ON COLUMN companies.search_vector IS 'Full-text search vector for companies';
 COMMENT ON COLUMN facilities.search_vector IS 'Full-text search vector for facilities';
+
+COMMENT ON TABLE document_chunks IS 'Document chunks with vector embeddings for RAG system';
+COMMENT ON TABLE document_metadata IS 'Metadata and processing status for source documents';
+COMMENT ON TABLE conversations IS 'Chat conversation sessions';
+COMMENT ON TABLE messages IS 'Individual messages in conversations';
+COMMENT ON COLUMN document_chunks.embedding IS 'Vector embedding for semantic similarity search (1536-dim OpenAI embeddings)';
+COMMENT ON COLUMN document_chunks.content_hash IS 'SHA-256 hash for deduplication';

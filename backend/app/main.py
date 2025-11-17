@@ -12,7 +12,7 @@ import logging
 
 from app.config import settings
 from app.database import init_db, close_db
-from app.api import companies, facilities, technologies, forecasts, policies, search, chat
+from app.api import companies, facilities, technologies, forecasts, policies, search, chat, documents
 
 # Configure logging
 logging.basicConfig(
@@ -149,6 +149,11 @@ app.include_router(
     chat.router,
     prefix=f"{settings.API_V1_PREFIX}/chat",
     tags=["Chat"],
+)
+
+app.include_router(
+    documents.router,
+    tags=["Documents"],
 )
 
 
